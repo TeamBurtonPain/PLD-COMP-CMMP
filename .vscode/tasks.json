@@ -10,7 +10,10 @@
             "args": [
                 "DEBUG=-g"
             ],
-            "group": "build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "presentation": {
                 // Reveal the output only if unrecognized errors occur.
                 "reveal": "silent"
