@@ -30,37 +30,38 @@ membreGauche: Var | Var '[' expr ']';
 eListe: expr ( ',' expr)*;
 
 expr:
-	membreGauche
-	| Var '(' ( paramDefinitionList)? ')'
+	membreGauche 							#variable
+	| Var '(' ( paramDefinitionList)? ')'	#function
 	
-	|'(' expr ')'
+	|'(' expr ')'							#par
 	
-	| '!'  expr
-	| '++' expr
-	| '--' expr
-	| expr '++'
-	| expr '--'
+	| '!'  expr								#not
+	| '++' expr								#inc
+	| '--' expr								#decr
+	| expr '++'								#inc
+	| expr '--'								#decr
 	
-	| expr '*'  expr
-	| expr '/'  expr
-	| expr '%'  expr
+	| expr '*'  expr						#mult
+	| expr '/'  expr						#div
+	| expr '%'  expr						#mod
 	
-	| expr '+'  expr
-	| expr '-'  expr
+	| expr '+'  expr						#add
+	| expr '-'  expr						#sub
 	
-	| expr '&&' expr
-	| expr '||' expr
+	| expr '&&' expr						#and
+	| expr '||' expr						#or
 	
-	| expr '<'  expr
-	| expr '<=' expr
-	| expr '>'  expr
-	| expr '>=' expr
-	| expr '==' expr
-	| expr '!=' expr
+	| expr '<'  expr						#lt
+	| expr '<=' expr						#lte
+	| expr '>'  expr						#gt
+	| expr '>=' expr						#gte
+	| expr '==' expr						#eg
+	| expr '!=' expr						#neg
 	
-	| membreGauche OpAffectation expr
+	| membreGauche OpAffectation expr		#affectation
 	
-	| cst;
+	| cst									#const
+	;									
 
 Include: InvariantInclude Lib;
 
