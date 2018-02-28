@@ -29,37 +29,40 @@ membreGauche: Var | Var '[' expr ']';
 
 eListe: expr ( ',' expr)*;
 
-
-/* Modifier pour corriger la récursivité gauche */
 expr:
 	membreGauche
 	| Var '(' ( paramDefinitionList)? ')'
-	| operation
-	| cst;
-
-operation:
-	'(' expr ')'
+	
+	|'(' expr ')'
+	
 	| '!'  expr
 	| '++' expr
 	| '--' expr
 	| expr '++'
 	| expr '--'
+	
 	| expr '*'  expr
 	| expr '/'  expr
 	| expr '%'  expr
+	
 	| expr '+'  expr
 	| expr '-'  expr
+	
 	| expr '&&' expr
 	| expr '||' expr
+	
 	| expr '<'  expr
 	| expr '<=' expr
 	| expr '>'  expr
 	| expr '>=' expr
 	| expr '==' expr
 	| expr '!=' expr
-	| membreGauche OpAffectation expr;
+	
+	| membreGauche OpAffectation expr
+	
+	| cst;
 
-Include: InvariantInclude ' ' Lib;
+Include: InvariantInclude Lib;
 
 InvariantInclude: '#include';
 
