@@ -1,6 +1,7 @@
 # Projet Compilation langage C
 
 Auteurs :
+
 - Clara Pourcel
 - Hubert Hamelin
 - Lucas Ouaniche
@@ -9,4 +10,5 @@ Auteurs :
 - Victor Morel
 
 ## Antlr
+
 Projet réalisé avec l'outil Antlr4 vers une cible C++

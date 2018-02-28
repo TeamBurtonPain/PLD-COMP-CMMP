@@ -1,304 +1,93 @@
 grammar cmmp;
 
-programme 
+programme: ( Include)* ( declarationVar)* ( definitionFonction)+;
 
-    :  ( Include )* ( declarationVar )* ( definitionFonction )+
+block: '{' ( instruction)* '}';
 
-    ;
+declarationVar: declarationVarSimple | declarationTableau;
 
+declarationVarSimple: Type varSimple ( ',' varSimple)* ';';
 
-block 
+varSimple: Var ( expr)?;
 
-    : '{' ( instruction )* '}' 
+declarationTableau:
+	Type Var '[' expr ']' ('={' eListe '}')? ';';
 
-    ;
+definitionFonction: Type Var '(' paramDefinitionList? ')' block;
 
+paramDefinitionList: paramDefinition ( ',' paramDefinition)*;
 
-declarationVar 
+paramDefinition: Type Var?;
 
-    : declarationVarSimple
+structureControl:
+	'if(' expr ')' instruction ('else ' instruction)?
+	| 'while(' expr ')' instruction;
 
-    | declarationTableau 
+instruction: block | expr? ';' | structureControl;
 
-    ;
+membreGauche: Var | Var '[' expr ']';
 
+eListe: expr ( ',' expr)*;
 
-declarationVarSimple
 
-    : Type varSimple ( ',' varSimple )* ';' 
+/* Modifier pour corriger la récursivité gauche */
+expr:
+	membreGauche
+	| Var '(' ( paramDefinitionList)? ')'
+	| operation
+	| cst;
 
-    ;
+operation:
+	'(' expr ')'
+	| '!'  expr
+	| '++' expr
+	| '--' expr
+	| expr '++'
+	| expr '--'
+	| expr '*'  expr
+	| expr '/'  expr
+	| expr '%'  expr
+	| expr '+'  expr
+	| expr '-'  expr
+	| expr '&&' expr
+	| expr '||' expr
+	| expr '<'  expr
+	| expr '<=' expr
+	| expr '>'  expr
+	| expr '>=' expr
+	| expr '==' expr
+	| expr '!=' expr
+	| membreGauche OpAffectation expr;
 
-varSimple
+Include: InvariantInclude ' ' Lib;
 
-    : Var ( expr )?
+InvariantInclude: '#include';
 
-    ;
+Lib: '"' .*? '"' | '<' .*? '>';
 
+cst: Int | String;
 
-declarationTableau
+Int: '-'? Digit+;
 
-    : Type Var '[' expr ']' (  '={' eListe '}' )? ';'
+String: '"' .*? '"';
 
-    ;
+Type: 'char' | 'int32_t' | 'int64_t';
 
+OpAffectation: '=' | '+=' | '-=' | '*=' | '/=' | '%=';
 
-definitionFonction 
+Var: Alpha AlphaNum*;
 
-    : Type Var '(' paramDefinitionList? ')' block
+WhiteSpace: [ \t]+ -> skip;
 
-    ;
+NewLine: ('\r' '\n'? | '\n')  -> skip;
 
+BlockComment: '/*' .*? '*/'   -> skip;
 
-paramDefinitionList 
+LineComment: '//' .*? NewLine -> skip;
 
-    : paramDefinition ( ',' paramDefinition )* 
+fragment Digit: [0-9];
 
-    ;
+fragment Alpha: [a-zA-Z_];
 
-
-paramDefinition 
-
-    : Type Var? 
-
-    ;
-
-
-structureControl 
-
-    : 'if(' expr ')' instruction ( 'else ' instruction )?
-
-    | 'while(' expr ')' instruction
-
-    ;
-
-
-instruction 
-
-    : block 
-
-    | expr? ';'
-
-    | structureControl
-
-    ;
-
-
-membreGauche 
-
-    : Var
-
-    | Var '[' expr ']'
-
-    ;
-
-
-eListe
-
-    : expr ( ',' expr)*
-
-    ;
-
-expr 
-
-    : membreGauche
-
-    | Var '(' ( paramDefinitionList )? ')'
-
-    | operation
-
-    | cst
-
-    ;
-
-
-operation 
-
-    : '(' expr ')'
-
-
-    | '!' expr 
-
-    | '++'expr
-
-    | '--'expr
-
-    | expr'++'
-
-    | expr'--' 
-
-
-    | expr '*' expr
-
-    | expr '/' expr
-
-    | expr '%' expr
-
-
-    | expr '+' expr
-
-    | expr '-' expr 
-
-
-    | expr '&&' expr
-
-    | expr '||' expr
-    
-
-    | expr '<' expr
-
-    | expr '<=' expr
-
-    | expr '>' expr
-
-    | expr '>=' expr
-
-    | expr '==' expr
-
-    | expr '!=' expr
-
-
-
-    | membreGauche OpAffectation expr
-
-    ;
-
-
-Include
-
-    :InvariantInclude ' ' Lib
-
-    ;
-
-
-InvariantInclude
-
-    : '#include'
-
-    ;
-
-
-Lib
-
-    : '"' .*? '"'
-
-    | '<' .*? '>'
-
-    ;
-
-cst
-
-    : Int
-
-    | String 
-
-    ;
-
-
-Int
-
-    : '-'? Digit+
-
-    ;
-
-String
-
-    : '"' .*? '"'
-
-    ;
-
-Type
-
-    : 'char'
-
-    | 'int32_t'
-
-    | 'int64_t'
-
-    ;
-
-
-OpAffectation
-
-    : '='
-
-    | '+='
-
-    | '-='
-
-    | '*='
-
-    | '/='
-
-    | '%='
-
-    ;
-
-
-
-Var
-
-    : Alpha AlphaNum*
-
-    ;
-
-
-WhiteSpace
-
-    : [ \t]+ -> skip
-
-    ;
-
-
-NewLine
-
-    : ('\r' '\n'? | '\n') -> skip
-
-    ; 
-
-
-BlockComment
-
-    : '/*' .*? '*/' -> skip
-
-    ;
-
-
-LineComment
-
-    : '//' .*? NewLine -> skip
-
-    ;
-
-
-
-fragment
-Digit 
-
-    : [0-9]
-
-    ;
-
-
-fragment
-Alpha
-
-    : [a-zA-Z_]
-
-    ;
-
-
-fragment
-AlphaNum
-
-    : Digit
-
-    | Alpha
-
-    ;
-
-
-
-
-
+fragment AlphaNum: Digit | Alpha;
 
