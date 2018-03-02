@@ -36,10 +36,10 @@ expr:
 	|'(' expr ')'							#par
 	
 	| '!'  expr								#not
-	| '++' expr								#inc
-	| '--' expr								#decr
-	| expr '++'								#inc
-	| expr '--'								#decr
+	| '++' expr								#preinc
+	| '--' expr								#predecr
+	| expr '++'								#postinc
+	| expr '--'								#postdecr
 	
 	| expr '*'  expr						#mult
 	| expr '/'  expr						#div
@@ -60,7 +60,7 @@ expr:
 	
 	| membreGauche OpAffectation expr		#affectation
 	
-	| cst									#const
+	| Cst									#const
 	;									
 
 Include: InvariantInclude Lib;
@@ -69,7 +69,7 @@ InvariantInclude: '#include';
 
 Lib: '"' .*? '"' | '<' .*? '>';
 
-cst: Int | String;
+Cst: Int | String;
 
 Int: '-'? Digit+;
 

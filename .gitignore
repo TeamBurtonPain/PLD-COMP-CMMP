@@ -1,0 +1,10 @@
+# ignore these files
+
+# compilation
+*.o
+exe
+
+# antlr plugin files
+.antlr/**
+.antlr
+
