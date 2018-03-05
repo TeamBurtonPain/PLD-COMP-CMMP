@@ -15,9 +15,11 @@ all: $(OBJ)
 
 clean:
 	rm -f *.o
+	rm ./.antlr/*.class
 	rm $(BIN)
+	
 
 grammar:
-	./.antlr4.sh -visitor -no-listener -Dlanguage=Cpp cmmp.g4
+	./.antlr4.sh -visitor -listener -Dlanguage=Cpp cmmp.g4
 
 

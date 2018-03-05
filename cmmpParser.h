@@ -1,5 +1,5 @@
 
-// Generated from /home/doudou/Documents/INSA/4IF/PLD COMP/PLD-COMP-CMMP/cmmp.g4 by ANTLR 4.7.1
+// Generated from cmmp.g4 by ANTLR 4.7.1
 
 #pragma once
 
@@ -230,6 +230,7 @@ public:
     virtual size_t getRuleIndex() const override;
     BlockContext *block();
     ExprContext *expr();
+    DeclarationVarContext *declarationVar();
     StructureControlContext *structureControl();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -513,7 +514,7 @@ public:
     FunctionContext(ExprContext *ctx);
 
     antlr4::tree::TerminalNode *Var();
-    ParamDefinitionListContext *paramDefinitionList();
+    EListeContext *eListe();
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
 

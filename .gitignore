@@ -5,8 +5,8 @@
 exe
 
 # antlr plugin files
-.antlr/**
-.antlr
+#.antlr/**
+#.antlr
 
 # tests
 Ex_Test_Backend

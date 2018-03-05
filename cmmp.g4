@@ -23,7 +23,7 @@ structureControl:
 	'if(' expr ')' instruction ('else ' instruction)?
 	| 'while(' expr ')' instruction;
 
-instruction: block | expr? ';' | structureControl;
+instruction: block | expr? ';'| declarationVar | structureControl;
 
 membreGauche: Var | Var '[' expr ']';
 
@@ -31,7 +31,7 @@ eListe: expr ( ',' expr)*;
 
 expr:
 	membreGauche 							#variable
-	| Var '(' ( paramDefinitionList)? ')'	#function
+	| Var '(' ( eListe)? ')'				#function
 	
 	|'(' expr ')'							#par
 	

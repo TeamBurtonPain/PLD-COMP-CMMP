@@ -1,0 +1,4 @@
+#!/bin/bash
+export CLASSPATH=.:/lib/antlr/antlr-4.7.1-complete.jar:$CLASSPATH
+javac cmmp*.java
+
