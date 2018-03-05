@@ -8,7 +8,6 @@
 
 
 
-
 class  cmmpParser : public antlr4::Parser {
 public:
   enum {
@@ -29,7 +28,7 @@ public:
   };
 
   cmmpParser(antlr4::TokenStream *input);
-  ~cmmpParser();
+  virtual ~cmmpParser();
 
   virtual std::string getGrammarFileName() const override;
   virtual const antlr4::atn::ATN& getATN() const override { return _atn; };

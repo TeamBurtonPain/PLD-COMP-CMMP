@@ -125,10 +125,10 @@ public:
   virtual void exitLte(cmmpParser::LteContext * /*ctx*/) override { }
 
 
-  virtual void enterEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }
-  virtual void exitEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }
-  virtual void visitTerminal(antlr4::tree::TerminalNode * /*node*/) override { }
-  virtual void visitErrorNode(antlr4::tree::ErrorNode * /*node*/) override { }
+  virtual void enterEveryRule(antlr4::ParserRuleContext * /*ctx*/)  { }
+  virtual void exitEveryRule(antlr4::ParserRuleContext * /*ctx*/)  { }
+  virtual void visitTerminal(antlr4::tree::TerminalNode * /*node*/)  { }
+  virtual void visitErrorNode(antlr4::tree::ErrorNode * /*node*/)  { }
 
 };
 

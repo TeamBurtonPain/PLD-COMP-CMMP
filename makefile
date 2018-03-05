@@ -1,16 +1,15 @@
 CXX=g++
-CXXFLAGS=$(DEBUG) $(OPTI) -std=c++14 -Wall -Wextra -pedantic
-BIN=exe
-LIB="/lib/antlr/antlr_runtime/dist/libantlr4-runtime.a"
-INCLUDE="/lib/antlr/antlr_runtime/runtime/Cpp/run/usr/local/include/antlr4-runtime"
-
-
+CXXFLAGS=$(FLAGS) -I$(INCLUDES)
+FLAGS=$(DEBUG) $(OPTI) -std=c++14 -Wall -Wextra -pedantic
+LIB="/lib/antlr/antlr_runtime/runtime/Cpp/run/usr/local/lib/libantlr4-runtime.a"
+INCLUDES="/lib/antlr/antlr_runtime/runtime/Cpp/run/usr/local/include/antlr4-runtime"
+BIN="exe"
 
 SRC=$(wildcard *.cpp)
 OBJ=$(SRC:%.cpp=%.o)
 
 all: $(OBJ)
-	$(CXX) -o $(BIN) -I $(INCLUDE) $(LIB) $^
+	$(CXX) -o $(BIN) $(FLAGS)  $^ $(LIB)
 
 .PHONY: clean grammar
 
