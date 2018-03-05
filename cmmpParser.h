@@ -8,6 +8,7 @@
 
 
 
+
 class  cmmpParser : public antlr4::Parser {
 public:
   enum {
@@ -16,8 +17,9 @@ public:
     T__14 = 15, T__15 = 16, T__16 = 17, T__17 = 18, T__18 = 19, T__19 = 20, 
     T__20 = 21, T__21 = 22, T__22 = 23, T__23 = 24, T__24 = 25, T__25 = 26, 
     T__26 = 27, T__27 = 28, Include = 29, InvariantInclude = 30, Lib = 31, 
-    Cst = 32, Int = 33, String = 34, Type = 35, OpAffectation = 36, Var = 37, 
-    WhiteSpace = 38, NewLine = 39, BlockComment = 40, LineComment = 41
+    Cst = 32, PositiveInt = 33, Int = 34, Char = 35, String = 36, Type = 37, 
+    OpAffectation = 38, Var = 39, WhiteSpace = 40, NewLine = 41, BlockComment = 42, 
+    LineComment = 43
   };
 
   enum {
@@ -28,7 +30,7 @@ public:
   };
 
   cmmpParser(antlr4::TokenStream *input);
-  virtual ~cmmpParser();
+  ~cmmpParser();
 
   virtual std::string getGrammarFileName() const override;
   virtual const antlr4::atn::ATN& getATN() const override { return _atn; };

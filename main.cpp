@@ -9,7 +9,7 @@ using namespace std;
 using namespace antlr4;
 
 int main(){
-    ANTLRFileStream input("1+3");
+    ANTLRFileStream input("./Ex_Test_Backend/1_decls.c");
     cmmpLexer lexer(&input);
     CommonTokenStream tokens(&lexer);
 
@@ -23,6 +23,7 @@ int main(){
 
     std::cout << tree->toStringTree(&parser) << std::endl << std::endl;
 
+    cin.get();
     return 0;
 
 }

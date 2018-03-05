@@ -8,3 +8,6 @@ exe
 .antlr/**
 .antlr
 
+# tests
+Ex_Test_Backend
+Ex_Test_Backend/**

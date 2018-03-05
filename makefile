@@ -9,7 +9,7 @@ SRC=$(wildcard *.cpp)
 OBJ=$(SRC:%.cpp=%.o)
 
 all: $(OBJ)
-	$(CXX) -o $(BIN) $(FLAGS)  $^ $(LIB)
+	$(CXX) -o $(BIN) $(FLAGS) $^ $(LIB)
 
 .PHONY: clean grammar
 

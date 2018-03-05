@@ -69,13 +69,17 @@ InvariantInclude: '#include';
 
 Lib: '"' .*? '"' | '<' .*? '>';
 
-Cst: Int | String;
+Cst: Int | String | Char;
 
-Int: '-'? Digit+;
+PositiveInt: Digit+;
+
+Int: '-'? PositiveInt;
+
+Char: ['] ([\\] ( [rnt\\'] | PositiveInt) | .) ['];
 
 String: '"' .*? '"';
 
-Type: 'char' | 'int32_t' | 'int64_t';
+Type: 'void' | 'char' | 'int32_t' | 'int64_t';
 
 OpAffectation: '=' | '+=' | '-=' | '*=' | '/=' | '%=';
 
