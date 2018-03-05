@@ -1,7 +1,8 @@
 
-// Generated from cmmp.g4 by ANTLR 4.7.1
+// Generated from /home/doudou/Documents/INSA/4IF/PLD COMP/PLD-COMP-CMMP/cmmp.g4 by ANTLR 4.7.1
 
 
+#include "cmmpListener.h"
 #include "cmmpVisitor.h"
 
 #include "cmmpParser.h"
@@ -65,6 +66,19 @@ cmmpParser::DefinitionFonctionContext* cmmpParser::ProgrammeContext::definitionF
 size_t cmmpParser::ProgrammeContext::getRuleIndex() const {
   return cmmpParser::RuleProgramme;
 }
+
+void cmmpParser::ProgrammeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterProgramme(this);
+}
+
+void cmmpParser::ProgrammeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitProgramme(this);
+}
+
 
 antlrcpp::Any cmmpParser::ProgrammeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
@@ -146,6 +160,19 @@ size_t cmmpParser::BlockContext::getRuleIndex() const {
   return cmmpParser::RuleBlock;
 }
 
+void cmmpParser::BlockContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterBlock(this);
+}
+
+void cmmpParser::BlockContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitBlock(this);
+}
+
+
 antlrcpp::Any cmmpParser::BlockContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitBlock(this);
@@ -217,6 +244,19 @@ size_t cmmpParser::DeclarationVarContext::getRuleIndex() const {
   return cmmpParser::RuleDeclarationVar;
 }
 
+void cmmpParser::DeclarationVarContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDeclarationVar(this);
+}
+
+void cmmpParser::DeclarationVarContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDeclarationVar(this);
+}
+
+
 antlrcpp::Any cmmpParser::DeclarationVarContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitDeclarationVar(this);
@@ -284,6 +324,19 @@ size_t cmmpParser::DeclarationVarSimpleContext::getRuleIndex() const {
   return cmmpParser::RuleDeclarationVarSimple;
 }
 
+void cmmpParser::DeclarationVarSimpleContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDeclarationVarSimple(this);
+}
+
+void cmmpParser::DeclarationVarSimpleContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDeclarationVarSimple(this);
+}
+
+
 antlrcpp::Any cmmpParser::DeclarationVarSimpleContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitDeclarationVarSimple(this);
@@ -348,6 +401,19 @@ cmmpParser::ExprContext* cmmpParser::VarSimpleContext::expr() {
 size_t cmmpParser::VarSimpleContext::getRuleIndex() const {
   return cmmpParser::RuleVarSimple;
 }
+
+void cmmpParser::VarSimpleContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterVarSimple(this);
+}
+
+void cmmpParser::VarSimpleContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitVarSimple(this);
+}
+
 
 antlrcpp::Any cmmpParser::VarSimpleContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
@@ -419,6 +485,19 @@ cmmpParser::EListeContext* cmmpParser::DeclarationTableauContext::eListe() {
 size_t cmmpParser::DeclarationTableauContext::getRuleIndex() const {
   return cmmpParser::RuleDeclarationTableau;
 }
+
+void cmmpParser::DeclarationTableauContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDeclarationTableau(this);
+}
+
+void cmmpParser::DeclarationTableauContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDeclarationTableau(this);
+}
+
 
 antlrcpp::Any cmmpParser::DeclarationTableauContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
@@ -499,6 +578,19 @@ size_t cmmpParser::DefinitionFonctionContext::getRuleIndex() const {
   return cmmpParser::RuleDefinitionFonction;
 }
 
+void cmmpParser::DefinitionFonctionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDefinitionFonction(this);
+}
+
+void cmmpParser::DefinitionFonctionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDefinitionFonction(this);
+}
+
+
 antlrcpp::Any cmmpParser::DefinitionFonctionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitDefinitionFonction(this);
@@ -564,6 +656,19 @@ size_t cmmpParser::ParamDefinitionListContext::getRuleIndex() const {
   return cmmpParser::RuleParamDefinitionList;
 }
 
+void cmmpParser::ParamDefinitionListContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterParamDefinitionList(this);
+}
+
+void cmmpParser::ParamDefinitionListContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitParamDefinitionList(this);
+}
+
+
 antlrcpp::Any cmmpParser::ParamDefinitionListContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitParamDefinitionList(this);
@@ -625,6 +730,19 @@ size_t cmmpParser::ParamDefinitionContext::getRuleIndex() const {
   return cmmpParser::RuleParamDefinition;
 }
 
+void cmmpParser::ParamDefinitionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterParamDefinition(this);
+}
+
+void cmmpParser::ParamDefinitionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitParamDefinition(this);
+}
+
+
 antlrcpp::Any cmmpParser::ParamDefinitionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitParamDefinition(this);
@@ -685,6 +803,19 @@ cmmpParser::InstructionContext* cmmpParser::StructureControlContext::instruction
 size_t cmmpParser::StructureControlContext::getRuleIndex() const {
   return cmmpParser::RuleStructureControl;
 }
+
+void cmmpParser::StructureControlContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterStructureControl(this);
+}
+
+void cmmpParser::StructureControlContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitStructureControl(this);
+}
+
 
 antlrcpp::Any cmmpParser::StructureControlContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
@@ -780,6 +911,19 @@ size_t cmmpParser::InstructionContext::getRuleIndex() const {
   return cmmpParser::RuleInstruction;
 }
 
+void cmmpParser::InstructionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterInstruction(this);
+}
+
+void cmmpParser::InstructionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitInstruction(this);
+}
+
+
 antlrcpp::Any cmmpParser::InstructionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitInstruction(this);
@@ -874,6 +1018,19 @@ size_t cmmpParser::MembreGaucheContext::getRuleIndex() const {
   return cmmpParser::RuleMembreGauche;
 }
 
+void cmmpParser::MembreGaucheContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterMembreGauche(this);
+}
+
+void cmmpParser::MembreGaucheContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitMembreGauche(this);
+}
+
+
 antlrcpp::Any cmmpParser::MembreGaucheContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitMembreGauche(this);
@@ -943,6 +1100,19 @@ size_t cmmpParser::EListeContext::getRuleIndex() const {
   return cmmpParser::RuleEListe;
 }
 
+void cmmpParser::EListeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterEListe(this);
+}
+
+void cmmpParser::EListeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitEListe(this);
+}
+
+
 antlrcpp::Any cmmpParser::EListeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitEListe(this);
@@ -1008,6 +1178,17 @@ cmmpParser::ExprContext* cmmpParser::ParContext::expr() {
 
 cmmpParser::ParContext::ParContext(ExprContext *ctx) { copyFrom(ctx); }
 
+void cmmpParser::ParContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPar(this);
+}
+void cmmpParser::ParContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPar(this);
+}
+
 antlrcpp::Any cmmpParser::ParContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitPar(this);
@@ -1025,6 +1206,17 @@ cmmpParser::ExprContext* cmmpParser::AddContext::expr(size_t i) {
 }
 
 cmmpParser::AddContext::AddContext(ExprContext *ctx) { copyFrom(ctx); }
+
+void cmmpParser::AddContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterAdd(this);
+}
+void cmmpParser::AddContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitAdd(this);
+}
 
 antlrcpp::Any cmmpParser::AddContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
@@ -1044,6 +1236,17 @@ cmmpParser::ExprContext* cmmpParser::SubContext::expr(size_t i) {
 
 cmmpParser::SubContext::SubContext(ExprContext *ctx) { copyFrom(ctx); }
 
+void cmmpParser::SubContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSub(this);
+}
+void cmmpParser::SubContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSub(this);
+}
+
 antlrcpp::Any cmmpParser::SubContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitSub(this);
@@ -1061,6 +1264,17 @@ cmmpParser::ExprContext* cmmpParser::EgContext::expr(size_t i) {
 }
 
 cmmpParser::EgContext::EgContext(ExprContext *ctx) { copyFrom(ctx); }
+
+void cmmpParser::EgContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterEg(this);
+}
+void cmmpParser::EgContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitEg(this);
+}
 
 antlrcpp::Any cmmpParser::EgContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
@@ -1080,6 +1294,17 @@ cmmpParser::ExprContext* cmmpParser::MultContext::expr(size_t i) {
 
 cmmpParser::MultContext::MultContext(ExprContext *ctx) { copyFrom(ctx); }
 
+void cmmpParser::MultContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterMult(this);
+}
+void cmmpParser::MultContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitMult(this);
+}
+
 antlrcpp::Any cmmpParser::MultContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitMult(this);
@@ -1097,6 +1322,17 @@ cmmpParser::ExprContext* cmmpParser::ModContext::expr(size_t i) {
 }
 
 cmmpParser::ModContext::ModContext(ExprContext *ctx) { copyFrom(ctx); }
+
+void cmmpParser::ModContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterMod(this);
+}
+void cmmpParser::ModContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitMod(this);
+}
 
 antlrcpp::Any cmmpParser::ModContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
@@ -1116,6 +1352,17 @@ cmmpParser::ExprContext* cmmpParser::OrContext::expr(size_t i) {
 
 cmmpParser::OrContext::OrContext(ExprContext *ctx) { copyFrom(ctx); }
 
+void cmmpParser::OrContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterOr(this);
+}
+void cmmpParser::OrContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitOr(this);
+}
+
 antlrcpp::Any cmmpParser::OrContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitOr(this);
@@ -1129,6 +1376,17 @@ tree::TerminalNode* cmmpParser::ConstContext::Cst() {
 }
 
 cmmpParser::ConstContext::ConstContext(ExprContext *ctx) { copyFrom(ctx); }
+
+void cmmpParser::ConstContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterConst(this);
+}
+void cmmpParser::ConstContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitConst(this);
+}
 
 antlrcpp::Any cmmpParser::ConstContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
@@ -1148,6 +1406,17 @@ cmmpParser::ExprContext* cmmpParser::LtContext::expr(size_t i) {
 
 cmmpParser::LtContext::LtContext(ExprContext *ctx) { copyFrom(ctx); }
 
+void cmmpParser::LtContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLt(this);
+}
+void cmmpParser::LtContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLt(this);
+}
+
 antlrcpp::Any cmmpParser::LtContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitLt(this);
@@ -1165,6 +1434,17 @@ cmmpParser::ExprContext* cmmpParser::GtContext::expr(size_t i) {
 }
 
 cmmpParser::GtContext::GtContext(ExprContext *ctx) { copyFrom(ctx); }
+
+void cmmpParser::GtContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterGt(this);
+}
+void cmmpParser::GtContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitGt(this);
+}
 
 antlrcpp::Any cmmpParser::GtContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
@@ -1188,6 +1468,17 @@ cmmpParser::ExprContext* cmmpParser::AffectationContext::expr() {
 
 cmmpParser::AffectationContext::AffectationContext(ExprContext *ctx) { copyFrom(ctx); }
 
+void cmmpParser::AffectationContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterAffectation(this);
+}
+void cmmpParser::AffectationContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitAffectation(this);
+}
+
 antlrcpp::Any cmmpParser::AffectationContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitAffectation(this);
@@ -1201,6 +1492,17 @@ cmmpParser::ExprContext* cmmpParser::PreincContext::expr() {
 }
 
 cmmpParser::PreincContext::PreincContext(ExprContext *ctx) { copyFrom(ctx); }
+
+void cmmpParser::PreincContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPreinc(this);
+}
+void cmmpParser::PreincContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPreinc(this);
+}
 
 antlrcpp::Any cmmpParser::PreincContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
@@ -1220,6 +1522,17 @@ cmmpParser::ExprContext* cmmpParser::DivContext::expr(size_t i) {
 
 cmmpParser::DivContext::DivContext(ExprContext *ctx) { copyFrom(ctx); }
 
+void cmmpParser::DivContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDiv(this);
+}
+void cmmpParser::DivContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDiv(this);
+}
+
 antlrcpp::Any cmmpParser::DivContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitDiv(this);
@@ -1233,6 +1546,17 @@ cmmpParser::ExprContext* cmmpParser::PostincContext::expr() {
 }
 
 cmmpParser::PostincContext::PostincContext(ExprContext *ctx) { copyFrom(ctx); }
+
+void cmmpParser::PostincContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPostinc(this);
+}
+void cmmpParser::PostincContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPostinc(this);
+}
 
 antlrcpp::Any cmmpParser::PostincContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
@@ -1252,6 +1576,17 @@ cmmpParser::ExprContext* cmmpParser::NegContext::expr(size_t i) {
 
 cmmpParser::NegContext::NegContext(ExprContext *ctx) { copyFrom(ctx); }
 
+void cmmpParser::NegContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNeg(this);
+}
+void cmmpParser::NegContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNeg(this);
+}
+
 antlrcpp::Any cmmpParser::NegContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitNeg(this);
@@ -1266,6 +1601,17 @@ cmmpParser::ExprContext* cmmpParser::NotContext::expr() {
 
 cmmpParser::NotContext::NotContext(ExprContext *ctx) { copyFrom(ctx); }
 
+void cmmpParser::NotContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNot(this);
+}
+void cmmpParser::NotContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNot(this);
+}
+
 antlrcpp::Any cmmpParser::NotContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitNot(this);
@@ -1279,6 +1625,17 @@ cmmpParser::ExprContext* cmmpParser::PredecrContext::expr() {
 }
 
 cmmpParser::PredecrContext::PredecrContext(ExprContext *ctx) { copyFrom(ctx); }
+
+void cmmpParser::PredecrContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPredecr(this);
+}
+void cmmpParser::PredecrContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPredecr(this);
+}
 
 antlrcpp::Any cmmpParser::PredecrContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
@@ -1298,6 +1655,17 @@ cmmpParser::ExprContext* cmmpParser::AndContext::expr(size_t i) {
 
 cmmpParser::AndContext::AndContext(ExprContext *ctx) { copyFrom(ctx); }
 
+void cmmpParser::AndContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterAnd(this);
+}
+void cmmpParser::AndContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitAnd(this);
+}
+
 antlrcpp::Any cmmpParser::AndContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitAnd(this);
@@ -1311,6 +1679,17 @@ cmmpParser::ExprContext* cmmpParser::PostdecrContext::expr() {
 }
 
 cmmpParser::PostdecrContext::PostdecrContext(ExprContext *ctx) { copyFrom(ctx); }
+
+void cmmpParser::PostdecrContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPostdecr(this);
+}
+void cmmpParser::PostdecrContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPostdecr(this);
+}
 
 antlrcpp::Any cmmpParser::PostdecrContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
@@ -1330,6 +1709,17 @@ cmmpParser::ParamDefinitionListContext* cmmpParser::FunctionContext::paramDefini
 
 cmmpParser::FunctionContext::FunctionContext(ExprContext *ctx) { copyFrom(ctx); }
 
+void cmmpParser::FunctionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterFunction(this);
+}
+void cmmpParser::FunctionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitFunction(this);
+}
+
 antlrcpp::Any cmmpParser::FunctionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitFunction(this);
@@ -1343,6 +1733,17 @@ cmmpParser::MembreGaucheContext* cmmpParser::VariableContext::membreGauche() {
 }
 
 cmmpParser::VariableContext::VariableContext(ExprContext *ctx) { copyFrom(ctx); }
+
+void cmmpParser::VariableContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterVariable(this);
+}
+void cmmpParser::VariableContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitVariable(this);
+}
 
 antlrcpp::Any cmmpParser::VariableContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
@@ -1362,6 +1763,17 @@ cmmpParser::ExprContext* cmmpParser::GteContext::expr(size_t i) {
 
 cmmpParser::GteContext::GteContext(ExprContext *ctx) { copyFrom(ctx); }
 
+void cmmpParser::GteContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterGte(this);
+}
+void cmmpParser::GteContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitGte(this);
+}
+
 antlrcpp::Any cmmpParser::GteContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
     return parserVisitor->visitGte(this);
@@ -1379,6 +1791,17 @@ cmmpParser::ExprContext* cmmpParser::LteContext::expr(size_t i) {
 }
 
 cmmpParser::LteContext::LteContext(ExprContext *ctx) { copyFrom(ctx); }
+
+void cmmpParser::LteContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterLte(this);
+}
+void cmmpParser::LteContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitLte(this);
+}
 
 antlrcpp::Any cmmpParser::LteContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
