@@ -8,7 +8,7 @@ declarationVarListe: Type declarationVar ( ',' declarationVar)* ';';
 
 declarationVar: varSimple | varTableau;
 
-varSimple: Var ('=' expr)?;
+varSimple: Var ('=' augmentedExpr)?;
 
 varTableau: varTab ('=' '{' eListe '}')? ;
 
@@ -19,20 +19,24 @@ paramDefinitionList: paramDefinition ( ',' paramDefinition)*;
 paramDefinition: Type Var?;
 
 structureControl:
-	'if' '(' expr ')' instruction ('else ' instruction)?
-	| 'while' '(' expr ')' instruction;
+	'if' '(' augmentedExpr ')' instruction ('else ' instruction)?
+	| 'while' '(' augmentedExpr ')' instruction;
 
-instruction: block | expr? ';'| declarationVarListe | structureControl | affectation;
+instruction: block | augmentedExpr? ';'| declarationVarListe | structureControl;
 
 membreGauche: Var | varTab;
 
-eListe: expr ( ',' expr)*;
+eListe: augmentedExpr ( ',' augmentedExpr)*;
+
+augmentedExpr: affectation | expr;
+
+affectation:
+	membreGauche OpAffectation affectation	#midAffectation
+	| membreGauche OpAffectation expr 		#endAffectation
+	;
 
 expr:
-	membreGauche 							#variable
-	| functionCall							#function
-	
-	|'(' expr ')'							#par
+	'(' expr ')'							#par
 	
 	| '!'  expr								#not
 	| '++' expr								#preinc
@@ -53,12 +57,11 @@ expr:
 	| expr OpComparaison  expr				#comparaison
 	
 	| Cst									#const
+	| membreGauche 							#variable
+	| functionCall							#function
 	;									
 
-affectation: 
-	< assoc = right > membreGauche OpAffectation affectation	#midAffectation
-	| membreGauche OpAffectation expr							#endAffectation
-	;
+
 
 varTab: Var '[' expr ']';
 
