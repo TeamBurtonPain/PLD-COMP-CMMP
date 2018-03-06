@@ -4,14 +4,13 @@ programme: ( Include)* ( declarationVar)* ( definitionFonction)+;
 
 block: '{' ( instruction)* '}';
 
-declarationVar: declarationVarSimple | declarationTableau;
+declarationVarListe: Type declarationVar ( ',' declarationVar)* ';';
 
-declarationVarSimple: Type varSimple ( ',' varSimple)* ';';
+declarationVar: varSimple | varTableau;
 
-varSimple: Var ( expr)?;
+varSimple: Var ('=' expr)?;
 
-declarationTableau:
-	Type Var '[' expr ']' ('={' eListe '}')? ';';
+varTableau: varTab ('=' '{' eListe '}')? ;
 
 definitionFonction: Type Var '(' paramDefinitionList? ')' block;
 
@@ -20,18 +19,18 @@ paramDefinitionList: paramDefinition ( ',' paramDefinition)*;
 paramDefinition: Type Var?;
 
 structureControl:
-	'if(' expr ')' instruction ('else ' instruction)?
-	| 'while(' expr ')' instruction;
+	'if' '(' expr ')' instruction ('else ' instruction)?
+	| 'while' '(' expr ')' instruction;
 
-instruction: block | expr? ';'| declarationVar | structureControl;
+instruction: block | expr? ';'| declarationVarListe | structureControl | affectation;
 
-membreGauche: Var | Var '[' expr ']';
+membreGauche: Var | varTab;
 
 eListe: expr ( ',' expr)*;
 
 expr:
 	membreGauche 							#variable
-	| Var '(' ( eListe)? ')'				#function
+	| functionCall							#function
 	
 	|'(' expr ')'							#par
 	
@@ -51,17 +50,19 @@ expr:
 	| expr '&&' expr						#and
 	| expr '||' expr						#or
 	
-	| expr '<'  expr						#lt
-	| expr '<=' expr						#lte
-	| expr '>'  expr						#gt
-	| expr '>=' expr						#gte
-	| expr '==' expr						#eg
-	| expr '!=' expr						#neg
-	
-	| membreGauche OpAffectation expr		#affectation
+	| expr OpComparaison  expr				#comparaison
 	
 	| Cst									#const
 	;									
+
+affectation: 
+	< assoc = right > membreGauche OpAffectation affectation	#midAffectation
+	| membreGauche OpAffectation expr							#endAffectation
+	;
+
+varTab: Var '[' expr ']';
+
+functionCall: Var '(' ( eListe)? ')';
 
 Include: InvariantInclude Lib;
 
@@ -80,6 +81,8 @@ Char: ['] ([\\] ( [rnt\\'] | PositiveInt) | .) ['];
 String: '"' .*? '"';
 
 Type: 'void' | 'char' | 'int32_t' | 'int64_t';
+
+OpComparaison: '<' | '>' | '<=' | '>=' | '==' | '!=';
 
 OpAffectation: '=' | '+=' | '-=' | '*=' | '/=' | '%=';
 
