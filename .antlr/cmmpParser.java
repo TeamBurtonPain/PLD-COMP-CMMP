@@ -100,20 +100,40 @@ public class cmmpParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 	public static class ProgrammeContext extends ParserRuleContext {
-		public ProgrammeContext programme() {
-			return getRuleContext(ProgrammeContext.class,0);
-		}
-		public TerminalNode Include() { return getToken(cmmpParser.Include, 0); }
-		public DeclarationVarListeContext declarationVarListe() {
-			return getRuleContext(DeclarationVarListeContext.class,0);
-		}
-		public DefinitionFonctionContext definitionFonction() {
-			return getRuleContext(DefinitionFonctionContext.class,0);
-		}
 		public ProgrammeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_programme; }
+	 
+		public ProgrammeContext() { }
+		public void copyFrom(ProgrammeContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class IncludeContext extends ProgrammeContext {
+		public ProgrammeContext programme() {
+			return getRuleContext(ProgrammeContext.class,0);
+		}
+		public TerminalNode Include() { return getToken(cmmpParser.Include, 0); }
+		public IncludeContext(ProgrammeContext ctx) { copyFrom(ctx); }
+	}
+	public static class DeclVarContext extends ProgrammeContext {
+		public ProgrammeContext programme() {
+			return getRuleContext(ProgrammeContext.class,0);
+		}
+		public DeclarationVarListeContext declarationVarListe() {
+			return getRuleContext(DeclarationVarListeContext.class,0);
+		}
+		public DeclVarContext(ProgrammeContext ctx) { copyFrom(ctx); }
+	}
+	public static class DefFoncContext extends ProgrammeContext {
+		public ProgrammeContext programme() {
+			return getRuleContext(ProgrammeContext.class,0);
+		}
+		public DefinitionFonctionContext definitionFonction() {
+			return getRuleContext(DefinitionFonctionContext.class,0);
+		}
+		public DefFoncContext(ProgrammeContext ctx) { copyFrom(ctx); }
 	}
 
 	public final ProgrammeContext programme() throws RecognitionException {
@@ -124,6 +144,7 @@ public class cmmpParser extends Parser {
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
 			case 1:
+				_localctx = new IncludeContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				{
@@ -135,6 +156,7 @@ public class cmmpParser extends Parser {
 				}
 				break;
 			case 2:
+				_localctx = new DeclVarContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				{
@@ -146,6 +168,7 @@ public class cmmpParser extends Parser {
 				}
 				break;
 			case 3:
+				_localctx = new DefFoncContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
 				{

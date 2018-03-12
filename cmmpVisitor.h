@@ -19,7 +19,11 @@ public:
   /**
    * Visit parse trees produced by cmmpParser.
    */
-    virtual antlrcpp::Any visitProgramme(cmmpParser::ProgrammeContext *context) = 0;
+    virtual antlrcpp::Any visitInclude(cmmpParser::IncludeContext *context) = 0;
+
+    virtual antlrcpp::Any visitDeclVar(cmmpParser::DeclVarContext *context) = 0;
+
+    virtual antlrcpp::Any visitDefFonc(cmmpParser::DefFoncContext *context) = 0;
 
     virtual antlrcpp::Any visitBlock(cmmpParser::BlockContext *context) = 0;
 

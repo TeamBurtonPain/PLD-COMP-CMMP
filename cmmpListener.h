@@ -14,8 +14,14 @@
 class  cmmpListener : public antlr4::tree::ParseTreeListener {
 public:
 
-  virtual void enterProgramme(cmmpParser::ProgrammeContext *ctx) = 0;
-  virtual void exitProgramme(cmmpParser::ProgrammeContext *ctx) = 0;
+  virtual void enterInclude(cmmpParser::IncludeContext *ctx) = 0;
+  virtual void exitInclude(cmmpParser::IncludeContext *ctx) = 0;
+
+  virtual void enterDeclVar(cmmpParser::DeclVarContext *ctx) = 0;
+  virtual void exitDeclVar(cmmpParser::DeclVarContext *ctx) = 0;
+
+  virtual void enterDefFonc(cmmpParser::DefFoncContext *ctx) = 0;
+  virtual void exitDefFonc(cmmpParser::DefFoncContext *ctx) = 0;
 
   virtual void enterBlock(cmmpParser::BlockContext *ctx) = 0;
   virtual void exitBlock(cmmpParser::BlockContext *ctx) = 0;

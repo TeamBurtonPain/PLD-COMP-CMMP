@@ -65,17 +65,50 @@ public:
   class  ProgrammeContext : public antlr4::ParserRuleContext {
   public:
     ProgrammeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+   
+    ProgrammeContext() : antlr4::ParserRuleContext() { }
+    void copyFrom(ProgrammeContext *context);
+    using antlr4::ParserRuleContext::copyFrom;
+
     virtual size_t getRuleIndex() const override;
+
+   
+  };
+
+  class  IncludeContext : public ProgrammeContext {
+  public:
+    IncludeContext(ProgrammeContext *ctx);
+
     ProgrammeContext *programme();
     antlr4::tree::TerminalNode *Include();
-    DeclarationVarListeContext *declarationVarListe();
-    DefinitionFonctionContext *definitionFonction();
-
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
+  };
+
+  class  DeclVarContext : public ProgrammeContext {
+  public:
+    DeclVarContext(ProgrammeContext *ctx);
+
+    ProgrammeContext *programme();
+    DeclarationVarListeContext *declarationVarListe();
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  DefFoncContext : public ProgrammeContext {
+  public:
+    DefFoncContext(ProgrammeContext *ctx);
+
+    ProgrammeContext *programme();
+    DefinitionFonctionContext *definitionFonction();
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
   ProgrammeContext* programme();

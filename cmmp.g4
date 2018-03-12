@@ -2,8 +2,8 @@ grammar cmmp;
 
 programme:
 	( Include) programme				#include
-	| ( declarationVarListe) programme	#declarationVar
-	| ( definitionFonction) programme	#definitionFonction
+	| ( declarationVarListe) programme	#declVar
+	| ( definitionFonction) programme	#defFonc
 	;
 
 block: '{' ( instruction)* '}';

@@ -38,47 +38,102 @@ cmmpParser::ProgrammeContext::ProgrammeContext(ParserRuleContext *parent, size_t
   : ParserRuleContext(parent, invokingState) {
 }
 
-cmmpParser::ProgrammeContext* cmmpParser::ProgrammeContext::programme() {
-  return getRuleContext<cmmpParser::ProgrammeContext>(0);
-}
-
-tree::TerminalNode* cmmpParser::ProgrammeContext::Include() {
-  return getToken(cmmpParser::Include, 0);
-}
-
-cmmpParser::DeclarationVarListeContext* cmmpParser::ProgrammeContext::declarationVarListe() {
-  return getRuleContext<cmmpParser::DeclarationVarListeContext>(0);
-}
-
-cmmpParser::DefinitionFonctionContext* cmmpParser::ProgrammeContext::definitionFonction() {
-  return getRuleContext<cmmpParser::DefinitionFonctionContext>(0);
-}
-
 
 size_t cmmpParser::ProgrammeContext::getRuleIndex() const {
   return cmmpParser::RuleProgramme;
 }
 
-void cmmpParser::ProgrammeContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<cmmpListener *>(listener);
-  if (parserListener != nullptr)
-    parserListener->enterProgramme(this);
+void cmmpParser::ProgrammeContext::copyFrom(ProgrammeContext *ctx) {
+  ParserRuleContext::copyFrom(ctx);
 }
 
-void cmmpParser::ProgrammeContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<cmmpListener *>(listener);
-  if (parserListener != nullptr)
-    parserListener->exitProgramme(this);
+//----------------- IncludeContext ------------------------------------------------------------------
+
+cmmpParser::ProgrammeContext* cmmpParser::IncludeContext::programme() {
+  return getRuleContext<cmmpParser::ProgrammeContext>(0);
 }
 
+tree::TerminalNode* cmmpParser::IncludeContext::Include() {
+  return getToken(cmmpParser::Include, 0);
+}
 
-antlrcpp::Any cmmpParser::ProgrammeContext::accept(tree::ParseTreeVisitor *visitor) {
+cmmpParser::IncludeContext::IncludeContext(ProgrammeContext *ctx) { copyFrom(ctx); }
+
+void cmmpParser::IncludeContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterInclude(this);
+}
+void cmmpParser::IncludeContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitInclude(this);
+}
+
+antlrcpp::Any cmmpParser::IncludeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
-    return parserVisitor->visitProgramme(this);
+    return parserVisitor->visitInclude(this);
   else
     return visitor->visitChildren(this);
 }
+//----------------- DeclVarContext ------------------------------------------------------------------
 
+cmmpParser::ProgrammeContext* cmmpParser::DeclVarContext::programme() {
+  return getRuleContext<cmmpParser::ProgrammeContext>(0);
+}
+
+cmmpParser::DeclarationVarListeContext* cmmpParser::DeclVarContext::declarationVarListe() {
+  return getRuleContext<cmmpParser::DeclarationVarListeContext>(0);
+}
+
+cmmpParser::DeclVarContext::DeclVarContext(ProgrammeContext *ctx) { copyFrom(ctx); }
+
+void cmmpParser::DeclVarContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDeclVar(this);
+}
+void cmmpParser::DeclVarContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDeclVar(this);
+}
+
+antlrcpp::Any cmmpParser::DeclVarContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
+    return parserVisitor->visitDeclVar(this);
+  else
+    return visitor->visitChildren(this);
+}
+//----------------- DefFoncContext ------------------------------------------------------------------
+
+cmmpParser::ProgrammeContext* cmmpParser::DefFoncContext::programme() {
+  return getRuleContext<cmmpParser::ProgrammeContext>(0);
+}
+
+cmmpParser::DefinitionFonctionContext* cmmpParser::DefFoncContext::definitionFonction() {
+  return getRuleContext<cmmpParser::DefinitionFonctionContext>(0);
+}
+
+cmmpParser::DefFoncContext::DefFoncContext(ProgrammeContext *ctx) { copyFrom(ctx); }
+
+void cmmpParser::DefFoncContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterDefFonc(this);
+}
+void cmmpParser::DefFoncContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitDefFonc(this);
+}
+
+antlrcpp::Any cmmpParser::DefFoncContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
+    return parserVisitor->visitDefFonc(this);
+  else
+    return visitor->visitChildren(this);
+}
 cmmpParser::ProgrammeContext* cmmpParser::programme() {
   ProgrammeContext *_localctx = _tracker.createInstance<ProgrammeContext>(_ctx, getState());
   enterRule(_localctx, 0, cmmpParser::RuleProgramme);
@@ -91,6 +146,7 @@ cmmpParser::ProgrammeContext* cmmpParser::programme() {
     _errHandler->sync(this);
     switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 0, _ctx)) {
     case 1: {
+      _localctx = dynamic_cast<ProgrammeContext *>(_tracker.createInstance<cmmpParser::IncludeContext>(_localctx));
       enterOuterAlt(_localctx, 1);
       setState(40);
       match(cmmpParser::Include);
@@ -100,6 +156,7 @@ cmmpParser::ProgrammeContext* cmmpParser::programme() {
     }
 
     case 2: {
+      _localctx = dynamic_cast<ProgrammeContext *>(_tracker.createInstance<cmmpParser::DeclVarContext>(_localctx));
       enterOuterAlt(_localctx, 2);
       setState(42);
       declarationVarListe();
@@ -109,6 +166,7 @@ cmmpParser::ProgrammeContext* cmmpParser::programme() {
     }
 
     case 3: {
+      _localctx = dynamic_cast<ProgrammeContext *>(_tracker.createInstance<cmmpParser::DefFoncContext>(_localctx));
       enterOuterAlt(_localctx, 3);
       setState(45);
       definitionFonction();
