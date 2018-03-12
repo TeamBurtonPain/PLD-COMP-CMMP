@@ -20,17 +20,17 @@ public:
   virtual void enterBlock(cmmpParser::BlockContext *ctx) = 0;
   virtual void exitBlock(cmmpParser::BlockContext *ctx) = 0;
 
+  virtual void enterDeclarationVarListe(cmmpParser::DeclarationVarListeContext *ctx) = 0;
+  virtual void exitDeclarationVarListe(cmmpParser::DeclarationVarListeContext *ctx) = 0;
+
   virtual void enterDeclarationVar(cmmpParser::DeclarationVarContext *ctx) = 0;
   virtual void exitDeclarationVar(cmmpParser::DeclarationVarContext *ctx) = 0;
-
-  virtual void enterDeclarationVarSimple(cmmpParser::DeclarationVarSimpleContext *ctx) = 0;
-  virtual void exitDeclarationVarSimple(cmmpParser::DeclarationVarSimpleContext *ctx) = 0;
 
   virtual void enterVarSimple(cmmpParser::VarSimpleContext *ctx) = 0;
   virtual void exitVarSimple(cmmpParser::VarSimpleContext *ctx) = 0;
 
-  virtual void enterDeclarationTableau(cmmpParser::DeclarationTableauContext *ctx) = 0;
-  virtual void exitDeclarationTableau(cmmpParser::DeclarationTableauContext *ctx) = 0;
+  virtual void enterVarTableau(cmmpParser::VarTableauContext *ctx) = 0;
+  virtual void exitVarTableau(cmmpParser::VarTableauContext *ctx) = 0;
 
   virtual void enterDefinitionFonction(cmmpParser::DefinitionFonctionContext *ctx) = 0;
   virtual void exitDefinitionFonction(cmmpParser::DefinitionFonctionContext *ctx) = 0;
@@ -53,6 +53,15 @@ public:
   virtual void enterEListe(cmmpParser::EListeContext *ctx) = 0;
   virtual void exitEListe(cmmpParser::EListeContext *ctx) = 0;
 
+  virtual void enterAugmentedExpr(cmmpParser::AugmentedExprContext *ctx) = 0;
+  virtual void exitAugmentedExpr(cmmpParser::AugmentedExprContext *ctx) = 0;
+
+  virtual void enterMidAffectation(cmmpParser::MidAffectationContext *ctx) = 0;
+  virtual void exitMidAffectation(cmmpParser::MidAffectationContext *ctx) = 0;
+
+  virtual void enterEndAffectation(cmmpParser::EndAffectationContext *ctx) = 0;
+  virtual void exitEndAffectation(cmmpParser::EndAffectationContext *ctx) = 0;
+
   virtual void enterPar(cmmpParser::ParContext *ctx) = 0;
   virtual void exitPar(cmmpParser::ParContext *ctx) = 0;
 
@@ -61,9 +70,6 @@ public:
 
   virtual void enterSub(cmmpParser::SubContext *ctx) = 0;
   virtual void exitSub(cmmpParser::SubContext *ctx) = 0;
-
-  virtual void enterEg(cmmpParser::EgContext *ctx) = 0;
-  virtual void exitEg(cmmpParser::EgContext *ctx) = 0;
 
   virtual void enterMult(cmmpParser::MultContext *ctx) = 0;
   virtual void exitMult(cmmpParser::MultContext *ctx) = 0;
@@ -77,15 +83,6 @@ public:
   virtual void enterConst(cmmpParser::ConstContext *ctx) = 0;
   virtual void exitConst(cmmpParser::ConstContext *ctx) = 0;
 
-  virtual void enterLt(cmmpParser::LtContext *ctx) = 0;
-  virtual void exitLt(cmmpParser::LtContext *ctx) = 0;
-
-  virtual void enterGt(cmmpParser::GtContext *ctx) = 0;
-  virtual void exitGt(cmmpParser::GtContext *ctx) = 0;
-
-  virtual void enterAffectation(cmmpParser::AffectationContext *ctx) = 0;
-  virtual void exitAffectation(cmmpParser::AffectationContext *ctx) = 0;
-
   virtual void enterPreinc(cmmpParser::PreincContext *ctx) = 0;
   virtual void exitPreinc(cmmpParser::PreincContext *ctx) = 0;
 
@@ -94,9 +91,6 @@ public:
 
   virtual void enterPostinc(cmmpParser::PostincContext *ctx) = 0;
   virtual void exitPostinc(cmmpParser::PostincContext *ctx) = 0;
-
-  virtual void enterNeg(cmmpParser::NegContext *ctx) = 0;
-  virtual void exitNeg(cmmpParser::NegContext *ctx) = 0;
 
   virtual void enterNot(cmmpParser::NotContext *ctx) = 0;
   virtual void exitNot(cmmpParser::NotContext *ctx) = 0;
@@ -113,14 +107,23 @@ public:
   virtual void enterFunction(cmmpParser::FunctionContext *ctx) = 0;
   virtual void exitFunction(cmmpParser::FunctionContext *ctx) = 0;
 
+  virtual void enterComparaison(cmmpParser::ComparaisonContext *ctx) = 0;
+  virtual void exitComparaison(cmmpParser::ComparaisonContext *ctx) = 0;
+
   virtual void enterVariable(cmmpParser::VariableContext *ctx) = 0;
   virtual void exitVariable(cmmpParser::VariableContext *ctx) = 0;
 
-  virtual void enterGte(cmmpParser::GteContext *ctx) = 0;
-  virtual void exitGte(cmmpParser::GteContext *ctx) = 0;
+  virtual void enterVarTab(cmmpParser::VarTabContext *ctx) = 0;
+  virtual void exitVarTab(cmmpParser::VarTabContext *ctx) = 0;
 
-  virtual void enterLte(cmmpParser::LteContext *ctx) = 0;
-  virtual void exitLte(cmmpParser::LteContext *ctx) = 0;
+  virtual void enterFunctionCall(cmmpParser::FunctionCallContext *ctx) = 0;
+  virtual void exitFunctionCall(cmmpParser::FunctionCallContext *ctx) = 0;
+
+  virtual void enterOpComparaison(cmmpParser::OpComparaisonContext *ctx) = 0;
+  virtual void exitOpComparaison(cmmpParser::OpComparaisonContext *ctx) = 0;
+
+  virtual void enterOpAffectation(cmmpParser::OpAffectationContext *ctx) = 0;
+  virtual void exitOpAffectation(cmmpParser::OpAffectationContext *ctx) = 0;
 
 
 };

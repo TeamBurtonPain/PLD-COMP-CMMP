@@ -16,10 +16,10 @@ public:
     T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, T__11 = 12, T__12 = 13, T__13 = 14, 
     T__14 = 15, T__15 = 16, T__16 = 17, T__17 = 18, T__18 = 19, T__19 = 20, 
     T__20 = 21, T__21 = 22, T__22 = 23, T__23 = 24, T__24 = 25, T__25 = 26, 
-    T__26 = 27, T__27 = 28, Include = 29, InvariantInclude = 30, Lib = 31, 
-    Cst = 32, PositiveInt = 33, Int = 34, Char = 35, String = 36, Type = 37, 
-    OpAffectation = 38, Var = 39, WhiteSpace = 40, NewLine = 41, BlockComment = 42, 
-    LineComment = 43
+    T__26 = 27, T__27 = 28, T__28 = 29, T__29 = 30, T__30 = 31, T__31 = 32, 
+    T__32 = 33, Include = 34, InvariantInclude = 35, Lib = 36, Cst = 37, 
+    PositiveInt = 38, Int = 39, Char = 40, String = 41, Type = 42, Var = 43, 
+    WhiteSpace = 44, NewLine = 45, BlockComment = 46, LineComment = 47
   };
 
   cmmpLexer(antlr4::CharStream *input);

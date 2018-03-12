@@ -1,6 +1,6 @@
 grammar cmmp;
 
-programme: ( Include)* ( declarationVar)* ( definitionFonction)+;
+programme: ( Include)* ( declarationVarListe)* ( definitionFonction)+;//programme = suite d'ajout de decl / def / import
 
 block: '{' ( instruction)* '}';
 
@@ -22,7 +22,7 @@ structureControl:
 	'if' '(' augmentedExpr ')' instruction ('else ' instruction)?
 	| 'while' '(' augmentedExpr ')' instruction;
 
-instruction: block | augmentedExpr? ';'| declarationVarListe | structureControl;
+instruction: block | augmentedExpr ';'| declarationVarListe | structureControl;
 
 membreGauche: Var | varTab;
 
@@ -31,8 +31,8 @@ eListe: augmentedExpr ( ',' augmentedExpr)*;
 augmentedExpr: affectation | expr;
 
 affectation:
-	membreGauche OpAffectation affectation	#midAffectation
-	| membreGauche OpAffectation expr 		#endAffectation
+	 <assoc = right> membreGauche opAffectation affectation	#midAffectation
+	| membreGauche opAffectation expr 						#endAffectation
 	;
 
 expr:
@@ -54,7 +54,7 @@ expr:
 	| expr '&&' expr						#and
 	| expr '||' expr						#or
 	
-	| expr OpComparaison  expr				#comparaison
+	| expr opComparaison  expr				#comparaison
 	
 	| Cst									#const
 	| membreGauche 							#variable
@@ -66,6 +66,11 @@ expr:
 varTab: Var '[' expr ']';
 
 functionCall: Var '(' ( eListe)? ')';
+
+
+opComparaison: '<' | '>' | '<=' | '>=' | '==' | '!=';
+
+opAffectation: '=' | '+=' | '-=' | '*=' | '/=' | '%=';
 
 Include: InvariantInclude Lib;
 
@@ -79,15 +84,11 @@ PositiveInt: Digit+;
 
 Int: '-'? PositiveInt;
 
-Char: ['] ([\\] ( [rnt\\'] | PositiveInt) | .) ['];
+Char: ['] (. | [\\] (.*?)) ['];
 
 String: '"' .*? '"';
 
 Type: 'void' | 'char' | 'int32_t' | 'int64_t';
-
-OpComparaison: '<' | '>' | '<=' | '>=' | '==' | '!=';
-
-OpAffectation: '=' | '+=' | '-=' | '*=' | '/=' | '%=';
 
 Var: Alpha AlphaNum*;
 
