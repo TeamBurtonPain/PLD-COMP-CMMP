@@ -16,6 +16,9 @@
 class  cmmpBaseListener : public cmmpListener {
 public:
 
+  virtual void enterAxiome(cmmpParser::AxiomeContext * /*ctx*/) override { }
+  virtual void exitAxiome(cmmpParser::AxiomeContext * /*ctx*/) override { }
+
   virtual void enterInclude(cmmpParser::IncludeContext * /*ctx*/) override { }
   virtual void exitInclude(cmmpParser::IncludeContext * /*ctx*/) override { }
 
@@ -24,6 +27,9 @@ public:
 
   virtual void enterDefFonc(cmmpParser::DefFoncContext * /*ctx*/) override { }
   virtual void exitDefFonc(cmmpParser::DefFoncContext * /*ctx*/) override { }
+
+  virtual void enterEof(cmmpParser::EofContext * /*ctx*/) override { }
+  virtual void exitEof(cmmpParser::EofContext * /*ctx*/) override { }
 
   virtual void enterBlock(cmmpParser::BlockContext * /*ctx*/) override { }
   virtual void exitBlock(cmmpParser::BlockContext * /*ctx*/) override { }

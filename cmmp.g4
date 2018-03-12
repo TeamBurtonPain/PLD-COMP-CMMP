@@ -1,9 +1,12 @@
 grammar cmmp;
 
+axiome: programme;
+
 programme:
 	( Include) programme				#include
 	| ( declarationVarListe) programme	#declVar
 	| ( definitionFonction) programme	#defFonc
+	| 									#eof
 	;
 
 block: '{' ( instruction)* '}';
@@ -103,6 +106,8 @@ NewLine: ('\r' '\n'? | '\n')  -> skip;
 BlockComment: '/*' .*? '*/'   -> skip;
 
 LineComment: '//' .*? NewLine -> skip;
+
+EOFT: EOF;
 
 fragment Digit: [0-9];
 

@@ -15,6 +15,10 @@
 class  cmmpBaseVisitor : public cmmpVisitor {
 public:
 
+  virtual antlrcpp::Any visitAxiome(cmmpParser::AxiomeContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitInclude(cmmpParser::IncludeContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -24,6 +28,10 @@ public:
   }
 
   virtual antlrcpp::Any visitDefFonc(cmmpParser::DefFoncContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitEof(cmmpParser::EofContext *ctx) override {
     return visitChildren(ctx);
   }
 
