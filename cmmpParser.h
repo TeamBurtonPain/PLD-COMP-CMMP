@@ -19,16 +19,17 @@ public:
     T__26 = 27, T__27 = 28, T__28 = 29, T__29 = 30, T__30 = 31, T__31 = 32, 
     T__32 = 33, Include = 34, InvariantInclude = 35, Lib = 36, Cst = 37, 
     PositiveInt = 38, Int = 39, Char = 40, String = 41, Type = 42, Var = 43, 
-    WhiteSpace = 44, NewLine = 45, BlockComment = 46, LineComment = 47
+    WhiteSpace = 44, NewLine = 45, BlockComment = 46, LineComment = 47, 
+    EOFT = 48
   };
 
   enum {
-    RuleProgramme = 0, RuleBlock = 1, RuleDeclarationVarListe = 2, RuleDeclarationVar = 3, 
-    RuleVarSimple = 4, RuleVarTableau = 5, RuleDefinitionFonction = 6, RuleParamDefinitionList = 7, 
-    RuleParamDefinition = 8, RuleStructureControl = 9, RuleInstruction = 10, 
-    RuleMembreGauche = 11, RuleEListe = 12, RuleAugmentedExpr = 13, RuleAffectation = 14, 
-    RuleExpr = 15, RuleVarTab = 16, RuleFunctionCall = 17, RuleOpComparaison = 18, 
-    RuleOpAffectation = 19
+    RuleAxiome = 0, RuleProgramme = 1, RuleBlock = 2, RuleDeclarationVarListe = 3, 
+    RuleDeclarationVar = 4, RuleVarSimple = 5, RuleVarTableau = 6, RuleDefinitionFonction = 7, 
+    RuleParamDefinitionList = 8, RuleParamDefinition = 9, RuleStructureControl = 10, 
+    RuleInstruction = 11, RuleMembreGauche = 12, RuleEListe = 13, RuleAugmentedExpr = 14, 
+    RuleAffectation = 15, RuleExpr = 16, RuleVarTab = 17, RuleFunctionCall = 18, 
+    RuleOpComparaison = 19, RuleOpAffectation = 20
   };
 
   cmmpParser(antlr4::TokenStream *input);
@@ -41,6 +42,7 @@ public:
   virtual antlr4::dfa::Vocabulary& getVocabulary() const override;
 
 
+  class AxiomeContext;
   class ProgrammeContext;
   class BlockContext;
   class DeclarationVarListeContext;
@@ -61,6 +63,21 @@ public:
   class FunctionCallContext;
   class OpComparaisonContext;
   class OpAffectationContext; 
+
+  class  AxiomeContext : public antlr4::ParserRuleContext {
+  public:
+    AxiomeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    ProgrammeContext *programme();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  AxiomeContext* axiome();
 
   class  ProgrammeContext : public antlr4::ParserRuleContext {
   public:
@@ -105,6 +122,16 @@ public:
 
     ProgrammeContext *programme();
     DefinitionFonctionContext *definitionFonction();
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  EofContext : public ProgrammeContext {
+  public:
+    EofContext(ProgrammeContext *ctx);
+
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
 

@@ -45,6 +45,7 @@ WhiteSpace=44
 NewLine=45
 BlockComment=46
 LineComment=47
+EOFT=48
 '{'=1
 '}'=2
 ','=3
