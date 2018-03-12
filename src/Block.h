@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class Block
+class Block : public Instruction
 {
 public:
 	Block();

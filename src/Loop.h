@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class Loop
+class Loop : public Instruction
 {
 public:
 	Loop();

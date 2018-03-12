@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class Condition
+class Condition : public Instruction
 {
 public:
 	Condition();
