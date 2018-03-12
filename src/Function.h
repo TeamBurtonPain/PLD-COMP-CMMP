@@ -5,7 +5,9 @@
 #include <iostream>
 #include "Variable.h"
 #include "Instruction.h"
+
 using namespace std;
+using hashmap = unordered_map;
 
 class Function{
 	public : 
@@ -13,8 +15,8 @@ class Function{
 		virtual ~Function(void);
 
 	protected :
-		unordered_map <string, *Variable> vars;
-		unordered_map <string, *Variable> params;
+		hashmap <string, *Variable> vars;
+		hashmap <string, *Variable> params;
 		deque <Instruction> instructions;
 		//id(signature)
 }

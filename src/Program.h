@@ -4,7 +4,9 @@
 #include <iostream>
 #include "Variable.h"
 #include "Function.h"
+
 using namespace std;
+using hashmap = unordered_map;
 
 class Programme {
 	public : 
@@ -12,9 +14,9 @@ class Programme {
 		virtual ~Programme(void);
 
 	protected : 
-		unordered_map <string, *variable> vars;
+		hashmap <string, *variable> vars;
 		*Function mainFunction;
-		unordered_map <string, *Function> otherFunctions; 
+		hashmap <string, *Function> otherFunctions; 
 
 };
 

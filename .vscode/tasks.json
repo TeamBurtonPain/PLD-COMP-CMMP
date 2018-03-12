@@ -66,5 +66,18 @@
             // Use the standard MS compiler pattern to detect errors, warnings and infos
             "problemMatcher": "$msCompile"
         }
+    ],
+    "configurations": [
+        {
+            "name": "antlr4-c",
+            "type": "antlr-debug",
+            "request": "launch",
+            //"input": "${workspaceFolder}/${command:AskForTestInput}",
+            "input": "Ex_Test_Backend/2_putchar.c",
+            "grammar": "cmmp.g4",
+            "startRule": "axiome",
+            "printParseTree": true,
+            "visualParseTree": true
+        }
     ]
 }
