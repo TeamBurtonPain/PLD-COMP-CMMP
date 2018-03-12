@@ -1,6 +1,10 @@
 grammar cmmp;
 
-programme: ( Include)* ( declarationVarListe)* ( definitionFonction)+;//programme = suite d'ajout de decl / def / import
+programme:
+	( Include) programme
+	| ( declarationVarListe) programme
+	| ( definitionFonction) programme
+	;
 
 block: '{' ( instruction)* '}';
 
