@@ -75,9 +75,23 @@ varTab: Var '[' expr ']';
 functionCall: Var '(' ( eListe)? ')';
 
 
-opComparaison: '<' | '>' | '<=' | '>=' | '==' | '!=';
+opComparaison: 
+	'<' 	#inf
+	| '>' 	#sup
+	| '<=' 	#infeq
+	| '>=' 	#supeq
+	| '==' 	#eq
+	| '!='	#neq
+	;
 
-opAffectation: '=' | '+=' | '-=' | '*=' | '/=' | '%=';
+opAffectation: 
+	'=' 	#aff
+	| '+=' 	#addaff
+	| '-=' 	#subaff
+	| '*=' 	#multaff
+	| '/=' 	#divaff
+	| '%='	#modaff
+	;
 
 Include: InvariantInclude Lib;
 

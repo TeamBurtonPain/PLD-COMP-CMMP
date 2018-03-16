@@ -2,8 +2,10 @@ CXX=g++
 CXXFLAGS=$(FLAGS) -I$(INCLUDES)
 FLAGS=$(DEBUG) $(OPTI) -std=c++14 -Wall -Wextra -pedantic
 LIB="/lib/antlr/antlr_runtime/runtime/Cpp/run/usr/local/lib/libantlr4-runtime.a"
-INCLUDES="/lib/antlr/antlr_runtime/runtime/Cpp/run/usr/local/include/antlr4-runtime"
+INCLUDES="/lib/antlr/antlr_runtime/runtime/src"
 BIN="exe"
+
+DEBUG=-g
 
 SRC=$(wildcard *.cpp)
 OBJ=$(SRC:%.cpp=%.o)
