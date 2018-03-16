@@ -11,4 +11,4 @@ class Variable{
 	protected :
 		Type type;
 		string name;
-}
+};

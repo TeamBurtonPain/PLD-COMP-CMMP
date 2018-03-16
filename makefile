@@ -5,7 +5,7 @@ LIB="/lib/antlr/antlr_runtime/runtime/Cpp/run/usr/local/lib/libantlr4-runtime.a"
 INCLUDES="/lib/antlr/antlr_runtime/runtime/Cpp/run/usr/local/include/antlr4-runtime"
 BIN="exe"
 
-SRC=$(wildcard *.cpp)
+SRC=$(wildcard *.cpp) $(wildcard src/*.cpp)
 OBJ=$(SRC:%.cpp=%.o)
 
 all: $(OBJ)

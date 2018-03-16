@@ -11,9 +11,9 @@ class Condition : public Instruction
 {
 public:
 	Condition();
-	virtual ~Condition() = 0;
+	virtual ~Condition(void);
 protected:
 	Expression *test;
 	Block instruction;
 	deque<Instruction> elseInstruction
-}
+};
