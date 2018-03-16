@@ -26,7 +26,7 @@
         {
             "name": "Linux",
             "includePath": [
-                "/lib/antlr/antlr_runtime/runtime/Cpp/run/usr/local/include/antlr4-runtime",
+                "/lib/antlr/antlr_runtime/runtime/src/",
                 "/usr/include/c++/5",
                 "/usr/include/x86_64-linux-gnu/c++/5",
                 "/usr/include/c++/5/backward",
@@ -41,7 +41,7 @@
             "intelliSenseMode": "clang-x64",
             "browse": {
                 "path": [
-                    "/lib/antlr/antlr_runtime/runtime/Cpp/run/usr/local/include/antlr4-runtime",
+                    "/lib/antlr/antlr_runtime/runtime/src/",
                     "/usr/include/c++/5",
                     "/usr/include/x86_64-linux-gnu/c++/5",
                     "/usr/include/c++/5/backward",
