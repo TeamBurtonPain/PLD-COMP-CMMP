@@ -9,5 +9,5 @@ class Const : public Expression{
 		virtual ~Const(void);
 	protected :
 		Type type;
-		*void value;
+		void *value;
 };

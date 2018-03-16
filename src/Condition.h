@@ -15,5 +15,5 @@ public:
 protected:
 	Expression *test;
 	Block instruction;
-	deque<Instruction> elseInstruction
+	deque<Instruction> elseInstruction;
 };
