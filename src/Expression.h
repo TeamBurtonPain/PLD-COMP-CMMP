@@ -9,4 +9,4 @@ class Expression{
 		virtual ~Expression(void) = 0;
 	protected :
 		Type type;
-}
+};

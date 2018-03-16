@@ -1,21 +1,18 @@
 #pragma once
 
-#include <unordered_map>
+#include "CommonTypes.h"
 #include <iostream>
 #include "Variable.h"
-#include "Function.h"
+#include "Funct.h"
 
-using namespace std;
-using hashmap = unordered_map;
-
-class Programme {
+class Program {
 	public : 
-		Programme(void);
-		virtual ~Programme(void);
+		Program(void);
+		virtual ~Program(void);
 
 	protected : 
 		hashmap <string, *variable> vars;
-		*Function mainFunction;
+		Funct *mainFunction;
 		hashmap <string, *Function> otherFunctions; 
 
 };

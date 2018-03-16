@@ -6,8 +6,7 @@ INCLUDES="/lib/antlr/antlr_runtime/runtime/src"
 BIN="exe"
 
 DEBUG=-g
-
-SRC=$(wildcard *.cpp)
+SRC=$(wildcard *.cpp) $(wildcard src/*.cpp)
 OBJ=$(SRC:%.cpp=%.o)
 
 all: $(OBJ)

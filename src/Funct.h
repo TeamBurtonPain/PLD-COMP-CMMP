@@ -1,22 +1,19 @@
 #pragma once
 
+#include "CommonTypes.h"
 #include <deque>
-#include <unordered_map>
 #include <iostream>
 #include "Variable.h"
 #include "Instruction.h"
 
-using namespace std;
-using hashmap = unordered_map;
-
-class Function{
+class Funct{
 	public : 
-		Function(void);
-		virtual ~Function(void);
+		Funct(void);
+		virtual ~Funct(void);
 
 	protected :
 		hashmap <string, *Variable> vars;
 		hashmap <string, *Variable> params;
 		deque <Instruction> instructions;
 		//id(signature)
-}
+};

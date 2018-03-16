@@ -14,4 +14,4 @@ public:
 protected:
 	Expression * finalTest;
 	Block instruction;
-}
+};
