@@ -11,9 +11,9 @@ class Program {
 		virtual ~Program(void);
 
 	protected : 
-		hashmap <string, *Variable> vars;
-		Funct *mainFunction;
-		hashmap <string, *Funct> otherFunctions; 
+		hashmap <string, ptr<Variable>> vars;
+		Funct *mainFunction; 
+		hashmap <string, ptr<Funct>> otherFunctions; 
 
 };
 

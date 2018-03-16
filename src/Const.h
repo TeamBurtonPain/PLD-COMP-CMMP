@@ -8,6 +8,5 @@ class Const : public Expression{
 		Const(Type t);
 		virtual ~Const(void);
 	protected :
-		Type type;
 		void *value;
 };
