@@ -5,12 +5,14 @@
 #include "Variable.h"
 #include <deque>
 
+class Variable;
+
 class Block : public Instruction
 {
 public:
 	Block();
 	virtual ~Block(void);
 protected:
-	hashmap<string, *Variable>;
+	hashmap<string, Variable*> variables;
 	deque<Instruction> instructions;
 };

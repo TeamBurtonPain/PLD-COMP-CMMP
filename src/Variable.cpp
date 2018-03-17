@@ -2,7 +2,7 @@
 
 Variable::Variable(Type t, string n){
 	type = t;
-	name = s;
+	name = n;
 }
 
 Variable::~Variable(){}

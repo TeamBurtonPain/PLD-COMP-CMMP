@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "antlr4-runtime.h"
+
 #include "cmmpLexer.h"
 #include "cmmpParser.h"
 
@@ -22,7 +23,6 @@ int main(){
     tree::ParseTree* tree = parser.expr();
 
     std::cout << tree->toStringTree(&parser) << std::endl << std::endl;
-
     cin.get();
     return 0;
 
