@@ -35,8 +35,11 @@ public:
   virtual void enterDeclarationVarListe(cmmpParser::DeclarationVarListeContext *ctx) = 0;
   virtual void exitDeclarationVarListe(cmmpParser::DeclarationVarListeContext *ctx) = 0;
 
-  virtual void enterDeclarationVar(cmmpParser::DeclarationVarContext *ctx) = 0;
-  virtual void exitDeclarationVar(cmmpParser::DeclarationVarContext *ctx) = 0;
+  virtual void enterSimpleVar(cmmpParser::SimpleVarContext *ctx) = 0;
+  virtual void exitSimpleVar(cmmpParser::SimpleVarContext *ctx) = 0;
+
+  virtual void enterTabVar(cmmpParser::TabVarContext *ctx) = 0;
+  virtual void exitTabVar(cmmpParser::TabVarContext *ctx) = 0;
 
   virtual void enterVarSimple(cmmpParser::VarSimpleContext *ctx) = 0;
   virtual void exitVarSimple(cmmpParser::VarSimpleContext *ctx) = 0;
@@ -56,8 +59,17 @@ public:
   virtual void enterStructureControl(cmmpParser::StructureControlContext *ctx) = 0;
   virtual void exitStructureControl(cmmpParser::StructureControlContext *ctx) = 0;
 
-  virtual void enterInstruction(cmmpParser::InstructionContext *ctx) = 0;
-  virtual void exitInstruction(cmmpParser::InstructionContext *ctx) = 0;
+  virtual void enterInsBlock(cmmpParser::InsBlockContext *ctx) = 0;
+  virtual void exitInsBlock(cmmpParser::InsBlockContext *ctx) = 0;
+
+  virtual void enterInsExpr(cmmpParser::InsExprContext *ctx) = 0;
+  virtual void exitInsExpr(cmmpParser::InsExprContext *ctx) = 0;
+
+  virtual void enterInsDeclVar(cmmpParser::InsDeclVarContext *ctx) = 0;
+  virtual void exitInsDeclVar(cmmpParser::InsDeclVarContext *ctx) = 0;
+
+  virtual void enterInsControl(cmmpParser::InsControlContext *ctx) = 0;
+  virtual void exitInsControl(cmmpParser::InsControlContext *ctx) = 0;
 
   virtual void enterMembreGauche(cmmpParser::MembreGaucheContext *ctx) = 0;
   virtual void exitMembreGauche(cmmpParser::MembreGaucheContext *ctx) = 0;
@@ -65,8 +77,11 @@ public:
   virtual void enterEListe(cmmpParser::EListeContext *ctx) = 0;
   virtual void exitEListe(cmmpParser::EListeContext *ctx) = 0;
 
-  virtual void enterAugmentedExpr(cmmpParser::AugmentedExprContext *ctx) = 0;
-  virtual void exitAugmentedExpr(cmmpParser::AugmentedExprContext *ctx) = 0;
+  virtual void enterExprAff(cmmpParser::ExprAffContext *ctx) = 0;
+  virtual void exitExprAff(cmmpParser::ExprAffContext *ctx) = 0;
+
+  virtual void enterSimpleExpr(cmmpParser::SimpleExprContext *ctx) = 0;
+  virtual void exitSimpleExpr(cmmpParser::SimpleExprContext *ctx) = 0;
 
   virtual void enterMidAffectation(cmmpParser::MidAffectationContext *ctx) = 0;
   virtual void exitMidAffectation(cmmpParser::MidAffectationContext *ctx) = 0;
@@ -131,11 +146,41 @@ public:
   virtual void enterFunctionCall(cmmpParser::FunctionCallContext *ctx) = 0;
   virtual void exitFunctionCall(cmmpParser::FunctionCallContext *ctx) = 0;
 
-  virtual void enterOpComparaison(cmmpParser::OpComparaisonContext *ctx) = 0;
-  virtual void exitOpComparaison(cmmpParser::OpComparaisonContext *ctx) = 0;
+  virtual void enterInf(cmmpParser::InfContext *ctx) = 0;
+  virtual void exitInf(cmmpParser::InfContext *ctx) = 0;
 
-  virtual void enterOpAffectation(cmmpParser::OpAffectationContext *ctx) = 0;
-  virtual void exitOpAffectation(cmmpParser::OpAffectationContext *ctx) = 0;
+  virtual void enterSup(cmmpParser::SupContext *ctx) = 0;
+  virtual void exitSup(cmmpParser::SupContext *ctx) = 0;
+
+  virtual void enterInfeq(cmmpParser::InfeqContext *ctx) = 0;
+  virtual void exitInfeq(cmmpParser::InfeqContext *ctx) = 0;
+
+  virtual void enterSupeq(cmmpParser::SupeqContext *ctx) = 0;
+  virtual void exitSupeq(cmmpParser::SupeqContext *ctx) = 0;
+
+  virtual void enterEq(cmmpParser::EqContext *ctx) = 0;
+  virtual void exitEq(cmmpParser::EqContext *ctx) = 0;
+
+  virtual void enterNeq(cmmpParser::NeqContext *ctx) = 0;
+  virtual void exitNeq(cmmpParser::NeqContext *ctx) = 0;
+
+  virtual void enterAff(cmmpParser::AffContext *ctx) = 0;
+  virtual void exitAff(cmmpParser::AffContext *ctx) = 0;
+
+  virtual void enterAddaff(cmmpParser::AddaffContext *ctx) = 0;
+  virtual void exitAddaff(cmmpParser::AddaffContext *ctx) = 0;
+
+  virtual void enterSubaff(cmmpParser::SubaffContext *ctx) = 0;
+  virtual void exitSubaff(cmmpParser::SubaffContext *ctx) = 0;
+
+  virtual void enterMultaff(cmmpParser::MultaffContext *ctx) = 0;
+  virtual void exitMultaff(cmmpParser::MultaffContext *ctx) = 0;
+
+  virtual void enterDivaff(cmmpParser::DivaffContext *ctx) = 0;
+  virtual void exitDivaff(cmmpParser::DivaffContext *ctx) = 0;
+
+  virtual void enterModaff(cmmpParser::ModaffContext *ctx) = 0;
+  virtual void exitModaff(cmmpParser::ModaffContext *ctx) = 0;
 
 
 };

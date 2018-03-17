@@ -13,7 +13,10 @@ block: '{' ( instruction)* '}';
 
 declarationVarListe: Type declarationVar ( ',' declarationVar)* ';';
 
-declarationVar: varSimple | varTableau;
+declarationVar: 
+	varSimple 		#simpleVar
+	| varTableau	#tabVar
+	;
 
 varSimple: Var ('=' augmentedExpr)?;
 
@@ -29,13 +32,21 @@ structureControl:
 	'if' '(' augmentedExpr ')' instruction ('else ' instruction)?
 	| 'while' '(' augmentedExpr ')' instruction;
 
-instruction: block | augmentedExpr ';'| declarationVarListe | structureControl;
+instruction: 
+	block 					#insBlock
+	| augmentedExpr ';'		#insExpr
+	| declarationVarListe 	#insDeclVar
+	| structureControl		#insControl
+	;
 
 membreGauche: Var | varTab;
 
 eListe: augmentedExpr ( ',' augmentedExpr)*;
 
-augmentedExpr: affectation | expr;
+augmentedExpr: 
+	affectation #exprAff
+	| expr		#simpleExpr
+	;
 
 affectation:
 	 <assoc = right> membreGauche opAffectation affectation	#midAffectation

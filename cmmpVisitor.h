@@ -33,7 +33,9 @@ public:
 
     virtual antlrcpp::Any visitDeclarationVarListe(cmmpParser::DeclarationVarListeContext *context) = 0;
 
-    virtual antlrcpp::Any visitDeclarationVar(cmmpParser::DeclarationVarContext *context) = 0;
+    virtual antlrcpp::Any visitSimpleVar(cmmpParser::SimpleVarContext *context) = 0;
+
+    virtual antlrcpp::Any visitTabVar(cmmpParser::TabVarContext *context) = 0;
 
     virtual antlrcpp::Any visitVarSimple(cmmpParser::VarSimpleContext *context) = 0;
 
@@ -47,13 +49,21 @@ public:
 
     virtual antlrcpp::Any visitStructureControl(cmmpParser::StructureControlContext *context) = 0;
 
-    virtual antlrcpp::Any visitInstruction(cmmpParser::InstructionContext *context) = 0;
+    virtual antlrcpp::Any visitInsBlock(cmmpParser::InsBlockContext *context) = 0;
+
+    virtual antlrcpp::Any visitInsExpr(cmmpParser::InsExprContext *context) = 0;
+
+    virtual antlrcpp::Any visitInsDeclVar(cmmpParser::InsDeclVarContext *context) = 0;
+
+    virtual antlrcpp::Any visitInsControl(cmmpParser::InsControlContext *context) = 0;
 
     virtual antlrcpp::Any visitMembreGauche(cmmpParser::MembreGaucheContext *context) = 0;
 
     virtual antlrcpp::Any visitEListe(cmmpParser::EListeContext *context) = 0;
 
-    virtual antlrcpp::Any visitAugmentedExpr(cmmpParser::AugmentedExprContext *context) = 0;
+    virtual antlrcpp::Any visitExprAff(cmmpParser::ExprAffContext *context) = 0;
+
+    virtual antlrcpp::Any visitSimpleExpr(cmmpParser::SimpleExprContext *context) = 0;
 
     virtual antlrcpp::Any visitMidAffectation(cmmpParser::MidAffectationContext *context) = 0;
 
@@ -97,9 +107,29 @@ public:
 
     virtual antlrcpp::Any visitFunctionCall(cmmpParser::FunctionCallContext *context) = 0;
 
-    virtual antlrcpp::Any visitOpComparaison(cmmpParser::OpComparaisonContext *context) = 0;
+    virtual antlrcpp::Any visitInf(cmmpParser::InfContext *context) = 0;
 
-    virtual antlrcpp::Any visitOpAffectation(cmmpParser::OpAffectationContext *context) = 0;
+    virtual antlrcpp::Any visitSup(cmmpParser::SupContext *context) = 0;
+
+    virtual antlrcpp::Any visitInfeq(cmmpParser::InfeqContext *context) = 0;
+
+    virtual antlrcpp::Any visitSupeq(cmmpParser::SupeqContext *context) = 0;
+
+    virtual antlrcpp::Any visitEq(cmmpParser::EqContext *context) = 0;
+
+    virtual antlrcpp::Any visitNeq(cmmpParser::NeqContext *context) = 0;
+
+    virtual antlrcpp::Any visitAff(cmmpParser::AffContext *context) = 0;
+
+    virtual antlrcpp::Any visitAddaff(cmmpParser::AddaffContext *context) = 0;
+
+    virtual antlrcpp::Any visitSubaff(cmmpParser::SubaffContext *context) = 0;
+
+    virtual antlrcpp::Any visitMultaff(cmmpParser::MultaffContext *context) = 0;
+
+    virtual antlrcpp::Any visitDivaff(cmmpParser::DivaffContext *context) = 0;
+
+    virtual antlrcpp::Any visitModaff(cmmpParser::ModaffContext *context) = 0;
 
 
 };

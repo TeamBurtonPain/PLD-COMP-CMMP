@@ -342,16 +342,27 @@ public class cmmpParser extends Parser {
 	}
 
 	public static class DeclarationVarContext extends ParserRuleContext {
-		public VarSimpleContext varSimple() {
-			return getRuleContext(VarSimpleContext.class,0);
-		}
-		public VarTableauContext varTableau() {
-			return getRuleContext(VarTableauContext.class,0);
-		}
 		public DeclarationVarContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_declarationVar; }
+	 
+		public DeclarationVarContext() { }
+		public void copyFrom(DeclarationVarContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class TabVarContext extends DeclarationVarContext {
+		public VarTableauContext varTableau() {
+			return getRuleContext(VarTableauContext.class,0);
+		}
+		public TabVarContext(DeclarationVarContext ctx) { copyFrom(ctx); }
+	}
+	public static class SimpleVarContext extends DeclarationVarContext {
+		public VarSimpleContext varSimple() {
+			return getRuleContext(VarSimpleContext.class,0);
+		}
+		public SimpleVarContext(DeclarationVarContext ctx) { copyFrom(ctx); }
 	}
 
 	public final DeclarationVarContext declarationVar() throws RecognitionException {
@@ -362,6 +373,7 @@ public class cmmpParser extends Parser {
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 			case 1:
+				_localctx = new SimpleVarContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(75);
@@ -369,6 +381,7 @@ public class cmmpParser extends Parser {
 				}
 				break;
 			case 2:
+				_localctx = new TabVarContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(76);
@@ -712,22 +725,39 @@ public class cmmpParser extends Parser {
 	}
 
 	public static class InstructionContext extends ParserRuleContext {
-		public BlockContext block() {
-			return getRuleContext(BlockContext.class,0);
-		}
-		public AugmentedExprContext augmentedExpr() {
-			return getRuleContext(AugmentedExprContext.class,0);
-		}
-		public DeclarationVarListeContext declarationVarListe() {
-			return getRuleContext(DeclarationVarListeContext.class,0);
-		}
-		public StructureControlContext structureControl() {
-			return getRuleContext(StructureControlContext.class,0);
-		}
 		public InstructionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_instruction; }
+	 
+		public InstructionContext() { }
+		public void copyFrom(InstructionContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class InsControlContext extends InstructionContext {
+		public StructureControlContext structureControl() {
+			return getRuleContext(StructureControlContext.class,0);
+		}
+		public InsControlContext(InstructionContext ctx) { copyFrom(ctx); }
+	}
+	public static class InsBlockContext extends InstructionContext {
+		public BlockContext block() {
+			return getRuleContext(BlockContext.class,0);
+		}
+		public InsBlockContext(InstructionContext ctx) { copyFrom(ctx); }
+	}
+	public static class InsExprContext extends InstructionContext {
+		public AugmentedExprContext augmentedExpr() {
+			return getRuleContext(AugmentedExprContext.class,0);
+		}
+		public InsExprContext(InstructionContext ctx) { copyFrom(ctx); }
+	}
+	public static class InsDeclVarContext extends InstructionContext {
+		public DeclarationVarListeContext declarationVarListe() {
+			return getRuleContext(DeclarationVarListeContext.class,0);
+		}
+		public InsDeclVarContext(InstructionContext ctx) { copyFrom(ctx); }
 	}
 
 	public final InstructionContext instruction() throws RecognitionException {
@@ -738,6 +768,7 @@ public class cmmpParser extends Parser {
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__0:
+				_localctx = new InsBlockContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(130);
@@ -750,6 +781,7 @@ public class cmmpParser extends Parser {
 			case T__12:
 			case Cst:
 			case Var:
+				_localctx = new InsExprContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(131);
@@ -759,6 +791,7 @@ public class cmmpParser extends Parser {
 				}
 				break;
 			case Type:
+				_localctx = new InsDeclVarContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(134);
@@ -767,6 +800,7 @@ public class cmmpParser extends Parser {
 				break;
 			case T__7:
 			case T__9:
+				_localctx = new InsControlContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(135);
@@ -885,16 +919,27 @@ public class cmmpParser extends Parser {
 	}
 
 	public static class AugmentedExprContext extends ParserRuleContext {
-		public AffectationContext affectation() {
-			return getRuleContext(AffectationContext.class,0);
-		}
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
 		public AugmentedExprContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_augmentedExpr; }
+	 
+		public AugmentedExprContext() { }
+		public void copyFrom(AugmentedExprContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class SimpleExprContext extends AugmentedExprContext {
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public SimpleExprContext(AugmentedExprContext ctx) { copyFrom(ctx); }
+	}
+	public static class ExprAffContext extends AugmentedExprContext {
+		public AffectationContext affectation() {
+			return getRuleContext(AffectationContext.class,0);
+		}
+		public ExprAffContext(AugmentedExprContext ctx) { copyFrom(ctx); }
 	}
 
 	public final AugmentedExprContext augmentedExpr() throws RecognitionException {
@@ -905,6 +950,7 @@ public class cmmpParser extends Parser {
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,14,_ctx) ) {
 			case 1:
+				_localctx = new ExprAffContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(150);
@@ -912,6 +958,7 @@ public class cmmpParser extends Parser {
 				}
 				break;
 			case 2:
+				_localctx = new SimpleExprContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(151);

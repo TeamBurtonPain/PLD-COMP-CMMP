@@ -37,8 +37,11 @@ public:
   virtual void enterDeclarationVarListe(cmmpParser::DeclarationVarListeContext * /*ctx*/) override { }
   virtual void exitDeclarationVarListe(cmmpParser::DeclarationVarListeContext * /*ctx*/) override { }
 
-  virtual void enterDeclarationVar(cmmpParser::DeclarationVarContext * /*ctx*/) override { }
-  virtual void exitDeclarationVar(cmmpParser::DeclarationVarContext * /*ctx*/) override { }
+  virtual void enterSimpleVar(cmmpParser::SimpleVarContext * /*ctx*/) override { }
+  virtual void exitSimpleVar(cmmpParser::SimpleVarContext * /*ctx*/) override { }
+
+  virtual void enterTabVar(cmmpParser::TabVarContext * /*ctx*/) override { }
+  virtual void exitTabVar(cmmpParser::TabVarContext * /*ctx*/) override { }
 
   virtual void enterVarSimple(cmmpParser::VarSimpleContext * /*ctx*/) override { }
   virtual void exitVarSimple(cmmpParser::VarSimpleContext * /*ctx*/) override { }
@@ -58,8 +61,17 @@ public:
   virtual void enterStructureControl(cmmpParser::StructureControlContext * /*ctx*/) override { }
   virtual void exitStructureControl(cmmpParser::StructureControlContext * /*ctx*/) override { }
 
-  virtual void enterInstruction(cmmpParser::InstructionContext * /*ctx*/) override { }
-  virtual void exitInstruction(cmmpParser::InstructionContext * /*ctx*/) override { }
+  virtual void enterInsBlock(cmmpParser::InsBlockContext * /*ctx*/) override { }
+  virtual void exitInsBlock(cmmpParser::InsBlockContext * /*ctx*/) override { }
+
+  virtual void enterInsExpr(cmmpParser::InsExprContext * /*ctx*/) override { }
+  virtual void exitInsExpr(cmmpParser::InsExprContext * /*ctx*/) override { }
+
+  virtual void enterInsDeclVar(cmmpParser::InsDeclVarContext * /*ctx*/) override { }
+  virtual void exitInsDeclVar(cmmpParser::InsDeclVarContext * /*ctx*/) override { }
+
+  virtual void enterInsControl(cmmpParser::InsControlContext * /*ctx*/) override { }
+  virtual void exitInsControl(cmmpParser::InsControlContext * /*ctx*/) override { }
 
   virtual void enterMembreGauche(cmmpParser::MembreGaucheContext * /*ctx*/) override { }
   virtual void exitMembreGauche(cmmpParser::MembreGaucheContext * /*ctx*/) override { }
@@ -67,8 +79,11 @@ public:
   virtual void enterEListe(cmmpParser::EListeContext * /*ctx*/) override { }
   virtual void exitEListe(cmmpParser::EListeContext * /*ctx*/) override { }
 
-  virtual void enterAugmentedExpr(cmmpParser::AugmentedExprContext * /*ctx*/) override { }
-  virtual void exitAugmentedExpr(cmmpParser::AugmentedExprContext * /*ctx*/) override { }
+  virtual void enterExprAff(cmmpParser::ExprAffContext * /*ctx*/) override { }
+  virtual void exitExprAff(cmmpParser::ExprAffContext * /*ctx*/) override { }
+
+  virtual void enterSimpleExpr(cmmpParser::SimpleExprContext * /*ctx*/) override { }
+  virtual void exitSimpleExpr(cmmpParser::SimpleExprContext * /*ctx*/) override { }
 
   virtual void enterMidAffectation(cmmpParser::MidAffectationContext * /*ctx*/) override { }
   virtual void exitMidAffectation(cmmpParser::MidAffectationContext * /*ctx*/) override { }
@@ -133,11 +148,41 @@ public:
   virtual void enterFunctionCall(cmmpParser::FunctionCallContext * /*ctx*/) override { }
   virtual void exitFunctionCall(cmmpParser::FunctionCallContext * /*ctx*/) override { }
 
-  virtual void enterOpComparaison(cmmpParser::OpComparaisonContext * /*ctx*/) override { }
-  virtual void exitOpComparaison(cmmpParser::OpComparaisonContext * /*ctx*/) override { }
+  virtual void enterInf(cmmpParser::InfContext * /*ctx*/) override { }
+  virtual void exitInf(cmmpParser::InfContext * /*ctx*/) override { }
 
-  virtual void enterOpAffectation(cmmpParser::OpAffectationContext * /*ctx*/) override { }
-  virtual void exitOpAffectation(cmmpParser::OpAffectationContext * /*ctx*/) override { }
+  virtual void enterSup(cmmpParser::SupContext * /*ctx*/) override { }
+  virtual void exitSup(cmmpParser::SupContext * /*ctx*/) override { }
+
+  virtual void enterInfeq(cmmpParser::InfeqContext * /*ctx*/) override { }
+  virtual void exitInfeq(cmmpParser::InfeqContext * /*ctx*/) override { }
+
+  virtual void enterSupeq(cmmpParser::SupeqContext * /*ctx*/) override { }
+  virtual void exitSupeq(cmmpParser::SupeqContext * /*ctx*/) override { }
+
+  virtual void enterEq(cmmpParser::EqContext * /*ctx*/) override { }
+  virtual void exitEq(cmmpParser::EqContext * /*ctx*/) override { }
+
+  virtual void enterNeq(cmmpParser::NeqContext * /*ctx*/) override { }
+  virtual void exitNeq(cmmpParser::NeqContext * /*ctx*/) override { }
+
+  virtual void enterAff(cmmpParser::AffContext * /*ctx*/) override { }
+  virtual void exitAff(cmmpParser::AffContext * /*ctx*/) override { }
+
+  virtual void enterAddaff(cmmpParser::AddaffContext * /*ctx*/) override { }
+  virtual void exitAddaff(cmmpParser::AddaffContext * /*ctx*/) override { }
+
+  virtual void enterSubaff(cmmpParser::SubaffContext * /*ctx*/) override { }
+  virtual void exitSubaff(cmmpParser::SubaffContext * /*ctx*/) override { }
+
+  virtual void enterMultaff(cmmpParser::MultaffContext * /*ctx*/) override { }
+  virtual void exitMultaff(cmmpParser::MultaffContext * /*ctx*/) override { }
+
+  virtual void enterDivaff(cmmpParser::DivaffContext * /*ctx*/) override { }
+  virtual void exitDivaff(cmmpParser::DivaffContext * /*ctx*/) override { }
+
+  virtual void enterModaff(cmmpParser::ModaffContext * /*ctx*/) override { }
+  virtual void exitModaff(cmmpParser::ModaffContext * /*ctx*/) override { }
 
 
   virtual void enterEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }
