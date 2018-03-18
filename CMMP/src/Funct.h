@@ -12,8 +12,8 @@ class Funct{
 		virtual ~Funct(void);
 
 	protected :
-		hashmap <string, ptr<Variable>> vars;
-		hashmap <string, ptr<Variable>> params;
+		hashmap <string, ptr<Variable>> variables;
+		hashmap <string, ptr<Variable>> parameters;
 		deque <Instruction> instructions;
 		//id(signature)
 };

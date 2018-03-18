@@ -13,5 +13,5 @@ public:
 	virtual ~Loop(void) = 0;
 protected:
 	ptr<Expression> finalTest;
-	Block instruction;
+	Block instructions;
 };
