@@ -1,0 +1,772 @@
+﻿  main.cpp
+c:\lib\antlr\antlr4-runtime\exceptions.h(13): warning C4275: interface non dll class 'std::exception' utilisée comme base d'une interface dll class 'antlr4::RuntimeException'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\vcruntime_exception.h(43): note: voir la déclaration de 'std::exception'
+  c:\lib\antlr\antlr4-runtime\exceptions.h(13): note: voir la déclaration de 'antlr4::RuntimeException'
+c:\lib\antlr\antlr4-runtime\exceptions.h(15): warning C4251: 'antlr4::RuntimeException::_message' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::RuntimeException'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\exceptions.h(73): warning C4275: interface non dll class 'std::exception' utilisée comme base d'une interface dll class 'antlr4::IOException'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\vcruntime_exception.h(43): note: voir la déclaration de 'std::exception'
+  c:\lib\antlr\antlr4-runtime\exceptions.h(73): note: voir la déclaration de 'antlr4::IOException'
+c:\lib\antlr\antlr4-runtime\exceptions.h(75): warning C4251: 'antlr4::IOException::_message' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::IOException'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\intstream.h(41): warning C4251: 'antlr4::IntStream::UNKNOWN_SOURCE_NAME' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::IntStream'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\antlrinputstream.h(19): warning C4251: 'antlr4::ANTLRInputStream::_data' : class 'std::basic_string<int,std::char_traits<_Elem>,std::allocator<_Elem>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::ANTLRInputStream'
+          with
+          [
+              _Elem=int
+          ]
+  c:\lib\antlr\antlr4-runtime\antlr4-common.h(64): note: voir la déclaration de 'std::basic_string<int,std::char_traits<_Elem>,std::allocator<_Elem>>'
+          with
+          [
+              _Elem=int
+          ]
+c:\lib\antlr\antlr4-runtime\antlrinputstream.h(26): warning C4251: 'antlr4::ANTLRInputStream::name' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::ANTLRInputStream'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\antlrfilestream.h(17): warning C4251: 'antlr4::ANTLRFileStream::_fileName' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::ANTLRFileStream'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\misc\intervalset.h(33): warning C4251: 'antlr4::misc::IntervalSet::_intervals' : class 'std::vector<antlr4::misc::Interval,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::misc::IntervalSet'
+          with
+          [
+              _Ty=antlr4::misc::Interval
+          ]
+  c:\lib\antlr\antlr4-runtime\misc\intervalset.h(33): note: voir la déclaration de 'std::vector<antlr4::misc::Interval,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::misc::Interval
+          ]
+c:\lib\antlr\antlr4-runtime\defaulterrorstrategy.h(462): warning C4251: 'antlr4::DefaultErrorStrategy::_errorSymbols' : class 'std::vector<std::unique_ptr<antlr4::Token,std::default_delete<_Ty>>,std::allocator<std::unique_ptr<_Ty,std::default_delete<_Ty>>>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::DefaultErrorStrategy'
+          with
+          [
+              _Ty=antlr4::Token
+          ]
+  c:\lib\antlr\antlr4-runtime\defaulterrorstrategy.h(462): note: voir la déclaration de 'std::vector<std::unique_ptr<antlr4::Token,std::default_delete<_Ty>>,std::allocator<std::unique_ptr<_Ty,std::default_delete<_Ty>>>>'
+          with
+          [
+              _Ty=antlr4::Token
+          ]
+c:\lib\antlr\antlr4-runtime\bufferedtokenstream.h(108): warning C4251: 'antlr4::BufferedTokenStream::_tokens' : class 'std::vector<std::unique_ptr<antlr4::Token,std::default_delete<_Ty>>,std::allocator<std::unique_ptr<_Ty,std::default_delete<_Ty>>>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::BufferedTokenStream'
+          with
+          [
+              _Ty=antlr4::Token
+          ]
+  c:\lib\antlr\antlr4-runtime\defaulterrorstrategy.h(462): note: voir la déclaration de 'std::vector<std::unique_ptr<antlr4::Token,std::default_delete<_Ty>>,std::allocator<std::unique_ptr<_Ty,std::default_delete<_Ty>>>>'
+          with
+          [
+              _Ty=antlr4::Token
+          ]
+c:\lib\antlr\antlr4-runtime\commontoken.h(18): warning C4251: 'antlr4::CommonToken::EMPTY_SOURCE' : struct 'std::pair<antlr4::TokenSource *,antlr4::CharStream *>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::CommonToken'
+  c:\lib\antlr\antlr4-runtime\commontoken.h(18): note: voir la déclaration de 'std::pair<antlr4::TokenSource *,antlr4::CharStream *>'
+c:\lib\antlr\antlr4-runtime\commontoken.h(53): warning C4251: 'antlr4::CommonToken::_source' : struct 'std::pair<antlr4::TokenSource *,antlr4::CharStream *>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::CommonToken'
+  c:\lib\antlr\antlr4-runtime\commontoken.h(18): note: voir la déclaration de 'std::pair<antlr4::TokenSource *,antlr4::CharStream *>'
+c:\lib\antlr\antlr4-runtime\commontoken.h(61): warning C4251: 'antlr4::CommonToken::_text' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::CommonToken'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\commontokenfactory.h(25): warning C4251: 'antlr4::CommonTokenFactory::DEFAULT' : class 'std::shared_ptr<antlr4::TokenFactory<antlr4::CommonToken>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::CommonTokenFactory'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(863): note: voir la déclaration de 'std::shared_ptr<antlr4::TokenFactory<antlr4::CommonToken>>'
+c:\lib\antlr\antlr4-runtime\failedpredicateexception.h(29): warning C4251: 'antlr4::FailedPredicateException::_predicate' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::FailedPredicateException'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\tree\parsetree.h(38): warning C4251: 'antlr4::tree::ParseTree::children' : class 'std::vector<antlr4::tree::ParseTree *,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::ParseTree'
+          with
+          [
+              _Ty=antlr4::tree::ParseTree *
+          ]
+  c:\lib\antlr\antlr4-runtime\tree\parsetree.h(38): note: voir la déclaration de 'std::vector<antlr4::tree::ParseTree *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::tree::ParseTree *
+          ]
+c:\lib\antlr\antlr4-runtime\tree\parsetree.h(97): warning C4251: 'antlr4::tree::ParseTreeTracker::_allocated' : class 'std::vector<antlr4::tree::ParseTree *,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::ParseTreeTracker'
+          with
+          [
+              _Ty=antlr4::tree::ParseTree *
+          ]
+  c:\lib\antlr\antlr4-runtime\tree\parsetree.h(38): note: voir la déclaration de 'std::vector<antlr4::tree::ParseTree *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::tree::ParseTree *
+          ]
+c:\lib\antlr\antlr4-runtime\parserrulecontext.h(66): warning C4251: 'antlr4::ParserRuleContext::exception' : class 'std::exception_ptr' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::ParserRuleContext'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\exception(255): note: voir la déclaration de 'std::exception_ptr'
+c:\lib\antlr\antlr4-runtime\proxyerrorlistener.h(18): warning C4251: 'antlr4::ProxyErrorListener::_delegates' : class 'std::set<antlr4::ANTLRErrorListener *,std::less<_Kty>,std::allocator<_Kty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::ProxyErrorListener'
+          with
+          [
+              _Kty=antlr4::ANTLRErrorListener *
+          ]
+  c:\lib\antlr\antlr4-runtime\proxyerrorlistener.h(18): note: voir la déclaration de 'std::set<antlr4::ANTLRErrorListener *,std::less<_Kty>,std::allocator<_Kty>>'
+          with
+          [
+              _Kty=antlr4::ANTLRErrorListener *
+          ]
+c:\lib\antlr\antlr4-runtime\recognizer.h(150): warning C4251: 'antlr4::Recognizer::_mutex' : class 'std::mutex' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::Recognizer'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\mutex(79): note: voir la déclaration de 'std::mutex'
+c:\lib\antlr\antlr4-runtime\recognizer.h(153): warning C4251: 'antlr4::Recognizer::_tokenTypeMapCache' : class 'std::map<const antlr4::dfa::Vocabulary *,std::map<std::string,::size_t,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>,std::less<const antlr4::dfa::Vocabulary*>,std::allocator<std::pair<const antlr4::dfa::Vocabulary*const ,std::map<_Kty,_Ty,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>>>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::Recognizer'
+          with
+          [
+              _Kty=std::string,
+              _Ty=::size_t
+          ]
+  c:\lib\antlr\antlr4-runtime\recognizer.h(153): note: voir la déclaration de 'std::map<const antlr4::dfa::Vocabulary *,std::map<std::string,::size_t,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>,std::less<const antlr4::dfa::Vocabulary*>,std::allocator<std::pair<const antlr4::dfa::Vocabulary*const ,std::map<_Kty,_Ty,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>>>>'
+          with
+          [
+              _Kty=std::string,
+              _Ty=::size_t
+          ]
+c:\lib\antlr\antlr4-runtime\recognizer.h(154): warning C4251: 'antlr4::Recognizer::_ruleIndexMapCache' : class 'std::map<std::vector<std::string,std::allocator<_Ty>>,std::map<std::string,::size_t,std::less<_Ty>,std::allocator<std::pair<const _Kty,unsigned int>>>,std::less<std::vector<_Ty,std::allocator<_Ty>>>,std::allocator<std::pair<const std::vector<_Ty,std::allocator<_Ty>>,std::map<_Kty,::size_t,std::less<_Ty>,std::allocator<std::pair<const _Kty,unsigned int>>>>>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::Recognizer'
+          with
+          [
+              _Ty=std::string,
+              _Kty=std::string
+          ]
+  c:\lib\antlr\antlr4-runtime\recognizer.h(154): note: voir la déclaration de 'std::map<std::vector<std::string,std::allocator<_Ty>>,std::map<std::string,::size_t,std::less<_Ty>,std::allocator<std::pair<const _Kty,unsigned int>>>,std::less<std::vector<_Ty,std::allocator<_Ty>>>,std::allocator<std::pair<const std::vector<_Ty,std::allocator<_Ty>>,std::map<_Kty,::size_t,std::less<_Ty>,std::allocator<std::pair<const _Kty,unsigned int>>>>>>'
+          with
+          [
+              _Ty=std::string,
+              _Kty=std::string
+          ]
+c:\lib\antlr\antlr4-runtime\lexer.h(34): warning C4251: 'antlr4::Lexer::_factory' : class 'std::shared_ptr<antlr4::TokenFactory<antlr4::CommonToken>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::Lexer'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(863): note: voir la déclaration de 'std::shared_ptr<antlr4::TokenFactory<antlr4::CommonToken>>'
+c:\lib\antlr\antlr4-runtime\lexer.h(48): warning C4251: 'antlr4::Lexer::token' : class 'std::unique_ptr<antlr4::Token,std::default_delete<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::Lexer'
+          with
+          [
+              _Ty=antlr4::Token
+          ]
+  c:\lib\antlr\antlr4-runtime\defaulterrorstrategy.h(462): note: voir la déclaration de 'std::unique_ptr<antlr4::Token,std::default_delete<_Ty>>'
+          with
+          [
+              _Ty=antlr4::Token
+          ]
+c:\lib\antlr\antlr4-runtime\lexer.h(75): warning C4251: 'antlr4::Lexer::modeStack' : class 'std::vector<::size_t,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::Lexer'
+          with
+          [
+              _Ty=::size_t
+          ]
+  c:\lib\antlr\antlr4-runtime\bufferedtokenstream.h(60): note: voir la déclaration de 'std::vector<::size_t,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=::size_t
+          ]
+c:\lib\antlr\antlr4-runtime\lexer.h(189): warning C4251: 'antlr4::Lexer::_text' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::Lexer'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\atn\atn.h(23): warning C4251: 'antlr4::atn::ATN::states' : class 'std::vector<antlr4::atn::ATNState *,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATN'
+          with
+          [
+              _Ty=antlr4::atn::ATNState *
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\atn.h(23): note: voir la déclaration de 'std::vector<antlr4::atn::ATNState *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::atn::ATNState *
+          ]
+c:\lib\antlr\antlr4-runtime\atn\atn.h(28): warning C4251: 'antlr4::atn::ATN::decisionToState' : class 'std::vector<antlr4::atn::DecisionState *,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATN'
+          with
+          [
+              _Ty=antlr4::atn::DecisionState *
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\atn.h(28): note: voir la déclaration de 'std::vector<antlr4::atn::DecisionState *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::atn::DecisionState *
+          ]
+c:\lib\antlr\antlr4-runtime\atn\atn.h(31): warning C4251: 'antlr4::atn::ATN::ruleToStartState' : class 'std::vector<antlr4::atn::RuleStartState *,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATN'
+          with
+          [
+              _Ty=antlr4::atn::RuleStartState *
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\atn.h(31): note: voir la déclaration de 'std::vector<antlr4::atn::RuleStartState *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::atn::RuleStartState *
+          ]
+c:\lib\antlr\antlr4-runtime\atn\atn.h(34): warning C4251: 'antlr4::atn::ATN::ruleToStopState' : class 'std::vector<antlr4::atn::RuleStopState *,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATN'
+          with
+          [
+              _Ty=antlr4::atn::RuleStopState *
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\atn.h(34): note: voir la déclaration de 'std::vector<antlr4::atn::RuleStopState *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::atn::RuleStopState *
+          ]
+c:\lib\antlr\antlr4-runtime\atn\atn.h(49): warning C4251: 'antlr4::atn::ATN::ruleToTokenType' : class 'std::vector<::size_t,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATN'
+          with
+          [
+              _Ty=::size_t
+          ]
+  c:\lib\antlr\antlr4-runtime\bufferedtokenstream.h(60): note: voir la déclaration de 'std::vector<::size_t,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=::size_t
+          ]
+c:\lib\antlr\antlr4-runtime\atn\atn.h(53): warning C4251: 'antlr4::atn::ATN::lexerActions' : class 'std::vector<std::shared_ptr<antlr4::atn::LexerAction>,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATN'
+          with
+          [
+              _Ty=std::shared_ptr<antlr4::atn::LexerAction>
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\atn.h(53): note: voir la déclaration de 'std::vector<std::shared_ptr<antlr4::atn::LexerAction>,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=std::shared_ptr<antlr4::atn::LexerAction>
+          ]
+c:\lib\antlr\antlr4-runtime\atn\atn.h(55): warning C4251: 'antlr4::atn::ATN::modeToStartState' : class 'std::vector<antlr4::atn::TokensStartState *,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATN'
+          with
+          [
+              _Ty=antlr4::atn::TokensStartState *
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\atn.h(55): note: voir la déclaration de 'std::vector<antlr4::atn::TokensStartState *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::atn::TokensStartState *
+          ]
+c:\lib\antlr\antlr4-runtime\atn\atn.h(108): warning C4251: 'antlr4::atn::ATN::_mutex' : class 'std::mutex' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATN'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\mutex(79): note: voir la déclaration de 'std::mutex'
+c:\lib\antlr\antlr4-runtime\atn\atnstate.h(103): warning C4251: 'antlr4::atn::ATNState::serializationNames' : class 'std::vector<std::string,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATNState'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\lib\antlr\antlr4-runtime\misc\intervalset.h(159): note: voir la déclaration de 'std::vector<std::string,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=std::string
+          ]
+c:\lib\antlr\antlr4-runtime\atn\atnstate.h(114): warning C4251: 'antlr4::atn::ATNState::transitions' : class 'std::vector<antlr4::atn::Transition *,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATNState'
+          with
+          [
+              _Ty=antlr4::atn::Transition *
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\atnstate.h(114): note: voir la déclaration de 'std::vector<antlr4::atn::Transition *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::atn::Transition *
+          ]
+c:\lib\antlr\antlr4-runtime\atn\atnstate.h(127): warning C4251: 'antlr4::atn::ATNState::_nextTokenUpdated' : struct 'std::atomic<bool>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATNState'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xxatomic(180): note: voir la déclaration de 'std::atomic<bool>'
+c:\lib\antlr\antlr4-runtime\atn\predictioncontext.h(25): warning C4251: 'antlr4::atn::PredictionContext::EMPTY' : class 'std::shared_ptr<antlr4::atn::PredictionContext>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::PredictionContext'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(863): note: voir la déclaration de 'std::shared_ptr<antlr4::atn::PredictionContext>'
+c:\lib\antlr\antlr4-runtime\vocabulary.h(187): warning C4251: 'antlr4::dfa::Vocabulary::_literalNames' : class 'std::vector<std::string,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::dfa::Vocabulary'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\lib\antlr\antlr4-runtime\misc\intervalset.h(159): note: voir la déclaration de 'std::vector<std::string,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=std::string
+          ]
+c:\lib\antlr\antlr4-runtime\vocabulary.h(188): warning C4251: 'antlr4::dfa::Vocabulary::_symbolicNames' : class 'std::vector<std::string,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::dfa::Vocabulary'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\lib\antlr\antlr4-runtime\misc\intervalset.h(159): note: voir la déclaration de 'std::vector<std::string,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=std::string
+          ]
+c:\lib\antlr\antlr4-runtime\vocabulary.h(189): warning C4251: 'antlr4::dfa::Vocabulary::_displayNames' : class 'std::vector<std::string,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::dfa::Vocabulary'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\lib\antlr\antlr4-runtime\misc\intervalset.h(159): note: voir la déclaration de 'std::vector<std::string,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=std::string
+          ]
+c:\lib\antlr\antlr4-runtime\lexerinterpreter.h(36): warning C4251: 'antlr4::LexerInterpreter::_grammarFileName' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::LexerInterpreter'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\lexerinterpreter.h(40): warning C4251: 'antlr4::LexerInterpreter::_tokenNames' : class 'std::vector<std::string,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::LexerInterpreter'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\lib\antlr\antlr4-runtime\misc\intervalset.h(159): note: voir la déclaration de 'std::vector<std::string,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=std::string
+          ]
+c:\lib\antlr\antlr4-runtime\lexerinterpreter.h(44): warning C4251: 'antlr4::LexerInterpreter::_decisionToDFA' : class 'std::vector<antlr4::dfa::DFA,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::LexerInterpreter'
+          with
+          [
+              _Ty=antlr4::dfa::DFA
+          ]
+  c:\lib\antlr\antlr4-runtime\lexerinterpreter.h(44): note: voir la déclaration de 'std::vector<antlr4::dfa::DFA,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::dfa::DFA
+          ]
+c:\lib\antlr\antlr4-runtime\lexerinterpreter.h(46): warning C4251: 'antlr4::LexerInterpreter::_sharedContextCache' : class 'std::unordered_set<std::shared_ptr<antlr4::atn::PredictionContext>,antlr4::atn::PredictionContextHasher,antlr4::atn::PredictionContextComparer,std::allocator<_Kty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::LexerInterpreter'
+          with
+          [
+              _Kty=std::shared_ptr<antlr4::atn::PredictionContext>
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\predictioncontext.h(19): note: voir la déclaration de 'std::unordered_set<std::shared_ptr<antlr4::atn::PredictionContext>,antlr4::atn::PredictionContextHasher,antlr4::atn::PredictionContextComparer,std::allocator<_Kty>>'
+          with
+          [
+              _Kty=std::shared_ptr<antlr4::atn::PredictionContext>
+          ]
+c:\lib\antlr\antlr4-runtime\atn\atnconfigset.h(19): warning C4251: 'antlr4::atn::ATNConfigSet::configs' : class 'std::vector<std::shared_ptr<antlr4::atn::ATNConfig>,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATNConfigSet'
+          with
+          [
+              _Ty=std::shared_ptr<antlr4::atn::ATNConfig>
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\atnconfigset.h(19): note: voir la déclaration de 'std::vector<std::shared_ptr<antlr4::atn::ATNConfig>,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=std::shared_ptr<antlr4::atn::ATNConfig>
+          ]
+c:\lib\antlr\antlr4-runtime\atn\atnconfigset.h(104): warning C4251: 'antlr4::atn::ATNConfigSet::_configLookup' : class 'std::unordered_map<::size_t,antlr4::atn::ATNConfig *,std::hash<unsigned int>,std::equal_to<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATNConfigSet'
+          with
+          [
+              _Kty=::size_t,
+              _Ty=antlr4::atn::ATNConfig *
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\atnconfigset.h(104): note: voir la déclaration de 'std::unordered_map<::size_t,antlr4::atn::ATNConfig *,std::hash<unsigned int>,std::equal_to<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>'
+          with
+          [
+              _Kty=::size_t,
+              _Ty=antlr4::atn::ATNConfig *
+          ]
+c:\lib\antlr\antlr4-runtime\listtokensource.h(23): warning C4251: 'antlr4::ListTokenSource::tokens' : class 'std::vector<std::unique_ptr<antlr4::Token,std::default_delete<_Ty>>,std::allocator<std::unique_ptr<_Ty,std::default_delete<_Ty>>>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::ListTokenSource'
+          with
+          [
+              _Ty=antlr4::Token
+          ]
+  c:\lib\antlr\antlr4-runtime\defaulterrorstrategy.h(462): note: voir la déclaration de 'std::vector<std::unique_ptr<antlr4::Token,std::default_delete<_Ty>>,std::allocator<std::unique_ptr<_Ty,std::default_delete<_Ty>>>>'
+          with
+          [
+              _Ty=antlr4::Token
+          ]
+c:\lib\antlr\antlr4-runtime\listtokensource.h(32): warning C4251: 'antlr4::ListTokenSource::sourceName' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::ListTokenSource'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\listtokensource.h(43): warning C4251: 'antlr4::ListTokenSource::_factory' : class 'std::shared_ptr<antlr4::TokenFactory<antlr4::CommonToken>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::ListTokenSource'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(863): note: voir la déclaration de 'std::shared_ptr<antlr4::TokenFactory<antlr4::CommonToken>>'
+c:\lib\antlr\antlr4-runtime\parser.h(412): warning C4251: 'antlr4::Parser::_errHandler' : class 'std::shared_ptr<antlr4::ANTLRErrorStrategy>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::Parser'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(863): note: voir la déclaration de 'std::shared_ptr<antlr4::ANTLRErrorStrategy>'
+c:\lib\antlr\antlr4-runtime\parser.h(421): warning C4251: 'antlr4::Parser::_precedenceStack' : class 'std::vector<ssize_t,std::allocator<_Elem>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::Parser'
+          with
+          [
+              _Elem=int
+          ]
+  c:\lib\antlr\antlr4-runtime\misc\intervalset.h(171): note: voir la déclaration de 'std::vector<ssize_t,std::allocator<_Elem>>'
+          with
+          [
+              _Elem=int
+          ]
+c:\lib\antlr\antlr4-runtime\parser.h(434): warning C4251: 'antlr4::Parser::_parseListeners' : class 'std::vector<antlr4::tree::ParseTreeListener *,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::Parser'
+          with
+          [
+              _Ty=antlr4::tree::ParseTreeListener *
+          ]
+  c:\lib\antlr\antlr4-runtime\parser.h(128): note: voir la déclaration de 'std::vector<antlr4::tree::ParseTreeListener *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::tree::ParseTreeListener *
+          ]
+c:\lib\antlr\antlr4-runtime\parser.h(455): warning C4251: 'antlr4::Parser::bypassAltsAtnCache' : class 'std::map<std::vector<uint16_t,std::allocator<_Ty>>,antlr4::atn::ATN,std::less<_Kty>,std::allocator<std::pair<const _Kty,antlr4::atn::ATN>>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::Parser'
+          with
+          [
+              _Ty=uint16_t,
+              _Kty=std::vector<uint16_t,std::allocator<uint16_t>>
+          ]
+  c:\lib\antlr\antlr4-runtime\parser.h(455): note: voir la déclaration de 'std::map<std::vector<uint16_t,std::allocator<_Ty>>,antlr4::atn::ATN,std::less<_Kty>,std::allocator<std::pair<const _Kty,antlr4::atn::ATN>>>'
+          with
+          [
+              _Ty=uint16_t,
+              _Kty=std::vector<uint16_t,std::allocator<uint16_t>>
+          ]
+c:\lib\antlr\antlr4-runtime\parserinterpreter.h(112): warning C4251: 'antlr4::ParserInterpreter::_grammarFileName' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::ParserInterpreter'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\parserinterpreter.h(113): warning C4251: 'antlr4::ParserInterpreter::_tokenNames' : class 'std::vector<std::string,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::ParserInterpreter'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\lib\antlr\antlr4-runtime\misc\intervalset.h(159): note: voir la déclaration de 'std::vector<std::string,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=std::string
+          ]
+c:\lib\antlr\antlr4-runtime\parserinterpreter.h(116): warning C4251: 'antlr4::ParserInterpreter::_ruleNames' : class 'std::vector<std::string,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::ParserInterpreter'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\lib\antlr\antlr4-runtime\misc\intervalset.h(159): note: voir la déclaration de 'std::vector<std::string,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=std::string
+          ]
+c:\lib\antlr\antlr4-runtime\parserinterpreter.h(118): warning C4251: 'antlr4::ParserInterpreter::_decisionToDFA' : class 'std::vector<antlr4::dfa::DFA,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::ParserInterpreter'
+          with
+          [
+              _Ty=antlr4::dfa::DFA
+          ]
+  c:\lib\antlr\antlr4-runtime\lexerinterpreter.h(44): note: voir la déclaration de 'std::vector<antlr4::dfa::DFA,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::dfa::DFA
+          ]
+c:\lib\antlr\antlr4-runtime\parserinterpreter.h(119): warning C4251: 'antlr4::ParserInterpreter::_sharedContextCache' : class 'std::unordered_set<std::shared_ptr<antlr4::atn::PredictionContext>,antlr4::atn::PredictionContextHasher,antlr4::atn::PredictionContextComparer,std::allocator<_Kty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::ParserInterpreter'
+          with
+          [
+              _Kty=std::shared_ptr<antlr4::atn::PredictionContext>
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\predictioncontext.h(19): note: voir la déclaration de 'std::unordered_set<std::shared_ptr<antlr4::atn::PredictionContext>,antlr4::atn::PredictionContextHasher,antlr4::atn::PredictionContextComparer,std::allocator<_Kty>>'
+          with
+          [
+              _Kty=std::shared_ptr<antlr4::atn::PredictionContext>
+          ]
+c:\lib\antlr\antlr4-runtime\parserinterpreter.h(134): warning C4251: 'antlr4::ParserInterpreter::_parentContextStack' : class 'std::stack<std::pair<antlr4::ParserRuleContext *,::size_t>,std::deque<_Ty,std::allocator<_Ty>>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::ParserInterpreter'
+          with
+          [
+              _Ty=std::pair<antlr4::ParserRuleContext *,::size_t>
+          ]
+  c:\lib\antlr\antlr4-runtime\parserinterpreter.h(134): note: voir la déclaration de 'std::stack<std::pair<antlr4::ParserRuleContext *,::size_t>,std::deque<_Ty,std::allocator<_Ty>>>'
+          with
+          [
+              _Ty=std::pair<antlr4::ParserRuleContext *,::size_t>
+          ]
+c:\lib\antlr\antlr4-runtime\parserinterpreter.h(148): warning C4251: 'antlr4::ParserInterpreter::_overrideDecisionRoot' : class 'std::shared_ptr<antlr4::InterpreterRuleContext>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::ParserInterpreter'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(863): note: voir la déclaration de 'std::shared_ptr<antlr4::InterpreterRuleContext>'
+c:\lib\antlr\antlr4-runtime\parserinterpreter.h(176): warning C4251: 'antlr4::ParserInterpreter::_errorToken' : class 'std::unique_ptr<antlr4::Token,std::default_delete<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::ParserInterpreter'
+          with
+          [
+              _Ty=antlr4::Token
+          ]
+  c:\lib\antlr\antlr4-runtime\defaulterrorstrategy.h(462): note: voir la déclaration de 'std::unique_ptr<antlr4::Token,std::default_delete<_Ty>>'
+          with
+          [
+              _Ty=antlr4::Token
+          ]
+c:\lib\antlr\antlr4-runtime\runtimemetadata.h(72): warning C4251: 'antlr4::RuntimeMetaData::VERSION' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::RuntimeMetaData'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\tokenstreamrewriter.h(88): warning C4251: 'antlr4::TokenStreamRewriter::DEFAULT_PROGRAM_NAME' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::TokenStreamRewriter'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\tokenstreamrewriter.h(211): warning C4251: 'antlr4::TokenStreamRewriter::_programs' : class 'std::map<std::string,std::vector<antlr4::TokenStreamRewriter::RewriteOperation *,std::allocator<_Ty>>,std::less<_Kty>,std::allocator<std::pair<const _Kty,std::vector<_Ty,std::allocator<_Ty>>>>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::TokenStreamRewriter'
+          with
+          [
+              _Ty=antlr4::TokenStreamRewriter::RewriteOperation *,
+              _Kty=std::string
+          ]
+  c:\lib\antlr\antlr4-runtime\tokenstreamrewriter.h(211): note: voir la déclaration de 'std::map<std::string,std::vector<antlr4::TokenStreamRewriter::RewriteOperation *,std::allocator<_Ty>>,std::less<_Kty>,std::allocator<std::pair<const _Kty,std::vector<_Ty,std::allocator<_Ty>>>>>'
+          with
+          [
+              _Ty=antlr4::TokenStreamRewriter::RewriteOperation *,
+              _Kty=std::string
+          ]
+c:\lib\antlr\antlr4-runtime\tokenstreamrewriter.h(215): warning C4251: 'antlr4::TokenStreamRewriter::_lastRewriteTokenIndexes' : class 'std::map<std::string,::size_t,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::TokenStreamRewriter'
+          with
+          [
+              _Kty=std::string,
+              _Ty=::size_t
+          ]
+  c:\lib\antlr\antlr4-runtime\support\cpputils.h(13): note: voir la déclaration de 'std::map<std::string,::size_t,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>'
+          with
+          [
+              _Kty=std::string,
+              _Ty=::size_t
+          ]
+c:\lib\antlr\antlr4-runtime\unbufferedcharstream.h(19): warning C4251: 'antlr4::UnbufferedCharStream::name' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::UnbufferedCharStream'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\unbufferedcharstream.h(59): warning C4251: 'antlr4::UnbufferedCharStream::_data' : class 'std::basic_string<char32_t,std::char_traits<char32_t>,std::allocator<char32_t>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::UnbufferedCharStream'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(4020): note: voir la déclaration de 'std::basic_string<char32_t,std::char_traits<char32_t>,std::allocator<char32_t>>'
+c:\lib\antlr\antlr4-runtime\unbufferedtokenstream.h(60): warning C4251: 'antlr4::UnbufferedTokenStream::_tokens' : class 'std::vector<std::unique_ptr<antlr4::Token,std::default_delete<_Ty>>,std::allocator<std::unique_ptr<_Ty,std::default_delete<_Ty>>>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::UnbufferedTokenStream'
+          with
+          [
+              _Ty=antlr4::Token
+          ]
+  c:\lib\antlr\antlr4-runtime\defaulterrorstrategy.h(462): note: voir la déclaration de 'std::vector<std::unique_ptr<antlr4::Token,std::default_delete<_Ty>>,std::allocator<std::unique_ptr<_Ty,std::default_delete<_Ty>>>>'
+          with
+          [
+              _Ty=antlr4::Token
+          ]
+c:\lib\antlr\antlr4-runtime\atn\atnconfig.h(48): warning C4251: 'antlr4::atn::ATNConfig::context' : class 'std::shared_ptr<antlr4::atn::PredictionContext>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATNConfig'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(863): note: voir la déclaration de 'std::shared_ptr<antlr4::atn::PredictionContext>'
+c:\lib\antlr\antlr4-runtime\atn\atnconfig.h(76): warning C4251: 'antlr4::atn::ATNConfig::semanticContext' : class 'std::shared_ptr<antlr4::atn::SemanticContext>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATNConfig'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(863): note: voir la déclaration de 'std::shared_ptr<antlr4::atn::SemanticContext>'
+c:\lib\antlr\antlr4-runtime\atn\atnserializer.h(55): warning C4251: 'antlr4::atn::ATNSerializer::_tokenNames' : class 'std::vector<std::string,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATNSerializer'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\lib\antlr\antlr4-runtime\misc\intervalset.h(159): note: voir la déclaration de 'std::vector<std::string,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=std::string
+          ]
+c:\lib\antlr\antlr4-runtime\atn\atnsimulator.h(19): warning C4251: 'antlr4::atn::ATNSimulator::ERROR' : class 'std::shared_ptr<antlr4::dfa::DFAState>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATNSimulator'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(863): note: voir la déclaration de 'std::shared_ptr<antlr4::dfa::DFAState>'
+c:\lib\antlr\antlr4-runtime\atn\atnsimulator.h(59): warning C4251: 'antlr4::atn::ATNSimulator::_stateLock' : class 'antlrcpp::SingleWriteMultipleReadLock' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATNSimulator'
+  c:\lib\antlr\antlr4-runtime\support\cpputils.h(61): note: voir la déclaration de 'antlrcpp::SingleWriteMultipleReadLock'
+c:\lib\antlr\antlr4-runtime\atn\atnsimulator.h(60): warning C4251: 'antlr4::atn::ATNSimulator::_edgeLock' : class 'antlrcpp::SingleWriteMultipleReadLock' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ATNSimulator'
+  c:\lib\antlr\antlr4-runtime\support\cpputils.h(61): note: voir la déclaration de 'antlrcpp::SingleWriteMultipleReadLock'
+c:\lib\antlr\antlr4-runtime\atn\transition.h(42): warning C4251: 'antlr4::atn::Transition::serializationNames' : class 'std::vector<std::string,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::Transition'
+          with
+          [
+              _Ty=std::string
+          ]
+  c:\lib\antlr\antlr4-runtime\misc\intervalset.h(159): note: voir la déclaration de 'std::vector<std::string,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=std::string
+          ]
+c:\lib\antlr\antlr4-runtime\atn\arraypredictioncontext.h(23): warning C4251: 'antlr4::atn::ArrayPredictionContext::parents' : class 'std::vector<std::shared_ptr<antlr4::atn::PredictionContext>,std::allocator<_Kty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ArrayPredictionContext'
+          with
+          [
+              _Kty=std::shared_ptr<antlr4::atn::PredictionContext>
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\predictioncontext.h(88): note: voir la déclaration de 'std::vector<std::shared_ptr<antlr4::atn::PredictionContext>,std::allocator<_Kty>>'
+          with
+          [
+              _Kty=std::shared_ptr<antlr4::atn::PredictionContext>
+          ]
+c:\lib\antlr\antlr4-runtime\atn\arraypredictioncontext.h(26): warning C4251: 'antlr4::atn::ArrayPredictionContext::returnStates' : class 'std::vector<::size_t,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ArrayPredictionContext'
+          with
+          [
+              _Ty=::size_t
+          ]
+  c:\lib\antlr\antlr4-runtime\bufferedtokenstream.h(60): note: voir la déclaration de 'std::vector<::size_t,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=::size_t
+          ]
+c:\lib\antlr\antlr4-runtime\atn\predicateevalinfo.h(23): warning C4251: 'antlr4::atn::PredicateEvalInfo::semctx' : class 'std::shared_ptr<antlr4::atn::SemanticContext>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::PredicateEvalInfo'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(863): note: voir la déclaration de 'std::shared_ptr<antlr4::atn::SemanticContext>'
+c:\lib\antlr\antlr4-runtime\atn\decisioninfo.h(84): warning C4251: 'antlr4::atn::DecisionInfo::SLL_MaxLookEvent' : class 'std::shared_ptr<antlr4::atn::LookaheadEventInfo>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::DecisionInfo'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(863): note: voir la déclaration de 'std::shared_ptr<antlr4::atn::LookaheadEventInfo>'
+c:\lib\antlr\antlr4-runtime\atn\decisioninfo.h(115): warning C4251: 'antlr4::atn::DecisionInfo::LL_MaxLookEvent' : class 'std::shared_ptr<antlr4::atn::LookaheadEventInfo>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::DecisionInfo'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(863): note: voir la déclaration de 'std::shared_ptr<antlr4::atn::LookaheadEventInfo>'
+c:\lib\antlr\antlr4-runtime\atn\decisioninfo.h(122): warning C4251: 'antlr4::atn::DecisionInfo::contextSensitivities' : class 'std::vector<antlr4::atn::ContextSensitivityInfo,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::DecisionInfo'
+          with
+          [
+              _Ty=antlr4::atn::ContextSensitivityInfo
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\decisioninfo.h(122): note: voir la déclaration de 'std::vector<antlr4::atn::ContextSensitivityInfo,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::atn::ContextSensitivityInfo
+          ]
+c:\lib\antlr\antlr4-runtime\atn\decisioninfo.h(130): warning C4251: 'antlr4::atn::DecisionInfo::errors' : class 'std::vector<antlr4::atn::ErrorInfo,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::DecisionInfo'
+          with
+          [
+              _Ty=antlr4::atn::ErrorInfo
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\decisioninfo.h(130): note: voir la déclaration de 'std::vector<antlr4::atn::ErrorInfo,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::atn::ErrorInfo
+          ]
+c:\lib\antlr\antlr4-runtime\atn\decisioninfo.h(137): warning C4251: 'antlr4::atn::DecisionInfo::ambiguities' : class 'std::vector<antlr4::atn::AmbiguityInfo,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::DecisionInfo'
+          with
+          [
+              _Ty=antlr4::atn::AmbiguityInfo
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\decisioninfo.h(137): note: voir la déclaration de 'std::vector<antlr4::atn::AmbiguityInfo,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::atn::AmbiguityInfo
+          ]
+c:\lib\antlr\antlr4-runtime\atn\decisioninfo.h(145): warning C4251: 'antlr4::atn::DecisionInfo::predicateEvals' : class 'std::vector<antlr4::atn::PredicateEvalInfo,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::DecisionInfo'
+          with
+          [
+              _Ty=antlr4::atn::PredicateEvalInfo
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\decisioninfo.h(145): note: voir la déclaration de 'std::vector<antlr4::atn::PredicateEvalInfo,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::atn::PredicateEvalInfo
+          ]
+c:\lib\antlr\antlr4-runtime\atn\singletonpredictioncontext.h(20): warning C4251: 'antlr4::atn::SingletonPredictionContext::parent' : class 'std::shared_ptr<antlr4::atn::PredictionContext>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::SingletonPredictionContext'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(863): note: voir la déclaration de 'std::shared_ptr<antlr4::atn::PredictionContext>'
+c:\lib\antlr\antlr4-runtime\atn\lexeratnconfig.h(37): warning C4251: 'antlr4::atn::LexerATNConfig::_lexerActionExecutor' : class 'std::shared_ptr<antlr4::atn::LexerActionExecutor>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::LexerATNConfig'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(863): note: voir la déclaration de 'std::shared_ptr<antlr4::atn::LexerActionExecutor>'
+c:\lib\antlr\antlr4-runtime\atn\lexeratnsimulator.h(82): warning C4251: 'antlr4::atn::LexerATNSimulator::_prevAccept' : class 'antlr4::atn::LexerATNSimulator::SimState' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::LexerATNSimulator'
+  c:\lib\antlr\antlr4-runtime\atn\lexeratnsimulator.h(18): note: voir la déclaration de 'antlr4::atn::LexerATNSimulator::SimState'
+c:\lib\antlr\antlr4-runtime\atn\lexeractionexecutor.h(20): warning C4251: 'std::enable_shared_from_this<antlr4::atn::LexerActionExecutor>::_Wptr' : class 'std::weak_ptr<_Ty>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'std::enable_shared_from_this<antlr4::atn::LexerActionExecutor>'
+          with
+          [
+              _Ty=antlr4::atn::LexerActionExecutor
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(942): note: voir la déclaration de 'std::weak_ptr<_Ty>'
+          with
+          [
+              _Ty=antlr4::atn::LexerActionExecutor
+          ]
+c:\lib\antlr\antlr4-runtime\atn\lexeractionexecutor.h(105): warning C4251: 'antlr4::atn::LexerActionExecutor::_lexerActions' : class 'std::vector<std::shared_ptr<antlr4::atn::LexerAction>,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::LexerActionExecutor'
+          with
+          [
+              _Ty=std::shared_ptr<antlr4::atn::LexerAction>
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\atn.h(53): note: voir la déclaration de 'std::vector<std::shared_ptr<antlr4::atn::LexerAction>,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=std::shared_ptr<antlr4::atn::LexerAction>
+          ]
+c:\lib\antlr\antlr4-runtime\atn\lexerindexedcustomaction.h(77): warning C4251: 'antlr4::atn::LexerIndexedCustomAction::_action' : class 'std::shared_ptr<antlr4::atn::LexerAction>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::LexerIndexedCustomAction'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(863): note: voir la déclaration de 'std::shared_ptr<antlr4::atn::LexerAction>'
+c:\lib\antlr\antlr4-runtime\dfa\dfastate.h(56): warning C4251: 'antlr4::dfa::DFAState::configs' : class 'std::unique_ptr<antlr4::atn::ATNConfigSet,std::default_delete<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::dfa::DFAState'
+          with
+          [
+              _Ty=antlr4::atn::ATNConfigSet
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\lexeratnsimulator.h(141): note: voir la déclaration de 'std::unique_ptr<antlr4::atn::ATNConfigSet,std::default_delete<_Ty>>'
+          with
+          [
+              _Ty=antlr4::atn::ATNConfigSet
+          ]
+c:\lib\antlr\antlr4-runtime\dfa\dfastate.h(62): warning C4251: 'antlr4::dfa::DFAState::edges' : class 'std::unordered_map<::size_t,antlr4::dfa::DFAState *,std::hash<unsigned int>,std::equal_to<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::dfa::DFAState'
+          with
+          [
+              _Kty=::size_t,
+              _Ty=antlr4::dfa::DFAState *
+          ]
+  c:\lib\antlr\antlr4-runtime\dfa\dfastate.h(62): note: voir la déclaration de 'std::unordered_map<::size_t,antlr4::dfa::DFAState *,std::hash<unsigned int>,std::equal_to<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>'
+          with
+          [
+              _Kty=::size_t,
+              _Ty=antlr4::dfa::DFAState *
+          ]
+c:\lib\antlr\antlr4-runtime\dfa\dfastate.h(71): warning C4251: 'antlr4::dfa::DFAState::lexerActionExecutor' : class 'std::shared_ptr<antlr4::atn::LexerActionExecutor>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::dfa::DFAState'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(863): note: voir la déclaration de 'std::shared_ptr<antlr4::atn::LexerActionExecutor>'
+c:\lib\antlr\antlr4-runtime\dfa\dfastate.h(94): warning C4251: 'antlr4::dfa::DFAState::predicates' : class 'std::vector<antlr4::dfa::DFAState::PredPrediction *,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::dfa::DFAState'
+          with
+          [
+              _Ty=antlr4::dfa::DFAState::PredPrediction *
+          ]
+  c:\lib\antlr\antlr4-runtime\dfa\dfastate.h(94): note: voir la déclaration de 'std::vector<antlr4::dfa::DFAState::PredPrediction *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::dfa::DFAState::PredPrediction *
+          ]
+c:\lib\antlr\antlr4-runtime\atn\semanticcontext.h(20): warning C4251: 'std::enable_shared_from_this<antlr4::atn::SemanticContext>::_Wptr' : class 'std::weak_ptr<_Ty>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'std::enable_shared_from_this<antlr4::atn::SemanticContext>'
+          with
+          [
+              _Ty=antlr4::atn::SemanticContext
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(942): note: voir la déclaration de 'std::weak_ptr<_Ty>'
+          with
+          [
+              _Ty=antlr4::atn::SemanticContext
+          ]
+c:\lib\antlr\antlr4-runtime\atn\semanticcontext.h(44): warning C4251: 'antlr4::atn::SemanticContext::NONE' : class 'std::shared_ptr<antlr4::atn::SemanticContext>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::SemanticContext'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\memory(863): note: voir la déclaration de 'std::shared_ptr<antlr4::atn::SemanticContext>'
+c:\lib\antlr\antlr4-runtime\atn\semanticcontext.h(167): warning C4251: 'antlr4::atn::SemanticContext::AND::opnds' : class 'std::vector<std::shared_ptr<antlr4::atn::SemanticContext>,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::SemanticContext::AND'
+          with
+          [
+              _Ty=std::shared_ptr<antlr4::atn::SemanticContext>
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\atnconfigset.h(72): note: voir la déclaration de 'std::vector<std::shared_ptr<antlr4::atn::SemanticContext>,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=std::shared_ptr<antlr4::atn::SemanticContext>
+          ]
+c:\lib\antlr\antlr4-runtime\atn\semanticcontext.h(190): warning C4251: 'antlr4::atn::SemanticContext::OR::opnds' : class 'std::vector<std::shared_ptr<antlr4::atn::SemanticContext>,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::SemanticContext::OR'
+          with
+          [
+              _Ty=std::shared_ptr<antlr4::atn::SemanticContext>
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\atnconfigset.h(72): note: voir la déclaration de 'std::vector<std::shared_ptr<antlr4::atn::SemanticContext>,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=std::shared_ptr<antlr4::atn::SemanticContext>
+          ]
+c:\lib\antlr\antlr4-runtime\atn\parseratnsimulator.h(382): warning C4251: 'antlr4::atn::ParserATNSimulator::mergeCache' : class 'antlr4::atn::PredictionContextMergeCache' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ParserATNSimulator'
+  c:\lib\antlr\antlr4-runtime\atn\predictioncontext.h(235): note: voir la déclaration de 'antlr4::atn::PredictionContextMergeCache'
+c:\lib\antlr\antlr4-runtime\atn\profilingatnsimulator.h(24): warning C4251: 'antlr4::atn::ProfilingATNSimulator::_decisions' : class 'std::vector<antlr4::atn::DecisionInfo,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::atn::ProfilingATNSimulator'
+          with
+          [
+              _Ty=antlr4::atn::DecisionInfo
+          ]
+  c:\lib\antlr\antlr4-runtime\atn\parseinfo.h(31): note: voir la déclaration de 'std::vector<antlr4::atn::DecisionInfo,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::atn::DecisionInfo
+          ]
+c:\lib\antlr\antlr4-runtime\dfa\dfa.h(24): warning C4251: 'antlr4::dfa::DFA::states' : class 'std::unordered_set<antlr4::dfa::DFAState *,antlr4::dfa::DFAState::Hasher,antlr4::dfa::DFAState::Comparer,std::allocator<_Kty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::dfa::DFA'
+          with
+          [
+              _Kty=antlr4::dfa::DFAState *
+          ]
+  c:\lib\antlr\antlr4-runtime\dfa\dfa.h(24): note: voir la déclaration de 'std::unordered_set<antlr4::dfa::DFAState *,antlr4::dfa::DFAState::Hasher,antlr4::dfa::DFAState::Comparer,std::allocator<_Kty>>'
+          with
+          [
+              _Kty=antlr4::dfa::DFAState *
+          ]
+c:\lib\antlr\antlr4-runtime\tree\parsetreeproperty.h(45): warning C4251: 'antlr4::tree::ParseTreeProperty<V>::_annotations' : class 'std::map<antlr4::tree::ParseTree*,V,std::less<_Kty>,std::allocator<std::pair<const _Kty,V>>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::ParseTreeProperty<V>'
+          with
+          [
+              _Kty=antlr4::tree::ParseTree *
+          ]
+  c:\lib\antlr\antlr4-runtime\tree\parsetreeproperty.h(45): note: voir la déclaration de 'std::map<antlr4::tree::ParseTree*,V,std::less<_Kty>,std::allocator<std::pair<const _Kty,V>>>'
+          with
+          [
+              _Kty=antlr4::tree::ParseTree *
+          ]
+  c:\lib\antlr\antlr4-runtime\tree\parsetreeproperty.h(46): note: voir la référence à l'instanciation de classe modèle 'antlr4::tree::ParseTreeProperty<V>' en cours de compilation
+c:\lib\antlr\antlr4-runtime\tree\pattern\parsetreematch.h(24): warning C4251: 'antlr4::tree::pattern::ParseTreeMatch::_labels' : class 'std::map<std::string,std::vector<antlr4::tree::ParseTree *,std::allocator<_Ty>>,std::less<_Kty>,std::allocator<std::pair<const _Kty,std::vector<_Ty,std::allocator<_Ty>>>>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::pattern::ParseTreeMatch'
+          with
+          [
+              _Ty=antlr4::tree::ParseTree *,
+              _Kty=std::string
+          ]
+  c:\lib\antlr\antlr4-runtime\tree\pattern\parsetreematch.h(24): note: voir la déclaration de 'std::map<std::string,std::vector<antlr4::tree::ParseTree *,std::allocator<_Ty>>,std::less<_Kty>,std::allocator<std::pair<const _Kty,std::vector<_Ty,std::allocator<_Ty>>>>>'
+          with
+          [
+              _Ty=antlr4::tree::ParseTree *,
+              _Kty=std::string
+          ]
+c:\lib\antlr\antlr4-runtime\tree\pattern\parsetreepattern.h(95): warning C4251: 'antlr4::tree::pattern::ParseTreePattern::_pattern' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::pattern::ParseTreePattern'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\tree\pattern\parsetreepatternmatcher.h(160): warning C4251: 'antlr4::tree::pattern::ParseTreePatternMatcher::_start' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::pattern::ParseTreePatternMatcher'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\tree\pattern\parsetreepatternmatcher.h(161): warning C4251: 'antlr4::tree::pattern::ParseTreePatternMatcher::_stop' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::pattern::ParseTreePatternMatcher'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\tree\pattern\parsetreepatternmatcher.h(162): warning C4251: 'antlr4::tree::pattern::ParseTreePatternMatcher::_escape' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::pattern::ParseTreePatternMatcher'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\tree\pattern\ruletagtoken.h(24): warning C4251: 'antlr4::tree::pattern::RuleTagToken::ruleName' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::pattern::RuleTagToken'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\tree\pattern\ruletagtoken.h(31): warning C4251: 'antlr4::tree::pattern::RuleTagToken::label' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::pattern::RuleTagToken'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\tree\pattern\tagchunk.h(77): warning C4251: 'antlr4::tree::pattern::TagChunk::_tag' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::pattern::TagChunk'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\tree\pattern\tagchunk.h(81): warning C4251: 'antlr4::tree::pattern::TagChunk::_label' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::pattern::TagChunk'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\tree\pattern\textchunk.h(23): warning C4251: 'antlr4::tree::pattern::TextChunk::text' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::pattern::TextChunk'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\tree\pattern\tokentagtoken.h(24): warning C4251: 'antlr4::tree::pattern::TokenTagToken::tokenName' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::pattern::TokenTagToken'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\tree\pattern\tokentagtoken.h(28): warning C4251: 'antlr4::tree::pattern::TokenTagToken::label' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::pattern::TokenTagToken'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\tree\xpath\xpath.h(58): warning C4251: 'antlr4::tree::xpath::XPath::WILDCARD' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::xpath::XPath'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\tree\xpath\xpath.h(59): warning C4251: 'antlr4::tree::xpath::XPath::NOT' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::xpath::XPath'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\tree\xpath\xpath.h(73): warning C4251: 'antlr4::tree::xpath::XPath::_path' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::xpath::XPath'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\lib\antlr\antlr4-runtime\tree\xpath\xpath.h(74): warning C4251: 'antlr4::tree::xpath::XPath::_elements' : class 'std::vector<antlr4::tree::xpath::XPathElement,std::allocator<_Ty>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::xpath::XPath'
+          with
+          [
+              _Ty=antlr4::tree::xpath::XPathElement
+          ]
+  c:\lib\antlr\antlr4-runtime\tree\xpath\xpath.h(65): note: voir la déclaration de 'std::vector<antlr4::tree::xpath::XPathElement,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=antlr4::tree::xpath::XPathElement
+          ]
+c:\lib\antlr\antlr4-runtime\tree\xpath\xpathelement.h(34): warning C4251: 'antlr4::tree::xpath::XPathElement::_nodeName' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' nécessite une interface DLL pour être utilisé(e) par les clients de class 'antlr4::tree::xpath::XPathElement'
+  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.10.25017\include\xstring(3997): note: voir la déclaration de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+c:\users\douzo\insa\4if\pld comp\cmmp\cmmp\cmmplexer.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'antlr4-runtime.h' : No such file or directory
+  cmmpVisitor.cpp
+c:\users\douzo\insa\4if\pld comp\cmmp\cmmp\cmmpvisitor.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'antlr4-runtime.h' : No such file or directory
+  cmmpParser.cpp
+c:\users\douzo\insa\4if\pld comp\cmmp\cmmp\cmmplistener.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'antlr4-runtime.h' : No such file or directory
+  cmmpListener.cpp
+c:\users\douzo\insa\4if\pld comp\cmmp\cmmp\cmmplistener.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'antlr4-runtime.h' : No such file or directory
+  cmmpLexer.cpp
+c:\users\douzo\insa\4if\pld comp\cmmp\cmmp\cmmplexer.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'antlr4-runtime.h' : No such file or directory
+  cmmpBaseVisitor.cpp
+c:\users\douzo\insa\4if\pld comp\cmmp\cmmp\cmmpbasevisitor.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'antlr4-runtime.h' : No such file or directory
+  cmmpBaseListener.cpp
+c:\users\douzo\insa\4if\pld comp\cmmp\cmmp\cmmpbaselistener.h(7): fatal error C1083: Impossible d'ouvrir le fichier include : 'antlr4-runtime.h' : No such file or directory
+  Génération de code en cours...
