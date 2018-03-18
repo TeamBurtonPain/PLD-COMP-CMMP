@@ -18,6 +18,50 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="base_antlr\cmmpBaseListener.cpp" />
+    <ClCompile Include="base_antlr\cmmpBaseVisitor.cpp" />
+    <ClCompile Include="base_antlr\cmmpLexer.cpp" />
+    <ClCompile Include="base_antlr\cmmpListener.cpp" />
+    <ClCompile Include="base_antlr\cmmpParser.cpp" />
+    <ClCompile Include="base_antlr\cmmpVisitor.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\Block.cpp" />
+    <ClCompile Include="src\Condition.cpp" />
+    <ClCompile Include="src\Const.cpp" />
+    <ClCompile Include="src\Expression.cpp" />
+    <ClCompile Include="src\Funct.cpp" />
+    <ClCompile Include="src\Instruction.cpp" />
+    <ClCompile Include="src\Loop.cpp" />
+    <ClCompile Include="src\Program.cpp" />
+    <ClCompile Include="src\Variable.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="base_antlr\cmmpBaseListener.h" />
+    <ClInclude Include="base_antlr\cmmpBaseVisitor.h" />
+    <ClInclude Include="base_antlr\cmmpLexer.h" />
+    <ClInclude Include="base_antlr\cmmpListener.h" />
+    <ClInclude Include="base_antlr\cmmpParser.h" />
+    <ClInclude Include="base_antlr\cmmpVisitor.h" />
+    <ClInclude Include="src\Block.h" />
+    <ClInclude Include="src\CommonTypes.h" />
+    <ClInclude Include="src\Condition.h" />
+    <ClInclude Include="src\Const.h" />
+    <ClInclude Include="src\Expression.h" />
+    <ClInclude Include="src\Funct.h" />
+    <ClInclude Include="src\Instruction.h" />
+    <ClInclude Include="src\Loop.h" />
+    <ClInclude Include="src\Program.h" />
+    <ClInclude Include="src\Type.h" />
+    <ClInclude Include="src\Variable.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="base_antlr\cmmp.g4" />
+    <None Include="base_antlr\cmmp.interp" />
+    <None Include="base_antlr\cmmp.tokens" />
+    <None Include="base_antlr\cmmpLexer.interp" />
+    <None Include="base_antlr\cmmpLexer.tokens" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{4C020EBE-1708-4834-9C18-A3E702ABB6FA}</ProjectGuid>
@@ -82,7 +126,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\lib\antlr\antlr4-runtime</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\lib\antlr\antlr4-runtime;$(SolutionDir)\CMMP\src;$(SolutionDir)\CMMP\base_antlr</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
@@ -119,30 +163,6 @@
       <AdditionalDependencies>antlr4-runtime.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="cmmpBaseListener.cpp" />
-    <ClCompile Include="cmmpBaseVisitor.cpp" />
-    <ClCompile Include="cmmpLexer.cpp" />
-    <ClCompile Include="cmmpListener.cpp" />
-    <ClCompile Include="cmmpParser.cpp" />
-    <ClCompile Include="cmmpVisitor.cpp" />
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="cmmpBaseListener.h" />
-    <ClInclude Include="cmmpBaseVisitor.h" />
-    <ClInclude Include="cmmpLexer.h" />
-    <ClInclude Include="cmmpListener.h" />
-    <ClInclude Include="cmmpParser.h" />
-    <ClInclude Include="cmmpVisitor.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cmmp.g4" />
-    <None Include="cmmp.interp" />
-    <None Include="cmmp.tokens" />
-    <None Include="cmmpLexer.interp" />
-    <None Include="cmmpLexer.tokens" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

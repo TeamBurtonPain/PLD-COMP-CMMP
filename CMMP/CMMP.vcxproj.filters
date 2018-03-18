@@ -13,64 +13,127 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Antlr">
+      <UniqueIdentifier>{2e0615af-f86c-4f48-ac4f-0069efa5a26a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cmmpBaseListener.cpp">
+    <ClCompile Include="src\Block.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="cmmpBaseVisitor.cpp">
+    <ClCompile Include="src\Condition.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="cmmpLexer.cpp">
+    <ClCompile Include="src\Const.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="cmmpListener.cpp">
+    <ClCompile Include="src\Expression.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="cmmpParser.cpp">
+    <ClCompile Include="src\Funct.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="cmmpVisitor.cpp">
+    <ClCompile Include="src\Instruction.cpp">
       <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Loop.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Program.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Variable.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="base_antlr\cmmpBaseListener.cpp">
+      <Filter>Antlr</Filter>
+    </ClCompile>
+    <ClCompile Include="base_antlr\cmmpBaseVisitor.cpp">
+      <Filter>Antlr</Filter>
+    </ClCompile>
+    <ClCompile Include="base_antlr\cmmpLexer.cpp">
+      <Filter>Antlr</Filter>
+    </ClCompile>
+    <ClCompile Include="base_antlr\cmmpListener.cpp">
+      <Filter>Antlr</Filter>
+    </ClCompile>
+    <ClCompile Include="base_antlr\cmmpParser.cpp">
+      <Filter>Antlr</Filter>
+    </ClCompile>
+    <ClCompile Include="base_antlr\cmmpVisitor.cpp">
+      <Filter>Antlr</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cmmpBaseListener.h">
+    <ClInclude Include="src\Block.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="cmmpBaseVisitor.h">
+    <ClInclude Include="src\CommonTypes.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="cmmpLexer.h">
+    <ClInclude Include="src\Condition.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="cmmpListener.h">
+    <ClInclude Include="src\Const.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="cmmpParser.h">
+    <ClInclude Include="src\Expression.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="cmmpVisitor.h">
+    <ClInclude Include="src\Funct.h">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Instruction.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Loop.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Program.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Type.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Variable.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="base_antlr\cmmpBaseListener.h">
+      <Filter>Antlr</Filter>
+    </ClInclude>
+    <ClInclude Include="base_antlr\cmmpBaseVisitor.h">
+      <Filter>Antlr</Filter>
+    </ClInclude>
+    <ClInclude Include="base_antlr\cmmpLexer.h">
+      <Filter>Antlr</Filter>
+    </ClInclude>
+    <ClInclude Include="base_antlr\cmmpListener.h">
+      <Filter>Antlr</Filter>
+    </ClInclude>
+    <ClInclude Include="base_antlr\cmmpParser.h">
+      <Filter>Antlr</Filter>
+    </ClInclude>
+    <ClInclude Include="base_antlr\cmmpVisitor.h">
+      <Filter>Antlr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="cmmp.g4">
+    <None Include="base_antlr\cmmp.g4">
       <Filter>Fichiers de ressources</Filter>
     </None>
-    <None Include="cmmp.interp">
+    <None Include="base_antlr\cmmp.interp">
       <Filter>Fichiers de ressources</Filter>
     </None>
-    <None Include="cmmp.tokens">
+    <None Include="base_antlr\cmmp.tokens">
       <Filter>Fichiers de ressources</Filter>
     </None>
-    <None Include="cmmpLexer.interp">
+    <None Include="base_antlr\cmmpLexer.interp">
       <Filter>Fichiers de ressources</Filter>
     </None>
-    <None Include="cmmpLexer.tokens">
+    <None Include="base_antlr\cmmpLexer.tokens">
       <Filter>Fichiers de ressources</Filter>
     </None>
   </ItemGroup>

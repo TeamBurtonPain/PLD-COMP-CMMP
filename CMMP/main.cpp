@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 
 #include "antlr4-runtime.h"
 
@@ -12,6 +12,7 @@ using namespace antlr4;
 int main(){
     ANTLRFileStream input("./Ex_Test_Backend/1_decls.c");
     cmmpLexer lexer(&input);
+
     CommonTokenStream tokens(&lexer);
 
     tokens.fill();

@@ -3,7 +3,7 @@
 
 class Type{
 	public :
-		Type(void);
-		virtual ~Type(void);
+		Type(void) {}
+		virtual ~Type(void) {}
 
 };
