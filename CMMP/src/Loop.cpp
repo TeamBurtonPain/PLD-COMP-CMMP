@@ -1,5 +1,5 @@
 #include "Loop.h"
 
-Loop::Loop() {}
+Loop::Loop(void) {}
 
-Loop::~Loop() {}
+Loop::~Loop(void) {}

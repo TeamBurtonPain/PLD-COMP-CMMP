@@ -1,5 +1,5 @@
 #include "Condition.h"
 
-Condition::Condition() {}
+Condition::Condition(void) {}
 
-Condition::~Condition() {}
+Condition::~Condition(void) {}

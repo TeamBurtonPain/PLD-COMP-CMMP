@@ -10,9 +10,9 @@ class Variable;
 class Block : public Instruction
 {
 public:
-	Block();
+	Block(void);
 	virtual ~Block(void);
 protected:
-	hashmap<string, Variable*> variables;
+	hashmap<string, ptr<Variable>> variables;
 	deque<Instruction> instructions;
 };

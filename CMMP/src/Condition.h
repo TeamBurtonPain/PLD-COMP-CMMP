@@ -10,10 +10,10 @@ using namespace std;
 class Condition : public Instruction
 {
 public:
-	Condition();
+	Condition(void);
 	virtual ~Condition(void);
 protected:
-	Expression *test;
-	Block instruction;
-	deque<Instruction> elseInstruction;
+	ptr<Expression> test;
+	Block instructions;
+	deque<Instruction> elseInstructions;  //TODO un block ici non ??
 };

@@ -1,5 +1,5 @@
 #include "Instruction.h"
 
-Instruction::Instruction() {}
+Instruction::Instruction(void) {}
 
-Instruction::~Instruction() {}
+Instruction::~Instruction(void) {}

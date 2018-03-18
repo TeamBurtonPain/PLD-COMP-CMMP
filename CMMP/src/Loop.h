@@ -9,9 +9,9 @@ using namespace std;
 class Loop : public Instruction
 {
 public:
-	Loop();
-	virtual ~Loop() = 0;
+	Loop(void);
+	virtual ~Loop(void) = 0;
 protected:
-	Expression * finalTest;
+	ptr<Expression> finalTest;
 	Block instruction;
 };

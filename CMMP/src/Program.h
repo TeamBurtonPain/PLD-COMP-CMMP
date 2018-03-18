@@ -12,7 +12,7 @@ class Program {
 
 	protected : 
 		hashmap <string, ptr<Variable>> vars;
-		Funct *mainFunction; 
+		ptr<Funct> mainFunction; 
 		hashmap <string, ptr<Funct>> otherFunctions; 
 
 };

@@ -3,7 +3,7 @@
 class Instruction
 {
 public :
-	Instruction();
-	virtual ~Instruction() = 0;
+	Instruction(void);
+	virtual ~Instruction(void) = 0;
 protected :
 };

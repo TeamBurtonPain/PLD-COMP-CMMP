@@ -3,4 +3,4 @@
 Expression::Expression(Type t): type(t){
 }
 
-Expression::~Expression(){}
+Expression::~Expression(void){}

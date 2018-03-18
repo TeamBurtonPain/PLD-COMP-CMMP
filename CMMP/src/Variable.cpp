@@ -5,4 +5,4 @@ Variable::Variable(Type t, string n){
 	name = n;
 }
 
-Variable::~Variable(){}
+Variable::~Variable(void){}

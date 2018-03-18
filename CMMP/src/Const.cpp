@@ -3,4 +3,6 @@
 Const::Const(Type t):Expression(t){
 }
 
-Const::~Const(void){}
+Const::~Const(void){
+    //nettoyer la cible du pointeur value
+}

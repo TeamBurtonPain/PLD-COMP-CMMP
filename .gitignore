@@ -5,6 +5,10 @@
 ./CMMP/src/*.o
 ./CMMP/base_antlr/*.o
 ./CMMP/exe
+CMMP/*.o
+CMMP/src/*.o
+CMMP/base_antlr/*.o
+CMMP/exe
 
 .\CMMP\x64\Debug\*.obj
 
