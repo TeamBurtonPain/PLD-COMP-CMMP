@@ -6,7 +6,7 @@
 ./CMMP/base_antlr/*.o
 ./CMMP/exe
 
-./CMMP/x64/Debug/*.obj
+.\CMMP\x64\Debug\*.obj
 
 # antlr plugin files
 .antlr/**
