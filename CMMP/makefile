@@ -20,6 +20,10 @@ clean:
 	rm -f *.o
 	rm ./.antlr/*.class
 	rm $(BIN)
+
+softclean:
+	rm -f ./src/*.o
+	rm $(BIN)
 	
 
 grammar:
