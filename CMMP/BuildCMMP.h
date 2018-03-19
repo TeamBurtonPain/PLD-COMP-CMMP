@@ -242,11 +242,8 @@ public:
 	}
 
 	virtual antlrcpp::Any visitEq(cmmpParser::EqContext *ctx) override {
-		return (Expression*)
-			new BinaryExpr(
-			(Expression*)visit(ctx->expr(0)),
-				BinaryOp::EQ,
-				(Expression*)visit(ctx->expr(1))
+		return new BinaryOp(
+				BinaryOp::EQ
 			);
 	}
 
