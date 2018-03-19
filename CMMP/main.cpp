@@ -10,7 +10,7 @@ using namespace std;
 using namespace antlr4;
 
 int main(){
-	ANTLRFileStream input("..\\Ex_Test_Backend\\6-While.cmmp");
+	ANTLRFileStream input("../Ex_Test_Backend/6-While.cmmp");
 	cmmpLexer lexer(&input);
 
 	CommonTokenStream tokens(&lexer);
@@ -21,7 +21,7 @@ int main(){
 	}
 
 	cmmpParser parser(&tokens);
-	tree::ParseTree* tree = parser.expr();
+	tree::ParseTree* tree = parser.axiome();
 
 
     std::cout << tree->toStringTree(&parser) << std::endl << std::endl;
