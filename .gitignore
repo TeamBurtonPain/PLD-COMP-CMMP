@@ -17,6 +17,9 @@ CMMP/exe
 .antlr
 
 
+CMMP/CMMP.*
+
+
 
 
 .vs\CMMP\v15\ipch
