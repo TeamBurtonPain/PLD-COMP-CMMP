@@ -106,7 +106,12 @@ public:
 	}
 
 	virtual antlrcpp::Any visitEndAffectation(cmmpParser::EndAffectationContext *ctx) override {
-		return visitChildren(ctx);
+		return (Instruction*)
+			new BinaryAffectation(
+				(Variable*) visit(ctx->membreGauche()),
+				(AffectationBinaryOp) visit(ctx->opAffectation()),
+				(Expression*) visit(ctx->expr())
+			);
 	}
 
 	virtual antlrcpp::Any visitPar(cmmpParser::ParContext *ctx) override {
@@ -215,27 +220,27 @@ public:
 	}
 
 	virtual antlrcpp::Any visitAff(cmmpParser::AffContext *ctx) override {
-		return visitChildren(ctx);
+		return OpBinaryAffectation.AFF;
 	}
 
 	virtual antlrcpp::Any visitAddaff(cmmpParser::AddaffContext *ctx) override {
-		return visitChildren(ctx);
+		return OpBinaryAffectation.ADDAFF;
 	}
 
 	virtual antlrcpp::Any visitSubaff(cmmpParser::SubaffContext *ctx) override {
-		return visitChildren(ctx);
+		return OpBinaryAffectation.SUBAFF;
 	}
 
 	virtual antlrcpp::Any visitMultaff(cmmpParser::MultaffContext *ctx) override {
-		return visitChildren(ctx);
+		return OpBinaryAffectation.MULTAFF;
 	}
 
 	virtual antlrcpp::Any visitDivaff(cmmpParser::DivaffContext *ctx) override {
-		return visitChildren(ctx);
+		return OpBinaryAffectation.DIVAFF;
 	}
 
 	virtual antlrcpp::Any visitModaff(cmmpParser::ModaffContext *ctx) override {
-		return visitChildren(ctx);
+		return OpBinaryAffectation.MODAFF;
 	}
 };
 
