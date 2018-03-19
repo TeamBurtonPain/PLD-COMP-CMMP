@@ -157,7 +157,11 @@ public:
 	}
 
 	virtual antlrcpp::Any visitNot(cmmpParser::NotContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*)
+			new UnaryExpr(
+			visit(ctx->expr()),
+				UnaryOp::NOT);
+
 	}
 
 	virtual antlrcpp::Any visitPredecr(cmmpParser::PredecrContext *ctx) override {
@@ -209,7 +213,12 @@ public:
 	}
 
 	virtual antlrcpp::Any visitEq(cmmpParser::EqContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*)
+			new BinaryExpr(
+			(Expression*)visit(ctx->expr(0)),
+				BinaryOp::EQ,
+				(Expression*)visit(ctx->expr(1))
+			);
 	}
 
 	virtual antlrcpp::Any visitNeq(cmmpParser::NeqContext *ctx) override {
