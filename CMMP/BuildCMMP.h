@@ -1,6 +1,7 @@
 #pragma once
 #include "cmmpBaseVisitor.h"
 
+
 class BuildCMMP :
 	public cmmpBaseVisitor
 {
@@ -113,7 +114,12 @@ public:
 	}
 
 	virtual antlrcpp::Any visitAdd(cmmpParser::AddContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*)
+			new BinaryExpr(
+				(Expression*) visit(ctx->expr(0)),
+				BinaryOp.ADD,
+				(Expression*) visit(ctx->expr(2))
+			);
 	}
 
 	virtual antlrcpp::Any visitSub(cmmpParser::SubContext *ctx) override {
