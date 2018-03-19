@@ -10,6 +10,11 @@ class Program {
 		Program(void);
 		virtual ~Program(void);
 
+		void addVariable(string, Variable&);
+		void setMainFunction(Funct &mainF);
+		void addFunction(Funct &f);
+
+
 	protected : 
 		hashmap <string, ptr<Variable>> variables;
 		ptr<Funct> mainFunction; 

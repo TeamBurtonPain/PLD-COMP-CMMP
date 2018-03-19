@@ -16,8 +16,8 @@ class Funct{
 		void addInstruction(Instruction&);
 
 	protected :
-		hashmap <string, ptr<Variable>> variables;
-		hashmap <string, ptr<Variable>> parameters;
+		hashmap <string, ptr<Variable> > variables;
+		hashmap <string, ptr<Variable> > parameters;
 		deque <Instruction> instructions;
 		Type returnType;
 		//id(signature)

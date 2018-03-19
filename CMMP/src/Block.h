@@ -9,10 +9,14 @@ class Variable;
 
 class Block : public Instruction
 {
-public:
-	Block(void);
-	virtual ~Block(void);
-protected:
-	hashmap<string, ptr<Variable>> variables;
-	deque<Instruction> instructions;
+	public:
+		Block(void);
+		virtual ~Block(void);
+
+		void addVariable(string, Variable&);
+		void addInstruction(Instruction&);
+
+	protected:
+		hashmap<string, ptr<Variable> > variables;
+		deque<Instruction> instructions;
 };
