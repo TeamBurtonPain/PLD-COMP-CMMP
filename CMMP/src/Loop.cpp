@@ -1,5 +1,5 @@
 #include "Loop.h"
 
-Loop::Loop(void) {}
+Loop::Loop(const Expression &finalTest, const Instruction &i):finalTest(&finalTest), instruction(&i) {}
 
 Loop::~Loop(void) {}

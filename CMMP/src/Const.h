@@ -1,12 +1,14 @@
 #pragma once
 
+#include "CommonTypes.h"
 #include "Type.h"
 #include "Expression.h"
 
+template <class T>
 class Const : public Expression{
 	public :
-		Const(Type t);
+		Const(const Type t, const T &v);
 		virtual ~Const(void);
 	protected :
-		void *value;
+		T value;
 };

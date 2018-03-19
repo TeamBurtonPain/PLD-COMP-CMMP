@@ -1,16 +1,17 @@
 #pragma once
 
-#include <array>
+#include <vector>
 #include "CommonTypes.h"
 #include "Funct.h"
 #include "Expression.h"
 
 class FunctionCall : public Expression{
     public :
-        FunctionCall(Funct function);
+        FunctionCall(const Funct function);
         virtual ~FunctionCall(void);
+        void addArg(const Expression&);
 
     protected :
         ptr<Funct> function;
-        Expression* arguments; //pointeur ? cf pour faire ça proprement
+        vector<Expression> arguments;
 };
