@@ -1,5 +1,7 @@
 #pragma once
 #include "cmmpBaseVisitor.h"
+#include "Expression.h"
+#include "Operators.h"
 
 
 class BuildCMMP :
@@ -117,7 +119,7 @@ public:
 		return (Expression*)
 			new BinaryExpr(
 				(Expression*) visit(ctx->expr(0)),
-				BinaryOp.ADD,
+				BinaryOp::ADD,
 				(Expression*) visit(ctx->expr(2))
 			);
 	}
