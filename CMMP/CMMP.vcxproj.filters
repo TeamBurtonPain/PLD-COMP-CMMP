@@ -119,6 +119,9 @@
     <ClInclude Include="base_antlr\cmmpVisitor.h">
       <Filter>Antlr</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="base_antlr\cmmp.g4">
@@ -136,5 +139,10 @@
     <None Include="base_antlr\cmmpLexer.tokens">
       <Filter>Fichiers de ressources</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CMMP.rc">
+      <Filter>Fichiers de ressources</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
