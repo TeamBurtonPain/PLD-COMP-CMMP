@@ -8,6 +8,7 @@ class Expression : public Instruction{
 	public :
 		Expression(Type t);
 		virtual ~Expression(void) = 0;
+		Type getType(void){return type;};
 	protected :
 		Type type;
 };
