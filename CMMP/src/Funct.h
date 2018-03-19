@@ -8,9 +8,12 @@
 
 class Funct{
 	public : 
-		Funct(void);
+		Funct(Type returnType);
 		virtual ~Funct(void);
-		Type getType(void){return returnType;}
+		Type getType(void)const{return returnType;}
+		void addVariable(string, Variable&);
+		void addParameter(string, Variable&);
+		void addInstruction(Instruction&);
 
 	protected :
 		hashmap <string, ptr<Variable>> variables;
