@@ -16,7 +16,8 @@ enum class OpBinaryAffectation {
 };
 
 enum class UnaryOp {
-    NOT
+    NOT,
+    MINUS
 };
 
 enum class BinaryOp {

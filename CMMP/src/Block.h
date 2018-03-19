@@ -13,10 +13,10 @@ class Block : public Instruction
 		Block(void);
 		virtual ~Block(void);
 
-		void addVariable(string, Variable&);
+		void addVariable(Variable&);
 		void addInstruction(Instruction&);
 
 	protected:
 		hashmap<string, ptr<Variable> > variables;
-		deque<Instruction> instructions;
+		deque<ptr<Instruction> > instructions;
 };
