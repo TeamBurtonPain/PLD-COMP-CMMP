@@ -1,5 +1,5 @@
 
-// Generated from cmmp.g4 by ANTLR 4.7.1
+// Generated from base_antlr/cmmp.g4 by ANTLR 4.7.1
 
 #pragma once
 
@@ -20,8 +20,6 @@ public:
    * Visit parse trees produced by cmmpParser.
    */
     virtual antlrcpp::Any visitAxiome(cmmpParser::AxiomeContext *context) = 0;
-
-    virtual antlrcpp::Any visitInclude(cmmpParser::IncludeContext *context) = 0;
 
     virtual antlrcpp::Any visitDeclVar(cmmpParser::DeclVarContext *context) = 0;
 
@@ -61,14 +59,6 @@ public:
 
     virtual antlrcpp::Any visitEListe(cmmpParser::EListeContext *context) = 0;
 
-    virtual antlrcpp::Any visitExprAff(cmmpParser::ExprAffContext *context) = 0;
-
-    virtual antlrcpp::Any visitSimpleExpr(cmmpParser::SimpleExprContext *context) = 0;
-
-    virtual antlrcpp::Any visitMidAffectation(cmmpParser::MidAffectationContext *context) = 0;
-
-    virtual antlrcpp::Any visitEndAffectation(cmmpParser::EndAffectationContext *context) = 0;
-
     virtual antlrcpp::Any visitPar(cmmpParser::ParContext *context) = 0;
 
     virtual antlrcpp::Any visitAdd(cmmpParser::AddContext *context) = 0;
@@ -83,11 +73,15 @@ public:
 
     virtual antlrcpp::Any visitConst(cmmpParser::ConstContext *context) = 0;
 
+    virtual antlrcpp::Any visitAffectation(cmmpParser::AffectationContext *context) = 0;
+
     virtual antlrcpp::Any visitPreinc(cmmpParser::PreincContext *context) = 0;
 
     virtual antlrcpp::Any visitDiv(cmmpParser::DivContext *context) = 0;
 
     virtual antlrcpp::Any visitPostinc(cmmpParser::PostincContext *context) = 0;
+
+    virtual antlrcpp::Any visitNeg(cmmpParser::NegContext *context) = 0;
 
     virtual antlrcpp::Any visitNot(cmmpParser::NotContext *context) = 0;
 

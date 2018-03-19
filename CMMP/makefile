@@ -27,6 +27,6 @@ softclean:
 	
 
 grammar:
-	./base_antlr/.antlr4.sh -visitor -listener -Dlanguage=Cpp cmmp.g4
+	./base_antlr/.antlr4.sh -visitor -listener -Dlanguage=Cpp base_antlr/cmmp.g4
 
 
