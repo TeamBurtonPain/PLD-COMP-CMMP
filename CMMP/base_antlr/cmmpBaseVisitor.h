@@ -107,6 +107,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitPre(cmmpParser::PreContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitMult(cmmpParser::MultContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -127,15 +131,7 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitPreinc(cmmpParser::PreincContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual antlrcpp::Any visitDiv(cmmpParser::DivContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitPostinc(cmmpParser::PostincContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -147,15 +143,11 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitPredecr(cmmpParser::PredecrContext *ctx) override {
+  virtual antlrcpp::Any visitPost(cmmpParser::PostContext *ctx) override {
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitAnd(cmmpParser::AndContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitPostdecr(cmmpParser::PostdecrContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -176,6 +168,14 @@ public:
   }
 
   virtual antlrcpp::Any visitFunctionCall(cmmpParser::FunctionCallContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitIncr(cmmpParser::IncrContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitDecr(cmmpParser::DecrContext *ctx) override {
     return visitChildren(ctx);
   }
 

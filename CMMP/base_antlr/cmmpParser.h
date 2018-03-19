@@ -27,7 +27,8 @@ public:
     RuleDeclarationVar = 4, RuleVarSimple = 5, RuleVarTableau = 6, RuleDefinitionFonction = 7, 
     RuleParamDefinitionList = 8, RuleParamDefinition = 9, RuleStructureControl = 10, 
     RuleInstruction = 11, RuleMembreGauche = 12, RuleEListe = 13, RuleExpr = 14, 
-    RuleVarTab = 15, RuleFunctionCall = 16, RuleOpComparaison = 17, RuleOpAffectation = 18
+    RuleVarTab = 15, RuleFunctionCall = 16, RuleOpUnaryAffectation = 17, 
+    RuleOpComparaison = 18, RuleOpAffectation = 19
   };
 
   cmmpParser(antlr4::TokenStream *input);
@@ -57,6 +58,7 @@ public:
   class ExprContext;
   class VarTabContext;
   class FunctionCallContext;
+  class OpUnaryAffectationContext;
   class OpComparaisonContext;
   class OpAffectationContext; 
 
@@ -432,6 +434,18 @@ public:
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
+  class  PreContext : public ExprContext {
+  public:
+    PreContext(ExprContext *ctx);
+
+    OpUnaryAffectationContext *opUnaryAffectation();
+    MembreGaucheContext *membreGauche();
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
   class  MultContext : public ExprContext {
   public:
     MultContext(ExprContext *ctx);
@@ -492,34 +506,12 @@ public:
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
-  class  PreincContext : public ExprContext {
-  public:
-    PreincContext(ExprContext *ctx);
-
-    ExprContext *expr();
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-
-    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
   class  DivContext : public ExprContext {
   public:
     DivContext(ExprContext *ctx);
 
     std::vector<ExprContext *> expr();
     ExprContext* expr(size_t i);
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-
-    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
-  class  PostincContext : public ExprContext {
-  public:
-    PostincContext(ExprContext *ctx);
-
-    ExprContext *expr();
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
 
@@ -548,11 +540,12 @@ public:
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
-  class  PredecrContext : public ExprContext {
+  class  PostContext : public ExprContext {
   public:
-    PredecrContext(ExprContext *ctx);
+    PostContext(ExprContext *ctx);
 
-    ExprContext *expr();
+    MembreGaucheContext *membreGauche();
+    OpUnaryAffectationContext *opUnaryAffectation();
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
 
@@ -565,17 +558,6 @@ public:
 
     std::vector<ExprContext *> expr();
     ExprContext* expr(size_t i);
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-
-    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
-  class  PostdecrContext : public ExprContext {
-  public:
-    PostdecrContext(ExprContext *ctx);
-
-    ExprContext *expr();
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
 
@@ -650,6 +632,41 @@ public:
   };
 
   FunctionCallContext* functionCall();
+
+  class  OpUnaryAffectationContext : public antlr4::ParserRuleContext {
+  public:
+    OpUnaryAffectationContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+   
+    OpUnaryAffectationContext() : antlr4::ParserRuleContext() { }
+    void copyFrom(OpUnaryAffectationContext *context);
+    using antlr4::ParserRuleContext::copyFrom;
+
+    virtual size_t getRuleIndex() const override;
+
+   
+  };
+
+  class  IncrContext : public OpUnaryAffectationContext {
+  public:
+    IncrContext(OpUnaryAffectationContext *ctx);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  DecrContext : public OpUnaryAffectationContext {
+  public:
+    DecrContext(OpUnaryAffectationContext *ctx);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  OpUnaryAffectationContext* opUnaryAffectation();
 
   class  OpComparaisonContext : public antlr4::ParserRuleContext {
   public:

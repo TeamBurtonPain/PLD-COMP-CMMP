@@ -83,6 +83,9 @@ public:
   virtual void enterSub(cmmpParser::SubContext *ctx) = 0;
   virtual void exitSub(cmmpParser::SubContext *ctx) = 0;
 
+  virtual void enterPre(cmmpParser::PreContext *ctx) = 0;
+  virtual void exitPre(cmmpParser::PreContext *ctx) = 0;
+
   virtual void enterMult(cmmpParser::MultContext *ctx) = 0;
   virtual void exitMult(cmmpParser::MultContext *ctx) = 0;
 
@@ -98,14 +101,8 @@ public:
   virtual void enterAffectation(cmmpParser::AffectationContext *ctx) = 0;
   virtual void exitAffectation(cmmpParser::AffectationContext *ctx) = 0;
 
-  virtual void enterPreinc(cmmpParser::PreincContext *ctx) = 0;
-  virtual void exitPreinc(cmmpParser::PreincContext *ctx) = 0;
-
   virtual void enterDiv(cmmpParser::DivContext *ctx) = 0;
   virtual void exitDiv(cmmpParser::DivContext *ctx) = 0;
-
-  virtual void enterPostinc(cmmpParser::PostincContext *ctx) = 0;
-  virtual void exitPostinc(cmmpParser::PostincContext *ctx) = 0;
 
   virtual void enterNeg(cmmpParser::NegContext *ctx) = 0;
   virtual void exitNeg(cmmpParser::NegContext *ctx) = 0;
@@ -113,14 +110,11 @@ public:
   virtual void enterNot(cmmpParser::NotContext *ctx) = 0;
   virtual void exitNot(cmmpParser::NotContext *ctx) = 0;
 
-  virtual void enterPredecr(cmmpParser::PredecrContext *ctx) = 0;
-  virtual void exitPredecr(cmmpParser::PredecrContext *ctx) = 0;
+  virtual void enterPost(cmmpParser::PostContext *ctx) = 0;
+  virtual void exitPost(cmmpParser::PostContext *ctx) = 0;
 
   virtual void enterAnd(cmmpParser::AndContext *ctx) = 0;
   virtual void exitAnd(cmmpParser::AndContext *ctx) = 0;
-
-  virtual void enterPostdecr(cmmpParser::PostdecrContext *ctx) = 0;
-  virtual void exitPostdecr(cmmpParser::PostdecrContext *ctx) = 0;
 
   virtual void enterFunction(cmmpParser::FunctionContext *ctx) = 0;
   virtual void exitFunction(cmmpParser::FunctionContext *ctx) = 0;
@@ -136,6 +130,12 @@ public:
 
   virtual void enterFunctionCall(cmmpParser::FunctionCallContext *ctx) = 0;
   virtual void exitFunctionCall(cmmpParser::FunctionCallContext *ctx) = 0;
+
+  virtual void enterIncr(cmmpParser::IncrContext *ctx) = 0;
+  virtual void exitIncr(cmmpParser::IncrContext *ctx) = 0;
+
+  virtual void enterDecr(cmmpParser::DecrContext *ctx) = 0;
+  virtual void exitDecr(cmmpParser::DecrContext *ctx) = 0;
 
   virtual void enterInf(cmmpParser::InfContext *ctx) = 0;
   virtual void exitInf(cmmpParser::InfContext *ctx) = 0;

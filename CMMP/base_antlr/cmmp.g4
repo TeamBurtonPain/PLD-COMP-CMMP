@@ -5,7 +5,7 @@ axiome: programme;
 programme:
 	declarationVarListe programme	#declVar
 	| definitionFonction programme	#defFonc
-	| 									#eof
+	| 								#eof
 	;
 
 block: '{' ( instruction)* '}';
@@ -48,10 +48,9 @@ expr:
 	
 	| '-' expr								#neg
 	| '!'  expr								#not
-	| '++' expr								#preinc
-	| '--' expr								#predecr
-	| expr '++'								#postinc
-	| expr '--'								#postdecr
+
+	| opUnaryAffectation membreGauche		#pre
+	| membreGauche opUnaryAffectation		#post	
 	
 	| expr '*'  expr						#mult
 	| expr '/'  expr						#div
@@ -79,6 +78,10 @@ varTab: Var '[' expr ']';
 
 functionCall: Var '(' ( eListe)? ')';
 
+opUnaryAffectation:
+	'++'	#incr
+	| '--'	#decr
+	;
 
 opComparaison: 
 	'<' 	#inf
