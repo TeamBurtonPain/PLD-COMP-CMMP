@@ -8,116 +8,228 @@ public:
 	BuildCMMP();
 	virtual ~BuildCMMP();
 
-	virtual antlrcpp::Any visitAxiome(cmmpParser::AxiomeContext *context) = 0;
+	virtual antlrcpp::Any visitAxiome(cmmpParser::AxiomeContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitInclude(cmmpParser::IncludeContext *context) = 0;
+	virtual antlrcpp::Any visitInclude(cmmpParser::IncludeContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitDeclVar(cmmpParser::DeclVarContext *context) = 0;
+	virtual antlrcpp::Any visitDeclVar(cmmpParser::DeclVarContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitDefFonc(cmmpParser::DefFoncContext *context) = 0;
+	virtual antlrcpp::Any visitDefFonc(cmmpParser::DefFoncContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitEof(cmmpParser::EofContext *context) = 0;
+	virtual antlrcpp::Any visitEof(cmmpParser::EofContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitBlock(cmmpParser::BlockContext *context) = 0;
+	virtual antlrcpp::Any visitBlock(cmmpParser::BlockContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitDeclarationVarListe(cmmpParser::DeclarationVarListeContext *context) = 0;
+	virtual antlrcpp::Any visitDeclarationVarListe(cmmpParser::DeclarationVarListeContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitSimpleVar(cmmpParser::SimpleVarContext *context) = 0;
+	virtual antlrcpp::Any visitSimpleVar(cmmpParser::SimpleVarContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitTabVar(cmmpParser::TabVarContext *context) = 0;
+	virtual antlrcpp::Any visitTabVar(cmmpParser::TabVarContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitVarSimple(cmmpParser::VarSimpleContext *context) = 0;
+	virtual antlrcpp::Any visitVarSimple(cmmpParser::VarSimpleContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitVarTableau(cmmpParser::VarTableauContext *context) = 0;
+	virtual antlrcpp::Any visitVarTableau(cmmpParser::VarTableauContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitDefinitionFonction(cmmpParser::DefinitionFonctionContext *context) = 0;
+	virtual antlrcpp::Any visitDefinitionFonction(cmmpParser::DefinitionFonctionContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitParamDefinitionList(cmmpParser::ParamDefinitionListContext *context) = 0;
+	virtual antlrcpp::Any visitParamDefinitionList(cmmpParser::ParamDefinitionListContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitParamDefinition(cmmpParser::ParamDefinitionContext *context) = 0;
+	virtual antlrcpp::Any visitParamDefinition(cmmpParser::ParamDefinitionContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitStructureControl(cmmpParser::StructureControlContext *context) = 0;
+	virtual antlrcpp::Any visitStructureControl(cmmpParser::StructureControlContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitInsBlock(cmmpParser::InsBlockContext *context) = 0;
+	virtual antlrcpp::Any visitInsBlock(cmmpParser::InsBlockContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitInsExpr(cmmpParser::InsExprContext *context) = 0;
+	virtual antlrcpp::Any visitInsExpr(cmmpParser::InsExprContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitInsDeclVar(cmmpParser::InsDeclVarContext *context) = 0;
+	virtual antlrcpp::Any visitInsDeclVar(cmmpParser::InsDeclVarContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitInsControl(cmmpParser::InsControlContext *context) = 0;
+	virtual antlrcpp::Any visitInsControl(cmmpParser::InsControlContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitMembreGauche(cmmpParser::MembreGaucheContext *context) = 0;
+	virtual antlrcpp::Any visitMembreGauche(cmmpParser::MembreGaucheContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitEListe(cmmpParser::EListeContext *context) = 0;
+	virtual antlrcpp::Any visitEListe(cmmpParser::EListeContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitExprAff(cmmpParser::ExprAffContext *context) = 0;
+	virtual antlrcpp::Any visitExprAff(cmmpParser::ExprAffContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitSimpleExpr(cmmpParser::SimpleExprContext *context) = 0;
+	virtual antlrcpp::Any visitSimpleExpr(cmmpParser::SimpleExprContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitMidAffectation(cmmpParser::MidAffectationContext *context) = 0;
+	virtual antlrcpp::Any visitMidAffectation(cmmpParser::MidAffectationContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitEndAffectation(cmmpParser::EndAffectationContext *context) = 0;
+	virtual antlrcpp::Any visitEndAffectation(cmmpParser::EndAffectationContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitPar(cmmpParser::ParContext *context) = 0;
+	virtual antlrcpp::Any visitPar(cmmpParser::ParContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitAdd(cmmpParser::AddContext *context) = 0;
+	virtual antlrcpp::Any visitAdd(cmmpParser::AddContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitSub(cmmpParser::SubContext *context) = 0;
+	virtual antlrcpp::Any visitSub(cmmpParser::SubContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitMult(cmmpParser::MultContext *context) = 0;
+	virtual antlrcpp::Any visitMult(cmmpParser::MultContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitMod(cmmpParser::ModContext *context) = 0;
+	virtual antlrcpp::Any visitMod(cmmpParser::ModContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitOr(cmmpParser::OrContext *context) = 0;
+	virtual antlrcpp::Any visitOr(cmmpParser::OrContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitConst(cmmpParser::ConstContext *context) = 0;
+	virtual antlrcpp::Any visitConst(cmmpParser::ConstContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitPreinc(cmmpParser::PreincContext *context) = 0;
+	virtual antlrcpp::Any visitPreinc(cmmpParser::PreincContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitDiv(cmmpParser::DivContext *context) = 0;
+	virtual antlrcpp::Any visitDiv(cmmpParser::DivContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitPostinc(cmmpParser::PostincContext *context) = 0;
+	virtual antlrcpp::Any visitPostinc(cmmpParser::PostincContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitNot(cmmpParser::NotContext *context) = 0;
+	virtual antlrcpp::Any visitNot(cmmpParser::NotContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitPredecr(cmmpParser::PredecrContext *context) = 0;
+	virtual antlrcpp::Any visitPredecr(cmmpParser::PredecrContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitAnd(cmmpParser::AndContext *context) = 0;
+	virtual antlrcpp::Any visitAnd(cmmpParser::AndContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitPostdecr(cmmpParser::PostdecrContext *context) = 0;
+	virtual antlrcpp::Any visitPostdecr(cmmpParser::PostdecrContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitFunction(cmmpParser::FunctionContext *context) = 0;
+	virtual antlrcpp::Any visitFunction(cmmpParser::FunctionContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitComparaison(cmmpParser::ComparaisonContext *context) = 0;
+	virtual antlrcpp::Any visitComparaison(cmmpParser::ComparaisonContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitVariable(cmmpParser::VariableContext *context) = 0;
+	virtual antlrcpp::Any visitVariable(cmmpParser::VariableContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitVarTab(cmmpParser::VarTabContext *context) = 0;
+	virtual antlrcpp::Any visitVarTab(cmmpParser::VarTabContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitFunctionCall(cmmpParser::FunctionCallContext *context) = 0;
+	virtual antlrcpp::Any visitFunctionCall(cmmpParser::FunctionCallContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitInf(cmmpParser::InfContext *context) = 0;
+	virtual antlrcpp::Any visitInf(cmmpParser::InfContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitSup(cmmpParser::SupContext *context) = 0;
+	virtual antlrcpp::Any visitSup(cmmpParser::SupContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitInfeq(cmmpParser::InfeqContext *context) = 0;
+	virtual antlrcpp::Any visitInfeq(cmmpParser::InfeqContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitSupeq(cmmpParser::SupeqContext *context) = 0;
+	virtual antlrcpp::Any visitSupeq(cmmpParser::SupeqContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitEq(cmmpParser::EqContext *context) = 0;
+	virtual antlrcpp::Any visitEq(cmmpParser::EqContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitNeq(cmmpParser::NeqContext *context) = 0;
+	virtual antlrcpp::Any visitNeq(cmmpParser::NeqContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitAff(cmmpParser::AffContext *context) = 0;
+	virtual antlrcpp::Any visitAff(cmmpParser::AffContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitAddaff(cmmpParser::AddaffContext *context) = 0;
+	virtual antlrcpp::Any visitAddaff(cmmpParser::AddaffContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitSubaff(cmmpParser::SubaffContext *context) = 0;
+	virtual antlrcpp::Any visitSubaff(cmmpParser::SubaffContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitMultaff(cmmpParser::MultaffContext *context) = 0;
+	virtual antlrcpp::Any visitMultaff(cmmpParser::MultaffContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitDivaff(cmmpParser::DivaffContext *context) = 0;
+	virtual antlrcpp::Any visitDivaff(cmmpParser::DivaffContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
-	virtual antlrcpp::Any visitModaff(cmmpParser::ModaffContext *context) = 0;
+	virtual antlrcpp::Any visitModaff(cmmpParser::ModaffContext *ctx) override {
+		return visitChildren(ctx);
+	}
 };
 
