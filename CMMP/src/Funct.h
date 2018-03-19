@@ -8,7 +8,7 @@
 
 class Funct{
 	public : 
-		Funct(Type returnType);
+		Funct(Type returnType, string name);
 		virtual ~Funct(void);
 		Type getType(void)const{return returnType;}
 		void addVariable(string, Variable&);
@@ -20,5 +20,6 @@ class Funct{
 		hashmap <string, ptr<Variable> > parameters;
 		deque <Instruction> instructions;
 		Type returnType;
+		string name;
 		//id(signature)
 };

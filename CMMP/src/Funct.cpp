@@ -1,6 +1,6 @@
 #include "Funct.h"
 
-Funct::Funct(Type t):returnType(t){}
+Funct::Funct(Type t, string n):returnType(t), name(n){}
 
 Funct::~Funct(void){}
 
