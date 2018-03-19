@@ -1,5 +1,5 @@
 
-// Generated from cmmp.g4 by ANTLR 4.7.1
+// Generated from base_antlr/cmmp.g4 by ANTLR 4.7.1
 
 #pragma once
 
@@ -16,9 +16,6 @@ public:
 
   virtual void enterAxiome(cmmpParser::AxiomeContext *ctx) = 0;
   virtual void exitAxiome(cmmpParser::AxiomeContext *ctx) = 0;
-
-  virtual void enterInclude(cmmpParser::IncludeContext *ctx) = 0;
-  virtual void exitInclude(cmmpParser::IncludeContext *ctx) = 0;
 
   virtual void enterDeclVar(cmmpParser::DeclVarContext *ctx) = 0;
   virtual void exitDeclVar(cmmpParser::DeclVarContext *ctx) = 0;
@@ -77,18 +74,6 @@ public:
   virtual void enterEListe(cmmpParser::EListeContext *ctx) = 0;
   virtual void exitEListe(cmmpParser::EListeContext *ctx) = 0;
 
-  virtual void enterExprAff(cmmpParser::ExprAffContext *ctx) = 0;
-  virtual void exitExprAff(cmmpParser::ExprAffContext *ctx) = 0;
-
-  virtual void enterSimpleExpr(cmmpParser::SimpleExprContext *ctx) = 0;
-  virtual void exitSimpleExpr(cmmpParser::SimpleExprContext *ctx) = 0;
-
-  virtual void enterMidAffectation(cmmpParser::MidAffectationContext *ctx) = 0;
-  virtual void exitMidAffectation(cmmpParser::MidAffectationContext *ctx) = 0;
-
-  virtual void enterEndAffectation(cmmpParser::EndAffectationContext *ctx) = 0;
-  virtual void exitEndAffectation(cmmpParser::EndAffectationContext *ctx) = 0;
-
   virtual void enterPar(cmmpParser::ParContext *ctx) = 0;
   virtual void exitPar(cmmpParser::ParContext *ctx) = 0;
 
@@ -110,6 +95,9 @@ public:
   virtual void enterConst(cmmpParser::ConstContext *ctx) = 0;
   virtual void exitConst(cmmpParser::ConstContext *ctx) = 0;
 
+  virtual void enterAffectation(cmmpParser::AffectationContext *ctx) = 0;
+  virtual void exitAffectation(cmmpParser::AffectationContext *ctx) = 0;
+
   virtual void enterPreinc(cmmpParser::PreincContext *ctx) = 0;
   virtual void exitPreinc(cmmpParser::PreincContext *ctx) = 0;
 
@@ -118,6 +106,9 @@ public:
 
   virtual void enterPostinc(cmmpParser::PostincContext *ctx) = 0;
   virtual void exitPostinc(cmmpParser::PostincContext *ctx) = 0;
+
+  virtual void enterNeg(cmmpParser::NegContext *ctx) = 0;
+  virtual void exitNeg(cmmpParser::NegContext *ctx) = 0;
 
   virtual void enterNot(cmmpParser::NotContext *ctx) = 0;
   virtual void exitNot(cmmpParser::NotContext *ctx) = 0;

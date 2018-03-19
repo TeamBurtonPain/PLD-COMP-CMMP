@@ -1,5 +1,5 @@
 
-// Generated from cmmp.g4 by ANTLR 4.7.1
+// Generated from base_antlr/cmmp.g4 by ANTLR 4.7.1
 
 #pragma once
 
@@ -18,9 +18,6 @@ public:
 
   virtual void enterAxiome(cmmpParser::AxiomeContext * /*ctx*/) override { }
   virtual void exitAxiome(cmmpParser::AxiomeContext * /*ctx*/) override { }
-
-  virtual void enterInclude(cmmpParser::IncludeContext * /*ctx*/) override { }
-  virtual void exitInclude(cmmpParser::IncludeContext * /*ctx*/) override { }
 
   virtual void enterDeclVar(cmmpParser::DeclVarContext * /*ctx*/) override { }
   virtual void exitDeclVar(cmmpParser::DeclVarContext * /*ctx*/) override { }
@@ -79,18 +76,6 @@ public:
   virtual void enterEListe(cmmpParser::EListeContext * /*ctx*/) override { }
   virtual void exitEListe(cmmpParser::EListeContext * /*ctx*/) override { }
 
-  virtual void enterExprAff(cmmpParser::ExprAffContext * /*ctx*/) override { }
-  virtual void exitExprAff(cmmpParser::ExprAffContext * /*ctx*/) override { }
-
-  virtual void enterSimpleExpr(cmmpParser::SimpleExprContext * /*ctx*/) override { }
-  virtual void exitSimpleExpr(cmmpParser::SimpleExprContext * /*ctx*/) override { }
-
-  virtual void enterMidAffectation(cmmpParser::MidAffectationContext * /*ctx*/) override { }
-  virtual void exitMidAffectation(cmmpParser::MidAffectationContext * /*ctx*/) override { }
-
-  virtual void enterEndAffectation(cmmpParser::EndAffectationContext * /*ctx*/) override { }
-  virtual void exitEndAffectation(cmmpParser::EndAffectationContext * /*ctx*/) override { }
-
   virtual void enterPar(cmmpParser::ParContext * /*ctx*/) override { }
   virtual void exitPar(cmmpParser::ParContext * /*ctx*/) override { }
 
@@ -112,6 +97,9 @@ public:
   virtual void enterConst(cmmpParser::ConstContext * /*ctx*/) override { }
   virtual void exitConst(cmmpParser::ConstContext * /*ctx*/) override { }
 
+  virtual void enterAffectation(cmmpParser::AffectationContext * /*ctx*/) override { }
+  virtual void exitAffectation(cmmpParser::AffectationContext * /*ctx*/) override { }
+
   virtual void enterPreinc(cmmpParser::PreincContext * /*ctx*/) override { }
   virtual void exitPreinc(cmmpParser::PreincContext * /*ctx*/) override { }
 
@@ -120,6 +108,9 @@ public:
 
   virtual void enterPostinc(cmmpParser::PostincContext * /*ctx*/) override { }
   virtual void exitPostinc(cmmpParser::PostincContext * /*ctx*/) override { }
+
+  virtual void enterNeg(cmmpParser::NegContext * /*ctx*/) override { }
+  virtual void exitNeg(cmmpParser::NegContext * /*ctx*/) override { }
 
   virtual void enterNot(cmmpParser::NotContext * /*ctx*/) override { }
   virtual void exitNot(cmmpParser::NotContext * /*ctx*/) override { }

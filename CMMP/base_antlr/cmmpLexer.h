@@ -1,5 +1,5 @@
 
-// Generated from cmmp.g4 by ANTLR 4.7.1
+// Generated from base_antlr/cmmp.g4 by ANTLR 4.7.1
 
 #pragma once
 
@@ -18,9 +18,8 @@ public:
     T__20 = 21, T__21 = 22, T__22 = 23, T__23 = 24, T__24 = 25, T__25 = 26, 
     T__26 = 27, T__27 = 28, T__28 = 29, T__29 = 30, T__30 = 31, T__31 = 32, 
     T__32 = 33, Include = 34, InvariantInclude = 35, Lib = 36, Cst = 37, 
-    PositiveInt = 38, Int = 39, Char = 40, String = 41, Type = 42, Var = 43, 
-    WhiteSpace = 44, NewLine = 45, BlockComment = 46, LineComment = 47, 
-    EOFT = 48
+    PositiveInt = 38, Char = 39, String = 40, Type = 41, Var = 42, WhiteSpace = 43, 
+    NewLine = 44, BlockComment = 45, LineComment = 46, EOFT = 47
   };
 
   cmmpLexer(antlr4::CharStream *input);

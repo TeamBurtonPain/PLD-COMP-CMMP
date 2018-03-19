@@ -1,5 +1,5 @@
 
-// Generated from cmmp.g4 by ANTLR 4.7.1
+// Generated from base_antlr/cmmp.g4 by ANTLR 4.7.1
 
 #pragma once
 
@@ -16,10 +16,6 @@ class  cmmpBaseVisitor : public cmmpVisitor {
 public:
 
   virtual antlrcpp::Any visitAxiome(cmmpParser::AxiomeContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitInclude(cmmpParser::IncludeContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -99,22 +95,6 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitExprAff(cmmpParser::ExprAffContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitSimpleExpr(cmmpParser::SimpleExprContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitMidAffectation(cmmpParser::MidAffectationContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitEndAffectation(cmmpParser::EndAffectationContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual antlrcpp::Any visitPar(cmmpParser::ParContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -143,6 +123,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitAffectation(cmmpParser::AffectationContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitPreinc(cmmpParser::PreincContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -152,6 +136,10 @@ public:
   }
 
   virtual antlrcpp::Any visitPostinc(cmmpParser::PostincContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitNeg(cmmpParser::NegContext *ctx) override {
     return visitChildren(ctx);
   }
 

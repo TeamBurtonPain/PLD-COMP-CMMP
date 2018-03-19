@@ -3,9 +3,8 @@ grammar cmmp;
 axiome: programme;
 
 programme:
-	( Include) programme				#include
-	| ( declarationVarListe) programme	#declVar
-	| ( definitionFonction) programme	#defFonc
+	declarationVarListe programme	#declVar
+	| definitionFonction programme	#defFonc
 	| 									#eof
 	;
 
@@ -18,7 +17,7 @@ declarationVar:
 	| varTableau	#tabVar
 	;
 
-varSimple: Var ('=' augmentedExpr)?;
+varSimple: Var ('=' expr)?;
 
 varTableau: varTab ('=' '{' eListe '}')? ;
 
@@ -29,33 +28,25 @@ paramDefinitionList: paramDefinition ( ',' paramDefinition)*;
 paramDefinition: Type Var?;
 
 structureControl:
-	'if' '(' augmentedExpr ')' instruction ('else ' instruction)?
-	| 'while' '(' augmentedExpr ')' instruction;
+	'if' '(' expr ')' instruction ('else ' instruction)?
+	| 'while' '(' expr ')' instruction;
 
 instruction: 
 	block 					#insBlock
-	| augmentedExpr ';'		#insExpr
+	| expr ';'				#insExpr
 	| declarationVarListe 	#insDeclVar
 	| structureControl		#insControl
 	;
 
 membreGauche: Var | varTab;
 
-eListe: augmentedExpr ( ',' augmentedExpr)*;
+eListe: expr ( ',' expr)*;
 
-augmentedExpr: 
-	affectation #exprAff
-	| expr		#simpleExpr
-	;
-
-affectation:
-	 <assoc = right> membreGauche opAffectation affectation	#midAffectation
-	| membreGauche opAffectation expr 						#endAffectation
-	;
 
 expr:
 	'(' expr ')'							#par
 	
+	| '-' expr								#neg
 	| '!'  expr								#not
 	| '++' expr								#preinc
 	| '--' expr								#predecr
@@ -74,9 +65,12 @@ expr:
 	
 	| expr opComparaison  expr				#comparaison
 	
+
 	| Cst									#const
 	| membreGauche 							#variable
 	| functionCall							#function
+
+	|<assoc = right> membreGauche opAffectation expr	#affectation
 	;									
 
 
@@ -104,17 +98,15 @@ opAffectation:
 	| '%='	#modaff
 	;
 
-Include: InvariantInclude Lib;
+Include: InvariantInclude Lib -> skip;
 
 InvariantInclude: '#include';
 
 Lib: '"' .*? '"' | '<' .*? '>';
 
-Cst: Int | String | Char;
+Cst: PositiveInt | String | Char;
 
 PositiveInt: Digit+;
-
-Int: '-'? PositiveInt;
 
 Char: ['] (. | [\\] (.*?)) ['];
 
