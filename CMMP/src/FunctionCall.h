@@ -9,9 +9,9 @@ class FunctionCall : public Expression{
     public :
         FunctionCall(const Funct function);
         virtual ~FunctionCall(void);
-        void addArg(const Expression&);
+        void addArg(Expression&);
 
     protected :
         ptr<Funct> function;
-        vector<Expression> arguments;
+        vector<ptr<Expression> > arguments;
 };

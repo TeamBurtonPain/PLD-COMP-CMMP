@@ -4,13 +4,13 @@ Program::Program(void){}
 
 Program::~Program(void){}
 
-void Program::addVariable(string, Variable&){
-    //TODO
+void Program::addVariable(Variable& v){
+    variables.insert({v.getName(), ptr<Variable>(&v)});
 }
 
 void Program::setMainFunction(Funct &mainF){
-    //TODO
+    mainFunction = ptr<Funct>(&mainF);
 }
 void Program::addFunction(Funct &f){
-    //TODO
+    otherFunctions.insert({f.getName(), ptr<Funct>(&f)});
 }

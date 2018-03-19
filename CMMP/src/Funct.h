@@ -11,14 +11,15 @@ class Funct{
 		Funct(Type returnType, string name);
 		virtual ~Funct(void);
 		Type getType(void)const{return returnType;}
-		void addVariable(string, Variable&);
-		void addParameter(string, Variable&);
+		string getName(void)const{return name;}
+		void addVariable(Variable&);
+		void addParameter(Variable&);
 		void addInstruction(Instruction&);
 
 	protected :
 		hashmap <string, ptr<Variable> > variables;
 		hashmap <string, ptr<Variable> > parameters;
-		deque <Instruction> instructions;
+		deque <ptr<Instruction> > instructions;
 		Type returnType;
 		string name;
 		//id(signature)
