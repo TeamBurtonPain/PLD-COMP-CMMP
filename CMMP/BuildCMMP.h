@@ -1,6 +1,8 @@
 #pragma once
 #include "cmmpBaseVisitor.h"
-
+#include "Expression.h"
+#include "Operators.h"
+#include "Variable.h"
 
 class BuildCMMP :
 	public cmmpBaseVisitor
@@ -122,13 +124,18 @@ public:
 		return (Expression*)
 			new BinaryExpr(
 				(Expression*) visit(ctx->expr(0)),
-				BinaryOp.ADD,
-				(Expression*) visit(ctx->expr(2))
+				BinaryOp::ADD,
+				(Expression*) visit(ctx->expr(1))
 			);
 	}
 
 	virtual antlrcpp::Any visitSub(cmmpParser::SubContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*)
+			new BinaryExpr(
+				(Expression*)visit(ctx->expr(0)),
+				BinaryOp::SUB,
+				(Expression*)visit(ctx->expr(1))
+			);
 	}
 
 	virtual antlrcpp::Any visitMult(cmmpParser::MultContext *ctx) override {
@@ -148,7 +155,13 @@ public:
 	}
 
 	virtual antlrcpp::Any visitPreinc(cmmpParser::PreincContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*)
+			new UnaryAffectation(
+				((LeftValue)ctx->membreGauche()).getType(), // LeftValue et Expression.getType() INCOMING
+				(Variable*)visit(ctx->membreGauche()), //Erreur dans la grammaire, c'est bien un membreGauche et pas une expr qu'il faut
+				OpUnaryAffectation::INCR,
+				true 
+			);
 	}
 
 	virtual antlrcpp::Any visitDiv(cmmpParser::DivContext *ctx) override {
@@ -156,15 +169,31 @@ public:
 	}
 
 	virtual antlrcpp::Any visitPostinc(cmmpParser::PostincContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*)
+			new UnaryAffectation(
+				((LeftValue)ctx->membreGauche()).getType(), // LeftValue et Expression.getType() INCOMING
+				(Variable*)visit(ctx->membreGauche()), //Erreur dans la grammaire, c'est bien un membreGauche et pas une expr qu'il faut
+				OpUnaryAffectation::INCR,
+				false
+			);
 	}
 
 	virtual antlrcpp::Any visitNot(cmmpParser::NotContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*)
+			new UnaryExpr(
+			visit(ctx->expr()),
+				UnaryOp::NOT);
+
 	}
 
 	virtual antlrcpp::Any visitPredecr(cmmpParser::PredecrContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*)
+			new UnaryAffectation(
+				((LeftValue)ctx->membreGauche()).getType(), // LeftValue et Expression.getType() INCOMING
+				(Variable*)visit(ctx->membreGauche()), //Erreur dans la grammaire, c'est bien un membreGauche et pas une expr qu'il faut
+				OpUnaryAffectation::DECR,
+				true
+			);
 	}
 
 	virtual antlrcpp::Any visitAnd(cmmpParser::AndContext *ctx) override {
@@ -172,7 +201,13 @@ public:
 	}
 
 	virtual antlrcpp::Any visitPostdecr(cmmpParser::PostdecrContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*)
+			new UnaryAffectation(
+				((LeftValue)ctx->membreGauche()).getType(), // LeftValue et Expression.getType() INCOMING
+				(Variable*)visit(ctx->membreGauche()), //Erreur dans la grammaire, c'est bien un membreGauche et pas une expr qu'il faut
+				OpUnaryAffectation::DECR,
+				false
+			);
 	}
 
 	virtual antlrcpp::Any visitFunction(cmmpParser::FunctionContext *ctx) override {
@@ -212,7 +247,9 @@ public:
 	}
 
 	virtual antlrcpp::Any visitEq(cmmpParser::EqContext *ctx) override {
-		return visitChildren(ctx);
+		return new BinaryOp(
+				BinaryOp::EQ
+			);
 	}
 
 	virtual antlrcpp::Any visitNeq(cmmpParser::NeqContext *ctx) override {
