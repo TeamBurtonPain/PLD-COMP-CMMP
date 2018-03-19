@@ -5,13 +5,14 @@
 #include "cmmpLexer.h"
 #include "cmmpParser.h"
 #include "BuildCMMP.h"
+#include "Program.h"
 
 
 using namespace std;
 using namespace antlr4;
 
 int main(){
-	Program p*;
+	Program* p;
 
 	ANTLRFileStream input("../Ex_Test_Backend/6-While.cmmp");
 	cmmpLexer lexer(&input);
