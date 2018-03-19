@@ -4,6 +4,7 @@
 #include "cmmpBaseVisitor.h"
 #include "Expression.h"
 #include "Operators.h"
+#include "Program.h"
 #include "UnaryAffectation.h"
 #include "UnaryExpr.h"
 #include "Variable.h"
@@ -15,6 +16,32 @@ class BuildCMMP :
 public:
 	BuildCMMP();
 	virtual ~BuildCMMP();
+
+
+	virtual antlrcpp::Any visitDeclVar(cmmpParser::DeclVarContext *ctx) override {
+		Program* p = (Program*) visit(ctx->programme());
+		/*
+		//get liste of vars
+		//add it to the programm
+		*/
+		return p;
+	}
+
+	virtual antlrcpp::Any visitDefFonc(cmmpParser::DefFoncContext *ctx) override {
+		Program* p = (Program*) visit(ctx->programme());
+		/*
+		Funct* f = (Funct*) visit(ctx->definitionFonction());
+		if(f->getName().compare("main"))
+			p->setMainFunction(*f);
+		else
+			p->addFunction(*f);
+			*/
+		return p;
+	}
+
+  	virtual antlrcpp::Any visitEof(cmmpParser::EofContext *ctx) override {
+		return new Program();
+	}
 
 	virtual antlrcpp::Any visitAffectation(cmmpParser::AffectationContext *ctx) override {
 
