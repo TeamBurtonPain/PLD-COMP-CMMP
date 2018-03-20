@@ -73,13 +73,9 @@ public:
 				*((Expression*) visit(ctx->expr(1)))
 			);
 	}
-<<<<<<< HEAD
 	
 	/*
-	virtual antlrcpp::Any visitPreinc(cmmpParser::PreincContext *ctx) override {
-=======
 	virtual antlrcpp::Any visitPre(cmmpParser::PreContext *ctx) override {
->>>>>>> b55437e705fef695828c71a588162ec6f973d9ef
 		return (Expression*)
 			new UnaryAffectation(
 				((Variable*) ctx->membreGauche())->getType(),
@@ -87,14 +83,11 @@ public:
 				(OpUnaryAffectation) visit(ctx->opUnaryAffectation()), 
 				true 
 			);
-<<<<<<< HEAD
 	} */
 	/*
 	virtual antlrcpp::Any visitPostinc(cmmpParser::PostincContext *ctx) override {
-=======
 	}
 	virtual antlrcpp::Any visitPost(cmmpParser::PostContext *ctx) override {
->>>>>>> b55437e705fef695828c71a588162ec6f973d9ef
 		return (Expression*)
 			new UnaryAffectation(
 				((Variable*) ctx->membreGauche())->getType(),
@@ -115,7 +108,6 @@ public:
 	);
 	}
 
-<<<<<<< HEAD
 	virtual antlrcpp::Any visitPostdecr(cmmpParser::PostdecrContext *ctx) override {
 	return (Expression*)
 	new UnaryAffectation(
@@ -137,24 +129,6 @@ public:
 	}
 
 	virtual antlrcpp::Any visitIncr(cmmpParser::IncrContext *ctx) override {
-		return new OpUnaryAffectation(OpUnaryAffectation::INCR);
-	}
-
-	virtual antlrcpp::Any visitDecr(cmmpParser::DecrContext *ctx) override {
-		return new OpUnaryAffectation(OpUnaryAffectation::DECR);
-	}
-
-	
-
-	virtual antlrcpp::Any visitNot(cmmpParser::NotContext *ctx) override {
-		return (Expression*)
-			new UnaryExpr(
-			((Expression*)ctx->expr())->getType(),
-				*((Expression*)visit(ctx->expr())),
-				UnaryOp::NOT);
-
-=======
-	virtual antlrcpp::Any visitIncr(cmmpParser::IncrContext *ctx) override {
 		return OpUnaryAffectation::INCR;
 	}
 
@@ -162,14 +136,15 @@ public:
 		return OpUnaryAffectation::DECR;
 	}
 
+
 	virtual antlrcpp::Any visitNot(cmmpParser::NotContext *ctx) override {
 		return (Expression*)
 			new UnaryExpr(
-				((Expression*) ctx->expr())->getType(),
+			((Expression*)ctx->expr())->getType(),
 				*((Expression*)visit(ctx->expr())),
 				UnaryOp::NOT);
->>>>>>> b55437e705fef695828c71a588162ec6f973d9ef
 	}
+
 
 	virtual antlrcpp::Any visitEq(cmmpParser::EqContext *ctx) override {
 		return new BinaryOp(
