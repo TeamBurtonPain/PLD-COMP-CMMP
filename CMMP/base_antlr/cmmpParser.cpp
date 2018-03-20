@@ -888,43 +888,77 @@ cmmpParser::StructureControlContext::StructureControlContext(ParserRuleContext *
   : ParserRuleContext(parent, invokingState) {
 }
 
-cmmpParser::ExprContext* cmmpParser::StructureControlContext::expr() {
-  return getRuleContext<cmmpParser::ExprContext>(0);
-}
-
-std::vector<cmmpParser::InstructionContext *> cmmpParser::StructureControlContext::instruction() {
-  return getRuleContexts<cmmpParser::InstructionContext>();
-}
-
-cmmpParser::InstructionContext* cmmpParser::StructureControlContext::instruction(size_t i) {
-  return getRuleContext<cmmpParser::InstructionContext>(i);
-}
-
 
 size_t cmmpParser::StructureControlContext::getRuleIndex() const {
   return cmmpParser::RuleStructureControl;
 }
 
-void cmmpParser::StructureControlContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<cmmpListener *>(listener);
-  if (parserListener != nullptr)
-    parserListener->enterStructureControl(this);
+void cmmpParser::StructureControlContext::copyFrom(StructureControlContext *ctx) {
+  ParserRuleContext::copyFrom(ctx);
 }
 
-void cmmpParser::StructureControlContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<cmmpListener *>(listener);
-  if (parserListener != nullptr)
-    parserListener->exitStructureControl(this);
+//----------------- ControlwhileContext ------------------------------------------------------------------
+
+cmmpParser::ExprContext* cmmpParser::ControlwhileContext::expr() {
+  return getRuleContext<cmmpParser::ExprContext>(0);
 }
 
+std::vector<cmmpParser::InstructionContext *> cmmpParser::ControlwhileContext::instruction() {
+  return getRuleContexts<cmmpParser::InstructionContext>();
+}
 
-antlrcpp::Any cmmpParser::StructureControlContext::accept(tree::ParseTreeVisitor *visitor) {
+cmmpParser::InstructionContext* cmmpParser::ControlwhileContext::instruction(size_t i) {
+  return getRuleContext<cmmpParser::InstructionContext>(i);
+}
+
+cmmpParser::ControlwhileContext::ControlwhileContext(StructureControlContext *ctx) { copyFrom(ctx); }
+
+void cmmpParser::ControlwhileContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterControlwhile(this);
+}
+void cmmpParser::ControlwhileContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitControlwhile(this);
+}
+
+antlrcpp::Any cmmpParser::ControlwhileContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
-    return parserVisitor->visitStructureControl(this);
+    return parserVisitor->visitControlwhile(this);
   else
     return visitor->visitChildren(this);
 }
+//----------------- ControlifContext ------------------------------------------------------------------
 
+cmmpParser::ExprContext* cmmpParser::ControlifContext::expr() {
+  return getRuleContext<cmmpParser::ExprContext>(0);
+}
+
+cmmpParser::InstructionContext* cmmpParser::ControlifContext::instruction() {
+  return getRuleContext<cmmpParser::InstructionContext>(0);
+}
+
+cmmpParser::ControlifContext::ControlifContext(StructureControlContext *ctx) { copyFrom(ctx); }
+
+void cmmpParser::ControlifContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterControlif(this);
+}
+void cmmpParser::ControlifContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<cmmpListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitControlif(this);
+}
+
+antlrcpp::Any cmmpParser::ControlifContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<cmmpVisitor*>(visitor))
+    return parserVisitor->visitControlif(this);
+  else
+    return visitor->visitChildren(this);
+}
 cmmpParser::StructureControlContext* cmmpParser::structureControl() {
   StructureControlContext *_localctx = _tracker.createInstance<StructureControlContext>(_ctx, getState());
   enterRule(_localctx, 20, cmmpParser::RuleStructureControl);
@@ -937,6 +971,7 @@ cmmpParser::StructureControlContext* cmmpParser::structureControl() {
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case cmmpParser::T__7: {
+        _localctx = dynamic_cast<StructureControlContext *>(_tracker.createInstance<cmmpParser::ControlwhileContext>(_localctx));
         enterOuterAlt(_localctx, 1);
         setState(109);
         match(cmmpParser::T__7);
@@ -965,6 +1000,7 @@ cmmpParser::StructureControlContext* cmmpParser::structureControl() {
       }
 
       case cmmpParser::T__9: {
+        _localctx = dynamic_cast<StructureControlContext *>(_tracker.createInstance<cmmpParser::ControlifContext>(_localctx));
         enterOuterAlt(_localctx, 2);
         setState(118);
         match(cmmpParser::T__9);

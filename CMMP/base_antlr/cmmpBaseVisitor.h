@@ -67,7 +67,11 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitStructureControl(cmmpParser::StructureControlContext *ctx) override {
+  virtual antlrcpp::Any visitControlwhile(cmmpParser::ControlwhileContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitControlif(cmmpParser::ControlifContext *ctx) override {
     return visitChildren(ctx);
   }
 

@@ -55,8 +55,11 @@ public:
   virtual void enterParamDefinition(cmmpParser::ParamDefinitionContext * /*ctx*/) override { }
   virtual void exitParamDefinition(cmmpParser::ParamDefinitionContext * /*ctx*/) override { }
 
-  virtual void enterStructureControl(cmmpParser::StructureControlContext * /*ctx*/) override { }
-  virtual void exitStructureControl(cmmpParser::StructureControlContext * /*ctx*/) override { }
+  virtual void enterControlwhile(cmmpParser::ControlwhileContext * /*ctx*/) override { }
+  virtual void exitControlwhile(cmmpParser::ControlwhileContext * /*ctx*/) override { }
+
+  virtual void enterControlif(cmmpParser::ControlifContext * /*ctx*/) override { }
+  virtual void exitControlif(cmmpParser::ControlifContext * /*ctx*/) override { }
 
   virtual void enterInsBlock(cmmpParser::InsBlockContext * /*ctx*/) override { }
   virtual void exitInsBlock(cmmpParser::InsBlockContext * /*ctx*/) override { }

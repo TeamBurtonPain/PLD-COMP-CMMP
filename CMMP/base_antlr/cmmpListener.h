@@ -53,8 +53,11 @@ public:
   virtual void enterParamDefinition(cmmpParser::ParamDefinitionContext *ctx) = 0;
   virtual void exitParamDefinition(cmmpParser::ParamDefinitionContext *ctx) = 0;
 
-  virtual void enterStructureControl(cmmpParser::StructureControlContext *ctx) = 0;
-  virtual void exitStructureControl(cmmpParser::StructureControlContext *ctx) = 0;
+  virtual void enterControlwhile(cmmpParser::ControlwhileContext *ctx) = 0;
+  virtual void exitControlwhile(cmmpParser::ControlwhileContext *ctx) = 0;
+
+  virtual void enterControlif(cmmpParser::ControlifContext *ctx) = 0;
+  virtual void exitControlif(cmmpParser::ControlifContext *ctx) = 0;
 
   virtual void enterInsBlock(cmmpParser::InsBlockContext *ctx) = 0;
   virtual void exitInsBlock(cmmpParser::InsBlockContext *ctx) = 0;

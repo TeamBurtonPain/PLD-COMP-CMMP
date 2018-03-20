@@ -281,16 +281,39 @@ public:
   class  StructureControlContext : public antlr4::ParserRuleContext {
   public:
     StructureControlContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+   
+    StructureControlContext() : antlr4::ParserRuleContext() { }
+    void copyFrom(StructureControlContext *context);
+    using antlr4::ParserRuleContext::copyFrom;
+
     virtual size_t getRuleIndex() const override;
+
+   
+  };
+
+  class  ControlwhileContext : public StructureControlContext {
+  public:
+    ControlwhileContext(StructureControlContext *ctx);
+
     ExprContext *expr();
     std::vector<InstructionContext *> instruction();
     InstructionContext* instruction(size_t i);
-
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
+  };
+
+  class  ControlifContext : public StructureControlContext {
+  public:
+    ControlifContext(StructureControlContext *ctx);
+
+    ExprContext *expr();
+    InstructionContext *instruction();
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
   StructureControlContext* structureControl();

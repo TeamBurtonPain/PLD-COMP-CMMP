@@ -28,9 +28,10 @@ paramDefinitionList: paramDefinition ( ',' paramDefinition)*;
 paramDefinition: Type Var?;
 
 structureControl:
-	'if' '(' expr ')' instruction ('else ' instruction)?
-	| 'while' '(' expr ')' instruction;
-
+	'if' '(' expr ')' instruction ('else ' instruction)?	#controlwhile
+	| 'while' '(' expr ')' instruction						#controlif
+	;
+	
 instruction: 
 	block 					#insBlock
 	| expr ';'				#insExpr
