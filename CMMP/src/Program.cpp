@@ -4,8 +4,8 @@ Program::Program(void){}
 
 Program::~Program(void){}
 
-void Program::addVariable(Variable& v){
-    variables.insert({v.getName(), ptr<Variable>(&v)});
+void Program::addVariable(VariableDeclaration& v){
+    variables.insert({v.getName(), ptr<VariableDeclaration>(&v)});
 }
 
 void Program::setMainFunction(Funct &mainF){

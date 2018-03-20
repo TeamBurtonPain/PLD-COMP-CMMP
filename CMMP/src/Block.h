@@ -2,10 +2,10 @@
 
 #include "CommonTypes.h"
 #include "Instruction.h"
-#include "Variable.h"
+#include "VariableDeclaration.h"
 #include <deque>
 
-class Variable;
+class VariableDeclaration;
 
 class Block : public Instruction, public VarContainer
 {
@@ -13,10 +13,10 @@ class Block : public Instruction, public VarContainer
 		Block(void);
 		virtual ~Block(void);
 
-		void addVariable(Variable&);
+		void addVariable(VariableDeclaration&);
 		void addInstruction(Instruction&);
 
 	protected:
-		hashmap<string, ptr<Variable> > variables;
+		hashmap<string, ptr<VariableDeclaration> > variables;
 		deque<ptr<Instruction> > instructions;
 };
