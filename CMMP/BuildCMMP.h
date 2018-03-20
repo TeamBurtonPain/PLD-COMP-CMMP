@@ -119,13 +119,12 @@ public:
 	} */
 
 	virtual antlrcpp::Any visitPre(cmmpParser::PreContext *ctx) override {
-		Variable var(Type::UNKNOWN, ctx->membreGauche()->Var()->getText());
-		return new UnaryAffectation(Type::UNKNOWN, var, visit(ctx->opUnaryAffectation()), true);
+		return new UnaryAffectation(Type::UNKNOWN, *((Variable*)visit(ctx->membreGauche())), visit(ctx->opUnaryAffectation()), true);
 	}
 
 	virtual antlrcpp::Any visitPost(cmmpParser::PostContext *ctx) override {
-		Variable var(Type::UNKNOWN, ctx->membreGauche()->Var()->getText());
-		return new UnaryAffectation(Type::UNKNOWN, var, visit(ctx->opUnaryAffectation()), false);
+		
+		return new UnaryAffectation(Type::UNKNOWN,*((Variable*) visit(ctx->membreGauche())), visit(ctx->opUnaryAffectation()), false);
 	}
 
 	virtual antlrcpp::Any visitIncr(cmmpParser::IncrContext *ctx) override {
