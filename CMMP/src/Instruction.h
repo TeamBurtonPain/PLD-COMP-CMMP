@@ -2,8 +2,8 @@
 
 class Instruction
 {
-	public :
+	public:
 		Instruction(void);
 		virtual ~Instruction(void) = 0;
-	protected :
+	protected:
 };
