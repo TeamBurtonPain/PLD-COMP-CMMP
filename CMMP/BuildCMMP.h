@@ -12,7 +12,7 @@
 
 class BuildCMMP :
 	public cmmpBaseVisitor
-{
+{ 
 public:
 	BuildCMMP();
 	virtual ~BuildCMMP();
@@ -88,50 +88,6 @@ public:
 				*((Expression*) visit(ctx->expr(1)))
 			);
 	}
-	
-	/*
-	virtual antlrcpp::Any visitPre(cmmpParser::PreContext *ctx) override {
-		return (Expression*)
-			new UnaryAffectation(
-				((Variable*) ctx->membreGauche())->getType(),
-				*((Variable*) visit(ctx->membreGauche())), 
-				(OpUnaryAffectation) visit(ctx->opUnaryAffectation()), 
-				true 
-			);
-	} */
-	/*
-	virtual antlrcpp::Any visitPostinc(cmmpParser::PostincContext *ctx) override {
-	}
-	virtual antlrcpp::Any visitPost(cmmpParser::PostContext *ctx) override {
-		return (Expression*)
-			new UnaryAffectation(
-				((Variable*) ctx->membreGauche())->getType(),
-				*((Variable*) visit(ctx->membreGauche())), 
-				(OpUnaryAffectation) visit(ctx->opUnaryAffectation()), 
-				false 
-			);
-	} */
-
-	/*
-	virtual antlrcpp::Any visitPredecr(cmmpParser::PredecrContext *ctx) override {
-	return (Expression*)
-	new UnaryAffectation(
-	((Variable*) ctx->expr())->getType(),
-	*((Variable*) visit(ctx->expr())), //Erreur dans la grammaire, c'est bien un membreGauche et pas une expr qu'il faut
-	OpUnaryAffectation::DECR,
-	true
-	);
-	}
-
-	virtual antlrcpp::Any visitPostdecr(cmmpParser::PostdecrContext *ctx) override {
-	return (Expression*)
-	new UnaryAffectation(
-	((Variable*) ctx->expr())->getType(),
-	*((Variable*) visit(ctx->expr())), //Erreur dans la grammaire, c'est bien un membreGauche et pas une expr qu'il faut
-	OpUnaryAffectation::DECR,
-	false
-	);
-	} */
 
 	virtual antlrcpp::Any visitPre(cmmpParser::PreContext *ctx) override {
 		return new UnaryAffectation(Type::UNKNOWN, *((Variable*)visit(ctx->membreGauche())), visit(ctx->opUnaryAffectation()), true);
@@ -150,7 +106,6 @@ public:
 		return OpUnaryAffectation::DECR;
 	}
 
-
 	virtual antlrcpp::Any visitNot(cmmpParser::NotContext *ctx) override {
 		return (Expression*)
 			new UnaryExpr(
@@ -158,7 +113,6 @@ public:
 				*((Expression*)visit(ctx->expr())),
 				UnaryOp::NOT);
 	}
-
 
 	virtual antlrcpp::Any visitEq(cmmpParser::EqContext *ctx) override {
 		return new BinaryOp(
