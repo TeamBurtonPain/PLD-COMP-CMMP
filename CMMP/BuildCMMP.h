@@ -53,17 +53,12 @@ public:
 		for(uint i=0 ; i<ctx->instruction().size() ; i++){
 			cout<<ctx->instruction(i)->start->getLine()<<"-"
 			<<ctx->instruction(i)->getText()<<endl;
-			cout<<typeid(visit(ctx->instruction(i))).name()<<endl;
-			Variable* instr = (Variable*)(visit(ctx->instruction(i)));
+			Instruction* instr = (Instruction*)(visit(ctx->instruction(i)));
+
 			VariableDeclaration* vd = dynamic_cast<VariableDeclaration*>(instr);
-			cout<<vd<<endl;
-			/*try {
-				VariableDeclaration* p = (VariableDeclaration*)instr;
-				cout<<"no prob"<<endl;
+			if(vd){
+				cout<<"Oh, une déclaration de var !!! "<<endl;
 			}
-			catch(const std::bad_cast& e) {
-				cout<<"et bah non"<<endl;
-			}*/
 		}
 		return new Block();
 	}
@@ -81,19 +76,19 @@ public:
 	}
 	//TODO
 	virtual antlrcpp::Any visitInsBlock(cmmpParser::InsBlockContext *ctx) override {
-		return new Variable(Type::CHAR,"test",1);
+		return (Instruction*) new Variable(Type::CHAR,"test",1);
 	}
 	//TODO
 	virtual antlrcpp::Any visitInsExpr(cmmpParser::InsExprContext *ctx) override {
-		return new Variable(Type::CHAR,"test",1);
+		return (Instruction*) new Variable(Type::CHAR,"test",1);
 	}
 	//TODO
   	virtual antlrcpp::Any visitInsDeclVar(cmmpParser::InsDeclVarContext *ctx) override {
-		return new VariableDeclaration(Type::CHAR,"test",1);
+		return (Instruction*) new VariableDeclaration(Type::CHAR,"test",1);
 	}
 	//TODO
 	virtual antlrcpp::Any visitInsControl(cmmpParser::InsControlContext *ctx) override {
-		return new Variable(Type::CHAR,"test",1);
+		return (Instruction*) new Variable(Type::CHAR,"test",1);
 	}
 
 
