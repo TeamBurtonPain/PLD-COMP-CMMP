@@ -21,7 +21,7 @@ public:
 	virtual antlrcpp::Any visitDeclVar(cmmpParser::DeclVarContext *ctx) override {
 		Program* p = (Program*) visit(ctx->programme());
 		/*
-		//get liste of vars
+		//get list of vars
 		//add it to the programm
 		*/
 		return p;
@@ -73,7 +73,8 @@ public:
 				*((Expression*) visit(ctx->expr(1)))
 			);
 	}
-
+	
+	/*
 	virtual antlrcpp::Any visitPreinc(cmmpParser::PreincContext *ctx) override {
 		return (Expression*)
 			new UnaryAffectation(
@@ -82,8 +83,8 @@ public:
 				OpUnaryAffectation::INCR,
 				true 
 			);
-	}
-
+	} */
+	/*
 	virtual antlrcpp::Any visitPostinc(cmmpParser::PostincContext *ctx) override {
 		return (Expression*)
 			new UnaryAffectation(
@@ -92,35 +93,56 @@ public:
 				OpUnaryAffectation::INCR,
 				false 
 			);
+	} */
+
+	/*
+	virtual antlrcpp::Any visitPredecr(cmmpParser::PredecrContext *ctx) override {
+	return (Expression*)
+	new UnaryAffectation(
+	((Variable*) ctx->expr())->getType(),
+	*((Variable*) visit(ctx->expr())), //Erreur dans la grammaire, c'est bien un membreGauche et pas une expr qu'il faut
+	OpUnaryAffectation::DECR,
+	true
+	);
 	}
+
+	virtual antlrcpp::Any visitPostdecr(cmmpParser::PostdecrContext *ctx) override {
+	return (Expression*)
+	new UnaryAffectation(
+	((Variable*) ctx->expr())->getType(),
+	*((Variable*) visit(ctx->expr())), //Erreur dans la grammaire, c'est bien un membreGauche et pas une expr qu'il faut
+	OpUnaryAffectation::DECR,
+	false
+	);
+	} */
+
+	virtual antlrcpp::Any visitPre(cmmpParser::PreContext *ctx) override {
+		Variable var(Type::UNKNOWN, ctx->membreGauche()->Var()->getText());
+		return new UnaryAffectation(Type::UNKNOWN, var, visit(ctx->opUnaryAffectation()), true);
+	}
+
+	virtual antlrcpp::Any visitPost(cmmpParser::PostContext *ctx) override {
+		Variable var(Type::UNKNOWN, ctx->membreGauche()->Var()->getText());
+		return new UnaryAffectation(Type::UNKNOWN, var, visit(ctx->opUnaryAffectation()), false);
+	}
+
+	virtual antlrcpp::Any visitIncr(cmmpParser::IncrContext *ctx) override {
+		return new OpUnaryAffectation(OpUnaryAffectation::INCR);
+	}
+
+	virtual antlrcpp::Any visitDecr(cmmpParser::DecrContext *ctx) override {
+		return new OpUnaryAffectation(OpUnaryAffectation::DECR);
+	}
+
+	
 
 	virtual antlrcpp::Any visitNot(cmmpParser::NotContext *ctx) override {
 		return (Expression*)
 			new UnaryExpr(
-				((Expression*) ctx->expr())->getType(),
+			((Expression*)ctx->expr())->getType(),
 				*((Expression*)visit(ctx->expr())),
 				UnaryOp::NOT);
 
-	}
-
-	virtual antlrcpp::Any visitPredecr(cmmpParser::PredecrContext *ctx) override {
-		return (Expression*)
-			new UnaryAffectation(
-				((Variable*) ctx->expr())->getType(),
-				*((Variable*) visit(ctx->expr())), //Erreur dans la grammaire, c'est bien un membreGauche et pas une expr qu'il faut
-				OpUnaryAffectation::DECR,
-				true 
-			);
-	}
-
-	virtual antlrcpp::Any visitPostdecr(cmmpParser::PostdecrContext *ctx) override {
-		return (Expression*)
-			new UnaryAffectation(
-				((Variable*) ctx->expr())->getType(),
-				*((Variable*) visit(ctx->expr())), //Erreur dans la grammaire, c'est bien un membreGauche et pas une expr qu'il faut
-				OpUnaryAffectation::DECR,
-				false 
-			);
 	}
 
 	virtual antlrcpp::Any visitEq(cmmpParser::EqContext *ctx) override {

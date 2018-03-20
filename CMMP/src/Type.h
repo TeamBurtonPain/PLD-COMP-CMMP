@@ -1,6 +1,6 @@
 #pragma once
 
-enum class Type {INT32, INT64, CHAR, VOID};
+enum class Type {INT32, INT64, CHAR, VOID, UNKNOWN};
 /*
 class Type{
 	public :
