@@ -277,6 +277,7 @@ public:
 
 	//TODO écrire code, cd visitAdd
 	virtual antlrcpp::Any visitConst(cmmpParser::ConstContext *ctx) override {
+		cout << ctx->start->getLine() << " - CONST " << ctx->Cst()->getText() << endl;
 		string cst = ctx->Cst()->getText();
 		switch(cst[0])
 		{
@@ -298,6 +299,7 @@ public:
 					{
 						string num_s = cst.substr(2, cst.size() - 1 - 2); // 1 pour le ' final et 2 pour le '\ initiaux
 						int num = std::stoi(num_s);
+						val = char(num);
 					}
 					else
 					{
