@@ -72,12 +72,43 @@ public:
 			TypeUtil::getTypeFromString(ctx->Type()->getText()),
 			ctx->Var()->getText()
 		);
-		//TODO addVar pour chacun de ses parametres
+		//c'est chelou mais sans ptr autour de tout ça j'ai des leaks
+		ptr<vector<ptr<VariableDeclaration> > > listParams = ptr<vector<ptr<VariableDeclaration> > > ((vector<ptr<VariableDeclaration> >*)visit(ctx->paramDefinitionList()));
+		
+		for(int i=0; i<listParams->size();i++){
+			cout<<(*listParams)[i]->getName()<<endl;
+			f->addVariable(*(*listParams)[i]);
+		}
+
 		f->setBlock(
 			*((Block*)visit(ctx->block()))
 		);
 		return f;
 	}
+
+	virtual antlrcpp::Any visitParamDefinitionList(cmmpParser::ParamDefinitionListContext *ctx) override {
+		vector<ptr<VariableDeclaration> >*list = new vector<ptr<VariableDeclaration> >();
+		
+		//if only param is void
+		if(ctx->paramDefinition().size()==1 && ctx->paramDefinition(0)->getText()=="void")
+			return list;
+
+		for(uint i=0 ; i<ctx->paramDefinition().size() ; i++){
+			list->push_back(
+				ptr<VariableDeclaration>((VariableDeclaration*) visit(ctx->paramDefinition(i)) )
+			);
+		}
+		return list;
+	}
+
+	virtual antlrcpp::Any visitParamDefinition(cmmpParser::ParamDefinitionContext *ctx) override {
+		return (VariableDeclaration*) new VariableDeclaration(
+			TypeUtil::getTypeFromString(ctx->Type()->getText()),
+			ctx->Var()->getText(),
+			ctx->start->getLine()
+			);
+	}
+
 	//TODO
 	virtual antlrcpp::Any visitInsBlock(cmmpParser::InsBlockContext *ctx) override {
 		return (Instruction*) new Variable(Type::CHAR,"test",1);
@@ -88,7 +119,7 @@ public:
 	}
 	//TODO
   	virtual antlrcpp::Any visitInsDeclVar(cmmpParser::InsDeclVarContext *ctx) override {
-		return (Instruction*) new VariableDeclaration(Type::CHAR,"test",1);
+		return (Instruction*) new Variable(Type::CHAR,"test",1);
 	}
 	//TODO
 	virtual antlrcpp::Any visitInsControl(cmmpParser::InsControlContext *ctx) override {
