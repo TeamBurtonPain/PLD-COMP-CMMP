@@ -14,15 +14,20 @@ all: $(OBJ)
 
 .PHONY: clean grammar
 
+#everything
 clean:
 	rm -f ./src/*.o
 	rm -f ./base_antlr/*.o
 	rm -f *.o
 	rm ./.antlr/*.class
 	rm $(BIN)
-
+#clean structure
 softclean:
 	rm -f ./src/*.o
+	rm $(BIN)
+#clean visitor
+vclean:
+	rm -f ./BuildCMMP.o
 	rm $(BIN)
 	
 
