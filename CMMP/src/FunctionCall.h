@@ -7,11 +7,12 @@
 
 class FunctionCall : public Expression{
     public :
-        FunctionCall(const Funct function);
+        FunctionCall(Type t, string n);
         virtual ~FunctionCall(void);
         void addArg(Expression&);
 
     protected :
         ptr<Funct> function;
+        string name;
         vector<ptr<Expression> > arguments;
 };

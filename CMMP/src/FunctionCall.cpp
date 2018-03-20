@@ -1,6 +1,6 @@
 #include "FunctionCall.h"
 
-FunctionCall::FunctionCall(const Funct function):Expression(function.getType()){}
+FunctionCall::FunctionCall(Type t, string n):Expression(t), name(n){}
 
 FunctionCall::~FunctionCall(void){
 }
