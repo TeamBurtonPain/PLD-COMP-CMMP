@@ -18,10 +18,17 @@ public:
 	BuildCMMP();
 	virtual ~BuildCMMP();
 
+	//TODO complex 
+	//TODO vérifier le nouvel délire de parent pour toutes les instructions (histoire de variables et de portées)
+
+	//TODO izi
+	//TODO un peu de formalisme, on récupère la visite de ctx->programme qui est de type Program* et on le return direct
 	virtual antlrcpp::Any visitAxiome(cmmpParser::AxiomeContext *ctx) override {
 		return visitChildren(ctx);
 	}
 
+	//TODO
+	//On recupere Program dans le contexte et on lui ajoute les variables
 	virtual antlrcpp::Any visitDeclVar(cmmpParser::DeclVarContext *ctx) override {
 		Program* p = (Program*) visit(ctx->programme());
 		/*
@@ -32,6 +39,7 @@ public:
 		return p;
 	}
 
+	//On recupere Program dans le contexte et on lui ajoute les fonctions
 	virtual antlrcpp::Any visitDefFonc(cmmpParser::DefFoncContext *ctx) override {
 		Program* p = (Program*) visit(ctx->programme());
 
@@ -44,10 +52,15 @@ public:
 		return p;
 	}
 	
+	//Arrive a la eof, il n'y a plus de contexte, on cree l'instance de Program
   	virtual antlrcpp::Any visitEof(cmmpParser::EofContext *ctx) override {
 		return new Program();
 	}
 
+	//TODO après implémenttion de Declaration Variable, il faudra s'assurer qu'elle enregistre bien la valeur initialisée dans l'objet VariableDeclaration et supprimer le commentaire plus bas dans la méthode
+	//A la visite d'un Block, on l'instancie, on note les variables d'un coté et les instructions d'un autre
+
+	//TODO 2 set le block actuel comme parent de l'instruction
 	virtual antlrcpp::Any visitBlock(cmmpParser::BlockContext *ctx) override {
 		Block* b = new Block();
 
@@ -67,26 +80,39 @@ public:
 		return b;
 	}
 
+	//TODO s'inspirer du traitement de visitParamDefinitionList
+	//renvoie un vector* de VariableDeclaration* avec leur valeur d'initialisation si c'est le cas
 	virtual antlrcpp::Any visitDeclarationVarListe(cmmpParser::DeclarationVarListeContext *ctx) override {
 		return visitChildren(ctx);
 	}
 
+	//TODO izi
+	//TODO juste du formel, on retourne le resultat de la visite de ctx->varSimple() (VariableDeclaration*)
 	virtual antlrcpp::Any visitSimpleVar(cmmpParser::SimpleVarContext *ctx) override {
 		return visitChildren(ctx);
 	}
 
+	//TODO later
+	//TODO on a pas la structure de données pour les tableaux right now
 	virtual antlrcpp::Any visitTabVar(cmmpParser::TabVarContext *ctx) override {
 		return visitChildren(ctx);
 	}
 
+	//TODO izi
+	//TODO construire l'objet VariableDeclaration* à retourner avec sa valeur par défaut il elle existe
+	//TODO s'inspirer de visitParamDefinition
 	virtual antlrcpp::Any visitVarSimple(cmmpParser::VarSimpleContext *ctx) override {
 		return visitChildren(ctx);
 	}
 
+	//TODO later
+	//on a pas la structure de données pour les tableaux right now
 	virtual antlrcpp::Any visitVarTableau(cmmpParser::VarTableauContext *ctx) override {
 		return visitChildren(ctx);
 	}
 
+	//TODO @thibault : t'es capable de me dire la mem leak si je passe par vector<> au lieu de ptr<vector<> > ici ??
+	//instancie et complete la fonction
 	virtual antlrcpp::Any visitDefinitionFonction(cmmpParser::DefinitionFonctionContext *ctx) override {
 		Funct* f = new Funct(
 			TypeUtil::getTypeFromString(ctx->Type()->getText()),
@@ -106,6 +132,8 @@ public:
 		return f;
 	}
 
+	//renvoie un vector* de VariableDeclaration*, s'il n'y a qu'un seul parametre et de type void, l'ignorer
+	//passe par la visite de ctx->paramDefinition
 	virtual antlrcpp::Any visitParamDefinitionList(cmmpParser::ParamDefinitionListContext *ctx) override {
 		vector<ptr<VariableDeclaration> >*list = new vector<ptr<VariableDeclaration> >();
 		
@@ -121,6 +149,7 @@ public:
 		return list;
 	}
 
+	//cree une VariableDeclaration en cohérence avec le paramètre lu. Elle n'a pas de valeur par défaut.
 	virtual antlrcpp::Any visitParamDefinition(cmmpParser::ParamDefinitionContext *ctx) override {
 		return (VariableDeclaration*) new VariableDeclaration(
 			TypeUtil::getTypeFromString(ctx->Type()->getText()),
@@ -129,6 +158,7 @@ public:
 			);
 	}
 
+	//TODO
 	virtual antlrcpp::Any visitStructureControl(cmmpParser::StructureControlContext *ctx) override {
 		return visitChildren(ctx);
 	}
