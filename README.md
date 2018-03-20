@@ -52,4 +52,10 @@ Dans tous les cas, l'extension Antlr permet la visualisation de la grammaire à 
 - show call, pour le graphe d'appel de règle
 - show railroad, pour le(s) graphe(s) de représentation de règles
 
-## Pour windows (incoming)
+## Pour windows 
+
+Visual Studio 2017
+
+bugs courants :
+
+- Utiliser les librairies de Multithreading de release et non de debug (/MD au lieu de /MDd)
