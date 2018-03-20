@@ -159,11 +159,14 @@ public:
 			);
 	}
 
-	//TODO @thibault
-	//TODO séparation en 2 cas
-	virtual antlrcpp::Any visitStructureControl(cmmpParser::StructureControlContext *ctx) override {
-		return visitChildren(ctx);
-	}
+
+	virtual antlrcpp::Any visitControlwhile(cmmpParser::ControlwhileContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitControlif(cmmpParser::ControlifContext *ctx) override {
+    return visitChildren(ctx);
+  }
 
 	//TODO izi
 	//TODO là c'était la création d'une variable pour tester...
@@ -176,7 +179,7 @@ public:
 	//TODO retourner le résultat de la visite de ctx->expr(), attention a bien le cast en (Instruction*)
 	virtual antlrcpp::Any visitInsExpr(cmmpParser::InsExprContext *ctx) override {
 		antlrcpp::Any a = visit(ctx->expr());
-		Instruction * b = (Instruction*)a; // erreur ici
+		Instruction * b = (Instruction*)a; // erreur ici le cast plante
 		return (Instruction*)(visit(ctx->expr()));
 	}
 	
