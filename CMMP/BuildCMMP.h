@@ -9,7 +9,8 @@
 #include "UnaryExpr.h"
 #include "Variable.h"
 #include "VariableDeclaration.h"
- 
+#include "Const.h"
+
 
 class BuildCMMP :
 	public cmmpBaseVisitor
@@ -239,26 +240,83 @@ public:
 	//TODO 2 cf TODO visitAdd
 	//TODO 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitMult(cmmpParser::MultContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*)
+			new BinaryExpr(
+			((Expression*)visit(ctx->expr(0)))->getType(), //return type, possibilité de le travailler un peu plus
+				*((Expression*)visit(ctx->expr(0))),
+				BinaryOp::MULT,
+				*((Expression*)visit(ctx->expr(1)))
+			);
 	}
 
 	//TODO écrire code, cd visitAdd
 	//TODO 2 cf TODO visitAdd
 	//TODO 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitMod(cmmpParser::ModContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*)
+			new BinaryExpr(
+			((Expression*)visit(ctx->expr(0)))->getType(), //return type, possibilité de le travailler un peu plus
+				*((Expression*)visit(ctx->expr(0))),
+				BinaryOp::MOD,
+				*((Expression*)visit(ctx->expr(1)))
+			);
 	}
 
 	//TODO écrire code, cd visitAdd
 	//TODO 2 cf TODO visitAdd
 	//TODO 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitOr(cmmpParser::OrContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*)
+			new BinaryExpr(
+			((Expression*)visit(ctx->expr(0)))->getType(), //return type, possibilité de le travailler un peu plus
+				*((Expression*)visit(ctx->expr(0))),
+				BinaryOp::OR,
+				*((Expression*)visit(ctx->expr(1)))
+			);
 	}
 
 	//TODO écrire code, cd visitAdd
 	virtual antlrcpp::Any visitConst(cmmpParser::ConstContext *ctx) override {
-		return visitChildren(ctx);
+		string cst = ctx->Cst()->getText();
+		switch(cst[0])
+		{
+		case('\''):
+			{//it's a char
+				char val='a';
+				if (cst.size() == 3)
+				{
+					val = cst[1];
+				}
+				else //cst[1]=\ 
+				{
+					map<char, int> ascii_code = {{'b',8},{'t',9},{'n',10},{ 'v',11 },{ 'f',12 },{ 'r',13 }};
+					if (ascii_code.find(cst[2]) != ascii_code.end())
+					{
+						val = char(ascii_code[cst[2]]);
+					}
+					else if(cst[2] >= 0 && cst[2] <= 9)
+					{
+						string num_s = cst.substr(2, cst.size() - 1 - 2); // 1 pour le ' final et 2 pour le '\ initiaux
+						int num = std::stoi(num_s);
+					}
+					else
+					{
+						val = '?'; //unkown
+					}
+				}
+				return new Const<char>(Type::CHAR, val);
+			}
+		case('\"'):
+			{//it's a string
+				string val = cst.substr(1, cst.size() - 2);
+				return new Const<string>(Type::CHAR, val);	//TODO future : string = char[] ?
+			}
+		default:
+			{
+				int64_t val = stol(cst);
+				return new Const<int64_t>(Type::INT32, val);
+			}
+		}
 	}
 
 	//TODO checker
