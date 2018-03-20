@@ -49,18 +49,22 @@ public:
 	}
 
 	virtual antlrcpp::Any visitBlock(cmmpParser::BlockContext *ctx) override {
-		cout<<"Hello lel --- "<<endl;
+		Block* b = new Block();
+
 		for(uint i=0 ; i<ctx->instruction().size() ; i++){
-			cout<<ctx->instruction(i)->start->getLine()<<"-"
+			cout<<"l"<<ctx->instruction(i)->start->getLine()<<"- "
 			<<ctx->instruction(i)->getText()<<endl;
 			Instruction* instr = (Instruction*)(visit(ctx->instruction(i)));
 
 			VariableDeclaration* vd = dynamic_cast<VariableDeclaration*>(instr);
 			if(vd){
-				cout<<"Oh, une déclaration de var !!! "<<endl;
+				b->addVariable(*vd);
+				//faut faire un truc pour garder la valeur initialisée
+			}else{
+				b->addInstruction(*instr);
 			}
 		}
-		return new Block();
+		return b;
 	}
 
 	virtual antlrcpp::Any visitDefinitionFonction(cmmpParser::DefinitionFonctionContext *ctx) override {
