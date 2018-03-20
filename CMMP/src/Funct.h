@@ -3,6 +3,7 @@
 #include "CommonTypes.h"
 #include <deque>
 #include <iostream>
+#include "Block.h"
 #include "VarContainer.h"
 #include "Variable.h"
 #include "Instruction.h"
@@ -14,13 +15,11 @@ class Funct: public VarContainer{
 		Type getType(void)const{return returnType;}
 		string getName(void)const{return name;}
 		void addVariable(Variable&);
-		void addParameter(Variable&);
-		void addInstruction(Instruction&);
+		void setBlock(Block&);
 
 	protected :
-		hashmap <string, ptr<Variable> > variables;
 		hashmap <string, ptr<Variable> > parameters;
-		deque <ptr<Instruction> > instructions;
+		ptr<Block> instructions;
 		Type returnType;
 		string name;
 		//id(signature)

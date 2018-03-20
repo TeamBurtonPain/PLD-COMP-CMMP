@@ -2,8 +2,6 @@
 
 #include "Type.h"
 #include "Expression.h"
-#include <iostream>
-using namespace std;
 
 class Variable : public Expression{
 	public :

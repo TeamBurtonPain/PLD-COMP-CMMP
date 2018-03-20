@@ -26,38 +26,48 @@ public:
 		/*
 		//get list of vars
 		//add it to the programm
+		//the the programm as their parent
 		*/
 		return p;
 	}
 
 	virtual antlrcpp::Any visitDefFonc(cmmpParser::DefFoncContext *ctx) override {
 		Program* p = (Program*) visit(ctx->programme());
-/*
+
 		Funct* f = (Funct*) visit(ctx->definitionFonction());
 		if(f->getName().compare("main"))
 			p->setMainFunction(*f);
 		else
 			p->addFunction(*f);
-*/
+
 		return p;
 	}
 	
   	virtual antlrcpp::Any visitEof(cmmpParser::EofContext *ctx) override {
 		return new Program();
 	}
-/*
+
 	virtual antlrcpp::Any visitBlock(cmmpParser::BlockContext *ctx) override {
-		cout<<"Hello lel --- "<<ctx->instruction().size()<<endl;
-		return visitChildren(ctx);
+		cout<<"Hello lel --- "<<endl;
+		for(uint i=0 ; i<ctx->instruction().size() ; i++){
+			cout<<"instr "<<ctx->instruction(i)->getText()<<endl;
+			cout<<"instr "<<ctx->instruction(i)->start->getLine()<<endl;
+		}
+		return new Block();
 	}
 
 	virtual antlrcpp::Any visitDefinitionFonction(cmmpParser::DefinitionFonctionContext *ctx) override {
-		cout<<ctx->Type()->getText()<<endl;
-		cout<<ctx->Var()->getText()<<endl;
-		//visit(ctx->block());
-		return new Funct(Type::VOID, "test");
+		Funct* f = new Funct(
+			TypeUtil::getTypeFromString(ctx->Type()->getText()),
+			ctx->Var()->getText()
+		);
+		//TODO addVar pour chacun de ses parametres
+		f->setBlock(
+			*((Block*)visit(ctx->block()))
+		);
+		return f;
 	}
-*/
+
 	virtual antlrcpp::Any visitAffectation(cmmpParser::AffectationContext *ctx) override {
 
   		return (Instruction*)
