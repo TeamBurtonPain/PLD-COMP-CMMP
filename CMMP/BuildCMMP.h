@@ -354,29 +354,36 @@ public:
 		return OpUnaryAffectation::DECR;
 	}
 
-
+	//TODO izi izi
+	//TODO retourne le bon BinaryOp correspondant
 	virtual antlrcpp::Any visitInf(cmmpParser::InfContext *ctx) override {
 		return visitChildren(ctx);
 	}
 
+	//TODO izi izi
+	//TODO retourne le bon BinaryOp correspondant
 	virtual antlrcpp::Any visitSup(cmmpParser::SupContext *ctx) override {
 		return visitChildren(ctx);
 	}
 
+	//TODO izi izi
+	//TODO retourne le bon BinaryOp correspondant
 	virtual antlrcpp::Any visitInfeq(cmmpParser::InfeqContext *ctx) override {
 		return visitChildren(ctx);
 	}
 
+	//TODO izi izi
+	//TODO retourne le bon BinaryOp correspondant
 	virtual antlrcpp::Any visitSupeq(cmmpParser::SupeqContext *ctx) override {
 		return visitChildren(ctx);
 	}
 
 	virtual antlrcpp::Any visitEq(cmmpParser::EqContext *ctx) override {
-		return new BinaryOp(
-				BinaryOp::EQ
-			);
+		return BinaryOp::EQ;
 	}
 
+	//TODO izi izi
+	//TODO retourne le bon BinaryOp correspondant
 	virtual antlrcpp::Any visitNeq(cmmpParser::NeqContext *ctx) override {
 		return visitChildren(ctx);
 	}

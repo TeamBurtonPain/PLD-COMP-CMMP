@@ -14,6 +14,7 @@ using namespace antlr4;
 int main(){
 	Program* p;
 
+	//TODO pour l'executer vous pouvez avoir besoin de changer les / en \\ 
 	ANTLRFileStream input("../Ex_Test_Backend/6-While.cmmp");
 	cmmpLexer lexer(&input);
 
@@ -37,12 +38,18 @@ int main(){
     std::cout << tree->toStringTree(&parser) << std::endl << std::endl;
 */
 
+	//use our custom visitor
 	BuildCMMP visitor;
+	//get the final object returned by the visit of the tree
 	p = (Program*)visitor.visit(tree);
+
+	//TODO later : faire les links des fonctions
+	//TODO later : verification de la coherence des types des variables et si elles sont declarées
+	//TODO later : avec le type des variables on devrait pouvoir définir le type de tout maintenant
 
     cin.get();
 	delete(p);
-	
+
     return 0;
 
 }
