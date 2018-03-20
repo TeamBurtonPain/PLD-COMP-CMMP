@@ -175,7 +175,9 @@ public:
 	//TODO izi
 	//TODO retourner le résultat de la visite de ctx->expr(), attention a bien le cast en (Instruction*)
 	virtual antlrcpp::Any visitInsExpr(cmmpParser::InsExprContext *ctx) override {
-		return (Instruction*) new Variable(Type::CHAR,"test",1);
+		antlrcpp::Any a = visit(ctx->expr());
+		Instruction * b = (Instruction*)a; // erreur ici
+		return (Instruction*)(visit(ctx->expr()));
 	}
 	
 	//TODO complex
@@ -194,13 +196,13 @@ public:
 	//TODO later
 	//TODO la structure si c'est un tableau n'est pas encore prête...
 	virtual antlrcpp::Any visitMembreGauche(cmmpParser::MembreGaucheContext *ctx) override {
-		return visitChildren(ctx);
+		return new Variable(Type::UNKNOWN, ctx->Var()->getText(), ctx->start->getLine());
 	}
 
 	//TODO s'inspirer du traitement de visitParamDefinitionList
 	//renvoie un vector* de Expression* 
 	virtual antlrcpp::Any visitEListe(cmmpParser::EListeContext *ctx) override {
-		return visitChildren(ctx);
+		return visitChildren(ctx);		
 	}
 
 	//TODO izi
@@ -288,7 +290,7 @@ public:
 				{
 					val = cst[1];
 				}
-				else //cst[1]=\ 
+				else //cst[1]='\'
 				{
 					map<char, int> ascii_code = {{'b',8},{'t',9},{'n',10},{ 'v',11 },{ 'f',12 },{ 'r',13 }};
 					if (ascii_code.find(cst[2]) != ascii_code.end())
@@ -302,21 +304,21 @@ public:
 						val = char(num);
 					}
 					else
-					{
+					{// à faire : ", ', \ et c'est tout je crois
 						val = '?'; //unkown
 					}
 				}
-				return new Const<char>(Type::CHAR, val);
+				return (Expression*)(new Const<char>(Type::CHAR, val));
 			}
 		case('\"'):
 			{//it's a string
 				string val = cst.substr(1, cst.size() - 2);
-				return new Const<string>(Type::CHAR, val);	//TODO future : string = char[] ?
+				return (Expression*)(new Const<string>(Type::CHAR, val));	//TODO future : string = char[] ?
 			}
 		default:
 			{
 				int64_t val = stol(cst);
-				return new Const<int64_t>(Type::INT32, val);
+				return (Expression*)(new Const<int64_t>(Type::INT32, val));
 			}
 		}
 	}
@@ -326,10 +328,9 @@ public:
 	//TODO later
 	//TODO vérifier la compatibilité avec les tableaux et cast en (Expression *) (je crois)
 	virtual antlrcpp::Any visitAffectation(cmmpParser::AffectationContext *ctx) override {
-
-		return (Instruction*)
+		return (Expression*)
 			new BinaryAffectation(
-			((Expression*)visit(ctx->membreGauche()))->getType(),
+			((Variable*)visit(ctx->membreGauche()))->getType(),
 				*((Variable*)visit(ctx->membreGauche())),
 				(OpBinaryAffectation)visit(ctx->opAffectation()),
 				*((Expression*)visit(ctx->expr()))

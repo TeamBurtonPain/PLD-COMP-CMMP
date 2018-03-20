@@ -19,7 +19,7 @@ clean:
 	rm -f ./src/*.o
 	rm -f ./base_antlr/*.o
 	rm -f *.o
-	rm ./.antlr/*.class
+	rm ./base_antlr/.antlr/*.class
 	rm $(BIN)
 #clean structure
 softclean:
