@@ -7,7 +7,7 @@
 
 class Variable;
 
-class Block : public Instruction
+class Block : public Instruction, public VarContainer
 {
 	public:
 		Block(void);

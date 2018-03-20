@@ -5,7 +5,7 @@
 #include "Variable.h"
 #include "Funct.h"
 
-class Program {
+class Program : public VarContainer {
 	public : 
 		Program(void);
 		virtual ~Program(void);

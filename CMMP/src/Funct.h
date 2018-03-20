@@ -3,10 +3,11 @@
 #include "CommonTypes.h"
 #include <deque>
 #include <iostream>
+#include "VarContainer.h"
 #include "Variable.h"
 #include "Instruction.h"
 
-class Funct{
+class Funct: public VarContainer{
 	public : 
 		Funct(Type returnType, string name);
 		virtual ~Funct(void);
