@@ -17,6 +17,9 @@ public:
 	BuildCMMP();
 	virtual ~BuildCMMP();
 
+	virtual antlrcpp::Any visitAxiome(cmmpParser::AxiomeContext *ctx) override {
+		return visitChildren(ctx);
+	}
 
 	virtual antlrcpp::Any visitDeclVar(cmmpParser::DeclVarContext *ctx) override {
 		Program* p = (Program*) visit(ctx->programme());
@@ -29,20 +32,32 @@ public:
 
 	virtual antlrcpp::Any visitDefFonc(cmmpParser::DefFoncContext *ctx) override {
 		Program* p = (Program*) visit(ctx->programme());
-		/*
+/*
 		Funct* f = (Funct*) visit(ctx->definitionFonction());
 		if(f->getName().compare("main"))
 			p->setMainFunction(*f);
 		else
 			p->addFunction(*f);
-			*/
+*/
 		return p;
 	}
-
+	
   	virtual antlrcpp::Any visitEof(cmmpParser::EofContext *ctx) override {
 		return new Program();
 	}
+/*
+	virtual antlrcpp::Any visitBlock(cmmpParser::BlockContext *ctx) override {
+		cout<<"Hello lel --- "<<ctx->instruction().size()<<endl;
+		return visitChildren(ctx);
+	}
 
+	virtual antlrcpp::Any visitDefinitionFonction(cmmpParser::DefinitionFonctionContext *ctx) override {
+		cout<<ctx->Type()->getText()<<endl;
+		cout<<ctx->Var()->getText()<<endl;
+		//visit(ctx->block());
+		return new Funct(Type::VOID, "test");
+	}
+*/
 	virtual antlrcpp::Any visitAffectation(cmmpParser::AffectationContext *ctx) override {
 
   		return (Instruction*)
