@@ -19,6 +19,7 @@ clean:
 	rm -f ./src/*.o
 	rm -f ./base_antlr/*.o
 	rm -f *.o
+	rm -f ../*.o
 	rm ./base_antlr/.antlr/*.class
 	rm $(BIN)
 #clean structure
