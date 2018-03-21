@@ -167,17 +167,11 @@ public:
     	return (Instruction*) new Block(); //new Condition(Expression condition, Instruction if, Instruction else) ou  Condition(Expression condition, Instruction if)
   	}
 
-	//TODO izi
-	//TODO là c'était la création d'une variable pour tester...
-	//TODO retourner le résultat de la visite de ctx->block(), attention a bien le cast en (Instruction*)
 	virtual antlrcpp::Any visitInsBlock(cmmpParser::InsBlockContext *ctx) override {
-		return (Instruction*) new Variable(Type::CHAR,"test",1);
+		return (Instruction*) (Block*)visit(ctx->block());
 	}
 
-	//TODO izi
-	//TODO retourner le résultat de la visite de ctx->expr(), attention a bien le cast en (Instruction*)
 	virtual antlrcpp::Any visitInsExpr(cmmpParser::InsExprContext *ctx) override {
-		return (Instruction*) new Variable(Type::CHAR,"test",1);
 		return (Instruction*)((Expression*)(visit(ctx->expr())));
 	}
 	
@@ -204,10 +198,8 @@ public:
 		return visitChildren(ctx);		
 	}
 
-	//TODO izi
-	//TODO rretourner le résultat de la visite de ctx->expr()
 	virtual antlrcpp::Any visitPar(cmmpParser::ParContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*)visit(ctx->expr());
 	}
 
 		//TODO (pas prio) pour le type de l'expression binaire on peut faire plus propre
@@ -218,7 +210,7 @@ public:
 	virtual antlrcpp::Any visitAdd(cmmpParser::AddContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
-				((Expression*) visit(ctx->expr(0)))->getType(), //return type, possibilité de le travailler un peu plus
+				Type::UNKNOWN,
 				*((Expression*) visit(ctx->expr(0))),
 				BinaryOp::ADD,
 				*((Expression*) visit(ctx->expr(1)))
@@ -230,7 +222,7 @@ public:
 	virtual antlrcpp::Any visitSub(cmmpParser::SubContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
-				((Expression*) visit(ctx->expr(0)))->getType(), //return type, possibilité de le travailler un peu plus
+				Type::UNKNOWN,
 				*((Expression*) visit(ctx->expr(0))),
 				BinaryOp::SUB,
 				*((Expression*) visit(ctx->expr(1)))
@@ -242,7 +234,7 @@ public:
 	virtual antlrcpp::Any visitMult(cmmpParser::MultContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
-			((Expression*)visit(ctx->expr(0)))->getType(), //return type, possibilité de le travailler un peu plus
+				Type::UNKNOWN,
 				*((Expression*)visit(ctx->expr(0))),
 				BinaryOp::MULT,
 				*((Expression*)visit(ctx->expr(1)))
@@ -254,7 +246,7 @@ public:
 	virtual antlrcpp::Any visitMod(cmmpParser::ModContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
-			((Expression*)visit(ctx->expr(0)))->getType(), //return type, possibilité de le travailler un peu plus
+				Type::UNKNOWN,
 				*((Expression*)visit(ctx->expr(0))),
 				BinaryOp::MOD,
 				*((Expression*)visit(ctx->expr(1)))
@@ -266,7 +258,7 @@ public:
 	virtual antlrcpp::Any visitOr(cmmpParser::OrContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
-			((Expression*)visit(ctx->expr(0)))->getType(), //return type, possibilité de le travailler un peu plus
+				Type::UNKNOWN,
 				*((Expression*)visit(ctx->expr(0))),
 				BinaryOp::OR,
 				*((Expression*)visit(ctx->expr(1)))
@@ -275,6 +267,7 @@ public:
 
 		//TODO (pas prio) checker
 	virtual antlrcpp::Any visitConst(cmmpParser::ConstContext *ctx) override {
+		/*
 		cout << ctx->start->getLine() << " - CONST " << ctx->Cst()->getText() << endl;
 		string cst = ctx->Cst()->getText();
 		switch(cst[0])
@@ -317,6 +310,8 @@ public:
 				return (Expression*)(new Const<int64_t>(Type::INT32, val));
 			}
 		}
+		*/
+		return (Expression*)(new Const<int64_t>(Type::INT32, 0));
 	}
 
 	//TODO later
@@ -324,7 +319,7 @@ public:
 	virtual antlrcpp::Any visitAffectation(cmmpParser::AffectationContext *ctx) override {
 		return (Expression*)
 			new BinaryAffectation(
-			((Variable*)visit(ctx->membreGauche()))->getType(),
+				Type::UNKNOWN,
 				*((Variable*)visit(ctx->membreGauche())),
 				(OpBinaryAffectation)visit(ctx->opAffectation()),
 				*((Expression*)visit(ctx->expr()))
@@ -336,7 +331,7 @@ public:
 	virtual antlrcpp::Any visitDiv(cmmpParser::DivContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
-			((Expression*)visit(ctx->expr(0)))->getType(), //return type, possibilité de le travailler un peu plus
+				Type::UNKNOWN,
 				*((Expression*)visit(ctx->expr(0))),
 				BinaryOp::DIV,
 				*((Expression*)visit(ctx->expr(1)))
@@ -347,7 +342,7 @@ public:
 	virtual antlrcpp::Any visitNeg(cmmpParser::NegContext *ctx) override {
 		return (Expression*)
 			new UnaryExpr(
-				((Expression*)visit(ctx->expr()))->getType(),
+				Type::UNKNOWN,
 				*((Expression*)visit(ctx->expr())),
 				UnaryOp::MINUS);
 	}
@@ -356,7 +351,7 @@ public:
 	virtual antlrcpp::Any visitNot(cmmpParser::NotContext *ctx) override {
 		return (Expression*)
 			new UnaryExpr(
-			((Expression*)ctx->expr())->getType(),
+				Type::UNKNOWN,
 				*((Expression*)visit(ctx->expr())),
 				UnaryOp::NOT);
 	}
@@ -364,7 +359,7 @@ public:
 	virtual antlrcpp::Any visitPre(cmmpParser::PreContext *ctx) override {
 		return (Expression*)
 			new UnaryAffectation(
-				((Variable*)ctx->membreGauche())->getType(),
+				Type::UNKNOWN,
 				*((Variable*)visit(ctx->membreGauche())), 
 				visit(ctx->opUnaryAffectation()), 
 				true);
@@ -373,7 +368,7 @@ public:
 	virtual antlrcpp::Any visitPost(cmmpParser::PostContext *ctx) override {
 		return (Expression*)
 			new UnaryAffectation(
-				((Variable*)ctx->membreGauche())->getType(),
+				Type::UNKNOWN,
 				*((Variable*)visit(ctx->membreGauche())), 
 				visit(ctx->opUnaryAffectation()), 
 				true);
@@ -384,7 +379,7 @@ public:
 	virtual antlrcpp::Any visitAnd(cmmpParser::AndContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
-			((Expression*)visit(ctx->expr(0)))->getType(), //return type, possibilité de le travailler un peu plus
+				Type::UNKNOWN,
 				*((Expression*)visit(ctx->expr(0))),
 				BinaryOp::AND,
 				*((Expression*)visit(ctx->expr(1)))
@@ -400,7 +395,7 @@ public:
 	virtual antlrcpp::Any visitComparaison(cmmpParser::ComparaisonContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
-			((Expression*)visit(ctx->expr(0)))->getType(), //return type, possibilité de le travailler un peu plus
+				Type::UNKNOWN,
 				*((Expression*)visit(ctx->expr(0))),
 				(BinaryOp)visit(ctx->opComparaison()),
 				*((Expression*)visit(ctx->expr(1)))
