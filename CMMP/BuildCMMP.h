@@ -20,8 +20,8 @@ public:
 	BuildCMMP();
 	virtual ~BuildCMMP();
 
-	//TODO complex 
-	//TODO vérifier le nouveau délire de parent pour toutes les instructions (histoire de variables et de portées)
+		//TODO (pas prio) complex 
+		//TODO (pas prio) vérifier le nouveau délire de parent pour toutes les instructions (histoire de variables et de portées)
 
 
 
@@ -88,10 +88,8 @@ public:
 		return visitChildren(ctx);
 	}
 
-	//TODO izi
-	//TODO juste du formel, on retourne le resultat de la visite de ctx->varSimple() (VariableDeclaration*)
 	virtual antlrcpp::Any visitSimpleVar(cmmpParser::SimpleVarContext *ctx) override {
-		return visitChildren(ctx);
+		return (VariableDeclaration*) visit(ctx->varSimple());
 	}
 
 	//TODO later
@@ -212,11 +210,11 @@ public:
 		return visitChildren(ctx);
 	}
 
-	//TODO pour le type de l'expression binaire on peut faire plus propre
-	//TODO soit un switch case ici, un peu dégueu,
-	//TODO soit une méthode statique dans TypeUtil qui prend 2 types de param et donne le type du résultat
+		//TODO (pas prio) pour le type de l'expression binaire on peut faire plus propre
+		//TODO (pas prio) soit un switch case ici, un peu dégueu,
+		//TODO (pas prio) soit une méthode statique dans TypeUtil qui prend 2 types de param et donne le type du résultat
 
-	//TODO 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
+		//TODO (pas prio) 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitAdd(cmmpParser::AddContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
@@ -227,8 +225,8 @@ public:
 			);
 	}
 
-	//TODO cf TODO visitAdd
-	//TODO 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
+		//TODO (pas prio) cf TODO visitAdd
+		//TODO (pas prio) 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitSub(cmmpParser::SubContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
@@ -239,8 +237,8 @@ public:
 			);
 	}
 
-	//TODO 2 cf TODO visitAdd
-	//TODO 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
+		//TODO (pas prio) 2 cf TODO visitAdd
+		//TODO (pas prio) 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitMult(cmmpParser::MultContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
@@ -251,8 +249,8 @@ public:
 			);
 	}
 
-	//TODO 2 cf TODO visitAdd
-	//TODO 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
+		//TODO (pas prio) 2 cf TODO visitAdd
+		//TODO (pas prio) 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitMod(cmmpParser::ModContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
@@ -263,8 +261,8 @@ public:
 			);
 	}
 
-	//TODO 2 cf TODO visitAdd
-	//TODO 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
+		//TODO (pas prio) 2 cf TODO visitAdd
+		//TODO (pas prio) 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitOr(cmmpParser::OrContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
@@ -275,8 +273,7 @@ public:
 			);
 	}
 
-	//TODO checker
-	//TODO écrire code, cd visitAdd
+		//TODO (pas prio) checker
 	virtual antlrcpp::Any visitConst(cmmpParser::ConstContext *ctx) override {
 		cout << ctx->start->getLine() << " - CONST " << ctx->Cst()->getText() << endl;
 		string cst = ctx->Cst()->getText();
@@ -334,8 +331,8 @@ public:
 			);
 	}
 
-	//TODO 2 cf TODO visitAdd
-	//TODO 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
+		//TODO (pas prio) 2 cf TODO visitAdd
+		//TODO (pas prio) 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitDiv(cmmpParser::DivContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
@@ -346,7 +343,7 @@ public:
 			);;
 	}
 
-	//TODO 55 simplification : si c'est une constante, on peut juste changer sa valeur et la return
+		//TODO (pas prio) 55 simplification : si c'est une constante, on peut juste changer sa valeur et la return
 	virtual antlrcpp::Any visitNeg(cmmpParser::NegContext *ctx) override {
 		return (Expression*)
 			new UnaryExpr(
@@ -355,7 +352,7 @@ public:
 				UnaryOp::MINUS);
 	}
 
-	//TODO 55 simplification : si c'est une constante, on peut juste changer sa valeur et la return
+		//TODO (pas prio) 55 simplification : si c'est une constante, on peut juste changer sa valeur et la return
 	virtual antlrcpp::Any visitNot(cmmpParser::NotContext *ctx) override {
 		return (Expression*)
 			new UnaryExpr(
@@ -382,8 +379,8 @@ public:
 				true);
 	}
 
-	//TODO 2 cf TODO visitAdd
-	//TODO 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
+		//TODO (pas prio) 2 cf TODO visitAdd
+		//TODO (pas prio) 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitAnd(cmmpParser::AndContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
@@ -398,8 +395,8 @@ public:
 		return (Expression*) (FunctionCall*)visit(ctx->functionCall());
 	}
 
-	//TODO 2 cf TODO visitAdd
-	//TODO 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
+		//TODO (pas prio) 2 cf TODO visitAdd
+		//TODO (pas prio) 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitComparaison(cmmpParser::ComparaisonContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
@@ -410,10 +407,8 @@ public:
 			);
 	}
 
-	//TODO izi
-	//TODO retourner l'objet obtenu par la visite de ctx->membreGauche() et le cast en (Expression *)
 	virtual antlrcpp::Any visitVariable(cmmpParser::VariableContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*) (Variable*)visit(ctx->membreGauche());
 	}
 
 	//TODO later
@@ -422,10 +417,9 @@ public:
 		return visitChildren(ctx);
 	}
 
-	//TODO creer l'objet FunctionCall, avec le type UNKNOWN a priori et avec le bon nom
 	//TODO utiliser addArg sur l'objet pour lui ajouter les paramètres lus dans ctx->eListe()
 	virtual antlrcpp::Any visitFunctionCall(cmmpParser::FunctionCallContext *ctx) override {
-		return visitChildren(ctx);
+		return (FunctionCall*)new FunctionCall(Type::UNKNOWN, "test");
 	}
 
 	virtual antlrcpp::Any visitIncr(cmmpParser::IncrContext *ctx) override {
