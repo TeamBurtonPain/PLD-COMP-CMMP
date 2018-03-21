@@ -178,9 +178,7 @@ public:
 	//TODO izi
 	//TODO retourner le résultat de la visite de ctx->expr(), attention a bien le cast en (Instruction*)
 	virtual antlrcpp::Any visitInsExpr(cmmpParser::InsExprContext *ctx) override {
-		antlrcpp::Any a = visit(ctx->expr());
-		Instruction * b = (Instruction*)a; // erreur ici le cast plante
-		return (Instruction*)(visit(ctx->expr()));
+		return (Instruction*)((Expression*)(visit(ctx->expr())));
 	}
 	
 	//TODO complex
@@ -193,7 +191,7 @@ public:
 	//TODO izi
 	//TODO retourner le résultat de la visite de ctx->structureControl(), attention a bien le cast en (Instruction*)
 	virtual antlrcpp::Any visitInsControl(cmmpParser::InsControlContext *ctx) override {
-		return (Instruction*) new Variable(Type::CHAR,"test",1);
+		return (Instruction*) ((Expression*)(new Variable(Type::CHAR,"test",1)));
 	}
 
 	//TODO later
