@@ -10,10 +10,11 @@ using namespace std;
 class Condition : public Instruction
 {
 public:
-	Condition(const Expression &condition, const Instruction &ifInstruction, const Instruction &elseInstruction);
+	Condition(Expression &condition, Instruction &ifInstruction, Instruction &elseInstruction);
+	Condition(Expression &condition, Instruction &ifInstruction);
 	virtual ~Condition(void);
 protected:
-	ptr<const Expression> test;
-	ptr<const Instruction> instruction;
-	ptr<const Instruction> elseInstruction;
+	ptr<Expression> test;
+	ptr<Instruction> instruction;
+	ptr<Instruction> elseInstruction;
 };

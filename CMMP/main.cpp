@@ -14,7 +14,7 @@ using namespace antlr4;
 int main(){
 	Program* p;
 
-	//TODO pour l'executer vous pouvez avoir besoin de changer les / en \\ 
+	//TODO pour l'executer vous pouvez avoir besoin de changer les / en double antislash
 	ANTLRFileStream input("../Ex_Test_Backend/6-While.cmmp");
 	cmmpLexer lexer(&input);
 

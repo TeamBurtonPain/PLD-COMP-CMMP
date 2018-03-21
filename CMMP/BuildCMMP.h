@@ -20,12 +20,12 @@ public:
 	virtual ~BuildCMMP();
 
 	//TODO complex 
-	//TODO vérifier le nouvel délire de parent pour toutes les instructions (histoire de variables et de portées)
+	//TODO vérifier le nouveau délire de parent pour toutes les instructions (histoire de variables et de portées)
 
-	//TODO izi
-	//TODO un peu de formalisme, on récupère la visite de ctx->programme qui est de type Program* et on le return direct
+
+
 	virtual antlrcpp::Any visitAxiome(cmmpParser::AxiomeContext *ctx) override {
-		return visitChildren(ctx);
+		return (Program*) visit(ctx->programme());
 	}
 
 	//TODO
@@ -112,7 +112,6 @@ public:
 		return visitChildren(ctx);
 	}
 
-	//TODO @thibault : t'es capable de me dire la mem leak si je passe par vector<> au lieu de ptr<vector<> > ici ??
 	//instancie et complete la fonction
 	virtual antlrcpp::Any visitDefinitionFonction(cmmpParser::DefinitionFonctionContext *ctx) override {
 		Funct* f = new Funct(
@@ -159,14 +158,15 @@ public:
 			);
 	}
 
-
+	//TODO todo.
 	virtual antlrcpp::Any visitControlwhile(cmmpParser::ControlwhileContext *ctx) override {
-    return visitChildren(ctx);
-  }
+    	return (Instruction*) new Block(); //new Loop(Expression finalTest, Instruction instruction)
+  	}
 
-  virtual antlrcpp::Any visitControlif(cmmpParser::ControlifContext *ctx) override {
-    return visitChildren(ctx);
-  }
+	//TODO todo.
+  	virtual antlrcpp::Any visitControlif(cmmpParser::ControlifContext *ctx) override {
+    	return (Instruction*) new Block(); //new Condition(Expression condition, Instruction if, Instruction else) ou  Condition(Expression condition, Instruction if)
+  	}
 
 	//TODO izi
 	//TODO là c'était la création d'une variable pour tester...
@@ -178,6 +178,7 @@ public:
 	//TODO izi
 	//TODO retourner le résultat de la visite de ctx->expr(), attention a bien le cast en (Instruction*)
 	virtual antlrcpp::Any visitInsExpr(cmmpParser::InsExprContext *ctx) override {
+		return (Instruction*) new Variable(Type::CHAR,"test",1);
 		return (Instruction*)((Expression*)(visit(ctx->expr())));
 	}
 	
@@ -188,10 +189,8 @@ public:
 		return (Instruction*) new Variable(Type::CHAR,"test",1);
 	}
 	
-	//TODO izi
-	//TODO retourner le résultat de la visite de ctx->structureControl(), attention a bien le cast en (Instruction*)
 	virtual antlrcpp::Any visitInsControl(cmmpParser::InsControlContext *ctx) override {
-		return (Instruction*) ((Expression*)(new Variable(Type::CHAR,"test",1)));
+		return (Instruction*)(visit(ctx->structureControl()));
 	}
 
 	//TODO later
@@ -239,7 +238,6 @@ public:
 			);
 	}
 
-	//TODO écrire code, cd visitAdd
 	//TODO 2 cf TODO visitAdd
 	//TODO 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitMult(cmmpParser::MultContext *ctx) override {
@@ -252,7 +250,6 @@ public:
 			);
 	}
 
-	//TODO écrire code, cd visitAdd
 	//TODO 2 cf TODO visitAdd
 	//TODO 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitMod(cmmpParser::ModContext *ctx) override {
@@ -265,7 +262,6 @@ public:
 			);
 	}
 
-	//TODO écrire code, cd visitAdd
 	//TODO 2 cf TODO visitAdd
 	//TODO 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitOr(cmmpParser::OrContext *ctx) override {
@@ -278,6 +274,7 @@ public:
 			);
 	}
 
+	//TODO checker
 	//TODO écrire code, cd visitAdd
 	virtual antlrcpp::Any visitConst(cmmpParser::ConstContext *ctx) override {
 		cout << ctx->start->getLine() << " - CONST " << ctx->Cst()->getText() << endl;
@@ -324,8 +321,6 @@ public:
 		}
 	}
 
-	//TODO checker
-
 	//TODO later
 	//TODO vérifier la compatibilité avec les tableaux et cast en (Expression *) (je crois)
 	virtual antlrcpp::Any visitAffectation(cmmpParser::AffectationContext *ctx) override {
@@ -338,17 +333,25 @@ public:
 			);
 	}
 
-	//TODO écrire code, cd visitAdd
 	//TODO 2 cf TODO visitAdd
 	//TODO 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitDiv(cmmpParser::DivContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*)
+			new BinaryExpr(
+			((Expression*)visit(ctx->expr(0)))->getType(), //return type, possibilité de le travailler un peu plus
+				*((Expression*)visit(ctx->expr(0))),
+				BinaryOp::DIV,
+				*((Expression*)visit(ctx->expr(1)))
+			);;
 	}
 
-	//TODO écrire code, cd visitAdd
 	//TODO 55 simplification : si c'est une constante, on peut juste changer sa valeur et la return
 	virtual antlrcpp::Any visitNeg(cmmpParser::NegContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*)
+			new UnaryExpr(
+				((Expression*)visit(ctx->expr()))->getType(),
+				*((Expression*)visit(ctx->expr())),
+				UnaryOp::MINUS);
 	}
 
 	//TODO 55 simplification : si c'est une constante, on peut juste changer sa valeur et la return
@@ -360,34 +363,50 @@ public:
 				UnaryOp::NOT);
 	}
 
-	//TODO cf TODO visitAdd à propos du type et  cast en (Expression *)
 	virtual antlrcpp::Any visitPre(cmmpParser::PreContext *ctx) override {
-		return new UnaryAffectation(Type::UNKNOWN, *((Variable*)visit(ctx->membreGauche())), visit(ctx->opUnaryAffectation()), true);
+		return (Expression*)
+			new UnaryAffectation(
+				((Variable*)ctx->membreGauche())->getType(),
+				*((Variable*)visit(ctx->membreGauche())), 
+				visit(ctx->opUnaryAffectation()), 
+				true);
 	}
 
-	//TODO cf TODO visitAdd à propos du type et  cast en (Expression *)
 	virtual antlrcpp::Any visitPost(cmmpParser::PostContext *ctx) override {
-		return new UnaryAffectation(Type::UNKNOWN, *((Variable*)visit(ctx->membreGauche())), visit(ctx->opUnaryAffectation()), false);
+		return (Expression*)
+			new UnaryAffectation(
+				((Variable*)ctx->membreGauche())->getType(),
+				*((Variable*)visit(ctx->membreGauche())), 
+				visit(ctx->opUnaryAffectation()), 
+				true);
 	}
 
-	//TODO écrire code, cd visitAdd
 	//TODO 2 cf TODO visitAdd
 	//TODO 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitAnd(cmmpParser::AndContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*)
+			new BinaryExpr(
+			((Expression*)visit(ctx->expr(0)))->getType(), //return type, possibilité de le travailler un peu plus
+				*((Expression*)visit(ctx->expr(0))),
+				BinaryOp::AND,
+				*((Expression*)visit(ctx->expr(1)))
+			);
 	}
 
-	//TODO izi
-	//TODO retourner l'objet obtenu par la visite de ctx->functionCall() et le cast en (Expression *)
 	virtual antlrcpp::Any visitFunction(cmmpParser::FunctionContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*) (FunctionCall*)visit(ctx->functionCall());
 	}
 
-	//TODO écrire code, cd visitAdd
 	//TODO 2 cf TODO visitAdd
 	//TODO 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitComparaison(cmmpParser::ComparaisonContext *ctx) override {
-		return visitChildren(ctx);
+		return (Expression*)
+			new BinaryExpr(
+			((Expression*)visit(ctx->expr(0)))->getType(), //return type, possibilité de le travailler un peu plus
+				*((Expression*)visit(ctx->expr(0))),
+				(BinaryOp)visit(ctx->opComparaison()),
+				*((Expression*)visit(ctx->expr(1)))
+			);
 	}
 
 	//TODO izi
@@ -416,38 +435,28 @@ public:
 		return OpUnaryAffectation::DECR;
 	}
 
-	//TODO izi izi
-	//TODO retourne le bon BinaryOp correspondant
 	virtual antlrcpp::Any visitInf(cmmpParser::InfContext *ctx) override {
-		return visitChildren(ctx);
+		return BinaryOp::INF;
 	}
 
-	//TODO izi izi
-	//TODO retourne le bon BinaryOp correspondant
 	virtual antlrcpp::Any visitSup(cmmpParser::SupContext *ctx) override {
-		return visitChildren(ctx);
+		return BinaryOp::SUP;
 	}
 
-	//TODO izi izi
-	//TODO retourne le bon BinaryOp correspondant
 	virtual antlrcpp::Any visitInfeq(cmmpParser::InfeqContext *ctx) override {
-		return visitChildren(ctx);
+		return BinaryOp::INFEQ;
 	}
 
-	//TODO izi izi
-	//TODO retourne le bon BinaryOp correspondant
 	virtual antlrcpp::Any visitSupeq(cmmpParser::SupeqContext *ctx) override {
-		return visitChildren(ctx);
+		return BinaryOp::SUPEQ;
 	}
 
 	virtual antlrcpp::Any visitEq(cmmpParser::EqContext *ctx) override {
 		return BinaryOp::EQ;
 	}
 
-	//TODO izi izi
-	//TODO retourne le bon BinaryOp correspondant
 	virtual antlrcpp::Any visitNeq(cmmpParser::NeqContext *ctx) override {
-		return visitChildren(ctx);
+		return BinaryOp::NEQ;
 	}
 
 	virtual antlrcpp::Any visitAff(cmmpParser::AffContext *ctx) override {

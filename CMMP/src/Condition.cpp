@@ -1,9 +1,13 @@
 #include "Condition.h"
 
-Condition::Condition(const Expression &condition, const Instruction &ifInstruction, const Instruction &elseInstruction):
+Condition::Condition(Expression &condition, Instruction &ifInstruction, Instruction &elseInstruction):
     test(&condition),
     instruction(&ifInstruction), 
     elseInstruction(&elseInstruction) 
+{}
+Condition::Condition(Expression &condition, Instruction &ifInstruction):
+    test(&condition),
+    instruction(&ifInstruction)
 {}
 
 Condition::~Condition(void) {}
