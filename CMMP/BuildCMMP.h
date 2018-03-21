@@ -153,7 +153,8 @@ public:
 		return (VariableDeclaration*) new VariableDeclaration(
 			TypeUtil::getTypeFromString(ctx->Type()->getText()),
 			ctx->Var()->getText(),
-			ctx->start->getLine()
+			ctx->start->getLine(),
+			ctx->start->getCharPositionInLine()
 			);
 	}
 
@@ -179,7 +180,7 @@ public:
 	//TODO relou a cause du fait que ça soit une liste, faut faire gaffe à tout chopper
 	//TODO retourner le résultat de la visite de ctx->declarationVarListe(), attention a bien le cast en (Instruction*)
 	virtual antlrcpp::Any visitInsDeclVar(cmmpParser::InsDeclVarContext *ctx) override {
-		return (Instruction*) new Variable(Type::CHAR,"test",1);
+		return (Instruction*) new Variable(Type::CHAR,"test",1, 1);
 	}
 	
 	virtual antlrcpp::Any visitInsControl(cmmpParser::InsControlContext *ctx) override {
@@ -189,7 +190,7 @@ public:
 	//TODO later
 	//TODO la structure si c'est un tableau n'est pas encore prête...
 	virtual antlrcpp::Any visitMembreGauche(cmmpParser::MembreGaucheContext *ctx) override {
-		return new Variable(Type::UNKNOWN, ctx->Var()->getText(), ctx->start->getLine());
+		return new Variable(Type::UNKNOWN, ctx->Var()->getText(), ctx->start->getLine(), ctx->start->getCharPositionInLine());
 	}
 
 	//TODO s'inspirer du traitement de visitParamDefinitionList
