@@ -282,19 +282,19 @@ public:
 				}
 				else //cst[1]='\'
 				{
-					map<char, int> ascii_code = {{'b',8},{'t',9},{'n',10},{ 'v',11 },{ 'f',12 },{ 'r',13 }};
+					map<char, int> ascii_code = {{'b',8},{'t',9},{'n',10},{ 'v',11 },{ 'f',12 },{ 'r',13 },{ '\\',92 },{ '\'',39 } }; //map des caractères courants à échapper
 					if (ascii_code.find(cst[2]) != ascii_code.end())
 					{
 						val = char(ascii_code[cst[2]]);
 					}
 					else if(cst[2] >= 0 && cst[2] <= 9)
 					{
-						string num_s = cst.substr(2, cst.size() - 1 - 2); // 1 pour le ' final et 2 pour le '\ initiaux
+						string num_s = cst.substr(2, cst.size() - 1 - 2); // 1 pour le ' final et 2 pour les '\ initiaux
 						int num = std::stoi(num_s);
 						val = char(num);
 					}
 					else
-					{// à faire : ", ', \ et c'est tout je crois
+					{// cas particuliers de caractères à échapper
 						val = '?'; //unkown
 					}
 				}
