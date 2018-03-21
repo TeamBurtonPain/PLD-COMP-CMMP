@@ -203,11 +203,6 @@ public:
 		return (Expression*)visit(ctx->expr());
 	}
 
-		//TODO (pas prio) pour le type de l'expression binaire on peut faire plus propre
-		//TODO (pas prio) soit un switch case ici, un peu dégueu,
-		//TODO (pas prio) soit une méthode statique dans TypeUtil qui prend 2 types de param et donne le type du résultat
-
-		//TODO (pas prio) 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitAdd(cmmpParser::AddContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
@@ -218,8 +213,6 @@ public:
 			);
 	}
 
-		//TODO (pas prio) cf TODO visitAdd
-		//TODO (pas prio) 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitSub(cmmpParser::SubContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
@@ -230,8 +223,6 @@ public:
 			);
 	}
 
-		//TODO (pas prio) 2 cf TODO visitAdd
-		//TODO (pas prio) 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitMult(cmmpParser::MultContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
@@ -242,8 +233,6 @@ public:
 			);
 	}
 
-		//TODO (pas prio) 2 cf TODO visitAdd
-		//TODO (pas prio) 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitMod(cmmpParser::ModContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
@@ -254,8 +243,6 @@ public:
 			);
 	}
 
-		//TODO (pas prio) 2 cf TODO visitAdd
-		//TODO (pas prio) 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitOr(cmmpParser::OrContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
@@ -268,7 +255,7 @@ public:
 
 		//TODO (pas prio) checker
 	virtual antlrcpp::Any visitConst(cmmpParser::ConstContext *ctx) override {
-		/*
+		
 		cout << ctx->start->getLine() << " - CONST " << ctx->Cst()->getText() << endl;
 		string cst = ctx->Cst()->getText();
 		switch(cst[0])
@@ -311,12 +298,8 @@ public:
 				return (Expression*)(new Const<int64_t>(Type::INT32, val));
 			}
 		}
-		*/
-		return (Expression*)(new Const<int64_t>(Type::INT32, 0));
 	}
 
-	//TODO later
-	//TODO vérifier la compatibilité avec les tableaux et cast en (Expression *) (je crois)
 	virtual antlrcpp::Any visitAffectation(cmmpParser::AffectationContext *ctx) override {
 		return (Expression*)
 			new BinaryAffectation(
@@ -327,8 +310,6 @@ public:
 			);
 	}
 
-		//TODO (pas prio) 2 cf TODO visitAdd
-		//TODO (pas prio) 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitDiv(cmmpParser::DivContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
@@ -339,7 +320,6 @@ public:
 			);;
 	}
 
-		//TODO (pas prio) 55 simplification : si c'est une constante, on peut juste changer sa valeur et la return
 	virtual antlrcpp::Any visitNeg(cmmpParser::NegContext *ctx) override {
 		return (Expression*)
 			new UnaryExpr(
@@ -348,7 +328,6 @@ public:
 				UnaryOp::MINUS);
 	}
 
-		//TODO (pas prio) 55 simplification : si c'est une constante, on peut juste changer sa valeur et la return
 	virtual antlrcpp::Any visitNot(cmmpParser::NotContext *ctx) override {
 		return (Expression*)
 			new UnaryExpr(
@@ -375,8 +354,6 @@ public:
 				true);
 	}
 
-		//TODO (pas prio) 2 cf TODO visitAdd
-		//TODO (pas prio) 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitAnd(cmmpParser::AndContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
@@ -391,8 +368,6 @@ public:
 		return (Expression*) (FunctionCall*)visit(ctx->functionCall());
 	}
 
-		//TODO (pas prio) 2 cf TODO visitAdd
-		//TODO (pas prio) 55 simplification : si les deux membres sont des constantes, on peut créer une nouvelle constante
 	virtual antlrcpp::Any visitComparaison(cmmpParser::ComparaisonContext *ctx) override {
 		return (Expression*)
 			new BinaryExpr(
