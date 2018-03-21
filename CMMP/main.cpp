@@ -43,9 +43,21 @@ int main(){
 	//get the final object returned by the visit of the tree
 	p = (Program*)visitor.visit(tree);
 
-	//TODO later : faire les links des fonctions
-	//TODO later : verification de la coherence des types des variables et si elles sont declarées
-	//TODO later : avec le type des variables on devrait pouvoir définir le type de tout maintenant
+	//TODO 1
+	// later : résoudre la reconnaissance de variables pour les variables et fonction
+	//Pour cela vérifier les noms, portées et types.
+	//TODO @Thib : remplacer l'objet variable dans les expessions par l'objet VariableDeclaration ? pour bien pointer vers la meme
+	//@Thib, je pense faire comme les fonctions, differencier un call à une variable de sa Declaration, et dans un call on a un lien vers la déclaration
+	//TODO de même, lier la FunctionCall à la Funct
+
+	//TODO Verification statique 
+	// Verif si var utilisee sans etre initialisée
+	// Verif si var inutile
+
+	//TODO typage
+	//Si on arrive jusque là c'est que toutes les var sont definies et ont un type
+	//On peut aussi simplifier les constantes et operations entre constantes
+
 
     cin.get();
 	delete(p);
