@@ -8,7 +8,7 @@ class VariableDeclarations : public Instruction{
     public:
         VariableDeclarations(void);
         virtual ~VariableDeclarations(void);
-        void addDecla(VariableDeclaration&);
+        void addDecla(ptr<VariableDeclaration>);
         vector<ptr<VariableDeclaration> > getDecla(void){return declarations;};
     protected:
         vector<ptr<VariableDeclaration> > declarations;

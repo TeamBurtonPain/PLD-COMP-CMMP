@@ -1,6 +1,7 @@
 #pragma once
 #include "BinaryAffectation.h"
 #include "BinaryExpr.h"
+#include "Block.h"
 #include "cmmpBaseVisitor.h"
 #include "Expression.h"
 #include "FunctionCall.h"
@@ -42,9 +43,9 @@ public:
 
 		Funct* f = (Funct*) visit(ctx->definitionFonction());
 		if(f->getName().compare("main"))
-			p->setMainFunction(*f);
+			p->setMainFunction(ptr<Funct>(f));
 		else
-			p->addFunction(*f);
+			p->addFunction(ptr<Funct>(f));
 
 		return p;
 	}
@@ -55,7 +56,7 @@ public:
 	}
 
 	//A la visite d'un Block, on l'instancie, on note les variables d'un coté et les instructions d'un autre
-	//TODO la race des parents
+	//TODO la fcking race des parents
 	virtual antlrcpp::Any visitBlock(cmmpParser::BlockContext *ctx) override {
 		Block* b = new Block();
 
@@ -66,27 +67,33 @@ public:
 
 			VariableDeclarations* vds = dynamic_cast<VariableDeclarations*>(instr);
 			if(vds){
-				cout<<"ici"<<endl;
 				vector<ptr<VariableDeclaration> > vectorDecl =  vds->getDecla();
 				for(int i=0;i<vectorDecl.size();i++){
 					cout<<"line : "<<i<<endl;
-					b->addVariable(*(vectorDecl[i]));
+					b->addVariable(vectorDecl[i]);
 				}
-				delete(vds);
-				vectorDecl.clear();
+				//delete(vds);
+				//vectorDecl.clear();
 				
 			}else{
 				//instr->setParent(*b);
-				b->addInstruction(*instr);
+				ptr<Instruction> ptrInstru (instr);
+				b->addInstruction(ptrInstru);
 			}
 		}
 		return b;
 	}
 
-	//TODO s'inspirer du traitement de visitParamDefinitionList
-	//renvoie un vector* de VariableDeclaration* avec leur valeur d'initialisation si c'est le cas
 	virtual antlrcpp::Any visitDeclarationVarListe(cmmpParser::DeclarationVarListeContext *ctx) override {
-		return visitChildren(ctx);
+		VariableDeclarations* list = new VariableDeclarations();
+
+		for(uint i=0 ; i<ctx->declarationVar().size() ; i++){
+			VariableDeclaration* varDecla = (VariableDeclaration*)visit(ctx->declarationVar(i));
+
+			list->addDecla(ptr<VariableDeclaration>(varDecla));
+		}
+
+		return list;
 	}
 
 	virtual antlrcpp::Any visitSimpleVar(cmmpParser::SimpleVarContext *ctx) override {
@@ -103,7 +110,8 @@ public:
 	//TODO construire l'objet VariableDeclaration* à retourner avec sa valeur par défaut il elle existe
 	//TODO s'inspirer de visitParamDefinition
 	virtual antlrcpp::Any visitVarSimple(cmmpParser::VarSimpleContext *ctx) override {
-		return visitChildren(ctx);
+		cout<<"yop"<<endl;
+		return (VariableDeclaration*) new VariableDeclaration(Type::CHAR,"tets",1,1);
 	}
 
 	//TODO later
@@ -123,11 +131,11 @@ public:
 		
 		for(uint i=0; i<listParams->size();i++){
 			cout<<(*listParams)[i]->getName()<<endl;
-			f->addVariable(*(*listParams)[i]);
+			f->addVariable((*listParams)[i]);
 		}
 
 		f->setBlock(
-			*((Block*)visit(ctx->block()))
+			ptr<Block>((Block*)visit(ctx->block()))
 		);
 		return f;
 	}
@@ -177,11 +185,8 @@ public:
 		return (Instruction*)((Expression*)(visit(ctx->expr())));
 	}
 	
-	//TODO complex
-	//TODO relou a cause du fait que ça soit une liste, faut faire gaffe à tout chopper
-	//TODO retourner le résultat de la visite de ctx->declarationVarListe(), attention a bien le cast en (Instruction*)
 	virtual antlrcpp::Any visitInsDeclVar(cmmpParser::InsDeclVarContext *ctx) override {
-		return (Instruction*) new VariableCall(Type::CHAR,"test",1, 1);
+		return (Instruction*) (VariableDeclarations*)visit(ctx->declarationVarListe());
 	}
 	
 	virtual antlrcpp::Any visitInsControl(cmmpParser::InsControlContext *ctx) override {

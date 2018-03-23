@@ -2,6 +2,6 @@
 
 VariableDeclarations::VariableDeclarations(void){}
 VariableDeclarations::~VariableDeclarations(void){}
-void VariableDeclarations::addDecla(VariableDeclaration& d){
-    declarations.push_back(ptr<VariableDeclaration> (&d));
+void VariableDeclarations::addDecla(ptr<VariableDeclaration> d){
+    declarations.push_back(d);
 }

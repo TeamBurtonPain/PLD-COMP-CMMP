@@ -13,8 +13,8 @@ class Block : public Instruction, public VarContainer
 		Block(void);
 		virtual ~Block(void);
 
-		void addVariable(VariableDeclaration&);
-		void addInstruction(Instruction&);
+		void addVariable(ptr<VariableDeclaration>);
+		void addInstruction(ptr<Instruction>);
 
 	protected:
 		hashmap<string, ptr<VariableDeclaration> > variables;

@@ -4,9 +4,9 @@ Block::Block(void) {}
 
 Block::~Block(void) {}
 
-void Block::addVariable(VariableDeclaration& v){
-    variables.insert({v.getName(), ptr<VariableDeclaration>(&v)});
+void Block::addVariable(ptr<VariableDeclaration> v){
+    variables.insert({v->getName(), v});
 }
-void Block::addInstruction(Instruction &i){
-    instructions.push_back(ptr<Instruction>(&i));
+void Block::addInstruction(ptr<Instruction> i){
+    instructions.push_back(i);
 }

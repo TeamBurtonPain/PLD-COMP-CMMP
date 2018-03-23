@@ -10,9 +10,9 @@ class Program : public VarContainer {
 		Program(void);
 		virtual ~Program(void);
 
-		void addVariable(VariableDeclaration&);
-		void setMainFunction(Funct &mainF);
-		void addFunction(Funct &f);
+		void addVariable(ptr<VariableDeclaration>);
+		void setMainFunction(ptr<Funct> mainF);
+		void addFunction(ptr<Funct> f);
 
 	protected : 
 		hashmap <string, ptr<VariableDeclaration>> variables;

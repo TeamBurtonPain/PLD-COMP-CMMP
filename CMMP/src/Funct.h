@@ -14,8 +14,8 @@ class Funct: public VarContainer{
 		virtual ~Funct(void);
 		Type getType(void)const{return returnType;}
 		string getName(void)const{return name;}
-		void addVariable(VariableDeclaration&);
-		void setBlock(Block&);
+		void addVariable(ptr<VariableDeclaration>);
+		void setBlock(ptr<Block>);
 
 	protected :
 		hashmap <string, ptr<VariableDeclaration> > parameters;

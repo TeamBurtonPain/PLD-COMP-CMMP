@@ -4,10 +4,10 @@ Funct::Funct(Type t, string n):returnType(t), name(n){}
 
 Funct::~Funct(void){}
 
-void Funct::addVariable(VariableDeclaration& v){
-    parameters.insert({v.getName(), ptr<VariableDeclaration>(&v)});
+void Funct::addVariable(ptr<VariableDeclaration> v){
+    parameters.insert({v->getName(), v});
 }
 
-void Funct::setBlock(Block& b){
-    instructions = ptr<Block>(&b);
+void Funct::setBlock(ptr<Block> b){
+    instructions = b;
 }
