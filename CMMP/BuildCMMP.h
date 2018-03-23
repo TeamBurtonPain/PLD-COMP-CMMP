@@ -9,7 +9,7 @@
 #include "UnaryAffectation.h"
 #include "UnaryExpr.h"
 #include "VariableCall.h"
-#include "VariableDeclaration.h"
+#include "VariableDeclarations.h"
 #include "Const.h"
 
 
@@ -19,11 +19,6 @@ class BuildCMMP :
 public:
 	BuildCMMP();
 	virtual ~BuildCMMP();
-
-		//TODO (pas prio) complex 
-		//TODO (pas prio) vérifier le nouveau délire de parent pour toutes les instructions (histoire de variables et de portées)
-
-
 
 	virtual antlrcpp::Any visitAxiome(cmmpParser::AxiomeContext *ctx) override {
 		return (Program*) visit(ctx->programme());
@@ -59,10 +54,8 @@ public:
 		return new Program();
 	}
 
-	//TODO après implémenttion de Declaration Variable, il faudra s'assurer qu'elle enregistre bien la valeur initialisée dans l'objet VariableDeclaration et supprimer le commentaire plus bas dans la méthode
 	//A la visite d'un Block, on l'instancie, on note les variables d'un coté et les instructions d'un autre
-
-	//TODO 2 set le block actuel comme parent de l'instruction
+	//TODO la race des parents
 	virtual antlrcpp::Any visitBlock(cmmpParser::BlockContext *ctx) override {
 		Block* b = new Block();
 
@@ -71,11 +64,19 @@ public:
 			<<ctx->instruction(i)->getText()<<endl;
 			Instruction* instr = (Instruction*)(visit(ctx->instruction(i)));
 
-			VariableDeclaration* vd = dynamic_cast<VariableDeclaration*>(instr);
-			if(vd){
-				b->addVariable(*vd);
-				//faut faire un truc pour garder la valeur initialisée
+			VariableDeclarations* vds = dynamic_cast<VariableDeclarations*>(instr);
+			if(vds){
+				cout<<"ici"<<endl;
+				vector<ptr<VariableDeclaration> > vectorDecl =  vds->getDecla();
+				for(int i=0;i<vectorDecl.size();i++){
+					cout<<"line : "<<i<<endl;
+					b->addVariable(*(vectorDecl[i]));
+				}
+				delete(vds);
+				vectorDecl.clear();
+				
 			}else{
+				//instr->setParent(*b);
 				b->addInstruction(*instr);
 			}
 		}
