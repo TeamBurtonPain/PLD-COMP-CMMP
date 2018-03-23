@@ -118,12 +118,22 @@ public:
 			ctx->Var()->getText()
 		);
 		//c'est chelou mais sans ptr autour de tout ça j'ai des leaks
-		ptr<vector<ptr<VariableDeclaration> > > listParams = ptr<vector<ptr<VariableDeclaration> > > ((vector<ptr<VariableDeclaration> >*)visit(ctx->paramDefinitionList()));
-		
-		for(int i=0; i<listParams->size();i++){
-			cout<<(*listParams)[i]->getName()<<endl;
-			f->addVariable(*(*listParams)[i]);
+		//nullptr si aucun paramètre
+		if (ctx->paramDefinitionList()!=0)
+		{
+
+			void* paramList = (void*)visit(ctx->paramDefinitionList());
+			if (paramList != nullptr)
+			{
+				ptr<vector<ptr<VariableDeclaration> > > listParams = ptr<vector<ptr<VariableDeclaration> > >((vector<ptr<VariableDeclaration> >*)paramList);
+				for (int i = 0; i < listParams->size(); i++) {
+					cout << (*listParams)[i]->getName() << endl;
+					f->addVariable(*(*listParams)[i]);
+				}
+			}
 		}
+		
+		
 
 		f->setBlock(
 			*((Block*)visit(ctx->block()))
@@ -135,7 +145,6 @@ public:
 	//passe par la visite de ctx->paramDefinition
 	virtual antlrcpp::Any visitParamDefinitionList(cmmpParser::ParamDefinitionListContext *ctx) override {
 		vector<ptr<VariableDeclaration> >*list = new vector<ptr<VariableDeclaration> >();
-		
 		//if only param is void
 		if(ctx->paramDefinition().size()==1 && ctx->paramDefinition(0)->getText()=="void")
 			return list;
