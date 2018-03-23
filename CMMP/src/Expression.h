@@ -6,10 +6,10 @@
 
 //classe abstraite  
 class Expression : public Instruction{
-	public :
+	public:
 		Expression(Type t);
 		virtual ~Expression(void) = 0;
 		Type getType(void){return type;};
-	protected :
+	protected:
 		Type type;
 };

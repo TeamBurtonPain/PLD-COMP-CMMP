@@ -8,7 +8,7 @@
 #include "Program.h"
 #include "UnaryAffectation.h"
 #include "UnaryExpr.h"
-#include "Variable.h"
+#include "VariableCall.h"
 #include "VariableDeclaration.h"
 #include "Const.h"
 
@@ -120,7 +120,7 @@ public:
 		//c'est chelou mais sans ptr autour de tout ça j'ai des leaks
 		ptr<vector<ptr<VariableDeclaration> > > listParams = ptr<vector<ptr<VariableDeclaration> > > ((vector<ptr<VariableDeclaration> >*)visit(ctx->paramDefinitionList()));
 		
-		for(int i=0; i<listParams->size();i++){
+		for(uint i=0; i<listParams->size();i++){
 			cout<<(*listParams)[i]->getName()<<endl;
 			f->addVariable(*(*listParams)[i]);
 		}
@@ -180,7 +180,7 @@ public:
 	//TODO relou a cause du fait que ça soit une liste, faut faire gaffe à tout chopper
 	//TODO retourner le résultat de la visite de ctx->declarationVarListe(), attention a bien le cast en (Instruction*)
 	virtual antlrcpp::Any visitInsDeclVar(cmmpParser::InsDeclVarContext *ctx) override {
-		return (Instruction*) new Variable(Type::CHAR,"test",1, 1);
+		return (Instruction*) new VariableCall(Type::CHAR,"test",1, 1);
 	}
 	
 	virtual antlrcpp::Any visitInsControl(cmmpParser::InsControlContext *ctx) override {
@@ -190,7 +190,7 @@ public:
 	//TODO later
 	//TODO la structure si c'est un tableau n'est pas encore prête...
 	virtual antlrcpp::Any visitMembreGauche(cmmpParser::MembreGaucheContext *ctx) override {
-		return new Variable(Type::UNKNOWN, ctx->Var()->getText(), ctx->start->getLine(), ctx->start->getCharPositionInLine());
+		return new VariableCall(Type::UNKNOWN, ctx->Var()->getText(), ctx->start->getLine(), ctx->start->getCharPositionInLine());
 	}
 
 	//TODO s'inspirer du traitement de visitParamDefinitionList
@@ -304,7 +304,7 @@ public:
 		return (Expression*)
 			new BinaryAffectation(
 				Type::UNKNOWN,
-				*((Variable*)visit(ctx->membreGauche())),
+				*((VariableCall*)visit(ctx->membreGauche())),
 				(OpBinaryAffectation)visit(ctx->opAffectation()),
 				*((Expression*)visit(ctx->expr()))
 			);
