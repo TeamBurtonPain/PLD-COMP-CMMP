@@ -24,16 +24,20 @@ class BuildCMMP : public cmmpBaseVisitor
 		return (Program *)visit(ctx->programme());
 	}
 
-	//TODO
-	//On recupere Program dans le contexte et on lui ajoute les variables
 	virtual antlrcpp::Any visitDeclVar(cmmpParser::DeclVarContext *ctx) override
 	{
 		Program *p = (Program *)visit(ctx->programme());
-		/*
-		//get list of vars
-		//add it to the programm
-		//the the programm as their parent
-		*/
+
+		VariableDeclarations *vds = (VariableDeclarations*)(visit(ctx->declarationVarListe()));
+
+		vector<VariableDeclaration *> vectorDecl = vds->getDecla();
+		for (int i = 0; i < vectorDecl.size(); i++)
+		{
+			p->addVariable(vectorDecl[i]);
+		}
+		delete (vds);
+		vectorDecl.clear();
+
 		return p;
 	}
 
@@ -59,17 +63,17 @@ class BuildCMMP : public cmmpBaseVisitor
 	}
 
 	//A la visite d'un Block, on l'instancie, on note les variables d'un coté et les instructions d'un autre
-	//TODO la fcking race des parents
 	virtual antlrcpp::Any visitBlock(cmmpParser::BlockContext *ctx) override
 	{
 		Block *b = new Block();
 
 		for (uint i = 0; i < ctx->instruction().size(); i++)
 		{
-//C-OUT
+			//C-OUT
 			cout << "l" << ctx->instruction(i)->start->getLine() << "- "
 				 << ctx->instruction(i)->getText() << endl;
 			Instruction *instr = (Instruction *)(visit(ctx->instruction(i)));
+			instr->setParent(b);
 
 			VariableDeclarations *vds = dynamic_cast<VariableDeclarations *>(instr);
 			if (vds)
@@ -77,8 +81,6 @@ class BuildCMMP : public cmmpBaseVisitor
 				vector<VariableDeclaration *> vectorDecl = vds->getDecla();
 				for (int i = 0; i < vectorDecl.size(); i++)
 				{
-//C-OUT
-					cout << "variable declarée : " << vectorDecl[i]->getName() << endl;
 					b->addVariable(vectorDecl[i]);
 				}
 				delete (vds);
@@ -97,27 +99,20 @@ class BuildCMMP : public cmmpBaseVisitor
 	{
 		VariableDeclarations *list = new VariableDeclarations();
 
+		Type t = TypeUtil::getTypeFromString(ctx->Type()->getText());
 		for (uint i = 0; i < ctx->declarationVar().size(); i++)
 		{
 			VariableDeclaration *varDecla = (VariableDeclaration *)visit(ctx->declarationVar(i));
-			//TODO
-			//set le type
+			varDecla->setType(t);
 			list->addDecla(varDecla);
 		}
 
 		return list;
 	}
 
-	//TODO
 	virtual antlrcpp::Any visitSimpleVar(cmmpParser::SimpleVarContext *ctx) override
 	{
-		VariableDeclaration *v = new VariableDeclaration(
-			Type::UNKNOWN,
-			ctx->Var().getText(),
-			ctx->start->getLine(),
-			ctx->start->getCharPositionInLine()) if (ctx->expr().size() == 1)
-
-			return (VariableDeclaration *)visit(ctx->varSimple());
+		return (VariableDeclaration *)visit(ctx->varSimple());
 	}
 
 	//TODO later
@@ -127,13 +122,19 @@ class BuildCMMP : public cmmpBaseVisitor
 		return visitChildren(ctx);
 	}
 
-	//TODO izi
-	//TODO construire l'objet VariableDeclaration* à retourner avec sa valeur par défaut il elle existe
-	//TODO s'inspirer de visitParamDefinition
 	virtual antlrcpp::Any visitVarSimple(cmmpParser::VarSimpleContext *ctx) override
 	{
-		cout << "yop" << endl;
-		return (VariableDeclaration *)new VariableDeclaration(Type::CHAR, "tets", 1, 1);
+		VariableDeclaration *v = new VariableDeclaration(
+			Type::UNKNOWN,
+			ctx->Var()->getText(),
+			ctx->start->getLine(),
+			ctx->start->getCharPositionInLine());
+
+		if (ctx->expr() != NULL)
+			v->setExpression(
+				(Expression *)visit(ctx->expr()));
+
+		return v;
 	}
 
 	//TODO later
