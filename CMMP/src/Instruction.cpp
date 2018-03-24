@@ -2,10 +2,7 @@
 
 Instruction::Instruction(void) {}
 
-Instruction::~Instruction(void)
-{
-    //delete parent;
-}
+Instruction::~Instruction(void) {}
 
 void Instruction::setParent(VarContainer *p)
 {

@@ -8,7 +8,7 @@ class UnaryAffectation : public Affectation
 {
   public:
     UnaryAffectation(Type t, Variable *leftValue, OpUnaryAffectation, bool isPre);
-    ~UnaryAffectation(void);
+    virtual ~UnaryAffectation(void);
 
   protected:
     OpUnaryAffectation op;

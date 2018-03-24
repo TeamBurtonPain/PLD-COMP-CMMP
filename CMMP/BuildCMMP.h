@@ -3,8 +3,10 @@
 #include "BinaryExpr.h"
 #include "Block.h"
 #include "cmmpBaseVisitor.h"
+#include "Condition.h"
 #include "Expression.h"
 #include "FunctionCall.h"
+#include "Loop.h"
 #include "Operators.h"
 #include "Program.h"
 #include "UnaryAffectation.h"
@@ -28,7 +30,7 @@ class BuildCMMP : public cmmpBaseVisitor
 	{
 		Program *p = (Program *)visit(ctx->programme());
 
-		VariableDeclarations *vds = (VariableDeclarations*)(visit(ctx->declarationVarListe()));
+		VariableDeclarations *vds = (VariableDeclarations *)(visit(ctx->declarationVarListe()));
 
 		vector<VariableDeclaration *> vectorDecl = vds->getDecla();
 		for (int i = 0; i < vectorDecl.size(); i++)
@@ -150,14 +152,15 @@ class BuildCMMP : public cmmpBaseVisitor
 		Funct *f = new Funct(
 			TypeUtil::getTypeFromString(ctx->Type()->getText()),
 			ctx->Var()->getText());
-		//c'est chelou mais sans ptr autour de tout ça j'ai des leaks
-		ptr<vector<VariableDeclaration *>> listParams = ptr<vector<VariableDeclaration *>>((vector<VariableDeclaration *> *)visit(ctx->paramDefinitionList()));
+
+		vector<VariableDeclaration *> *listParams = (vector<VariableDeclaration *> *)visit(ctx->paramDefinitionList());
 
 		for (uint i = 0; i < listParams->size(); i++)
 		{
 			cout << (*listParams)[i]->getName() << endl;
 			f->addVariable((*listParams)[i]);
 		}
+		delete (listParams);
 
 		f->setBlock(
 			(Block *)visit(ctx->block()));
@@ -170,7 +173,7 @@ class BuildCMMP : public cmmpBaseVisitor
 	{
 		vector<VariableDeclaration *> *list = new vector<VariableDeclaration *>();
 
-		//if only param is void
+		//if we have : function(void)
 		if (ctx->paramDefinition().size() == 1 && ctx->paramDefinition(0)->getText() == "void")
 			return list;
 
@@ -192,16 +195,20 @@ class BuildCMMP : public cmmpBaseVisitor
 			ctx->start->getCharPositionInLine());
 	}
 
-	//TODO todo.
+	//TODO todo échanger avec dessous quand titi aura modifié la grammaire
 	virtual antlrcpp::Any visitControlwhile(cmmpParser::ControlwhileContext *ctx) override
 	{
-		return (Instruction *)new Block(); //new Loop(Expression finalTest, Instruction instruction)
+		return (Instruction *)new Loop(
+			(Expression *)visit(ctx->expr()),
+			(Instruction *)visit(ctx->instruction(0)));
 	}
 
-	//TODO todo.
+	//TODO todo échanger avec dessus quand titi aura modifié la grammaire
 	virtual antlrcpp::Any visitControlif(cmmpParser::ControlifContext *ctx) override
 	{
-		return (Instruction *)new Block(); //new Condition(Expression condition, Instruction if, Instruction else) ou  Condition(Expression condition, Instruction if)
+		return (Instruction *)new Loop(
+			(Expression *)visit(ctx->expr()),
+			(Instruction *)visit(ctx->instruction()));
 	}
 
 	virtual antlrcpp::Any visitInsBlock(cmmpParser::InsBlockContext *ctx) override
@@ -414,7 +421,7 @@ class BuildCMMP : public cmmpBaseVisitor
 
 	virtual antlrcpp::Any visitVariable(cmmpParser::VariableContext *ctx) override
 	{
-		return (Expression *)(Variable *)visit(ctx->membreGauche());
+		return (Expression *)(VariableCall *)visit(ctx->membreGauche());
 	}
 
 	//TODO later

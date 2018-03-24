@@ -8,7 +8,7 @@ class Affectation : public Expression
 {
   public:
     Affectation(Type, Variable *);
-    ~Affectation(void);
+    virtual ~Affectation(void);
 
   protected:
     Variable *leftValue;

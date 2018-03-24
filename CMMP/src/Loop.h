@@ -10,7 +10,7 @@ class Loop : public Instruction
 {
 public:
 	Loop(Expression* finalTest, Instruction* i);
-	virtual ~Loop(void) = 0;
+	virtual ~Loop(void);
 protected:
 	Expression* finalTest;
 	Instruction* instruction;
