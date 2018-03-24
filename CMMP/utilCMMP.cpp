@@ -15,14 +15,14 @@ int utilCMMP::linkFunctions(Program *p)
     for (auto f : fcList)
         cout<<"      "<<f->getName()<<endl;
 
-    //checker les instructions de return
+    //checker les instructions de return avec vector<ReturnInstr> Funct.findReturns()
 
     //parcourir le programme.
 
     //si on est sur un functioncall
 
     //tester si on a la fonction correspondate dans la hashmap
-
+    //ou un putchar ou un getchar
     //tester si les params sont cohérents
     return error;
 }
