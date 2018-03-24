@@ -152,15 +152,17 @@ class BuildCMMP : public cmmpBaseVisitor
 		Funct *f = new Funct(
 			TypeUtil::getTypeFromString(ctx->Type()->getText()),
 			ctx->Var()->getText());
-
-		vector<VariableDeclaration *> *listParams = (vector<VariableDeclaration *> *)visit(ctx->paramDefinitionList());
-
-		for (uint i = 0; i < listParams->size(); i++)
+		if (ctx->paramDefinitionList())
 		{
-			cout << (*listParams)[i]->getName() << endl;
-			f->addVariable((*listParams)[i]);
+			vector<VariableDeclaration *> *listParams = (vector<VariableDeclaration *> *)visit(ctx->paramDefinitionList());
+
+			for (uint i = 0; i < listParams->size(); i++)
+			{
+				cout << (*listParams)[i]->getName() << endl;
+				f->addVariable((*listParams)[i]);
+			}
+			delete (listParams);
 		}
-		delete (listParams);
 
 		f->setBlock(
 			(Block *)visit(ctx->block()));
