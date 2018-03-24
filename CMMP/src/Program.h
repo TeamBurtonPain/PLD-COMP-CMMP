@@ -5,19 +5,18 @@
 #include "Variable.h"
 #include "Funct.h"
 
-class Program : public VarContainer {
-	public : 
-		Program(void);
-		virtual ~Program(void);
+class Program : public VarContainer
+{
+  public:
+	Program(void);
+	virtual ~Program(void);
 
-		void addVariable(VariableDeclaration*);
-		void setMainFunction(Funct* mainF);
-		void addFunction(Funct* f);
+	void addVariable(VariableDeclaration *);
+	void setMainFunction(Funct *mainF);
+	void addFunction(Funct *f);
 
-	protected : 
-		hashmap <string, VariableDeclaration*> variables;
-		Funct* mainFunction = NULL; 
-		hashmap <string, Funct*> otherFunctions; 
-
+  protected:
+	hashmap<string, VariableDeclaration *> variables;
+	Funct *mainFunction = NULL;
+	hashmap<string, Funct *> otherFunctions;
 };
-

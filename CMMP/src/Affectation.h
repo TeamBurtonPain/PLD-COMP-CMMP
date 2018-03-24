@@ -4,10 +4,12 @@
 #include "Expression.h"
 #include "Variable.h"
 
-class Affectation : public Expression{
-    public:
-        Affectation(Type, Variable*);
-        ~Affectation(void);
-    protected: 
-        Variable* leftValue;
+class Affectation : public Expression
+{
+  public:
+    Affectation(Type, Variable *);
+    ~Affectation(void);
+
+  protected:
+    Variable *leftValue;
 };

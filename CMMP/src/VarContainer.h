@@ -1,8 +1,9 @@
 #pragma once
 class VariableDeclaration;
 
-class VarContainer{
-    public:
-        virtual ~VarContainer(void){};
-		virtual void addVariable(VariableDeclaration*)=0;
+class VarContainer
+{
+  public:
+    virtual ~VarContainer(void){};
+    virtual void addVariable(VariableDeclaration *) = 0;
 };

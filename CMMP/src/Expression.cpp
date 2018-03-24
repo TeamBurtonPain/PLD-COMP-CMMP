@@ -1,5 +1,5 @@
 #include "Expression.h"
 
-Expression::Expression(Type t): type(t){}
+Expression::Expression(Type t) : type(t) {}
 
-Expression::~Expression(void){}
+Expression::~Expression(void) {}
