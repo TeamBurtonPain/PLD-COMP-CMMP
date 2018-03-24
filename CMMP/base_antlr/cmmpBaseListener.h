@@ -55,11 +55,11 @@ public:
   virtual void enterParamDefinition(cmmpParser::ParamDefinitionContext * /*ctx*/) override { }
   virtual void exitParamDefinition(cmmpParser::ParamDefinitionContext * /*ctx*/) override { }
 
-  virtual void enterControlwhile(cmmpParser::ControlwhileContext * /*ctx*/) override { }
-  virtual void exitControlwhile(cmmpParser::ControlwhileContext * /*ctx*/) override { }
-
   virtual void enterControlif(cmmpParser::ControlifContext * /*ctx*/) override { }
   virtual void exitControlif(cmmpParser::ControlifContext * /*ctx*/) override { }
+
+  virtual void enterControlwhile(cmmpParser::ControlwhileContext * /*ctx*/) override { }
+  virtual void exitControlwhile(cmmpParser::ControlwhileContext * /*ctx*/) override { }
 
   virtual void enterInsBlock(cmmpParser::InsBlockContext * /*ctx*/) override { }
   virtual void exitInsBlock(cmmpParser::InsBlockContext * /*ctx*/) override { }
@@ -72,6 +72,9 @@ public:
 
   virtual void enterInsControl(cmmpParser::InsControlContext * /*ctx*/) override { }
   virtual void exitInsControl(cmmpParser::InsControlContext * /*ctx*/) override { }
+
+  virtual void enterInsReturn(cmmpParser::InsReturnContext * /*ctx*/) override { }
+  virtual void exitInsReturn(cmmpParser::InsReturnContext * /*ctx*/) override { }
 
   virtual void enterMembreGauche(cmmpParser::MembreGaucheContext * /*ctx*/) override { }
   virtual void exitMembreGauche(cmmpParser::MembreGaucheContext * /*ctx*/) override { }
