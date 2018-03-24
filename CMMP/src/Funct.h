@@ -16,7 +16,11 @@ class Funct : public VarContainer
 	Type getType(void) const { return returnType; }
 	string getName(void) const { return name; }
 	void addVariable(VariableDeclaration *);
+	hashmap<string, VariableDeclaration *> getParams(void){return parameters;};
 	void setBlock(Block *);
+	Block* getBlock(void){return instructions;};
+
+	virtual vector<FunctionCall *> findFunctionCalls(void);
 
   protected:
 	hashmap<string, VariableDeclaration *> parameters;

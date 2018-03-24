@@ -12,6 +12,8 @@ class VariableDeclarations : public Instruction
     void addDecla(VariableDeclaration *);
     vector<VariableDeclaration *> getDecla(void) { return declarations; };
 
+	  virtual vector<FunctionCall *> findFunctionCalls(void);
+
   protected:
     vector<VariableDeclaration *> declarations;
 };

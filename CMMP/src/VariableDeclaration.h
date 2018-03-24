@@ -14,6 +14,9 @@ public:
   uint getLine(void) { return line; };
   uint getColumn(void) { return column; };
   void setExpression(Expression *v) { value = v; };
+  Expression *getExpression(void) { return value; };
+  
+	virtual vector<FunctionCall *> findFunctionCalls(void);
 
 protected:
   Type type;

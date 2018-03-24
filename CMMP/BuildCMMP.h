@@ -49,8 +49,7 @@ class BuildCMMP : public cmmpBaseVisitor
 		Program *p = (Program *)visit(ctx->programme());
 
 		Funct *f = (Funct *)visit(ctx->definitionFonction());
-
-		if (f->getName().compare("main"))
+		if (!f->getName().compare("main"))
 			p->setMainFunction(f);
 		else
 			p->addFunction(f);
@@ -315,7 +314,7 @@ class BuildCMMP : public cmmpBaseVisitor
 	virtual antlrcpp::Any visitConst(cmmpParser::ConstContext *ctx) override
 	{
 
-		cout << ctx->start->getLine() << " - CONST " << ctx->Cst()->getText() << endl;
+		//cout << ctx->start->getLine() << " - CONST " << ctx->Cst()->getText() << endl;
 		string cst = ctx->Cst()->getText();
 		switch (cst[0])
 		{

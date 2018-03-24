@@ -6,12 +6,17 @@
 
 class BinaryExpr : public Expression
 {
-  public:
-    BinaryExpr(Type, Expression *expr1, BinaryOp op, Expression *expr2);
-    virtual ~BinaryExpr(void);
+public:
+  BinaryExpr(Type, Expression *expr1, BinaryOp op, Expression *expr2);
+  virtual ~BinaryExpr(void);
 
-  protected:
-    Expression *expr1;
-    BinaryOp op;
-    Expression *expr2;
+  Expression *getExpression1(void) { return expr1; };
+  Expression *getExpression2(void) { return expr2; };
+ 
+	virtual vector<FunctionCall *> findFunctionCalls(void);
+
+protected:
+  Expression *expr1;
+  BinaryOp op;
+  Expression *expr2;
 };

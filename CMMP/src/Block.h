@@ -9,14 +9,19 @@ class VariableDeclaration;
 
 class Block : public Instruction, public VarContainer
 {
-  public:
+public:
 	Block(void);
 	virtual ~Block(void);
 
 	void addVariable(VariableDeclaration *);
 	void addInstruction(Instruction *);
 
-  protected:
+	hashmap<string, VariableDeclaration *> getVariables(void) { return variables; };
+	deque<Instruction *> getInstructions(void) { return instructions; };
+
+	virtual vector<FunctionCall *> findFunctionCalls(void);
+
+protected:
 	hashmap<string, VariableDeclaration *> variables;
 	deque<Instruction *> instructions;
 };

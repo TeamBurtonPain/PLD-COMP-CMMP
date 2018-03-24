@@ -25,3 +25,21 @@ void Funct::setBlock(Block *b)
 {
     instructions = b;
 }
+
+vector<FunctionCall *> Funct::findFunctionCalls(void)
+{
+    vector<FunctionCall *> list;
+
+    for (auto var : parameters)
+    {
+        vector<FunctionCall *> subList = var.second->getExpression()->findFunctionCalls();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+    if(instructions)
+    {
+        vector<FunctionCall *> subList = instructions->findFunctionCalls();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    return list;
+}

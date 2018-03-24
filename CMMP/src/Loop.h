@@ -8,10 +8,16 @@ using namespace std;
 
 class Loop : public Instruction
 {
-public:
-	Loop(Expression* finalTest, Instruction* i);
+  public:
+	Loop(Expression *finalTest, Instruction *i);
 	virtual ~Loop(void);
-protected:
-	Expression* finalTest;
-	Instruction* instruction;
+
+	Expression *getExpression(void) { return finalTest; };
+	Instruction *getInstruction(void) { return instruction; };
+
+	virtual vector<FunctionCall *> findFunctionCalls(void);
+
+  protected:
+	Expression *finalTest;
+	Instruction *instruction;
 };

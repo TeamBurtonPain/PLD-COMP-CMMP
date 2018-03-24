@@ -6,6 +6,7 @@
 #include "cmmpParser.h"
 #include "BuildCMMP.h"
 #include "Program.h"
+#include "utilCMMP.h"
 
 
 using namespace std;
@@ -58,6 +59,7 @@ int main(){
 	//Si on arrive jusque là c'est que toutes les var sont definies et ont un type
 	//On peut aussi simplifier les constantes et operations entre constantes
 
+	utilCMMP::linkFunctions(p);
 
     cin.get();
 	delete(p);

@@ -9,3 +9,20 @@ Loop::~Loop(void)
     if (instruction)
         delete instruction;
 }
+
+vector<FunctionCall *> Loop::findFunctionCalls(void)
+{
+    vector<FunctionCall *> list;
+    if(finalTest)
+    {
+        vector<FunctionCall *> subList = finalTest->findFunctionCalls();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+    if(instruction)
+    {
+        vector<FunctionCall *> subList = instruction->findFunctionCalls();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    return list;
+}

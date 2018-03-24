@@ -18,3 +18,10 @@ void FunctionCall::addArg(Expression *argument)
 {
     arguments.push_back(argument);
 }
+
+vector<FunctionCall *> FunctionCall::findFunctionCalls(void)
+{
+    vector<FunctionCall *> list;
+    list.push_back(this);
+    return list;
+}

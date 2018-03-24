@@ -11,3 +11,16 @@ BinaryExpr::~BinaryExpr(void)
     if (expr2)
         delete (expr2);
 }
+vector<FunctionCall *> BinaryExpr::findFunctionCalls(void)
+{
+    vector<FunctionCall *> list;
+    {
+        vector<FunctionCall *> subList = expr1->findFunctionCalls();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+    {
+        vector<FunctionCall *> subList = expr2->findFunctionCalls();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+    return list;
+}

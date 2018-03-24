@@ -9,3 +9,7 @@ BinaryAffectation::~BinaryAffectation(void)
     if (expr2)
         delete (expr2);
 }
+
+vector<FunctionCall *> BinaryAffectation::findFunctionCalls(void){
+    return expr2->findFunctionCalls();
+}

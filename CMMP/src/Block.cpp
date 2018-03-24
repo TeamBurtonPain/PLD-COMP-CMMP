@@ -27,3 +27,22 @@ void Block::addInstruction(Instruction *i)
 {
     instructions.push_back(i);
 }
+
+vector<FunctionCall *> Block::findFunctionCalls(void)
+{
+    vector<FunctionCall *> list;
+
+    for (auto var : variables)
+    {
+        vector<FunctionCall *> subList = var.second->getExpression()->findFunctionCalls();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    for (auto instr : instructions)
+    {
+        vector<FunctionCall *> subList = instr->findFunctionCalls();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    return list;
+}

@@ -9,3 +9,8 @@ UnaryExpr::~UnaryExpr(void)
     if (expression)
         delete expression;
 }
+
+vector<FunctionCall *> UnaryExpr::findFunctionCalls(void)
+{
+    return expression->findFunctionCalls();
+}

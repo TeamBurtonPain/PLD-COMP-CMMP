@@ -22,3 +22,25 @@ Condition::~Condition(void)
     if (elseInstruction)
         delete elseInstruction;
 }
+
+vector<FunctionCall *> Condition::findFunctionCalls(void)
+{
+    vector<FunctionCall *> list;
+
+    {
+        vector<FunctionCall *> subList = test->findFunctionCalls();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    {
+        vector<FunctionCall *> subList = instruction->findFunctionCalls();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+    if(elseInstruction)
+    {
+        vector<FunctionCall *> subList = elseInstruction->findFunctionCalls();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    return list;
+}

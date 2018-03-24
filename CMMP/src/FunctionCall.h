@@ -7,13 +7,16 @@
 
 class FunctionCall : public Expression
 {
-  public:
-    FunctionCall(Type t, string n);
-    virtual ~FunctionCall(void);
-    void addArg(Expression *);
+public:
+  FunctionCall(Type t, string n);
+  virtual ~FunctionCall(void);
+  void addArg(Expression *);
 
-  protected:
-    Funct *function = NULL;
-    string name;
-    vector<Expression *> arguments;
+  string getName(void){return name;};
+  virtual vector<FunctionCall *> findFunctionCalls(void);
+
+protected:
+  Funct *function = NULL;
+  string name;
+  vector<Expression *> arguments;
 };
