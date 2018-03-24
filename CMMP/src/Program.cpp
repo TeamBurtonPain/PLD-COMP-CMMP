@@ -45,8 +45,11 @@ vector<FunctionCall *> Program::findFunctionCalls(void)
 
     for (auto var : variables)
     {
-        vector<FunctionCall *> subList = var.second->getExpression()->findFunctionCalls();
-        list.insert(list.end(), subList.begin(), subList.end());
+        if (var.second->getExpression())
+        {
+            vector<FunctionCall *> subList = var.second->getExpression()->findFunctionCalls();
+            list.insert(list.end(), subList.begin(), subList.end());
+        }
     }
 
     for (auto function : otherFunctions)
@@ -60,5 +63,6 @@ vector<FunctionCall *> Program::findFunctionCalls(void)
         vector<FunctionCall *> subList = mainFunction->findFunctionCalls();
         list.insert(list.end(), subList.begin(), subList.end());
     }
+
     return list;
 }
