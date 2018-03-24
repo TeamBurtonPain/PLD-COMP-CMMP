@@ -15,5 +15,8 @@ vector<FunctionCall *> BinaryAffectation::findFunctionCalls(void){
 }
 
 vector<VariableCall *> BinaryAffectation::findVarCalls(void){
-    return expr2->findVarCalls();
+    vector<VariableCall *> v = expr2->findVarCalls();
+    vector<VariableCall *> subList = leftValue->findVarCalls();
+    v.insert(v.end(), subList.begin(), subList.end());
+    return v;
 }

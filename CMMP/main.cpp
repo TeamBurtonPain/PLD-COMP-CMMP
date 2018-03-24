@@ -60,6 +60,7 @@ int main(){
 	//On peut aussi simplifier les constantes et operations entre constantes
 
 	utilCMMP::linkFunctions(p);
+	utilCMMP::linkVariables(p);
 
     cin.get();
 	delete(p);
