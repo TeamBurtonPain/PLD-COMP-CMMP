@@ -158,7 +158,6 @@ class BuildCMMP : public cmmpBaseVisitor
 
 			for (uint i = 0; i < listParams->size(); i++)
 			{
-				cout << (*listParams)[i]->getName() << endl;
 				f->addVariable((*listParams)[i]);
 			}
 			delete (listParams);
@@ -249,11 +248,17 @@ class BuildCMMP : public cmmpBaseVisitor
 		return new VariableCall(Type::UNKNOWN, ctx->Var()->getText(), ctx->start->getLine(), ctx->start->getCharPositionInLine());
 	}
 
-	//TODO s'inspirer du traitement de visitParamDefinitionList
 	//renvoie un vector* de Expression*
 	virtual antlrcpp::Any visitEListe(cmmpParser::EListeContext *ctx) override
 	{
-		return visitChildren(ctx);
+		vector<Expression *> *list = new vector<Expression *>();
+
+		for (uint i = 0; i < ctx->expr().size(); i++)
+		{
+			list->push_back(
+				(Expression *)visit(ctx->expr(i)));
+		}
+		return list;
 	}
 
 	virtual antlrcpp::Any visitPar(cmmpParser::ParContext *ctx) override
@@ -442,10 +447,20 @@ class BuildCMMP : public cmmpBaseVisitor
 		return visitChildren(ctx);
 	}
 
-	//TODO utiliser addArg sur l'objet pour lui ajouter les paramètres lus dans ctx->eListe()
 	virtual antlrcpp::Any visitFunctionCall(cmmpParser::FunctionCallContext *ctx) override
 	{
-		return (FunctionCall *)new FunctionCall(Type::UNKNOWN, "test");
+		FunctionCall *f = new FunctionCall(Type::UNKNOWN, ctx->Var()->getText());
+		if (ctx->eListe())
+		{
+			vector<Expression *> *listExprs = (vector<Expression *> *)visit(ctx->eListe());
+
+			for (uint i = 0; i < listExprs->size(); i++)
+			{
+				f->addArg((*listExprs)[i]);
+			}
+			delete (listExprs);
+		}
+		return f;
 	}
 
 	virtual antlrcpp::Any visitIncr(cmmpParser::IncrContext *ctx) override
