@@ -67,3 +67,21 @@ vector<VariableCall *> Condition::findVarCalls(void)
 
     return list;
 }
+
+
+vector<ReturnInstr *> Condition::findReturns(void)
+{
+    vector<ReturnInstr *> list;
+
+    {
+        vector<ReturnInstr *> subList = instruction->findReturns();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+    if(elseInstruction)
+    {
+        vector<ReturnInstr *> subList = elseInstruction->findReturns();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    return list;
+}

@@ -78,3 +78,14 @@ vector<VariableCall *> Funct::findVarCalls(void)
 
     return list;
 }
+vector<ReturnInstr *> Funct::findReturns(void)
+{
+    vector<ReturnInstr *> list;
+    if(instructions)
+    {
+        vector<ReturnInstr *> subList = instructions->findReturns();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    return list;
+}

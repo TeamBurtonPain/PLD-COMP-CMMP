@@ -71,3 +71,17 @@ vector<VariableCall *> Block::findVarCalls(void)
 
     return list;
 }
+
+
+vector<ReturnInstr *> Block::findReturns(void)
+{
+    vector<ReturnInstr *> list;
+
+    for (deque<Instruction *>::iterator it = instructions.begin(); it != instructions.end(); ++it)
+    {
+        vector<ReturnInstr *> subList = (*it)->findReturns();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    return list;
+}

@@ -5,6 +5,7 @@
 #include <vector>
 
 class FunctionCall;
+class ReturnInstr;
 class VariableCall;
 class Instruction
 {
@@ -16,6 +17,7 @@ public:
 
 	virtual vector<FunctionCall *> findFunctionCalls(void)=0;
 	virtual vector<VariableCall *> findVarCalls(void)=0;
+	virtual vector<ReturnInstr *> findReturns(void);
 
 protected:
 	VarContainer *parent = NULL;

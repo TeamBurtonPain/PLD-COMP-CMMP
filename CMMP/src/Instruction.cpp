@@ -13,3 +13,9 @@ VarContainer *Instruction::getParent(void)
 {
     return parent;
 }
+
+vector<ReturnInstr *> Instruction::findReturns(void)
+{
+    vector<ReturnInstr *> i;
+    return i;
+}

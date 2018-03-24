@@ -44,3 +44,15 @@ vector<VariableCall *> Loop::findVarCalls(void)
 
     return list;
 }
+
+vector<ReturnInstr *> Loop::findReturns(void)
+{
+    vector<ReturnInstr *> list;
+    if(instruction)
+    {
+        vector<ReturnInstr *> subList = instruction->findReturns();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    return list;
+}

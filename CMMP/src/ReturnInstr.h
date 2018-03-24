@@ -10,6 +10,7 @@ class ReturnInstr : public Instruction
     virtual ~ReturnInstr(void);
 
     Expression *getExpression(void) { return expr; };
+	  virtual vector<ReturnInstr *> findReturns(void);
 
   protected:
     Expression *expr;
