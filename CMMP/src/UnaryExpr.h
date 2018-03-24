@@ -7,10 +7,10 @@
 
 class UnaryExpr : public Expression{
     public :
-        UnaryExpr(Type t, const Expression &e, UnaryOp op);
+        UnaryExpr(Type t, Expression* e, UnaryOp op);
         virtual ~UnaryExpr(void);
     
     protected : 
-        ptr<const Expression> expression;
+        Expression* expression;
         UnaryOp op;
 };

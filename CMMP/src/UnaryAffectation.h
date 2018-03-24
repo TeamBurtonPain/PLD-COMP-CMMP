@@ -6,7 +6,7 @@
 
 class UnaryAffectation : public Affectation{
     public : 
-        UnaryAffectation(Type t, Variable& leftValue, OpUnaryAffectation, bool isPre);
+        UnaryAffectation(Type t, Variable* leftValue, OpUnaryAffectation, bool isPre);
         ~UnaryAffectation(void);
     protected : 
         OpUnaryAffectation op;

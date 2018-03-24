@@ -10,14 +10,14 @@ class Program : public VarContainer {
 		Program(void);
 		virtual ~Program(void);
 
-		void addVariable(ptr<VariableDeclaration>);
-		void setMainFunction(ptr<Funct> mainF);
-		void addFunction(ptr<Funct> f);
+		void addVariable(VariableDeclaration*);
+		void setMainFunction(Funct* mainF);
+		void addFunction(Funct* f);
 
 	protected : 
-		hashmap <string, ptr<VariableDeclaration>> variables;
-		ptr<Funct> mainFunction; 
-		hashmap <string, ptr<Funct>> otherFunctions; 
+		hashmap <string, VariableDeclaration*> variables;
+		Funct* mainFunction = NULL; 
+		hashmap <string, Funct*> otherFunctions; 
 
 };
 

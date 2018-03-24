@@ -42,11 +42,12 @@ public:
 		Program* p = (Program*) visit(ctx->programme());
 
 		Funct* f = (Funct*) visit(ctx->definitionFonction());
+		
 		if(f->getName().compare("main"))
-			p->setMainFunction(ptr<Funct>(f));
+			p->setMainFunction(f);
 		else
-			p->addFunction(ptr<Funct>(f));
-
+			p->addFunction(f);
+		
 		return p;
 	}
 	
@@ -67,7 +68,7 @@ public:
 
 			VariableDeclarations* vds = dynamic_cast<VariableDeclarations*>(instr);
 			if(vds){
-				vector<ptr<VariableDeclaration> > vectorDecl =  vds->getDecla();
+				vector<VariableDeclaration*> vectorDecl =  vds->getDecla();
 				for(int i=0;i<vectorDecl.size();i++){
 					cout<<"line : "<<i<<endl;
 					b->addVariable(vectorDecl[i]);
@@ -76,9 +77,8 @@ public:
 				//vectorDecl.clear();
 				
 			}else{
-				//instr->setParent(*b);
-				ptr<Instruction> ptrInstru (instr);
-				b->addInstruction(ptrInstru);
+				instr->setParent(b);
+				b->addInstruction(instr);
 			}
 		}
 		return b;
@@ -90,7 +90,7 @@ public:
 		for(uint i=0 ; i<ctx->declarationVar().size() ; i++){
 			VariableDeclaration* varDecla = (VariableDeclaration*)visit(ctx->declarationVar(i));
 
-			list->addDecla(ptr<VariableDeclaration>(varDecla));
+			list->addDecla(varDecla);
 		}
 
 		return list;
@@ -127,15 +127,15 @@ public:
 			ctx->Var()->getText()
 		);
 		//c'est chelou mais sans ptr autour de tout ça j'ai des leaks
-		ptr<vector<ptr<VariableDeclaration> > > listParams = ptr<vector<ptr<VariableDeclaration> > > ((vector<ptr<VariableDeclaration> >*)visit(ctx->paramDefinitionList()));
+		ptr<vector<VariableDeclaration*> > listParams = ptr<vector<VariableDeclaration*> > ((vector<VariableDeclaration*>*)visit(ctx->paramDefinitionList()));
 		
 		for(uint i=0; i<listParams->size();i++){
 			cout<<(*listParams)[i]->getName()<<endl;
 			f->addVariable((*listParams)[i]);
 		}
-
+		
 		f->setBlock(
-			ptr<Block>((Block*)visit(ctx->block()))
+			(Block*)visit(ctx->block())
 		);
 		return f;
 	}
@@ -143,7 +143,7 @@ public:
 	//renvoie un vector* de VariableDeclaration*, s'il n'y a qu'un seul parametre et de type void, l'ignorer
 	//passe par la visite de ctx->paramDefinition
 	virtual antlrcpp::Any visitParamDefinitionList(cmmpParser::ParamDefinitionListContext *ctx) override {
-		vector<ptr<VariableDeclaration> >*list = new vector<ptr<VariableDeclaration> >();
+		vector<VariableDeclaration*> *list = new vector<VariableDeclaration*>();
 		
 		//if only param is void
 		if(ctx->paramDefinition().size()==1 && ctx->paramDefinition(0)->getText()=="void")
@@ -151,7 +151,7 @@ public:
 
 		for(uint i=0 ; i<ctx->paramDefinition().size() ; i++){
 			list->push_back(
-				ptr<VariableDeclaration>((VariableDeclaration*) visit(ctx->paramDefinition(i)) )
+				(VariableDeclaration*) visit(ctx->paramDefinition(i))
 			);
 		}
 		return list;
@@ -213,9 +213,9 @@ public:
 		return (Expression*)
 			new BinaryExpr(
 				Type::UNKNOWN,
-				*((Expression*) visit(ctx->expr(0))),
+				(Expression*) visit(ctx->expr(0)),
 				BinaryOp::ADD,
-				*((Expression*) visit(ctx->expr(1)))
+				(Expression*) visit(ctx->expr(1))
 			);
 	}
 
@@ -223,9 +223,9 @@ public:
 		return (Expression*)
 			new BinaryExpr(
 				Type::UNKNOWN,
-				*((Expression*) visit(ctx->expr(0))),
+				(Expression*) visit(ctx->expr(0)),
 				BinaryOp::SUB,
-				*((Expression*) visit(ctx->expr(1)))
+				(Expression*) visit(ctx->expr(1))
 			);
 	}
 
@@ -233,9 +233,9 @@ public:
 		return (Expression*)
 			new BinaryExpr(
 				Type::UNKNOWN,
-				*((Expression*)visit(ctx->expr(0))),
+				(Expression*)visit(ctx->expr(0)),
 				BinaryOp::MULT,
-				*((Expression*)visit(ctx->expr(1)))
+				(Expression*) visit(ctx->expr(1))
 			);
 	}
 
@@ -243,9 +243,9 @@ public:
 		return (Expression*)
 			new BinaryExpr(
 				Type::UNKNOWN,
-				*((Expression*)visit(ctx->expr(0))),
+				(Expression*)visit(ctx->expr(0)),
 				BinaryOp::MOD,
-				*((Expression*)visit(ctx->expr(1)))
+				(Expression*) visit(ctx->expr(1))
 			);
 	}
 
@@ -253,9 +253,9 @@ public:
 		return (Expression*)
 			new BinaryExpr(
 				Type::UNKNOWN,
-				*((Expression*)visit(ctx->expr(0))),
+				(Expression*)visit(ctx->expr(0)),
 				BinaryOp::OR,
-				*((Expression*)visit(ctx->expr(1)))
+				(Expression*) visit(ctx->expr(1))
 			);
 	}
 
@@ -310,9 +310,9 @@ public:
 		return (Expression*)
 			new BinaryAffectation(
 				Type::UNKNOWN,
-				*((VariableCall*)visit(ctx->membreGauche())),
+				(VariableCall*)visit(ctx->membreGauche()),
 				(OpBinaryAffectation)visit(ctx->opAffectation()),
-				*((Expression*)visit(ctx->expr()))
+				(Expression*)visit(ctx->expr())
 			);
 	}
 
@@ -320,9 +320,9 @@ public:
 		return (Expression*)
 			new BinaryExpr(
 				Type::UNKNOWN,
-				*((Expression*)visit(ctx->expr(0))),
+				(Expression*)visit(ctx->expr(0)),
 				BinaryOp::DIV,
-				*((Expression*)visit(ctx->expr(1)))
+				(Expression*)visit(ctx->expr(1))
 			);;
 	}
 
@@ -330,7 +330,7 @@ public:
 		return (Expression*)
 			new UnaryExpr(
 				Type::UNKNOWN,
-				*((Expression*)visit(ctx->expr())),
+				(Expression*)visit(ctx->expr()),
 				UnaryOp::MINUS);
 	}
 
@@ -338,7 +338,7 @@ public:
 		return (Expression*)
 			new UnaryExpr(
 				Type::UNKNOWN,
-				*((Expression*)visit(ctx->expr())),
+				(Expression*)visit(ctx->expr()),
 				UnaryOp::NOT);
 	}
 
@@ -346,7 +346,7 @@ public:
 		return (Expression*)
 			new UnaryAffectation(
 				Type::UNKNOWN,
-				*((Variable*)visit(ctx->membreGauche())), 
+				(Variable*)visit(ctx->membreGauche()), 
 				visit(ctx->opUnaryAffectation()), 
 				true);
 	}
@@ -355,7 +355,7 @@ public:
 		return (Expression*)
 			new UnaryAffectation(
 				Type::UNKNOWN,
-				*((Variable*)visit(ctx->membreGauche())), 
+				(Variable*)visit(ctx->membreGauche()), 
 				visit(ctx->opUnaryAffectation()), 
 				true);
 	}
@@ -364,9 +364,9 @@ public:
 		return (Expression*)
 			new BinaryExpr(
 				Type::UNKNOWN,
-				*((Expression*)visit(ctx->expr(0))),
+				(Expression*)visit(ctx->expr(0)),
 				BinaryOp::AND,
-				*((Expression*)visit(ctx->expr(1)))
+				(Expression*)visit(ctx->expr(1))
 			);
 	}
 
@@ -378,9 +378,9 @@ public:
 		return (Expression*)
 			new BinaryExpr(
 				Type::UNKNOWN,
-				*((Expression*)visit(ctx->expr(0))),
+				(Expression*)visit(ctx->expr(0)),
 				(BinaryOp)visit(ctx->opComparaison()),
-				*((Expression*)visit(ctx->expr(1)))
+				(Expression*)visit(ctx->expr(1))
 			);
 	}
 

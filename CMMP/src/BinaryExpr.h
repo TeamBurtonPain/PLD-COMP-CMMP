@@ -6,10 +6,10 @@
 
 class BinaryExpr : public Expression{
     public:
-        BinaryExpr(Type, Expression& expr1, BinaryOp op, Expression& expr2);
+        BinaryExpr(Type, Expression* expr1, BinaryOp op, Expression* expr2);
         virtual ~BinaryExpr(void);
     protected:
-        ptr<Expression> expr1;
+        Expression* expr1;
         BinaryOp op;
-        ptr<Expression> expr2;
+        Expression* expr2;
 };
