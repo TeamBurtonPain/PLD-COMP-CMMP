@@ -15,6 +15,8 @@ int utilCMMP::linkFunctions(Program *p)
     for (auto f : fcList)
         cout<<"      "<<f->getName()<<endl;
 
+    //checker les instructions de return
+
     //parcourir le programme.
 
     //si on est sur un functioncall

@@ -7,6 +7,7 @@
 #include "VarContainer.h"
 #include "Variable.h"
 #include "Instruction.h"
+#include "ReturnInstr.h"
 
 class Funct : public VarContainer
 {
@@ -19,6 +20,8 @@ class Funct : public VarContainer
 	hashmap<string, VariableDeclaration *> getParams(void){return parameters;};
 	void setBlock(Block *);
 	Block* getBlock(void){return instructions;};
+	void setReturn(ReturnInstr* r){returnExpr = r;};
+	ReturnInstr* getReturn(void){return returnExpr;};
 
 	virtual vector<FunctionCall *> findFunctionCalls(void);
 	virtual vector<VariableCall *> findVarCalls(void);
@@ -27,6 +30,7 @@ class Funct : public VarContainer
 	hashmap<string, VariableDeclaration *> parameters;
 	Block *instructions;
 	Type returnType;
+	ReturnInstr* returnExpr;
 	string name;
 	//id(signature)
 };
