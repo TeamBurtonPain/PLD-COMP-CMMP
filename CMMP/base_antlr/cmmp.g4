@@ -37,7 +37,7 @@ instruction:
 	| expr ';'						#insExpr
 	| declarationVarListe 			#insDeclVar
 	| structureControl				#insControl
-	| 'return' expr ';'	#insReturn
+	| 'return' expr ';'				#insReturn
 	;
 
 membreGauche: Var | varTab;

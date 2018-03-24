@@ -38,20 +38,22 @@ vector<FunctionCall *> Funct::findFunctionCalls(void)
             list.insert(list.end(), subList.begin(), subList.end());
         }
     }
-    if(instructions)
+    if (instructions)
     {
         vector<FunctionCall *> subList = instructions->findFunctionCalls();
         list.insert(list.end(), subList.begin(), subList.end());
     }
-    if(returnExpr->getExpression())
+    if (returnExpr)
     {
-        vector<FunctionCall *> subList = returnExpr->getExpression()->findFunctionCalls();
-        list.insert(list.end(), subList.begin(), subList.end());
+        if (returnExpr->getExpression())
+        {
+            vector<FunctionCall *> subList = returnExpr->getExpression()->findFunctionCalls();
+            list.insert(list.end(), subList.begin(), subList.end());
+        }
     }
 
     return list;
 }
-
 
 vector<VariableCall *> Funct::findVarCalls(void)
 {
@@ -65,23 +67,26 @@ vector<VariableCall *> Funct::findVarCalls(void)
             list.insert(list.end(), subList.begin(), subList.end());
         }
     }
-    if(instructions)
+    if (instructions)
     {
         vector<VariableCall *> subList = instructions->findVarCalls();
         list.insert(list.end(), subList.begin(), subList.end());
     }
-    if(returnExpr->getExpression())
-    {
-        vector<VariableCall *> subList = returnExpr->getExpression()->findVarCalls();
-        list.insert(list.end(), subList.begin(), subList.end());
-    }
 
+    if (returnExpr)
+    {
+        if (returnExpr->getExpression())
+        {
+            vector<VariableCall *> subList = returnExpr->getExpression()->findVarCalls();
+            list.insert(list.end(), subList.begin(), subList.end());
+        }
+    }
     return list;
 }
 vector<ReturnInstr *> Funct::findReturns(void)
 {
     vector<ReturnInstr *> list;
-    if(instructions)
+    if (instructions)
     {
         vector<ReturnInstr *> subList = instructions->findReturns();
         list.insert(list.end(), subList.begin(), subList.end());

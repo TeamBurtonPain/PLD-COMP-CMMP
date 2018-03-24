@@ -31,7 +31,7 @@ class Funct : public VarContainer
 	hashmap<string, VariableDeclaration *> parameters;
 	Block *instructions;
 	Type returnType;
-	ReturnInstr* returnExpr;
+	ReturnInstr* returnExpr=NULL;
 	string name;
 	//id(signature)
 };

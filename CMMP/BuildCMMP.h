@@ -198,6 +198,14 @@ class BuildCMMP : public cmmpBaseVisitor
 	//TODO todo échanger avec dessous quand titi aura modifié la grammaire
 	virtual antlrcpp::Any visitControlwhile(cmmpParser::ControlwhileContext *ctx) override
 	{
+		return (Instruction *)new Loop(
+			(Expression *)visit(ctx->expr()),
+			(Instruction *)visit(ctx->instruction()));
+	}
+
+	//TODO todo échanger avec dessus quand titi aura modifié la grammaire
+	virtual antlrcpp::Any visitControlif(cmmpParser::ControlifContext *ctx) override
+	{
 		Condition *c;
 		if (ctx->instruction().size() < 2)
 			c = new Condition(
@@ -210,14 +218,6 @@ class BuildCMMP : public cmmpBaseVisitor
 				(Instruction *)visit(ctx->instruction(1)));
 
 		return (Instruction *)c;
-	}
-
-	//TODO todo échanger avec dessus quand titi aura modifié la grammaire
-	virtual antlrcpp::Any visitControlif(cmmpParser::ControlifContext *ctx) override
-	{
-		return (Instruction *)new Loop(
-			(Expression *)visit(ctx->expr()),
-			(Instruction *)visit(ctx->instruction()));
 	}
 
 	virtual antlrcpp::Any visitInsBlock(cmmpParser::InsBlockContext *ctx) override
@@ -238,6 +238,11 @@ class BuildCMMP : public cmmpBaseVisitor
 	virtual antlrcpp::Any visitInsControl(cmmpParser::InsControlContext *ctx) override
 	{
 		return (Instruction *)(visit(ctx->structureControl()));
+	}
+
+	virtual antlrcpp::Any visitInsReturn(cmmpParser::InsReturnContext *ctx) override
+	{
+		return (Instruction*) new ReturnInstr((Expression*)visit(ctx->expr()));
 	}
 
 	//TODO later
