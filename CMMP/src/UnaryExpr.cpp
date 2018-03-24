@@ -14,3 +14,8 @@ vector<FunctionCall *> UnaryExpr::findFunctionCalls(void)
 {
     return expression->findFunctionCalls();
 }
+
+vector<VariableCall *> UnaryExpr::findVarCalls(void)
+{
+    return expression->findVarCalls();
+}

@@ -16,6 +16,7 @@ class Loop : public Instruction
 	Instruction *getInstruction(void) { return instruction; };
 
 	virtual vector<FunctionCall *> findFunctionCalls(void);
+	virtual vector<VariableCall *> findVarCalls(void);
 
   protected:
 	Expression *finalTest;

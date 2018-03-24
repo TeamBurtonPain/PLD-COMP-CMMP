@@ -49,3 +49,25 @@ vector<FunctionCall *> Block::findFunctionCalls(void)
 
     return list;
 }
+
+vector<VariableCall *> Block::findVarCalls(void)
+{
+    vector<VariableCall *> list;
+
+    for (auto var : variables)
+    {
+        if (var.second->getExpression())
+        {
+            vector<VariableCall *> subList = var.second->getExpression()->findVarCalls();
+            list.insert(list.end(), subList.begin(), subList.end());
+        }
+    }
+    
+    for (deque<Instruction *>::iterator it = instructions.begin(); it != instructions.end(); ++it)
+    {
+        vector<VariableCall *> subList = (*it)->findVarCalls();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    return list;
+}

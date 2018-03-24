@@ -14,6 +14,7 @@ public:
   Expression *getExpression2(void) { return expr2; };
  
 	virtual vector<FunctionCall *> findFunctionCalls(void);
+	virtual vector<VariableCall *> findVarCalls(void);
 
 protected:
   Expression *expr1;

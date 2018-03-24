@@ -21,6 +21,7 @@ class Condition : public Instruction
 	Instruction* getElseInstr(void){return elseInstruction;};
 
 	virtual vector<FunctionCall *> findFunctionCalls(void);
+	virtual vector<VariableCall *> findVarCalls(void);
 
   protected:
 	Expression *test;

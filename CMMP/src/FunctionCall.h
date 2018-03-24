@@ -14,6 +14,7 @@ public:
 
   string getName(void){return name;};
   virtual vector<FunctionCall *> findFunctionCalls(void);
+  virtual vector<VariableCall *> findVarCalls(void);
 
 protected:
   Funct *function = NULL;

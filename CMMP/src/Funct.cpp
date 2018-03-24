@@ -46,3 +46,25 @@ vector<FunctionCall *> Funct::findFunctionCalls(void)
 
     return list;
 }
+
+
+vector<VariableCall *> Funct::findVarCalls(void)
+{
+    vector<VariableCall *> list;
+
+    for (auto var : parameters)
+    {
+        if (var.second->getExpression())
+        {
+            vector<VariableCall *> subList = var.second->getExpression()->findVarCalls();
+            list.insert(list.end(), subList.begin(), subList.end());
+        }
+    }
+    if(instructions)
+    {
+        vector<VariableCall *> subList = instructions->findVarCalls();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    return list;
+}

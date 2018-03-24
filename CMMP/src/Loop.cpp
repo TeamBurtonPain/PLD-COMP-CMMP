@@ -26,3 +26,21 @@ vector<FunctionCall *> Loop::findFunctionCalls(void)
 
     return list;
 }
+
+
+vector<VariableCall *> Loop::findVarCalls(void)
+{
+    vector<VariableCall *> list;
+    if(finalTest)
+    {
+        vector<VariableCall *> subList = finalTest->findVarCalls();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+    if(instruction)
+    {
+        vector<VariableCall *> subList = instruction->findVarCalls();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    return list;
+}

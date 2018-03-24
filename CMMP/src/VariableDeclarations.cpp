@@ -19,3 +19,7 @@ vector<FunctionCall *> VariableDeclarations::findFunctionCalls(void){
     vector<FunctionCall *> v;
     return v;
 }
+vector<VariableCall *> VariableDeclarations::findVarCalls(void){
+    vector<VariableCall *> v;
+    return v;
+}

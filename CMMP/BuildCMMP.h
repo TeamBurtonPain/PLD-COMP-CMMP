@@ -397,7 +397,7 @@ class BuildCMMP : public cmmpBaseVisitor
 	{
 		return (Expression *)new UnaryAffectation(
 			Type::UNKNOWN,
-			(Variable *)visit(ctx->membreGauche()),
+			(VariableCall *)visit(ctx->membreGauche()),
 			visit(ctx->opUnaryAffectation()),
 			true);
 	}
@@ -406,7 +406,7 @@ class BuildCMMP : public cmmpBaseVisitor
 	{
 		return (Expression *)new UnaryAffectation(
 			Type::UNKNOWN,
-			(Variable *)visit(ctx->membreGauche()),
+			(VariableCall *)visit(ctx->membreGauche()),
 			visit(ctx->opUnaryAffectation()),
 			true);
 	}

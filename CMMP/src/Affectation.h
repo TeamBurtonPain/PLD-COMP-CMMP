@@ -2,14 +2,15 @@
 
 #include "CommonTypes.h"
 #include "Expression.h"
-#include "Variable.h"
+#include "VariableCall.h"
 
 class Affectation : public Expression
 {
-  public:
-    Affectation(Type, Variable *);
-    virtual ~Affectation(void);
+public:
+  Affectation(Type, VariableCall *);
+  virtual ~Affectation(void) = 0;
+  virtual vector<VariableCall *> findVarCalls(void);
 
-  protected:
-    Variable *leftValue;
+protected:
+  VariableCall *leftValue;
 };

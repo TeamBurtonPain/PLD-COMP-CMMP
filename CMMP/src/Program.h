@@ -19,6 +19,7 @@ public:
 	hashmap<string, Funct *> getFunctions(void){return otherFunctions;};
 
 	virtual vector<FunctionCall *> findFunctionCalls(void);
+	virtual vector<VariableCall *> findVarCalls(void);
 
 protected:
 	hashmap<string, VariableDeclaration *> variables;

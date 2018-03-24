@@ -17,3 +17,14 @@ vector<FunctionCall *> VariableDeclaration::findFunctionCalls(void){
     }
     return v;
 }
+
+vector<VariableCall *> VariableDeclaration::findVarCalls(void){
+    vector<VariableCall *> v;
+    
+    if(value)
+    {
+        vector<VariableCall *> subList = value->findVarCalls();
+        v.insert(v.end(), subList.begin(), subList.end());
+    }
+    return v;
+}

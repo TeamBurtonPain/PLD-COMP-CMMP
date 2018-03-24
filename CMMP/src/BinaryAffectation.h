@@ -7,12 +7,13 @@
 class BinaryAffectation : public Affectation
 {
 public:
-  BinaryAffectation(Type, Variable *leftValue, OpBinaryAffectation, Expression *rightValue);
+  BinaryAffectation(Type, VariableCall *leftValue, OpBinaryAffectation, Expression *rightValue);
   virtual ~BinaryAffectation(void);
 
   Expression *getExpression(void) { return expr2; };
   
 	virtual vector<FunctionCall *> findFunctionCalls(void);
+	virtual vector<VariableCall *> findVarCalls(void);
 
 protected:
   OpBinaryAffectation op;

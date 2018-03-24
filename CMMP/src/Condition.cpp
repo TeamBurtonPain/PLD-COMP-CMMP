@@ -44,3 +44,26 @@ vector<FunctionCall *> Condition::findFunctionCalls(void)
 
     return list;
 }
+
+
+vector<VariableCall *> Condition::findVarCalls(void)
+{
+    vector<VariableCall *> list;
+
+    {
+        vector<VariableCall *> subList = test->findVarCalls();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    {
+        vector<VariableCall *> subList = instruction->findVarCalls();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+    if(elseInstruction)
+    {
+        vector<VariableCall *> subList = elseInstruction->findVarCalls();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    return list;
+}

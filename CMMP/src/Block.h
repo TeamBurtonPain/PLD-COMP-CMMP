@@ -20,6 +20,7 @@ public:
 	deque<Instruction *> getInstructions(void) { return instructions; };
 
 	virtual vector<FunctionCall *> findFunctionCalls(void);
+	virtual vector<VariableCall *> findVarCalls(void);
 
 protected:
 	hashmap<string, VariableDeclaration *> variables;

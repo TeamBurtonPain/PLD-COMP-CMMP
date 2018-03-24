@@ -21,6 +21,7 @@ class Funct : public VarContainer
 	Block* getBlock(void){return instructions;};
 
 	virtual vector<FunctionCall *> findFunctionCalls(void);
+	virtual vector<VariableCall *> findVarCalls(void);
 
   protected:
 	hashmap<string, VariableDeclaration *> parameters;
