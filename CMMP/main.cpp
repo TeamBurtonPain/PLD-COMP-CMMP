@@ -15,7 +15,7 @@ int main(){
 	Program* p;
 
 	//TODO pour l'executer vous pouvez avoir besoin de changer les / en double antislash
-	ANTLRFileStream input("../Ex_Test_Backend/6-While.cmmp");
+	ANTLRFileStream input("../Ex_Test_Backend/5-IfThenElse.cmmp");
 	cmmpLexer lexer(&input);
 
 	//convert the input into tokens
