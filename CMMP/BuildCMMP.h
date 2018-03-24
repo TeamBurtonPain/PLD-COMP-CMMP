@@ -73,8 +73,8 @@ public:
 					cout<<"line : "<<i<<endl;
 					b->addVariable(vectorDecl[i]);
 				}
-				//delete(vds);
-				//vectorDecl.clear();
+				delete(vds);
+				vectorDecl.clear();
 				
 			}else{
 				instr->setParent(b);
