@@ -45,9 +45,9 @@ public:
 
     virtual antlrcpp::Any visitParamDefinition(cmmpParser::ParamDefinitionContext *context) = 0;
 
-    virtual antlrcpp::Any visitControlwhile(cmmpParser::ControlwhileContext *context) = 0;
-
     virtual antlrcpp::Any visitControlif(cmmpParser::ControlifContext *context) = 0;
+
+    virtual antlrcpp::Any visitControlwhile(cmmpParser::ControlwhileContext *context) = 0;
 
     virtual antlrcpp::Any visitInsBlock(cmmpParser::InsBlockContext *context) = 0;
 
@@ -56,6 +56,8 @@ public:
     virtual antlrcpp::Any visitInsDeclVar(cmmpParser::InsDeclVarContext *context) = 0;
 
     virtual antlrcpp::Any visitInsControl(cmmpParser::InsControlContext *context) = 0;
+
+    virtual antlrcpp::Any visitInsReturn(cmmpParser::InsReturnContext *context) = 0;
 
     virtual antlrcpp::Any visitMembreGauche(cmmpParser::MembreGaucheContext *context) = 0;
 

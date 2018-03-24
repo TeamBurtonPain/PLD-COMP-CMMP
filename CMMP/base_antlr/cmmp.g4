@@ -28,15 +28,16 @@ paramDefinitionList: paramDefinition ( ',' paramDefinition)*;
 paramDefinition: Type Var?;
 
 structureControl:
-	'if' '(' expr ')' instruction ('else ' instruction)?	#controlwhile
-	| 'while' '(' expr ')' instruction						#controlif
+	'if' '(' expr ')' instruction ('else ' instruction)?	#controlif
+	| 'while' '(' expr ')' instruction						#controlwhile
 	;
 	
 instruction: 
-	block 					#insBlock
-	| expr ';'				#insExpr
-	| declarationVarListe 	#insDeclVar
-	| structureControl		#insControl
+	block 							#insBlock
+	| expr ';'						#insExpr
+	| declarationVarListe 			#insDeclVar
+	| structureControl				#insControl
+	| 'return' expr ';'	#insReturn
 	;
 
 membreGauche: Var | varTab;
