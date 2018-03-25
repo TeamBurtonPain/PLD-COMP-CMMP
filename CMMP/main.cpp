@@ -45,14 +45,11 @@ int main(){
 	//get the final object returned by the visit of the tree
 	p = (Program*)visitor.visit(tree);
 
-	//TODO 1
-	// later : résoudre la reconnaissance de variables pour les variables et fonction
-	//Pour cela vérifier les noms, portées et types.
-	//TODO @Thib : remplacer l'objet variable dans les expessions par l'objet VariableDeclaration ? pour bien pointer vers la meme
-	//@Thib, je pense faire comme les fonctions, differencier un call à une variable de sa Declaration, et dans un call on a un lien vers la déclaration
-	//TODO de même, lier la FunctionCall à la Funct
+	//set VarCalls and FunctCalls a ref to the true var/funct
 	utilCMMP::linkFunctions(p);
 	utilCMMP::linkVariables(p);
+
+	//now every var and funct has a type
 
 	//TODO Verification statique 
 	// Verif si var utilisee sans etre initialisée

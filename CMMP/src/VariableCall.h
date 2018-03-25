@@ -8,9 +8,9 @@ class VariableCall : public Variable
   public:
 	VariableCall(Type t, string n, uint l, uint c);
 	virtual ~VariableCall(void);
-	void setReference(VariableDeclaration *){};
-	VariableDeclaration *getReference(void) { return ref; };
 
+	void setReference(VariableDeclaration *r){ref=r;};
+	VariableDeclaration *getReference(void) { return ref; };
 	virtual vector<VariableCall *> findVarCalls(void);
 
   protected:

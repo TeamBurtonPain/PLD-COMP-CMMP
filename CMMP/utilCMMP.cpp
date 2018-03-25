@@ -17,7 +17,6 @@ int utilCMMP::linkFunctions(Program *p)
     cout << "    Function calls found:" << endl;
     //get every calls
     vector<FunctionCall *> fcList = p->findFunctionCalls();
-    cout << fcList.size() << endl;
     //for each call
     for (auto f : fcList)
     {
@@ -67,6 +66,7 @@ int utilCMMP::linkFunctions(Program *p)
                 {
 
                     f->setType(it->second->getType());
+                    f->setReference(it->second);
                     cout << "Ok" << endl;
                 }
                 else
@@ -109,15 +109,23 @@ int utilCMMP::linkVariables(Program *p)
 
                 if (it != vc->getVariables().end())
                 {
-                    v->setType(it->second->getType());
-                    cout << "Ok" << endl;
-                    found = true;
+                    if (v->getLine() > it->second->getLine() ||
+                        (v->getLine() == it->second->getLine() && v->getColumn() > it->second->getColumn()))
+                    {
+                        v->setType(it->second->getType());
+                        v->setReference(it->second);
+                        cout << "Ok" << endl;
+                        found = true;
+                    }else{
+                        cout<<" - called before local declaration - ";
+                    }
                 }
             }
             container = container->getParent();
         }
-        if(!found){
-            cout<< "Aucune correspondance trouvée"<<endl;
+        if (!found)
+        {
+            cout << "No corresponding declaration found" << endl;
             error++;
         }
     }
