@@ -84,6 +84,8 @@ int utilCMMP::linkFunctions(Program *p)
     }
     return error;
 }
+
+//TODO : Dans un return il n'y a aucune vérification de faite.
 int utilCMMP::linkVariables(Program *p, bool warnings)
 {
     uint error = 0;
