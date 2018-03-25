@@ -14,8 +14,8 @@ class Expression : public Instruction
   public:
 	Expression(Type t);
 	virtual ~Expression(void) = 0;
-	Type getType(void) { return type; };
-	void setType(Type t) { type = t; };
+	Type getType(void) { return type; }
+	void setType(Type t) { type = t; }
 
 	virtual vector<FunctionCall *> findFunctionCalls(void);
 	virtual vector<VariableCall *> findVarCalls(void);

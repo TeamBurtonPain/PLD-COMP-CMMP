@@ -21,6 +21,12 @@ class BuildCMMP : public cmmpBaseVisitor
 	BuildCMMP();
 	virtual ~BuildCMMP();
 
+	
+	/// <summary>
+	/// Visits the axiome.
+	/// </summary>
+	/// <param name="ctx">The context.</param>
+	/// <returns>The program object representing the C program in input</returns>
 	virtual antlrcpp::Any visitAxiome(cmmpParser::AxiomeContext *ctx) override
 	{
 		return (Program *)visit(ctx->programme());
@@ -210,16 +216,6 @@ class BuildCMMP : public cmmpBaseVisitor
 	//TODO todo échanger avec dessous quand titi aura modifié la grammaire
 	virtual antlrcpp::Any visitControlif(cmmpParser::ControlifContext *ctx) override
 	{
-		Expression *e = visit(ctx->expr());
-		Instruction *i = visit(ctx->instruction());
-		Instruction *ret = new Loop(e, i);
-		e->setParent(ret);
-		i->setParent(ret);
-		return ret;
-	}
-
-	virtual antlrcpp::Any visitControlwhile(cmmpParser::ControlwhileContext* ctx) override
-	{
 		Condition *c;
 		if (ctx->instruction().size() < 2)
 		{
@@ -242,9 +238,18 @@ class BuildCMMP : public cmmpBaseVisitor
 
 		return (Instruction *)c;
 	}
+	
+	virtual antlrcpp::Any visitControlwhile(cmmpParser::ControlwhileContext* ctx) override
+	{
+		Expression *e = visit(ctx->expr());
+		Instruction *i = visit(ctx->instruction());
+		Instruction *ret = new Loop(e, i);
+		e->setParent(ret);
+		i->setParent(ret);
+		return ret;
+	}
 
-	virtual antlrcpp::Any
-	visitInsBlock(cmmpParser::InsBlockContext *ctx) override
+	virtual antlrcpp::Any visitInsBlock(cmmpParser::InsBlockContext *ctx) override
 	{
 		return (Instruction *)(Block *)visit(ctx->block());
 	}
@@ -404,7 +409,7 @@ class BuildCMMP : public cmmpBaseVisitor
 			}
 			return (Expression *)(new Const<char>(Type::CHAR, val));
 		}
-		case ('\"'):
+		case ('"'):
 		{ //it's a string
 			string val = cst.substr(1, cst.size() - 2);
 			return (Expression *)(new Const<string>(Type::CHAR, val)); //TODO future : string = char[] ?

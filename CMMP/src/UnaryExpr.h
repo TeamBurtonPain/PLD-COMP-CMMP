@@ -11,7 +11,7 @@ public:
   UnaryExpr(Type t, Expression *e, UnaryOp op);
   virtual ~UnaryExpr(void);
 
-  Expression *getExpression(void) { return expression; };
+  Expression *getExpression(void) { return expression; }
 
   virtual vector<FunctionCall *> findFunctionCalls(void);
   virtual vector<VariableCall *> findVarCalls(void);

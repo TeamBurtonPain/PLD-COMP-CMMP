@@ -5,6 +5,8 @@
 #include "BinaryExpr.h"
 #include "UnaryExpr.h"
 #include "FunctionCall.h"
+#include "VarContainer.h"
+
 using namespace std;
 
 namespace utilCMMP

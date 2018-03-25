@@ -12,8 +12,8 @@ class Loop : public Instruction
 	Loop(Expression *finalTest, Instruction *i);
 	virtual ~Loop(void);
 
-	Expression *getExpression(void) { return finalTest; };
-	Instruction *getInstruction(void) { return instruction; };
+	Expression *getExpression(void) { return finalTest; }
+	Instruction *getInstruction(void) { return instruction; }
 
 	virtual vector<FunctionCall *> findFunctionCalls(void);
 	virtual vector<VariableCall *> findVarCalls(void);

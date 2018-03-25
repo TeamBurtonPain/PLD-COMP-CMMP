@@ -10,7 +10,7 @@ class VariableDeclarations : public Instruction
     VariableDeclarations(void);
     virtual ~VariableDeclarations(void);
     void addDecla(VariableDeclaration *);
-    vector<VariableDeclaration *> getDecla(void) { return declarations; };
+    vector<VariableDeclaration *> getDecla(void) { return declarations; }
 
 	  virtual vector<FunctionCall *> findFunctionCalls(void);
 	  virtual vector<VariableCall *> findVarCalls(void);

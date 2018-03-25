@@ -8,6 +8,9 @@
 #include "Variable.h"
 #include "Instruction.h"
 #include "ReturnInstr.h"
+#include "Parent.h"
+
+class Block;
 
 class Funct : public VarContainer, public Parent
 {
@@ -20,17 +23,17 @@ public:
 	string getName(void) const { return name; }
 
 	void addVariable(VariableDeclaration *);
-	hashmap<string, VariableDeclaration *> &getVariables(void) { return parameters; };
+	hashmap<string, VariableDeclaration *> &getVariables(void) { return parameters; }
 	uint getArgCount(void);
 
 	void setBlock(Block *);
-	Block *getBlock(void) { return instructions; };
+	Block *getBlock(void) { return instructions; }
 
-	void setReturn(ReturnInstr *r) { returnExpr = r; };
-	ReturnInstr *getReturn(void) { return returnExpr; };
+	void setReturn(ReturnInstr *r) { returnExpr = r; }
+	ReturnInstr *getReturn(void) { return returnExpr; }
 
-	void setParent(Parent *p) { parent = p; };
-	Parent *getParent(void) { return parent; };
+	void setParent(Parent *p) { parent = p; }
+	Parent *getParent(void) { return parent; }
 
 	virtual vector<FunctionCall *> findFunctionCalls(void);
 	virtual vector<VariableCall *> findVarCalls(void);
@@ -39,10 +42,10 @@ public:
 
 protected:
 	hashmap<string, VariableDeclaration *> parameters;
-	Block *instructions = NULL;
+	Block *instructions = nullptr;
 	Type returnType;
-	ReturnInstr *returnExpr = NULL;
+	ReturnInstr *returnExpr = nullptr;
 	string name;
-	Parent *parent = NULL;
+	Parent *parent = nullptr;
 	//id(signature)
 };

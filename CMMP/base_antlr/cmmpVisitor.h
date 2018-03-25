@@ -57,7 +57,7 @@ public:
 
     virtual antlrcpp::Any visitInsControl(cmmpParser::InsControlContext *context) = 0;
 
-    virtual antlrcpp::Any visitInsReturn(cmmpParser::InsReturnContext *context) = 0;
+	virtual antlrcpp::Any visitInsReturn(cmmpParser::InsReturnContext *context) = 0;
 
     virtual antlrcpp::Any visitMembreGauche(cmmpParser::MembreGaucheContext *context) = 0;
 

@@ -6,6 +6,7 @@
 #include "FunctionCall.h"
 #include <deque>
 #include <vector>
+#include "VariableCall.h"
 
 using namespace std;
 
@@ -16,9 +17,9 @@ class Condition : public Instruction
 	Condition(Expression *condition, Instruction *ifInstruction);
 	virtual ~Condition(void);
 
-	Expression* getTest(void){return test;};
-	Instruction* getIfInstr(void){return instruction;};
-	Instruction* getElseInstr(void){return elseInstruction;};
+	Expression* getTest(void){return test;}
+	Instruction* getIfInstr(void){return instruction;}
+	Instruction* getElseInstr(void){return elseInstruction;}
 
 	virtual vector<FunctionCall *> findFunctionCalls(void);
 	virtual vector<VariableCall *> findVarCalls(void);

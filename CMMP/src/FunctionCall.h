@@ -5,6 +5,8 @@
 #include "Funct.h"
 #include "Expression.h"
 
+class Funct;
+
 class FunctionCall : public Expression
 {
 public:
@@ -12,14 +14,14 @@ public:
   virtual ~FunctionCall(void);
 
   void addArg(Expression *);
-  vector<Expression *> &getArgs(void) { return arguments; };
+  vector<Expression *> &getArgs(void) { return arguments; }
 
-  void setType(Type t) { type = t; };
+  void setType(Type t) { type = t; }
 
-  void setReference(Funct *f) { function = f; };
-  Funct *getReference(void) { return function; };
+  void setReference(Funct *f) { function = f; }
+  Funct *getReference(void) { return function; }
 
-  string getName(void) { return name; };
+  string getName(void) { return name; }
   virtual vector<FunctionCall *> findFunctionCalls(void);
   virtual vector<VariableCall *> findVarCalls(void);
 

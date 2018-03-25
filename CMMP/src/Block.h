@@ -4,6 +4,8 @@
 #include "Instruction.h"
 #include "VariableDeclaration.h"
 #include <deque>
+#include "FunctionCall.h"
+#include "VariableCall.h"
 
 class VariableDeclaration;
 
@@ -16,8 +18,8 @@ class Block : public Instruction, public VarContainer
 	void addVariable(VariableDeclaration *);
 	void addInstruction(Instruction *);
 
-	hashmap<string, VariableDeclaration *> &getVariables(void) { return variables; };
-	deque<Instruction *> &getInstructions(void) { return instructions; };
+	hashmap<string, VariableDeclaration *> &getVariables(void) { return variables; }
+	deque<Instruction *> &getInstructions(void) { return instructions; }
 
 	virtual vector<FunctionCall *> findFunctionCalls(void);
 	virtual vector<VariableCall *> findVarCalls(void);

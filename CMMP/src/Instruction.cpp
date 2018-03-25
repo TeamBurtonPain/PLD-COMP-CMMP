@@ -1,4 +1,6 @@
 #include "Instruction.h"
+#include "Parent.h"
+#include "ReturnInstr.h"
 
 Instruction::Instruction(void) {}
 
@@ -9,7 +11,7 @@ void Instruction::setParent(Parent *p)
     parent = p;
 }
 
-Parent *Instruction::getParent(void)
+Parent* Instruction::getParent(void)
 {
     return parent;
 }
