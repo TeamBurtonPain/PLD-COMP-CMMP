@@ -26,6 +26,7 @@ public:
   void setInit(bool b) { init = b; };
 
   virtual vector<FunctionCall *> findFunctionCalls(void);
+	virtual vector<VariableDeclaration *> findVarDeclarations(void);
   virtual vector<VariableCall *> findVarCalls(void);
 
 protected:

@@ -94,3 +94,27 @@ vector<VariableCall *> Program::findVarCalls(void)
 
     return list;
 }
+
+vector<VariableDeclaration *> Program::findVarDeclarations(void)
+{
+    vector<VariableDeclaration *> list;
+
+    for (auto var : variables)
+    {
+        list.push_back(var.second);
+    }
+
+    for (auto function : otherFunctions)
+    {
+        vector<VariableDeclaration *> subList = function.second->findVarDeclarations();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    if(mainFunction)
+    {
+        vector<VariableDeclaration *> subList = mainFunction->findVarDeclarations();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    return list;
+}

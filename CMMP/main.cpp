@@ -45,21 +45,26 @@ int main()
 	//get the final object returned by the visit of the tree
 	p = (Program *)visitor.visit(tree);
 
-
 	//analyse statique -a
 	uint errors = 0;
 	//set VarCalls and FunctCalls a ref to the true var/funct
 	errors += utilCMMP::linkFunctions(p);
-	errors += utilCMMP::linkVariables(p, true); //if -a => use true
 
-	if (!errors)
+	bool staticCheck = true; //option -a
+	errors += utilCMMP::linkVariables(p, staticCheck);
+
+	if (staticCheck)
 	{
-		//now every var and funct has a type
-
-		//TODO typer toutes les expressions intermédiaires
-
-		//On peut aussi simplifier les constantes et operations entre constantes (si on a -o)
+		errors += utilCMMP::checkUnusedVar(p);
 	}
+
+	//now every var and funct has a type
+
+	//TODO typer toutes les expressions intermédiaires
+	//checker les expressions à partir de là
+	//checker les return types
+
+	//On peut aussi simplifier les constantes et operations entre constantes (si on a -o)
 
 	cin.get();
 	delete (p);

@@ -83,6 +83,21 @@ vector<VariableCall *> Funct::findVarCalls(void)
     }
     return list;
 }
+vector<VariableDeclaration *> Funct::findVarDeclarations(void)
+{
+    vector<VariableDeclaration *> list;
+
+    for (auto var : parameters)
+    {
+        list.push_back(var.second);
+    }
+    if (instructions)
+    {
+        vector<VariableDeclaration *> subList = instructions->findVarDeclarations();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+    return list;
+}
 vector<ReturnInstr *> Funct::findReturns(void)
 {
     vector<ReturnInstr *> list;

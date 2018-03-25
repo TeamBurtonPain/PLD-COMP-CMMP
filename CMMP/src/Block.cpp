@@ -71,6 +71,23 @@ vector<VariableCall *> Block::findVarCalls(void)
 
     return list;
 }
+vector<VariableDeclaration *> Block::findVarDeclarations(void)
+{
+    vector<VariableDeclaration *> list;
+
+    for (auto var : variables)
+    {
+        list.push_back(var.second);
+    }
+    
+    for (deque<Instruction *>::iterator it = instructions.begin(); it != instructions.end(); ++it)
+    {
+        vector<VariableDeclaration *> subList = (*it)->findVarDeclarations();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    return list;
+}
 
 
 vector<ReturnInstr *> Block::findReturns(void)

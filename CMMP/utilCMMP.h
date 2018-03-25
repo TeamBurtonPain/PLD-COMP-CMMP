@@ -11,4 +11,5 @@ namespace utilCMMP
 {
 int linkFunctions(Program *);
 int linkVariables(Program *, bool warnings); // -a => warnings = true
+int checkUnusedVar(Program *);
 }

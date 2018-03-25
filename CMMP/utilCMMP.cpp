@@ -89,7 +89,6 @@ int utilCMMP::linkVariables(Program *p, bool warnings)
     uint error = 0;
     cout << "Variables linking" << endl;
     cout << "    Variable calls found:" << endl;
-
     //get every calls
     vector<VariableCall *> vcList = p->findVarCalls();
 
@@ -119,7 +118,7 @@ int utilCMMP::linkVariables(Program *p, bool warnings)
                         if (v->isRead())
                             it->second->setUsed(true);
                         if (warnings && v->isRead() && !it->second->isInit())
-                            cout << "Warning : Read value before initialisation ! "<<endl;
+                            cout << "Warning : Read value before initialisation ! " << endl;
                         else
                             cout << "Ok" << endl;
                         found = true;
@@ -138,5 +137,27 @@ int utilCMMP::linkVariables(Program *p, bool warnings)
             error++;
         }
     }
+
+    return error;
+}
+
+int utilCMMP::checkUnusedVar(Program *p)
+{
+    uint error = 0;
+    cout << "    Unused var check :" << endl;
+
+    //get every calls
+    vector<VariableDeclaration *> v = p->findVarDeclarations();
+
+    for (std::vector<VariableDeclaration *>::size_type i = 0; i != v.size(); i++)
+    {
+        if (!v[i]->isUsed())
+        {
+            cout<<"      Unused var"<<endl; //TODO afficher les détails;
+        }
+    }
+    if(!error)
+    cout<<"      Ok"<<endl;
+
     return error;
 }

@@ -85,3 +85,21 @@ vector<ReturnInstr *> Condition::findReturns(void)
 
     return list;
 }
+
+
+vector<VariableDeclaration *> Condition::findVarDeclarations(void)
+{
+    vector<VariableDeclaration *> list;
+
+    {
+        vector<VariableDeclaration *> subList = instruction->findVarDeclarations();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+    if(elseInstruction)
+    {
+        vector<VariableDeclaration *> subList = elseInstruction->findVarDeclarations();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    return list;
+}
