@@ -17,9 +17,10 @@ public:
     T__14 = 15, T__15 = 16, T__16 = 17, T__17 = 18, T__18 = 19, T__19 = 20, 
     T__20 = 21, T__21 = 22, T__22 = 23, T__23 = 24, T__24 = 25, T__25 = 26, 
     T__26 = 27, T__27 = 28, T__28 = 29, T__29 = 30, T__30 = 31, T__31 = 32, 
-    T__32 = 33, Include = 34, InvariantInclude = 35, Lib = 36, Cst = 37, 
-    PositiveInt = 38, Char = 39, String = 40, Type = 41, Var = 42, WhiteSpace = 43, 
-    NewLine = 44, BlockComment = 45, LineComment = 46, EOFT = 47
+    T__32 = 33, T__33 = 34, Include = 35, InvariantInclude = 36, Lib = 37, 
+    Cst = 38, PositiveInt = 39, Char = 40, String = 41, Type = 42, Var = 43, 
+    WhiteSpace = 44, NewLine = 45, BlockComment = 46, LineComment = 47, 
+    EOFT = 48
   };
 
   enum {
@@ -296,8 +297,7 @@ public:
     ControlwhileContext(StructureControlContext *ctx);
 
     ExprContext *expr();
-    std::vector<InstructionContext *> instruction();
-    InstructionContext* instruction(size_t i);
+    InstructionContext *instruction();
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
 
@@ -309,7 +309,8 @@ public:
     ControlifContext(StructureControlContext *ctx);
 
     ExprContext *expr();
-    InstructionContext *instruction();
+    std::vector<InstructionContext *> instruction();
+    InstructionContext* instruction(size_t i);
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
 
@@ -369,6 +370,17 @@ public:
     InsDeclVarContext(InstructionContext *ctx);
 
     DeclarationVarListeContext *declarationVarListe();
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  InsReturnContext : public InstructionContext {
+  public:
+    InsReturnContext(InstructionContext *ctx);
+
+    ExprContext *expr();
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
 

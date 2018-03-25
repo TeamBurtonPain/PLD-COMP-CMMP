@@ -6,6 +6,7 @@
 #include "cmmpParser.h"
 #include "BuildCMMP.h"
 #include "Program.h"
+#include "utilCMMP.h"
 
 
 using namespace std;
@@ -40,6 +41,7 @@ int main(){
 
 	//use our custom visitor
 	BuildCMMP visitor;
+
 	//get the final object returned by the visit of the tree
 	p = (Program*)visitor.visit(tree);
 
@@ -49,6 +51,8 @@ int main(){
 	//TODO @Thib : remplacer l'objet variable dans les expessions par l'objet VariableDeclaration ? pour bien pointer vers la meme
 	//@Thib, je pense faire comme les fonctions, differencier un call à une variable de sa Declaration, et dans un call on a un lien vers la déclaration
 	//TODO de même, lier la FunctionCall à la Funct
+	utilCMMP::linkFunctions(p);
+	utilCMMP::linkVariables(p);
 
 	//TODO Verification statique 
 	// Verif si var utilisee sans etre initialisée

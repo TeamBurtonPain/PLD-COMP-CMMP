@@ -2,12 +2,13 @@
 
 #include <unordered_map>
 #include <memory>
+#include "Parent.h"
 
 using namespace std;
-template<typename K, typename V>
-using hashmap = unordered_map<K,V>;
+template <typename K, typename V>
+using hashmap = unordered_map<K, V>;
 
-template<typename T>
+template <typename T>
 using ptr = shared_ptr<T>;
 
 #ifdef _WIN64

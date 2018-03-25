@@ -5,14 +5,22 @@
 #include "Funct.h"
 #include "Expression.h"
 
-class FunctionCall : public Expression{
-    public :
-        FunctionCall(Type t, string n);
-        virtual ~FunctionCall(void);
-        void addArg(Expression*);
+class FunctionCall : public Expression
+{
+public:
+  FunctionCall(Type t, string n);
+  virtual ~FunctionCall(void);
 
-    protected :
-        Funct* function = NULL;
-        string name;
-        vector<Expression*> arguments;
+  void addArg(Expression *);
+  vector<Expression*>& getArgs(void){return arguments;};
+  void setType(Type t){type = t;};
+
+  string getName(void){return name;};
+  virtual vector<FunctionCall *> findFunctionCalls(void);
+  virtual vector<VariableCall *> findVarCalls(void);
+
+protected:
+  Funct *function = NULL;
+  string name;
+  vector<Expression *> arguments;
 };

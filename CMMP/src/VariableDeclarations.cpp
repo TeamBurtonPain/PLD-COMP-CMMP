@@ -1,7 +1,8 @@
 #include "VariableDeclarations.h"
 
-VariableDeclarations::VariableDeclarations(void){}
-VariableDeclarations::~VariableDeclarations(void){
+VariableDeclarations::VariableDeclarations(void) {}
+VariableDeclarations::~VariableDeclarations(void)
+{
     /*
     for (vector<VariableDeclaration*>::const_iterator it = declarations.begin(); it != declarations.end(); ++it)
     {
@@ -10,6 +11,15 @@ VariableDeclarations::~VariableDeclarations(void){
     declarations.clear();
     */
 }
-void VariableDeclarations::addDecla(VariableDeclaration* d){
+void VariableDeclarations::addDecla(VariableDeclaration *d)
+{
     declarations.push_back(d);
+}
+vector<FunctionCall *> VariableDeclarations::findFunctionCalls(void){
+    vector<FunctionCall *> v;
+    return v;
+}
+vector<VariableCall *> VariableDeclarations::findVarCalls(void){
+    vector<VariableCall *> v;
+    return v;
 }

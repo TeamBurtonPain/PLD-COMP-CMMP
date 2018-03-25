@@ -2,14 +2,20 @@
 
 Instruction::Instruction(void) {}
 
-Instruction::~Instruction(void) {
-    //delete parent;
-}
+Instruction::~Instruction(void) {}
 
-void Instruction::setParent(VarContainer* p){
+void Instruction::setParent(Parent *p)
+{
     parent = p;
 }
 
-VarContainer* Instruction::getParent(void){
+Parent *Instruction::getParent(void)
+{
     return parent;
+}
+
+vector<ReturnInstr *> Instruction::findReturns(void)
+{
+    vector<ReturnInstr *> i;
+    return i;
 }

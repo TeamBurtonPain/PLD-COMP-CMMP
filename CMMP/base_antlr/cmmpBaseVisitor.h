@@ -67,11 +67,11 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitControlwhile(cmmpParser::ControlwhileContext *ctx) override {
+  virtual antlrcpp::Any visitControlif(cmmpParser::ControlifContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitControlif(cmmpParser::ControlifContext *ctx) override {
+  virtual antlrcpp::Any visitControlwhile(cmmpParser::ControlwhileContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -88,6 +88,10 @@ public:
   }
 
   virtual antlrcpp::Any visitInsControl(cmmpParser::InsControlContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitInsReturn(cmmpParser::InsReturnContext *ctx) override {
     return visitChildren(ctx);
   }
 

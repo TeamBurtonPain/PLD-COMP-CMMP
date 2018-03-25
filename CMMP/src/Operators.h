@@ -1,12 +1,13 @@
 #pragma once
 
-
-enum class OpUnaryAffectation {
+enum class OpUnaryAffectation
+{
     DECR,
     INCR
 };
 
-enum class OpBinaryAffectation {
+enum class OpBinaryAffectation
+{
     ADDAFF,
     AFF,
     SUBAFF,
@@ -15,12 +16,14 @@ enum class OpBinaryAffectation {
     MODAFF
 };
 
-enum class UnaryOp {
+enum class UnaryOp
+{
     NOT,
     MINUS
 };
 
-enum class BinaryOp {
+enum class BinaryOp
+{
     ADD,
     SUB,
     MULT,
