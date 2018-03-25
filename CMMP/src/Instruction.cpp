@@ -14,6 +14,11 @@ Parent *Instruction::getParent(void)
     return parent;
 }
 
+vector<VariableDeclaration *> Instruction::findVarDeclarations(void)
+{
+    vector<VariableDeclaration *> i;
+    return i;
+}
 vector<ReturnInstr *> Instruction::findReturns(void)
 {
     vector<ReturnInstr *> i;

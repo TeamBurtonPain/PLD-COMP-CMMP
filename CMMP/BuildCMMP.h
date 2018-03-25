@@ -138,6 +138,7 @@ class BuildCMMP : public cmmpBaseVisitor
 			Expression *e = visit(ctx->expr());
 			e->setParent(v);
 			v->setExpression(e);
+			v->setInit(true);
 		}
 
 		return v;
@@ -197,11 +198,13 @@ class BuildCMMP : public cmmpBaseVisitor
 	//cree une VariableDeclaration en cohérence avec le paramètre lu. Elle n'a pas de valeur par défaut.
 	virtual antlrcpp::Any visitParamDefinition(cmmpParser::ParamDefinitionContext *ctx) override
 	{
-		return (VariableDeclaration *)new VariableDeclaration(
+		VariableDeclaration *vd = new VariableDeclaration(
 			TypeUtil::getTypeFromString(ctx->Type()->getText()),
 			ctx->Var()->getText(),
 			ctx->start->getLine(),
 			ctx->start->getCharPositionInLine());
+		vd->setInit(true);//an argument is considered as initialised
+		return vd;
 	}
 
 	//TODO todo échanger avec dessous quand titi aura modifié la grammaire
@@ -273,7 +276,9 @@ class BuildCMMP : public cmmpBaseVisitor
 	//TODO la structure si c'est un tableau n'est pas encore prête...
 	virtual antlrcpp::Any visitMembreGauche(cmmpParser::MembreGaucheContext *ctx) override
 	{
-		return new VariableCall(Type::UNKNOWN, ctx->Var()->getText(), ctx->start->getLine(), ctx->start->getCharPositionInLine());
+		VariableCall* v = new VariableCall(Type::UNKNOWN, ctx->Var()->getText(), ctx->start->getLine(), ctx->start->getCharPositionInLine());
+		v->setRead(true);
+		return v;
 	}
 
 	//renvoie un vector* de Expression*
@@ -298,7 +303,7 @@ class BuildCMMP : public cmmpBaseVisitor
 	{
 		Expression *e0 = visit(ctx->expr(0));
 		Expression *e1 = visit(ctx->expr(1));
-		Expression * ret = new BinaryExpr(
+		Expression *ret = new BinaryExpr(
 			Type::UNKNOWN,
 			e0,
 			BinaryOp::ADD,
@@ -312,7 +317,7 @@ class BuildCMMP : public cmmpBaseVisitor
 	{
 		Expression *e0 = visit(ctx->expr(0));
 		Expression *e1 = visit(ctx->expr(1));
-		Expression * ret = new BinaryExpr(
+		Expression *ret = new BinaryExpr(
 			Type::UNKNOWN,
 			e0,
 			BinaryOp::SUB,
@@ -326,7 +331,7 @@ class BuildCMMP : public cmmpBaseVisitor
 	{
 		Expression *e0 = visit(ctx->expr(0));
 		Expression *e1 = visit(ctx->expr(1));
-		Expression * ret = new BinaryExpr(
+		Expression *ret = new BinaryExpr(
 			Type::UNKNOWN,
 			e0,
 			BinaryOp::MULT,
@@ -340,7 +345,7 @@ class BuildCMMP : public cmmpBaseVisitor
 	{
 		Expression *e0 = visit(ctx->expr(0));
 		Expression *e1 = visit(ctx->expr(1));
-		Expression * ret = new BinaryExpr(
+		Expression *ret = new BinaryExpr(
 			Type::UNKNOWN,
 			e0,
 			BinaryOp::MOD,
@@ -354,7 +359,7 @@ class BuildCMMP : public cmmpBaseVisitor
 	{
 		Expression *e0 = visit(ctx->expr(0));
 		Expression *e1 = visit(ctx->expr(1));
-		Expression * ret = new BinaryExpr(
+		Expression *ret = new BinaryExpr(
 			Type::UNKNOWN,
 			e0,
 			BinaryOp::OR,
@@ -422,6 +427,8 @@ class BuildCMMP : public cmmpBaseVisitor
 			(OpBinaryAffectation)visit(ctx->opAffectation()),
 			e);
 		vc->setParent(ret);
+		vc->setWrite(true);
+		vc->setRead(false);
 		e->setParent(ret);
 		return ret;
 	}
@@ -430,7 +437,7 @@ class BuildCMMP : public cmmpBaseVisitor
 	{
 		Expression *e0 = visit(ctx->expr(0));
 		Expression *e1 = visit(ctx->expr(1));
-		Expression * ret = new BinaryExpr(
+		Expression *ret = new BinaryExpr(
 			Type::UNKNOWN,
 			e0,
 			BinaryOp::DIV,
@@ -471,6 +478,7 @@ class BuildCMMP : public cmmpBaseVisitor
 			visit(ctx->opUnaryAffectation()),
 			true);
 		vc->setParent(ret);
+		vc->setWrite(true);
 		return ret;
 	}
 
@@ -483,6 +491,7 @@ class BuildCMMP : public cmmpBaseVisitor
 			visit(ctx->opUnaryAffectation()),
 			false);
 		vc->setParent(ret);
+		vc->setWrite(true);
 		return ret;
 	}
 
@@ -490,7 +499,7 @@ class BuildCMMP : public cmmpBaseVisitor
 	{
 		Expression *e0 = visit(ctx->expr(0));
 		Expression *e1 = visit(ctx->expr(1));
-		Expression * ret = new BinaryExpr(
+		Expression *ret = new BinaryExpr(
 			Type::UNKNOWN,
 			e0,
 			BinaryOp::AND,
@@ -509,7 +518,7 @@ class BuildCMMP : public cmmpBaseVisitor
 	{
 		Expression *e0 = visit(ctx->expr(0));
 		Expression *e1 = visit(ctx->expr(1));
-		Expression * ret = new BinaryExpr(
+		Expression *ret = new BinaryExpr(
 			Type::UNKNOWN,
 			e0,
 			(BinaryOp)visit(ctx->opComparaison()),

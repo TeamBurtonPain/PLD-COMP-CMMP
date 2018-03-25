@@ -24,6 +24,7 @@ public:
 
 	virtual vector<FunctionCall *> findFunctionCalls(void);
 	virtual vector<VariableCall *> findVarCalls(void);
+	virtual vector<VariableDeclaration *> findVarDeclarations(void);
 
 protected:
 	hashmap<string, VariableDeclaration *> variables;

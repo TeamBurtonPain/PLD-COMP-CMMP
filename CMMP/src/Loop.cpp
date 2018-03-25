@@ -56,3 +56,14 @@ vector<ReturnInstr *> Loop::findReturns(void)
 
     return list;
 }
+vector<VariableDeclaration *> Loop::findVarDeclarations(void)
+{
+    vector<VariableDeclaration *> list;
+    if(instruction)
+    {
+        vector<VariableDeclaration *> subList = instruction->findVarDeclarations();
+        list.insert(list.end(), subList.begin(), subList.end());
+    }
+
+    return list;
+}

@@ -17,7 +17,6 @@ int utilCMMP::linkFunctions(Program *p)
     cout << "    Function calls found:" << endl;
     //get every calls
     vector<FunctionCall *> fcList = p->findFunctionCalls();
-    cout << fcList.size() << endl;
     //for each call
     for (auto f : fcList)
     {
@@ -67,6 +66,7 @@ int utilCMMP::linkFunctions(Program *p)
                 {
 
                     f->setType(it->second->getType());
+                    f->setReference(it->second);
                     cout << "Ok" << endl;
                 }
                 else
@@ -84,12 +84,11 @@ int utilCMMP::linkFunctions(Program *p)
     }
     return error;
 }
-int utilCMMP::linkVariables(Program *p)
+int utilCMMP::linkVariables(Program *p, bool warnings)
 {
     uint error = 0;
     cout << "Variables linking" << endl;
     cout << "    Variable calls found:" << endl;
-
     //get every calls
     vector<VariableCall *> vcList = p->findVarCalls();
 
@@ -109,17 +108,56 @@ int utilCMMP::linkVariables(Program *p)
 
                 if (it != vc->getVariables().end())
                 {
-                    v->setType(it->second->getType());
-                    cout << "Ok" << endl;
-                    found = true;
+                    if (v->getLine() > it->second->getLine() ||
+                        (v->getLine() == it->second->getLine() && v->getColumn() > it->second->getColumn()))
+                    {
+                        v->setType(it->second->getType());
+                        v->setReference(it->second);
+                        if (v->isWrite())
+                            it->second->setInit(true);
+                        if (v->isRead())
+                            it->second->setUsed(true);
+                        if (warnings && v->isRead() && !it->second->isInit())
+                            cout << "Warning : Read value before initialisation ! " << endl;
+                        else
+                            cout << "Ok" << endl;
+                        found = true;
+                    }
+                    else
+                    {
+                        cout << " - called before local declaration - ";
+                    }
                 }
             }
             container = container->getParent();
         }
-        if(!found){
-            cout<< "Aucune correspondance trouvée"<<endl;
+        if (!found)
+        {
+            cout << "No corresponding declaration found" << endl;
             error++;
         }
     }
+
+    return error;
+}
+
+int utilCMMP::checkUnusedVar(Program *p)
+{
+    uint error = 0;
+    cout << "    Unused var check :" << endl;
+
+    //get every calls
+    vector<VariableDeclaration *> v = p->findVarDeclarations();
+
+    for (std::vector<VariableDeclaration *>::size_type i = 0; i != v.size(); i++)
+    {
+        if (!v[i]->isUsed())
+        {
+            cout<<"      Unused var"<<endl; //TODO afficher les détails;
+        }
+    }
+    if(!error)
+    cout<<"      Ok"<<endl;
+
     return error;
 }
