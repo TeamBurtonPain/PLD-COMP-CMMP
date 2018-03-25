@@ -84,7 +84,7 @@ int utilCMMP::linkFunctions(Program *p)
     }
     return error;
 }
-int utilCMMP::linkVariables(Program *p)
+int utilCMMP::linkVariables(Program *p, bool warnings)
 {
     uint error = 0;
     cout << "Variables linking" << endl;
@@ -114,10 +114,19 @@ int utilCMMP::linkVariables(Program *p)
                     {
                         v->setType(it->second->getType());
                         v->setReference(it->second);
-                        cout << "Ok" << endl;
+                        if (v->isWrite())
+                            it->second->setInit(true);
+                        if (v->isRead())
+                            it->second->setUsed(true);
+                        if (warnings && v->isRead() && !it->second->isInit())
+                            cout << "Warning : Read value before initialisation ! "<<endl;
+                        else
+                            cout << "Ok" << endl;
                         found = true;
-                    }else{
-                        cout<<" - called before local declaration - ";
+                    }
+                    else
+                    {
+                        cout << " - called before local declaration - ";
                     }
                 }
             }

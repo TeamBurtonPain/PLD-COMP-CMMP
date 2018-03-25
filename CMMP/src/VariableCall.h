@@ -13,6 +13,13 @@ class VariableCall : public Variable
 	VariableDeclaration *getReference(void) { return ref; };
 	virtual vector<VariableCall *> findVarCalls(void);
 
+  bool isRead(void) { return read; };
+  bool isWrite(void) { return write; };
+  void setRead(bool b) { read = b; };
+  void setWrite(bool b) { write = b; };
+
   protected:
 	VariableDeclaration *ref = NULL;
+	bool read = false;
+	bool write = false;
 };

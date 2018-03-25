@@ -10,5 +10,5 @@ using namespace std;
 namespace utilCMMP
 {
 int linkFunctions(Program *);
-int linkVariables(Program *);
+int linkVariables(Program *, bool warnings); // -a => warnings = true
 }
