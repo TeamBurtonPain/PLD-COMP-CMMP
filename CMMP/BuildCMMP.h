@@ -168,14 +168,17 @@ class BuildCMMP : public cmmpBaseVisitor
 			}
 			delete (listParams);
 		}
+
 		Block *b = visit(ctx->block());
 		f->setBlock(b);
 		b->setParent(f);
+
 		return f;
 	}
 
 	//renvoie un vector* de VariableDeclaration*, s'il n'y a qu'un seul parametre et de type void, l'ignorer
 	//passe par la visite de ctx->paramDefinition
+
 	virtual antlrcpp::Any visitParamDefinitionList(cmmpParser::ParamDefinitionListContext *ctx) override
 	{
 		vector<VariableDeclaration *> *list = new vector<VariableDeclaration *>();
