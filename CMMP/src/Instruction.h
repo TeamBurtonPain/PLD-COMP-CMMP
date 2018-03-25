@@ -2,23 +2,24 @@
 
 #include "CommonTypes.h"
 #include "VarContainer.h"
+#include "Parent.h"
 #include <vector>
 
 class FunctionCall;
 class ReturnInstr;
 class VariableCall;
-class Instruction
+class Instruction : public Parent
 {
 public:
 	Instruction(void);
 	virtual ~Instruction(void) = 0;
-	void setParent(VarContainer *);
-	VarContainer *getParent(void);
+	void setParent(Parent *);
+	Parent *getParent(void);
 
 	virtual vector<FunctionCall *> findFunctionCalls(void)=0;
 	virtual vector<VariableCall *> findVarCalls(void)=0;
 	virtual vector<ReturnInstr *> findReturns(void);
 
 protected:
-	VarContainer *parent = NULL;
+	Parent *parent = NULL;
 };

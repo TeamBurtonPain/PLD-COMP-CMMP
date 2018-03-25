@@ -4,12 +4,12 @@ Instruction::Instruction(void) {}
 
 Instruction::~Instruction(void) {}
 
-void Instruction::setParent(VarContainer *p)
+void Instruction::setParent(Parent *p)
 {
     parent = p;
 }
 
-VarContainer *Instruction::getParent(void)
+Parent *Instruction::getParent(void)
 {
     return parent;
 }
