@@ -1,6 +1,7 @@
 #pragma once
 #include "BinaryAffectation.h"
 #include "BinaryExpr.h"
+#include "Block.h"
 #include "cmmpBaseVisitor.h"
 #include "Expression.h"
 #include "FunctionCall.h"
@@ -9,7 +10,7 @@
 #include "UnaryAffectation.h"
 #include "UnaryExpr.h"
 #include "VariableCall.h"
-#include "VariableDeclaration.h"
+#include "VariableDeclarations.h"
 #include "Const.h"
 
 
@@ -19,11 +20,6 @@ class BuildCMMP :
 public:
 	BuildCMMP();
 	virtual ~BuildCMMP();
-
-		//TODO (pas prio) complex 
-		//TODO (pas prio) vérifier le nouveau délire de parent pour toutes les instructions (histoire de variables et de portées)
-
-
 
 	virtual antlrcpp::Any visitAxiome(cmmpParser::AxiomeContext *ctx) override {
 		return (Program*) visit(ctx->programme());
@@ -46,11 +42,12 @@ public:
 		Program* p = (Program*) visit(ctx->programme());
 
 		Funct* f = (Funct*) visit(ctx->definitionFonction());
+		
 		if(f->getName().compare("main"))
-			p->setMainFunction(*f);
+			p->setMainFunction(f);
 		else
-			p->addFunction(*f);
-
+			p->addFunction(f);
+		
 		return p;
 	}
 	
@@ -59,10 +56,8 @@ public:
 		return new Program();
 	}
 
-	//TODO après implémenttion de Declaration Variable, il faudra s'assurer qu'elle enregistre bien la valeur initialisée dans l'objet VariableDeclaration et supprimer le commentaire plus bas dans la méthode
 	//A la visite d'un Block, on l'instancie, on note les variables d'un coté et les instructions d'un autre
-
-	//TODO 2 set le block actuel comme parent de l'instruction
+	//TODO la fcking race des parents
 	virtual antlrcpp::Any visitBlock(cmmpParser::BlockContext *ctx) override {
 		Block* b = new Block();
 
@@ -71,21 +66,34 @@ public:
 			<<ctx->instruction(i)->getText()<<endl;
 			Instruction* instr = (Instruction*)(visit(ctx->instruction(i)));
 
-			VariableDeclaration* vd = dynamic_cast<VariableDeclaration*>(instr);
-			if(vd){
-				b->addVariable(*vd);
-				//faut faire un truc pour garder la valeur initialisée
+			VariableDeclarations* vds = dynamic_cast<VariableDeclarations*>(instr);
+			if(vds){
+				vector<VariableDeclaration*> vectorDecl =  vds->getDecla();
+				for(int i=0;i<vectorDecl.size();i++){
+					cout<<"line : "<<i<<endl;
+					b->addVariable(vectorDecl[i]);
+				}
+				delete(vds);
+				vectorDecl.clear();
+				
 			}else{
-				b->addInstruction(*instr);
+				instr->setParent(b);
+				b->addInstruction(instr);
 			}
 		}
 		return b;
 	}
 
-	//TODO s'inspirer du traitement de visitParamDefinitionList
-	//renvoie un vector* de VariableDeclaration* avec leur valeur d'initialisation si c'est le cas
 	virtual antlrcpp::Any visitDeclarationVarListe(cmmpParser::DeclarationVarListeContext *ctx) override {
-		return visitChildren(ctx);
+		VariableDeclarations* list = new VariableDeclarations();
+
+		for(uint i=0 ; i<ctx->declarationVar().size() ; i++){
+			VariableDeclaration* varDecla = (VariableDeclaration*)visit(ctx->declarationVar(i));
+
+			list->addDecla(varDecla);
+		}
+
+		return list;
 	}
 
 	virtual antlrcpp::Any visitSimpleVar(cmmpParser::SimpleVarContext *ctx) override {
@@ -102,7 +110,8 @@ public:
 	//TODO construire l'objet VariableDeclaration* à retourner avec sa valeur par défaut il elle existe
 	//TODO s'inspirer de visitParamDefinition
 	virtual antlrcpp::Any visitVarSimple(cmmpParser::VarSimpleContext *ctx) override {
-		return visitChildren(ctx);
+		cout<<"yop"<<endl;
+		return (VariableDeclaration*) new VariableDeclaration(Type::CHAR,"tets",1,1);
 	}
 
 	//TODO later
@@ -118,18 +127,15 @@ public:
 			ctx->Var()->getText()
 		);
 		//c'est chelou mais sans ptr autour de tout ça j'ai des leaks
-		ptr<vector<ptr<VariableDeclaration> > > listParams = ptr<vector<ptr<VariableDeclaration> > > ((vector<ptr<VariableDeclaration> >*)visit(ctx->paramDefinitionList()));
+		ptr<vector<VariableDeclaration*> > listParams = ptr<vector<VariableDeclaration*> > ((vector<VariableDeclaration*>*)visit(ctx->paramDefinitionList()));
 		
 		for(uint i=0; i<listParams->size();i++){
 			cout<<(*listParams)[i]->getName()<<endl;
-			f->addVariable(*(*listParams)[i]);
-
+			f->addVariable((*listParams)[i]);
 		}
-		
-		
 
 		f->setBlock(
-			*((Block*)visit(ctx->block()))
+			(Block*)visit(ctx->block())
 		);
 		return f;
 	}
@@ -137,14 +143,15 @@ public:
 	//renvoie un vector* de VariableDeclaration*, s'il n'y a qu'un seul parametre et de type void, l'ignorer
 	//passe par la visite de ctx->paramDefinition
 	virtual antlrcpp::Any visitParamDefinitionList(cmmpParser::ParamDefinitionListContext *ctx) override {
-		vector<ptr<VariableDeclaration> >*list = new vector<ptr<VariableDeclaration> >();
+		vector<VariableDeclaration*> *list = new vector<VariableDeclaration*>();
+
 		//if only param is void
 		if(ctx->paramDefinition().size()==1 && ctx->paramDefinition(0)->getText()=="void")
 			return list;
 
 		for(uint i=0 ; i<ctx->paramDefinition().size() ; i++){
 			list->push_back(
-				ptr<VariableDeclaration>((VariableDeclaration*) visit(ctx->paramDefinition(i)) )
+				(VariableDeclaration*) visit(ctx->paramDefinition(i))
 			);
 		}
 		return list;
@@ -178,11 +185,8 @@ public:
 		return (Instruction*)((Expression*)(visit(ctx->expr())));
 	}
 	
-	//TODO complex
-	//TODO relou a cause du fait que ça soit une liste, faut faire gaffe à tout chopper
-	//TODO retourner le résultat de la visite de ctx->declarationVarListe(), attention a bien le cast en (Instruction*)
 	virtual antlrcpp::Any visitInsDeclVar(cmmpParser::InsDeclVarContext *ctx) override {
-		return (Instruction*) new VariableCall(Type::CHAR,"test",1, 1);
+		return (Instruction*) (VariableDeclarations*)visit(ctx->declarationVarListe());
 	}
 	
 	virtual antlrcpp::Any visitInsControl(cmmpParser::InsControlContext *ctx) override {
@@ -209,9 +213,9 @@ public:
 		return (Expression*)
 			new BinaryExpr(
 				Type::UNKNOWN,
-				*((Expression*) visit(ctx->expr(0))),
+				(Expression*) visit(ctx->expr(0)),
 				BinaryOp::ADD,
-				*((Expression*) visit(ctx->expr(1)))
+				(Expression*) visit(ctx->expr(1))
 			);
 	}
 
@@ -219,9 +223,9 @@ public:
 		return (Expression*)
 			new BinaryExpr(
 				Type::UNKNOWN,
-				*((Expression*) visit(ctx->expr(0))),
+				(Expression*) visit(ctx->expr(0)),
 				BinaryOp::SUB,
-				*((Expression*) visit(ctx->expr(1)))
+				(Expression*) visit(ctx->expr(1))
 			);
 	}
 
@@ -229,9 +233,9 @@ public:
 		return (Expression*)
 			new BinaryExpr(
 				Type::UNKNOWN,
-				*((Expression*)visit(ctx->expr(0))),
+				(Expression*)visit(ctx->expr(0)),
 				BinaryOp::MULT,
-				*((Expression*)visit(ctx->expr(1)))
+				(Expression*) visit(ctx->expr(1))
 			);
 	}
 
@@ -239,9 +243,9 @@ public:
 		return (Expression*)
 			new BinaryExpr(
 				Type::UNKNOWN,
-				*((Expression*)visit(ctx->expr(0))),
+				(Expression*)visit(ctx->expr(0)),
 				BinaryOp::MOD,
-				*((Expression*)visit(ctx->expr(1)))
+				(Expression*) visit(ctx->expr(1))
 			);
 	}
 
@@ -249,9 +253,9 @@ public:
 		return (Expression*)
 			new BinaryExpr(
 				Type::UNKNOWN,
-				*((Expression*)visit(ctx->expr(0))),
+				(Expression*)visit(ctx->expr(0)),
 				BinaryOp::OR,
-				*((Expression*)visit(ctx->expr(1)))
+				(Expression*) visit(ctx->expr(1))
 			);
 	}
 
@@ -306,9 +310,9 @@ public:
 		return (Expression*)
 			new BinaryAffectation(
 				Type::UNKNOWN,
-				*((VariableCall*)visit(ctx->membreGauche())),
+				(VariableCall*)visit(ctx->membreGauche()),
 				(OpBinaryAffectation)visit(ctx->opAffectation()),
-				*((Expression*)visit(ctx->expr()))
+				(Expression*)visit(ctx->expr())
 			);
 	}
 
@@ -316,9 +320,9 @@ public:
 		return (Expression*)
 			new BinaryExpr(
 				Type::UNKNOWN,
-				*((Expression*)visit(ctx->expr(0))),
+				(Expression*)visit(ctx->expr(0)),
 				BinaryOp::DIV,
-				*((Expression*)visit(ctx->expr(1)))
+				(Expression*)visit(ctx->expr(1))
 			);;
 	}
 
@@ -326,7 +330,7 @@ public:
 		return (Expression*)
 			new UnaryExpr(
 				Type::UNKNOWN,
-				*((Expression*)visit(ctx->expr())),
+				(Expression*)visit(ctx->expr()),
 				UnaryOp::MINUS);
 	}
 
@@ -334,7 +338,7 @@ public:
 		return (Expression*)
 			new UnaryExpr(
 				Type::UNKNOWN,
-				*((Expression*)visit(ctx->expr())),
+				(Expression*)visit(ctx->expr()),
 				UnaryOp::NOT);
 	}
 
@@ -342,7 +346,7 @@ public:
 		return (Expression*)
 			new UnaryAffectation(
 				Type::UNKNOWN,
-				*((Variable*)visit(ctx->membreGauche())), 
+				(Variable*)visit(ctx->membreGauche()), 
 				visit(ctx->opUnaryAffectation()), 
 				true);
 	}
@@ -351,7 +355,7 @@ public:
 		return (Expression*)
 			new UnaryAffectation(
 				Type::UNKNOWN,
-				*((Variable*)visit(ctx->membreGauche())), 
+				(Variable*)visit(ctx->membreGauche()), 
 				visit(ctx->opUnaryAffectation()), 
 				true);
 	}
@@ -360,9 +364,9 @@ public:
 		return (Expression*)
 			new BinaryExpr(
 				Type::UNKNOWN,
-				*((Expression*)visit(ctx->expr(0))),
+				(Expression*)visit(ctx->expr(0)),
 				BinaryOp::AND,
-				*((Expression*)visit(ctx->expr(1)))
+				(Expression*)visit(ctx->expr(1))
 			);
 	}
 
@@ -374,9 +378,9 @@ public:
 		return (Expression*)
 			new BinaryExpr(
 				Type::UNKNOWN,
-				*((Expression*)visit(ctx->expr(0))),
+				(Expression*)visit(ctx->expr(0)),
 				(BinaryOp)visit(ctx->opComparaison()),
-				*((Expression*)visit(ctx->expr(1)))
+				(Expression*)visit(ctx->expr(1))
 			);
 	}
 

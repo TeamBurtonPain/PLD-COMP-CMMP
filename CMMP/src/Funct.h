@@ -14,12 +14,12 @@ class Funct: public VarContainer{
 		virtual ~Funct(void);
 		Type getType(void)const{return returnType;}
 		string getName(void)const{return name;}
-		void addVariable(VariableDeclaration&);
-		void setBlock(Block&);
+		void addVariable(VariableDeclaration*);
+		void setBlock(Block*);
 
 	protected :
-		hashmap <string, ptr<VariableDeclaration> > parameters;
-		ptr<Block> instructions;
+		hashmap <string, VariableDeclaration*> parameters;
+		Block* instructions;
 		Type returnType;
 		string name;
 		//id(signature)

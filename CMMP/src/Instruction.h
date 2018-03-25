@@ -8,8 +8,8 @@ class Instruction
 	public:
 		Instruction(void);
 		virtual ~Instruction(void) = 0;
-		void setParent(VarContainer&);
-		ptr<VarContainer> getParent(void);
+		void setParent(VarContainer*);
+		VarContainer* getParent(void);
 	protected:
-		ptr<VarContainer> parent;
+		VarContainer* parent = NULL;
 };

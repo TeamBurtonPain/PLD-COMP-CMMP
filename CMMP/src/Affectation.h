@@ -6,8 +6,8 @@
 
 class Affectation : public Expression{
     public:
-        Affectation(Type, Variable &);
+        Affectation(Type, Variable*);
         ~Affectation(void);
     protected: 
-        ptr<Variable> leftValue;
+        Variable* leftValue;
 };

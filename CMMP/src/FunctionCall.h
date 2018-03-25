@@ -9,10 +9,10 @@ class FunctionCall : public Expression{
     public :
         FunctionCall(Type t, string n);
         virtual ~FunctionCall(void);
-        void addArg(Expression&);
+        void addArg(Expression*);
 
     protected :
-        ptr<Funct> function;
+        Funct* function = NULL;
         string name;
-        vector<ptr<Expression> > arguments;
+        vector<Expression*> arguments;
 };

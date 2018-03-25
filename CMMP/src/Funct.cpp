@@ -2,12 +2,22 @@
 
 Funct::Funct(Type t, string n):returnType(t), name(n){}
 
-Funct::~Funct(void){}
+Funct::~Funct(void){
+    hashmap<string, VariableDeclaration*>::iterator it = parameters.begin();
+    while(it != parameters.end())
+    {
+        delete(it->second);
+        it++;
+    }
+    parameters.clear();
 
-void Funct::addVariable(VariableDeclaration& v){
-    parameters.insert({v.getName(), ptr<VariableDeclaration>(&v)});
+    if (instructions) delete instructions;
 }
 
-void Funct::setBlock(Block& b){
-    instructions = ptr<Block>(&b);
+void Funct::addVariable(VariableDeclaration* v){
+    parameters.insert({v->getName(), v});
+}
+
+void Funct::setBlock(Block* b){
+    instructions = b;
 }

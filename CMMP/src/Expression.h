@@ -10,6 +10,7 @@ class Expression : public Instruction{
 		Expression(Type t);
 		virtual ~Expression(void) = 0;
 		Type getType(void){return type;};
+		void setType(Type t){type=t;};
 	protected:
 		Type type;
 };

@@ -4,7 +4,7 @@
 
 class VariableDeclaration : public Instruction{
     public: 
-      VariableDeclaration(Type t, string name, uint line, uint col, Expression& value);
+      VariableDeclaration(Type t, string name, uint line, uint col, Expression* value);
       VariableDeclaration(Type t, string name, uint line, uint col);
       virtual ~VariableDeclaration(void);
 
@@ -17,5 +17,5 @@ class VariableDeclaration : public Instruction{
       string name;
       uint line;
       uint column;
-      ptr<Expression> value;
+      Expression* value = NULL;
 };
