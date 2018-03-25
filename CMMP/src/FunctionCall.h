@@ -10,7 +10,10 @@ class FunctionCall : public Expression
 public:
   FunctionCall(Type t, string n);
   virtual ~FunctionCall(void);
+
   void addArg(Expression *);
+  vector<Expression*>& getArgs(void){return arguments;};
+  void setType(Type t){type = t;};
 
   string getName(void){return name;};
   virtual vector<FunctionCall *> findFunctionCalls(void);

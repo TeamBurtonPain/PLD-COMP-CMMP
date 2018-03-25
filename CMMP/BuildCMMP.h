@@ -33,7 +33,7 @@ class BuildCMMP : public cmmpBaseVisitor
 		VariableDeclarations *vds = (VariableDeclarations *)(visit(ctx->declarationVarListe()));
 
 		vector<VariableDeclaration *> vectorDecl = vds->getDecla();
-		for (int i = 0; i < vectorDecl.size(); i++)
+		for (uint i = 0; i < vectorDecl.size(); i++)
 		{
 			p->addVariable(vectorDecl[i]);
 		}
@@ -80,7 +80,7 @@ class BuildCMMP : public cmmpBaseVisitor
 			if (vds)
 			{
 				vector<VariableDeclaration *> vectorDecl = vds->getDecla();
-				for (int i = 0; i < vectorDecl.size(); i++)
+				for (uint i = 0; i < vectorDecl.size(); i++)
 				{
 					b->addVariable(vectorDecl[i]);
 				}

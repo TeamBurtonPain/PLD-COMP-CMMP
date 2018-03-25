@@ -12,11 +12,11 @@ public:
 	virtual ~Program(void);
 
 	void addVariable(VariableDeclaration *);
-	hashmap<string, VariableDeclaration *> getVariables(void){return variables;};
+	hashmap<string, VariableDeclaration *>& getVariables(void){return variables;};
 	void setMainFunction(Funct *mainF);
 	Funct *getMainFunction(void) { return mainFunction; };
 	void addFunction(Funct *f);
-	hashmap<string, Funct *> getFunctions(void){return otherFunctions;};
+	hashmap<string, Funct *>& getFunctions(void){return otherFunctions;};
 
 	virtual vector<FunctionCall *> findFunctionCalls(void);
 	virtual vector<VariableCall *> findVarCalls(void);

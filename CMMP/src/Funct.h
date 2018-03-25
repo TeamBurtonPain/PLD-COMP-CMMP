@@ -17,7 +17,8 @@ class Funct : public VarContainer
 	Type getType(void) const { return returnType; }
 	string getName(void) const { return name; }
 	void addVariable(VariableDeclaration *);
-	hashmap<string, VariableDeclaration *> getParams(void){return parameters;};
+	hashmap<string, VariableDeclaration *>& getParams(void){return parameters;};
+	uint getArgCount(void);
 	void setBlock(Block *);
 	Block* getBlock(void){return instructions;};
 	void setReturn(ReturnInstr* r){returnExpr = r;};
@@ -29,7 +30,7 @@ class Funct : public VarContainer
 
   protected:
 	hashmap<string, VariableDeclaration *> parameters;
-	Block *instructions;
+	Block *instructions=NULL;
 	Type returnType;
 	ReturnInstr* returnExpr=NULL;
 	string name;

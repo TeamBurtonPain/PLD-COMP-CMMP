@@ -16,8 +16,8 @@ public:
 	void addVariable(VariableDeclaration *);
 	void addInstruction(Instruction *);
 
-	hashmap<string, VariableDeclaration *> getVariables(void) { return variables; };
-	deque<Instruction *> getInstructions(void) { return instructions; };
+	hashmap<string, VariableDeclaration *>& getVariables(void) { return variables; };
+	deque<Instruction *>& getInstructions(void) { return instructions; };
 
 	virtual vector<FunctionCall *> findFunctionCalls(void);
 	virtual vector<VariableCall *> findVarCalls(void);
