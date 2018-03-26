@@ -11,7 +11,7 @@ class VariableDeclaration;
 
 class Block : public Instruction, public VarContainer
 {
-  public:
+public:
 	Block(void);
 	virtual ~Block(void);
 
@@ -26,7 +26,7 @@ class Block : public Instruction, public VarContainer
 	virtual vector<VariableDeclaration *> findVarDeclarations(void);
 	virtual vector<ReturnInstr *> findReturns(void);
 
-  protected:
+protected:
 	hashmap<string, VariableDeclaration *> variables;
 	deque<Instruction *> instructions;
 };

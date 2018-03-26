@@ -21,7 +21,6 @@ class BuildCMMP : public cmmpBaseVisitor
 	BuildCMMP();
 	virtual ~BuildCMMP();
 
-	
 	/// <summary>
 	/// Visits the axiome.
 	/// </summary>
@@ -209,7 +208,7 @@ class BuildCMMP : public cmmpBaseVisitor
 			ctx->Var()->getText(),
 			ctx->start->getLine(),
 			ctx->start->getCharPositionInLine());
-		vd->setInit(true);//an argument is considered as initialised
+		vd->setInit(true); //an argument is considered as initialised
 		return vd;
 	}
 
@@ -238,8 +237,8 @@ class BuildCMMP : public cmmpBaseVisitor
 
 		return (Instruction *)c;
 	}
-	
-	virtual antlrcpp::Any visitControlwhile(cmmpParser::ControlwhileContext* ctx) override
+
+	virtual antlrcpp::Any visitControlwhile(cmmpParser::ControlwhileContext *ctx) override
 	{
 		Expression *e = visit(ctx->expr());
 		Instruction *i = visit(ctx->instruction());
@@ -281,7 +280,7 @@ class BuildCMMP : public cmmpBaseVisitor
 	//TODO la structure si c'est un tableau n'est pas encore prête...
 	virtual antlrcpp::Any visitMembreGauche(cmmpParser::MembreGaucheContext *ctx) override
 	{
-		VariableCall* v = new VariableCall(Type::UNKNOWN, ctx->Var()->getText(), ctx->start->getLine(), ctx->start->getCharPositionInLine());
+		VariableCall *v = new VariableCall(Type::UNKNOWN, ctx->Var()->getText(), ctx->start->getLine(), ctx->start->getCharPositionInLine());
 		v->setRead(true);
 		return v;
 	}

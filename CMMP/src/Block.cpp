@@ -40,7 +40,7 @@ vector<FunctionCall *> Block::findFunctionCalls(void)
             list.insert(list.end(), subList.begin(), subList.end());
         }
     }
-    
+
     for (deque<Instruction *>::iterator it = instructions.begin(); it != instructions.end(); ++it)
     {
         vector<FunctionCall *> subList = (*it)->findFunctionCalls();
@@ -62,7 +62,7 @@ vector<VariableCall *> Block::findVarCalls(void)
             list.insert(list.end(), subList.begin(), subList.end());
         }
     }
-    
+
     for (deque<Instruction *>::iterator it = instructions.begin(); it != instructions.end(); ++it)
     {
         vector<VariableCall *> subList = (*it)->findVarCalls();
@@ -79,7 +79,7 @@ vector<VariableDeclaration *> Block::findVarDeclarations(void)
     {
         list.push_back(var.second);
     }
-    
+
     for (deque<Instruction *>::iterator it = instructions.begin(); it != instructions.end(); ++it)
     {
         vector<VariableDeclaration *> subList = (*it)->findVarDeclarations();
@@ -88,7 +88,6 @@ vector<VariableDeclaration *> Block::findVarDeclarations(void)
 
     return list;
 }
-
 
 vector<ReturnInstr *> Block::findReturns(void)
 {

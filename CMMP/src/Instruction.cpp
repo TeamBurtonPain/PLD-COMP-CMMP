@@ -11,7 +11,7 @@ void Instruction::setParent(Parent *p)
     parent = p;
 }
 
-Parent* Instruction::getParent(void)
+Parent *Instruction::getParent(void)
 {
     return parent;
 }

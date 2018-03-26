@@ -38,7 +38,6 @@ void Program::addFunction(Funct *f)
     otherFunctions.insert({f->getName(), f});
 }
 
-
 vector<FunctionCall *> Program::findFunctionCalls(void)
 {
     vector<FunctionCall *> list;
@@ -58,7 +57,7 @@ vector<FunctionCall *> Program::findFunctionCalls(void)
         list.insert(list.end(), subList.begin(), subList.end());
     }
 
-    if(mainFunction)
+    if (mainFunction)
     {
         vector<FunctionCall *> subList = mainFunction->findFunctionCalls();
         list.insert(list.end(), subList.begin(), subList.end());
@@ -86,7 +85,7 @@ vector<VariableCall *> Program::findVarCalls(void)
         list.insert(list.end(), subList.begin(), subList.end());
     }
 
-    if(mainFunction)
+    if (mainFunction)
     {
         vector<VariableCall *> subList = mainFunction->findVarCalls();
         list.insert(list.end(), subList.begin(), subList.end());
@@ -110,7 +109,7 @@ vector<VariableDeclaration *> Program::findVarDeclarations(void)
         list.insert(list.end(), subList.begin(), subList.end());
     }
 
-    if(mainFunction)
+    if (mainFunction)
     {
         vector<VariableDeclaration *> subList = mainFunction->findVarDeclarations();
         list.insert(list.end(), subList.begin(), subList.end());

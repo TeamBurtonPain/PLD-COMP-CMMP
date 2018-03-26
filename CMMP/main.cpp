@@ -47,10 +47,11 @@ int main()
 
 	//analyse statique -a
 	uint errors = 0;
+	bool staticCheck = true; //option -a
+
 	//set VarCalls and FunctCalls a ref to the true var/funct
 	errors += utilCMMP::linkFunctions(p);
 
-	bool staticCheck = true; //option -a
 	errors += utilCMMP::linkVariables(p, staticCheck);
 
 	if (staticCheck)

@@ -15,7 +15,7 @@ class Block;
 //TODO : il peut y avoir plusieurs instructions de retour !
 class Funct : public VarContainer, public Parent
 {
-public:
+  public:
 	Funct(Type returnType, string name);
 	virtual ~Funct(void);
 
@@ -41,7 +41,7 @@ public:
 	virtual vector<VariableDeclaration *> findVarDeclarations(void);
 	virtual vector<ReturnInstr *> findReturns(void);
 
-protected:
+  protected:
 	hashmap<string, VariableDeclaration *> parameters;
 	Block *instructions = nullptr;
 	Type returnType;

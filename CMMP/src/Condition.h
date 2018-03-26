@@ -12,21 +12,21 @@ using namespace std;
 
 class Condition : public Instruction
 {
-  public:
+public:
 	Condition(Expression *condition, Instruction *ifInstruction, Instruction *elseInstruction);
 	Condition(Expression *condition, Instruction *ifInstruction);
 	virtual ~Condition(void);
 
-	Expression* getTest(void){return test;}
-	Instruction* getIfInstr(void){return instruction;}
-	Instruction* getElseInstr(void){return elseInstruction;}
+	Expression *getTest(void) { return test; }
+	Instruction *getIfInstr(void) { return instruction; }
+	Instruction *getElseInstr(void) { return elseInstruction; }
 
 	virtual vector<FunctionCall *> findFunctionCalls(void);
 	virtual vector<VariableCall *> findVarCalls(void);
 	virtual vector<VariableDeclaration *> findVarDeclarations(void);
 	virtual vector<ReturnInstr *> findReturns(void);
 
-  protected:
+protected:
 	Expression *test;
 	Instruction *instruction;
 	Instruction *elseInstruction = NULL;

@@ -7,10 +7,11 @@ VariableDeclaration::~VariableDeclaration(void)
     if (value)
         delete value;
 }
-vector<FunctionCall *> VariableDeclaration::findFunctionCalls(void){
+vector<FunctionCall *> VariableDeclaration::findFunctionCalls(void)
+{
     vector<FunctionCall *> v;
-    
-    if(value)
+
+    if (value)
     {
         vector<FunctionCall *> subList = value->findFunctionCalls();
         v.insert(v.end(), subList.begin(), subList.end());
@@ -18,16 +19,18 @@ vector<FunctionCall *> VariableDeclaration::findFunctionCalls(void){
     return v;
 }
 
-vector<VariableDeclaration *> VariableDeclaration::findVarDeclarations(void){
+vector<VariableDeclaration *> VariableDeclaration::findVarDeclarations(void)
+{
     vector<VariableDeclaration *> v;
     v.push_back(this);
     return v;
 }
 
-vector<VariableCall *> VariableDeclaration::findVarCalls(void){
+vector<VariableCall *> VariableDeclaration::findVarCalls(void)
+{
     vector<VariableCall *> v;
-    
-    if(value)
+
+    if (value)
     {
         vector<VariableCall *> subList = value->findVarCalls();
         v.insert(v.end(), subList.begin(), subList.end());

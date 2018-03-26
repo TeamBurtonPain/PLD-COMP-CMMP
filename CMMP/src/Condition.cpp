@@ -36,7 +36,7 @@ vector<FunctionCall *> Condition::findFunctionCalls(void)
         vector<FunctionCall *> subList = instruction->findFunctionCalls();
         list.insert(list.end(), subList.begin(), subList.end());
     }
-    if(elseInstruction)
+    if (elseInstruction)
     {
         vector<FunctionCall *> subList = elseInstruction->findFunctionCalls();
         list.insert(list.end(), subList.begin(), subList.end());
@@ -44,7 +44,6 @@ vector<FunctionCall *> Condition::findFunctionCalls(void)
 
     return list;
 }
-
 
 vector<VariableCall *> Condition::findVarCalls(void)
 {
@@ -59,7 +58,7 @@ vector<VariableCall *> Condition::findVarCalls(void)
         vector<VariableCall *> subList = instruction->findVarCalls();
         list.insert(list.end(), subList.begin(), subList.end());
     }
-    if(elseInstruction)
+    if (elseInstruction)
     {
         vector<VariableCall *> subList = elseInstruction->findVarCalls();
         list.insert(list.end(), subList.begin(), subList.end());
@@ -67,7 +66,6 @@ vector<VariableCall *> Condition::findVarCalls(void)
 
     return list;
 }
-
 
 vector<ReturnInstr *> Condition::findReturns(void)
 {
@@ -77,7 +75,7 @@ vector<ReturnInstr *> Condition::findReturns(void)
         vector<ReturnInstr *> subList = instruction->findReturns();
         list.insert(list.end(), subList.begin(), subList.end());
     }
-    if(elseInstruction)
+    if (elseInstruction)
     {
         vector<ReturnInstr *> subList = elseInstruction->findReturns();
         list.insert(list.end(), subList.begin(), subList.end());
@@ -85,7 +83,6 @@ vector<ReturnInstr *> Condition::findReturns(void)
 
     return list;
 }
-
 
 vector<VariableDeclaration *> Condition::findVarDeclarations(void)
 {
@@ -95,7 +92,7 @@ vector<VariableDeclaration *> Condition::findVarDeclarations(void)
         vector<VariableDeclaration *> subList = instruction->findVarDeclarations();
         list.insert(list.end(), subList.begin(), subList.end());
     }
-    if(elseInstruction)
+    if (elseInstruction)
     {
         vector<VariableDeclaration *> subList = elseInstruction->findVarDeclarations();
         list.insert(list.end(), subList.begin(), subList.end());

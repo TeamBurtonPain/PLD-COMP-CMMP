@@ -2,8 +2,8 @@
 
 class Parent
 {
-  public:
-    Parent(void){};
-    virtual ~Parent(void) {};
-    virtual Parent* getParent(void) = 0;
+public:
+  Parent(void){}
+  virtual ~Parent(void){}
+  virtual Parent *getParent(void) = 0;
 };

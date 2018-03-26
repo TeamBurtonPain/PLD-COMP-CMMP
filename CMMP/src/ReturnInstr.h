@@ -16,5 +16,5 @@ public:
   virtual vector<ReturnInstr *> findReturns(void);
 
 protected:
-  Expression *expr=NULL;
+  Expression *expr = NULL;
 };

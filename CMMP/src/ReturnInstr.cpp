@@ -8,15 +8,18 @@ ReturnInstr::~ReturnInstr(void)
 {
 }
 
-vector<FunctionCall *> ReturnInstr::findFunctionCalls(void){
+vector<FunctionCall *> ReturnInstr::findFunctionCalls(void)
+{
     vector<FunctionCall *> v;
     return v;
 }
-vector<VariableCall *> ReturnInstr::findVarCalls(void){
+vector<VariableCall *> ReturnInstr::findVarCalls(void)
+{
     vector<VariableCall *> v;
     return v;
 }
-vector<ReturnInstr *> ReturnInstr::findReturns(void){
+vector<ReturnInstr *> ReturnInstr::findReturns(void)
+{
     vector<ReturnInstr *> v;
     v.push_back(this);
     return v;

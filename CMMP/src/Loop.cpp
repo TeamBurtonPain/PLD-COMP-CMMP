@@ -13,12 +13,12 @@ Loop::~Loop(void)
 vector<FunctionCall *> Loop::findFunctionCalls(void)
 {
     vector<FunctionCall *> list;
-    if(finalTest)
+    if (finalTest)
     {
         vector<FunctionCall *> subList = finalTest->findFunctionCalls();
         list.insert(list.end(), subList.begin(), subList.end());
     }
-    if(instruction)
+    if (instruction)
     {
         vector<FunctionCall *> subList = instruction->findFunctionCalls();
         list.insert(list.end(), subList.begin(), subList.end());
@@ -27,16 +27,15 @@ vector<FunctionCall *> Loop::findFunctionCalls(void)
     return list;
 }
 
-
 vector<VariableCall *> Loop::findVarCalls(void)
 {
     vector<VariableCall *> list;
-    if(finalTest)
+    if (finalTest)
     {
         vector<VariableCall *> subList = finalTest->findVarCalls();
         list.insert(list.end(), subList.begin(), subList.end());
     }
-    if(instruction)
+    if (instruction)
     {
         vector<VariableCall *> subList = instruction->findVarCalls();
         list.insert(list.end(), subList.begin(), subList.end());
@@ -48,7 +47,7 @@ vector<VariableCall *> Loop::findVarCalls(void)
 vector<ReturnInstr *> Loop::findReturns(void)
 {
     vector<ReturnInstr *> list;
-    if(instruction)
+    if (instruction)
     {
         vector<ReturnInstr *> subList = instruction->findReturns();
         list.insert(list.end(), subList.begin(), subList.end());
@@ -59,7 +58,7 @@ vector<ReturnInstr *> Loop::findReturns(void)
 vector<VariableDeclaration *> Loop::findVarDeclarations(void)
 {
     vector<VariableDeclaration *> list;
-    if(instruction)
+    if (instruction)
     {
         vector<VariableDeclaration *> subList = instruction->findVarDeclarations();
         list.insert(list.end(), subList.begin(), subList.end());

@@ -7,11 +7,11 @@
 template <class T>
 class Const : public Expression
 {
-  public:
+public:
 	Const(const Type t, const T &v);
 	virtual ~Const(void);
 
-  protected:
+protected:
 	T value;
 };
 

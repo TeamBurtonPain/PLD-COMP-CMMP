@@ -155,11 +155,11 @@ int utilCMMP::checkUnusedVar(Program *p)
     {
         if (!v[i]->isUsed())
         {
-            cout<<"      Unused var"<<endl; //TODO afficher les détails;
+            cout << "      Unused var" << endl; //TODO afficher les détails;
         }
     }
-    if(!error)
-    cout<<"      Ok"<<endl;
+    if (!error)
+        cout << "      Ok" << endl;
 
     return error;
 }

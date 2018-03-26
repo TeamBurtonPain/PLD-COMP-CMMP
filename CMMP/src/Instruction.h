@@ -10,17 +10,17 @@ class ReturnInstr;
 class VariableCall;
 class Instruction : public Parent
 {
-public:
+  public:
 	Instruction(void);
 	virtual ~Instruction(void) = 0;
 	void setParent(Parent *);
 	Parent *getParent(void);
 
-	virtual vector<FunctionCall *> findFunctionCalls(void)=0;
-	virtual vector<VariableCall *> findVarCalls(void)=0;
+	virtual vector<FunctionCall *> findFunctionCalls(void) = 0;
+	virtual vector<VariableCall *> findVarCalls(void) = 0;
 	virtual vector<VariableDeclaration *> findVarDeclarations(void);
 	virtual vector<ReturnInstr *> findReturns(void);
 
-protected:
+  protected:
 	Parent *parent = NULL;
 };

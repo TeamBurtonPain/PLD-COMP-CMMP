@@ -8,7 +8,7 @@ using namespace std;
 
 class Loop : public Instruction
 {
-  public:
+public:
 	Loop(Expression *finalTest, Instruction *i);
 	virtual ~Loop(void);
 
@@ -20,7 +20,7 @@ class Loop : public Instruction
 	virtual vector<VariableDeclaration *> findVarDeclarations(void);
 	virtual vector<ReturnInstr *> findReturns(void);
 
-  protected:
+protected:
 	Expression *finalTest;
 	Instruction *instruction;
 };

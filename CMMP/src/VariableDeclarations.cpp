@@ -15,11 +15,13 @@ void VariableDeclarations::addDecla(VariableDeclaration *d)
 {
     declarations.push_back(d);
 }
-vector<FunctionCall *> VariableDeclarations::findFunctionCalls(void){
+vector<FunctionCall *> VariableDeclarations::findFunctionCalls(void)
+{
     vector<FunctionCall *> v;
     return v;
 }
-vector<VariableCall *> VariableDeclarations::findVarCalls(void){
+vector<VariableCall *> VariableDeclarations::findVarCalls(void)
+{
     vector<VariableCall *> v;
     return v;
 }

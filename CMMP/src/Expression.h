@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "CommonTypes.h"
 #include "Type.h"
 #include "Instruction.h"
@@ -11,7 +10,7 @@ class VariableCall;
 //classe abstraite
 class Expression : public Instruction
 {
-  public:
+public:
 	Expression(Type t);
 	virtual ~Expression(void) = 0;
 	Type getType(void) { return type; }
@@ -20,6 +19,6 @@ class Expression : public Instruction
 	virtual vector<FunctionCall *> findFunctionCalls(void);
 	virtual vector<VariableCall *> findVarCalls(void);
 
-  protected:
+protected:
 	Type type;
 };
