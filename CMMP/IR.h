@@ -8,6 +8,7 @@
 // Declarations from the parser -- replace with your own
 #include "Type.h"
 #include "CommonTypes.h"
+#include "Funct.h"
 
 class BasicBlock;
 class CFG;
@@ -98,9 +99,9 @@ class BasicBlock {
  */
 class CFG {
  public:
-	CFG(DefFonction* ast);
+	CFG(Funct* a):ast(a){}
 
-	DefFonction* ast; /**< The AST this CFG comes from */
+	Funct* ast; /**< The AST this CFG comes from */
 	
 	void add_bb(BasicBlock* bb); 
 
