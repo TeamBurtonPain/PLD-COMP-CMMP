@@ -17,12 +17,13 @@ namespace utilCMMP
     uint checkUnusedVar(Program *);
     uint setTypesAuto(Program *);
 
-    struct Indent 
+    class Indent 
     {
-        Indent(int n):n(n){}
-        int n;
+        public:
+            Indent(int n):n(n){}
+            int n;
     };
-    using Indent = struct Indent;
+
 
     std::ostream& operator<<(std::ostream& stream, const Indent &ws)
     {
