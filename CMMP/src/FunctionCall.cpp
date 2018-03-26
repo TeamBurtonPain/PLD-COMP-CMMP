@@ -46,3 +46,21 @@ vector<VariableCall *> FunctionCall::findVarCalls(void)
 
     return list;
 }
+
+uint FunctionCall::setTypeAuto(void)
+{
+    uint errors = 0;
+
+    for (vector<Expression *>::iterator it = arguments.begin(); it != arguments.end(); ++it)
+    {
+        errors += (*it)->setTypeAuto();
+        if (function)
+        {
+            //TODO il faut checker si le type de l'expression correspond au param en question... on a pas l'ordre actuellement
+        }
+        else //if there is no function declaration, this might mean it's a putchar or getchar...
+        {}
+    }
+
+    return errors;
+}

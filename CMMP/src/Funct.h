@@ -41,12 +41,14 @@ class Funct : public VarContainer, public Parent
 	virtual vector<VariableDeclaration *> findVarDeclarations(void);
 	virtual vector<ReturnInstr *> findReturns(void);
 
+	virtual uint setTypeAuto(void);
+
   protected:
+  //TODO il faut un vecteur de parametres pour garder l'ordre.
 	hashmap<string, VariableDeclaration *> parameters;
 	Block *instructions = nullptr;
 	Type returnType;
 	ReturnInstr *returnExpr = nullptr;
 	string name;
 	Parent *parent = nullptr;
-	//id(signature)
 };

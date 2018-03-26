@@ -101,3 +101,20 @@ vector<ReturnInstr *> Block::findReturns(void)
 
     return list;
 }
+
+uint Block::setTypeAuto(void)
+{
+    uint errors = 0;
+
+    for (auto var : variables)
+    {
+        errors += var.second->setTypeAuto();
+    }
+
+    for (deque<Instruction *>::iterator it = instructions.begin(); it != instructions.end(); ++it)
+    {
+        errors += (*it)->setTypeAuto();
+    }
+
+    return errors;
+}

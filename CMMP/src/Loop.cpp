@@ -66,3 +66,19 @@ vector<VariableDeclaration *> Loop::findVarDeclarations(void)
 
     return list;
 }
+
+uint Loop::setTypeAuto(void)
+{
+    uint errors = 0;
+
+    if (finalTest)
+    {
+        errors += finalTest->setTypeAuto();
+    }
+    if (instruction)
+    {
+        errors += instruction->setTypeAuto();
+    }
+
+    return errors;
+}

@@ -22,3 +22,19 @@ vector<VariableCall *> BinaryAffectation::findVarCalls(void)
     v.insert(v.end(), subList.begin(), subList.end());
     return v;
 }
+
+uint BinaryAffectation::setTypeAuto(void)
+{
+    uint errors = 0;
+    errors += expr2->setTypeAuto();
+    errors += (TypeUtil::t1Tot2(
+                  expr2->getType(),
+                  leftValue->getType()))
+                  ? 0
+                  : 1;
+    type = leftValue->getType();
+
+    if (errors)
+        cout << "Error Binary Affectation" << endl;
+    return errors;
+}

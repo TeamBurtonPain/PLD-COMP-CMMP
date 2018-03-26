@@ -109,3 +109,28 @@ vector<ReturnInstr *> Funct::findReturns(void)
 
     return list;
 }
+uint Funct::setTypeAuto(void)
+{
+    uint errors = 0;
+
+    if (instructions)
+    {
+        errors += instructions->setTypeAuto();
+    } 
+    if (returnExpr && returnType!=Type::VOID)
+    {
+        if (returnExpr->getExpression())
+        {
+            errors += returnExpr->getExpression()->setTypeAuto();
+            errors += (TypeUtil::t1Tot2(
+                returnExpr->getExpression()->getType(),
+                returnType
+            ))? 0 : 1;
+        }
+    }
+
+    if (errors)
+        cout << "Error in function " << name <<endl;
+
+    return errors;
+}

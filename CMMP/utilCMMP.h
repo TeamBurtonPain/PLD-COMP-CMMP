@@ -11,7 +11,8 @@ using namespace std;
 
 namespace utilCMMP
 {
-int linkFunctions(Program *);
-int linkVariables(Program *, bool warnings); // -a => warnings = true
-int checkUnusedVar(Program *);
+uint linkFunctions(Program *);
+uint linkVariables(Program *, bool warnings); // -a => warnings = true
+uint checkUnusedVar(Program *);
+uint setTypesAuto(Program *);
 }

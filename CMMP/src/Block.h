@@ -26,6 +26,8 @@ public:
 	virtual vector<VariableDeclaration *> findVarDeclarations(void);
 	virtual vector<ReturnInstr *> findReturns(void);
 
+	virtual uint setTypeAuto(void);
+	
 protected:
 	hashmap<string, VariableDeclaration *> variables;
 	deque<Instruction *> instructions;

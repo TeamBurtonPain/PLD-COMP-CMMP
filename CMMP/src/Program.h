@@ -26,6 +26,8 @@ class Program : public VarContainer, public Parent
 	virtual vector<VariableCall *> findVarCalls(void);
 	virtual vector<VariableDeclaration *> findVarDeclarations(void);
 
+	virtual uint setTypeAuto(void);
+
   protected:
 	hashmap<string, VariableDeclaration *> variables;
 	Funct *mainFunction = NULL;

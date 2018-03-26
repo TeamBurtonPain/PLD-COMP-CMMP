@@ -25,6 +25,8 @@ public:
   virtual vector<FunctionCall *> findFunctionCalls(void);
   virtual vector<VariableCall *> findVarCalls(void);
 
+	virtual uint setTypeAuto(void);
+	
 protected:
   Funct *function = NULL;
   string name;

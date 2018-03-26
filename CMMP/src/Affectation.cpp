@@ -14,3 +14,8 @@ vector<VariableCall *> Affectation::findVarCalls(void)
 {
     return leftValue->findVarCalls();
 }
+
+uint Affectation::setTypeAuto(){
+    type = leftValue->getType();
+    return 0;
+}

@@ -406,16 +406,19 @@ class BuildCMMP : public cmmpBaseVisitor
 					val = '?'; //unkown
 				}
 			}
+			cout<<"char read"<<endl;
 			return (Expression *)(new Const<char>(Type::CHAR, val));
 		}
 		case ('"'):
 		{ //it's a string
 			string val = cst.substr(1, cst.size() - 2);
+			cout<<"string read"<<endl;
 			return (Expression *)(new Const<string>(Type::CHAR, val)); //TODO future : string = char[] ?
 		}
 		default:
 		{
 			int64_t val = stol(cst);
+			cout<<"char read"<<endl;
 			return (Expression *)(new Const<int64_t>(Type::INT32, val));
 		}
 		}
