@@ -7,6 +7,7 @@
 
 // Declarations from the parser -- replace with your own
 #include "Type.h"
+#include "CommonTypes.h"
 
 class BasicBlock;
 class CFG;
@@ -120,8 +121,8 @@ class CFG {
 	BasicBlock* current_bb;
 
  protected:
-	map <string, Type> SymbolType; /**< part of the symbol table  */
-	map <string, int> SymbolIndex; /**< part of the symbol table  */
+	hashmap <string, Type> SymbolType; /**< part of the symbol table  */
+	hashmap <string, int> SymbolIndex; /**< part of the symbol table  */
 	int nextFreeSymbolIndex; /**< to allocate new symbols in the symbol table */
 	int nextBBnumber; /**< just for naming */
 	
