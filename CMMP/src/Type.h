@@ -12,10 +12,10 @@ enum class Type
 	UNKNOWN
 };
 
-class TypeUtil
+namespace TypeUtil
 {
-  public:
-	TypeUtil(void) {}
-	virtual ~TypeUtil(void) {}
-	static Type getTypeFromString(string s);
-};
+Type getTypeFromString(string s);
+Type resultType(Type, Type);
+bool t1Tot2(Type t1, Type t2);
+string toString(Type);
+}

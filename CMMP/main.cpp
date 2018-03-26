@@ -58,12 +58,9 @@ int main()
 	{
 		errors += utilCMMP::checkUnusedVar(p);
 	}
-
+	errors += utilCMMP::setTypesAuto(p);
+	
 	//now every var and funct has a type
-
-	//TODO typer toutes les expressions intermédiaires
-	//checker les expressions à partir de là
-	//checker les return types
 
 	//On peut aussi simplifier les constantes et operations entre constantes (si on a -o)
 

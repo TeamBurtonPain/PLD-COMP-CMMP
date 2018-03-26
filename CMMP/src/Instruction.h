@@ -21,6 +21,8 @@ class Instruction : public Parent
 	virtual vector<VariableDeclaration *> findVarDeclarations(void);
 	virtual vector<ReturnInstr *> findReturns(void);
 
+	virtual uint setTypeAuto(void);
+
   protected:
 	Parent *parent = NULL;
 };

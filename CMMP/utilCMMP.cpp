@@ -1,18 +1,15 @@
 #include "utilCMMP.h"
 
-/**
- * 
- */
-int utilCMMP::linkFunctions(Program *p)
+uint utilCMMP::linkFunctions(Program *p)
 {
-    int error = 0;
+    uint errors = 0;
     cout << "Function Linking" << endl;
 
     //check presence of main func
     if (!p->getMainFunction())
     {
         cout << "No main Function found" << endl;
-        error++;
+        errors++;
     }
     cout << "    Function calls found:" << endl;
     //get every calls
@@ -37,7 +34,7 @@ int utilCMMP::linkFunctions(Program *p)
             else
             {
                 cout << "invalid call to putchar has been found" << endl;
-                error++;
+                errors++;
             }
         }
         //a call to getchar
@@ -51,7 +48,7 @@ int utilCMMP::linkFunctions(Program *p)
             else
             {
                 cout << "invalid call to getchar has been found" << endl;
-                error++;
+                errors++;
             }
         }
         //a call to another function
@@ -72,23 +69,22 @@ int utilCMMP::linkFunctions(Program *p)
                 else
                 {
                     cout << "No function found with the same number of arguments" << endl;
-                    error++;
+                    errors++;
                 }
             }
             else
             {
                 cout << "a call to a non-existent function has been found" << endl;
-                error++;
+                errors++;
             }
         }
     }
-    return error;
+    return errors;
 }
 
-//TODO : Dans un return il n'y a aucune vérification de faite.
-int utilCMMP::linkVariables(Program *p, bool warnings)
+uint utilCMMP::linkVariables(Program *p, bool warnings)
 {
-    uint error = 0;
+    uint errors = 0;
     cout << "Variables linking" << endl;
     cout << "    Variable calls found:" << endl;
     //get every calls
@@ -136,16 +132,16 @@ int utilCMMP::linkVariables(Program *p, bool warnings)
         if (!found)
         {
             cout << "No corresponding declaration found" << endl;
-            error++;
+            errors++;
         }
     }
 
-    return error;
+    return errors;
 }
 
-int utilCMMP::checkUnusedVar(Program *p)
+uint utilCMMP::checkUnusedVar(Program *p)
 {
-    uint error = 0;
+    uint errors = 0;
     cout << "    Unused var check :" << endl;
 
     //get every calls
@@ -155,11 +151,19 @@ int utilCMMP::checkUnusedVar(Program *p)
     {
         if (!v[i]->isUsed())
         {
-            cout << "      Unused var" << endl; //TODO afficher les détails;
+            cout << "      Unused : " << v[i]->getName() << " at l"
+                 << v[i]->getLine() << ", c" << v[i]->getColumn() << endl;
+            errors++;
         }
     }
-    if (!error)
+    if (!errors)
         cout << "      Ok" << endl;
 
-    return error;
+    return errors;
+}
+uint utilCMMP::setTypesAuto(Program *p){
+    uint errors = p->setTypeAuto();
+    if(errors)
+        cout<<"    Errors found during setting Types : "<<errors<<endl;
+    return errors;
 }

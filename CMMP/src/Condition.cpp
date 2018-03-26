@@ -100,3 +100,22 @@ vector<VariableDeclaration *> Condition::findVarDeclarations(void)
 
     return list;
 }
+
+uint Condition::setTypeAuto(void)
+{
+    uint errors = 0;
+
+    {
+        errors += test->setTypeAuto();
+    }
+
+    {
+        errors += instruction->setTypeAuto();
+    }
+    if (elseInstruction)
+    {
+        errors += elseInstruction->setTypeAuto();
+    }
+
+    return errors;
+}

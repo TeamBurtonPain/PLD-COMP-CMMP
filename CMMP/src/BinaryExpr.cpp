@@ -39,3 +39,21 @@ vector<VariableCall *> BinaryExpr::findVarCalls(void)
     }
     return list;
 }
+
+uint BinaryExpr::setTypeAuto(void)
+{
+    uint errors = 0;
+    {
+        errors += expr1->setTypeAuto();
+    }
+    {
+        errors += expr2->setTypeAuto();
+    }
+    type = TypeUtil::resultType(expr1->getType(), expr2->getType());
+    if (type == Type::UNKNOWN)
+        errors++;
+        
+    if (errors)
+        cout << "Error Binary Affectation" << endl;
+    return errors;
+}
