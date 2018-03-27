@@ -51,15 +51,18 @@ uint FunctionCall::setTypeAuto(void)
 {
     uint errors = 0;
 
-    for (vector<Expression *>::iterator it = arguments.begin(); it != arguments.end(); ++it)
+    for (uint i = 0; i < arguments.size(); i++)
     {
-        errors += (*it)->setTypeAuto();
+        errors += arguments[i]->setTypeAuto();
         if (function)
         {
-            //TODO il faut checker si le type de l'expression correspond au param en question... on a pas l'ordre actuellement
+            Type t_expected = function->getVariablesInVector()[i]->getType();
+            if (!TypeUtil::t1Tot2(arguments[i]->getType(), t_expected))
+                errors++;
         }
         else //if there is no function declaration, this might mean it's a putchar or getchar...
-        {}
+        {
+        }
     }
 
     return errors;

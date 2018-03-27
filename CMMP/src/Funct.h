@@ -25,6 +25,7 @@ class Funct : public VarContainer, public Parent
 
 	void addVariable(VariableDeclaration *);
 	hashmap<string, VariableDeclaration *> &getVariables(void);
+	vector<VariableDeclaration *> &getVariablesInVector(void) { return parameters; }
 	uint getArgCount(void);
 
 	void setBlock(Block *);

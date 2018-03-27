@@ -12,7 +12,6 @@ using namespace std;
 using namespace antlr4;
 
 //TODO implentation des []
-//TODO changer les hashmap de params en vecteurs dans Funct
 //TODO plusieurs instructions de retour pour Funct
 //TODO -o prograpagation cst
 
@@ -52,6 +51,7 @@ int main()
 
 	//analyse statique -a
 	uint errors = 0;
+	uint warnings = 0;
 	bool staticCheck = true; //option -a
 
 	//set VarCalls and FunctCalls a ref to the true var/funct
@@ -61,10 +61,11 @@ int main()
 
 	if (staticCheck)
 	{
-		errors += utilCMMP::checkUnusedVar(p);
+		warnings += utilCMMP::checkUnusedVar(p);
 	}
 	errors += utilCMMP::setTypesAuto(p);
 
+	cout<<"Errors encoutered : "<<errors<<". Warnings : "<<warnings<<endl;
 	//On peut aussi simplifier les constantes et operations entre constantes (si on a -o).
 
 	

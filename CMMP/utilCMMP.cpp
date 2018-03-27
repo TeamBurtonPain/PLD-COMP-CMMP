@@ -161,15 +161,19 @@ uint utilCMMP::checkUnusedVar(Program *p)
 
     return errors;
 }
-uint utilCMMP::setTypesAuto(Program *p){
+uint utilCMMP::setTypesAuto(Program *p)
+{
     uint errors = p->setTypeAuto();
+    /*
     if(errors)
         cout<<"    Errors found during setting Types : "<<errors<<endl;
+        */
     return errors;
 }
 
-std::ostream & operator<<(std::ostream & stream, const utilCMMP::Indent & ws){
-    for(int i = 0; i < ws.n; i++)
+std::ostream &operator<<(std::ostream &stream, const utilCMMP::Indent &ws)
+{
+    for (int i = 0; i < ws.n; i++)
     {
         stream << "\t";
     }
