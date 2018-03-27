@@ -21,7 +21,7 @@ string CFG::IR_reg_to_asm(string reg){
     if(get_var_index(reg) != 0){
         stringstream ss;
         ss << get_var_index(reg) << "(%rbp)";
-        return ss.str;
+        return ss.str();
     }
     else{
         return "$(unkown)";//TODO : à voir ?
@@ -37,7 +37,14 @@ void CFG::gen_asm_prologue(ostream& o){
     o << ast->getName() << ":" << endl;
     o << utilCMMP::Indent(1) << "pushq" << utilCMMP::Indent(1) << "%rbp"<<endl;
     o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rsp, %rbp"<<endl;
+    int sp_pos = nextFreeSymbolIndex+8;
+    if(sp_pos % 16 != 0){
+        sp_pos -= sp_pos%16;
+    }
+    if(sp_pos < 0){
     o << utilCMMP::Indent(1) << "subq" << utilCMMP::Indent(1) << "$"<< nextFreeSymbolIndex << ", %rsp"<<endl;
+    }
+    cout << sp_pos << endl;
     
 }
 void CFG::gen_asm_epilogue(ostream& o){
