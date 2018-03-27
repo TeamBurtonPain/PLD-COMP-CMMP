@@ -24,7 +24,7 @@ class Funct : public VarContainer, public Parent
 	string getName(void) const { return name; }
 
 	void addVariable(VariableDeclaration *);
-	hashmap<string, VariableDeclaration *> &getVariables(void) { return parameters; }
+	hashmap<string, VariableDeclaration *> &getVariables(void);
 	uint getArgCount(void);
 
 	void setBlock(Block *);
@@ -44,8 +44,7 @@ class Funct : public VarContainer, public Parent
 	virtual uint setTypeAuto(void);
 
   protected:
-  //TODO il faut un vecteur de parametres pour garder l'ordre.
-	hashmap<string, VariableDeclaration *> parameters;
+	vector<VariableDeclaration *> parameters;
 	Block *instructions = nullptr;
 	Type returnType;
 	ReturnInstr *returnExpr = nullptr;

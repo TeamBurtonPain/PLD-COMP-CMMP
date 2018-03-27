@@ -11,11 +11,16 @@
 using namespace std;
 using namespace antlr4;
 
+//TODO implentation des []
+//TODO changer les hashmap de params en vecteurs dans Funct
+//TODO plusieurs instructions de retour pour Funct
+//TODO -o prograpagation cst
+
 int main()
 {
 	Program *p;
 
-	//TODO pour l'executer vous pouvez avoir besoin de changer les / en double antislash
+	//NB pour l'executer vous pouvez avoir besoin de changer les / en double antislash
 	ANTLRFileStream input("../Ex_Test_Backend/6-While.cmmp");
 	cmmpLexer lexer(&input);
 
@@ -59,8 +64,6 @@ int main()
 		errors += utilCMMP::checkUnusedVar(p);
 	}
 	errors += utilCMMP::setTypesAuto(p);
-	
-	//now every var and funct has a type
 
 	//On peut aussi simplifier les constantes et operations entre constantes (si on a -o)
 

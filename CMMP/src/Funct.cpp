@@ -4,10 +4,9 @@ Funct::Funct(Type t, string n) : returnType(t), name(n) {}
 
 Funct::~Funct(void)
 {
-    hashmap<string, VariableDeclaration *>::iterator it = parameters.begin();
-    while (it != parameters.end())
+    for (vector<VariableDeclaration *>::iterator it = parameters.begin(); it != parameters.end(); ++it)
     {
-        delete (it->second);
+        delete (*it);
         it++;
     }
     parameters.clear();
@@ -15,10 +14,19 @@ Funct::~Funct(void)
     if (instructions)
         delete instructions;
 }
+hashmap<string, VariableDeclaration *> &Funct::getVariables(void)
+{
+    hashmap<string, VariableDeclaration *> ret;
+    for (vector<VariableDeclaration *>::iterator it = parameters.begin(); it != parameters.end(); ++it)
+    {
+        ret.insert({(*it)->getName(), *it}); 
+    }
+    return ret;
+}
 
 void Funct::addVariable(VariableDeclaration *v)
 {
-    parameters.insert({v->getName(), v});
+    parameters.push_back(v);
 }
 
 void Funct::setBlock(Block *b)
@@ -30,11 +38,11 @@ vector<FunctionCall *> Funct::findFunctionCalls(void)
 {
     vector<FunctionCall *> list;
 
-    for (auto var : parameters)
+    for (vector<VariableDeclaration *>::iterator it = parameters.begin(); it != parameters.end(); ++it)
     {
-        if (var.second->getExpression())
+        if ((*it)->getExpression())
         {
-            vector<FunctionCall *> subList = var.second->getExpression()->findFunctionCalls();
+            vector<FunctionCall *> subList = (*it)->getExpression()->findFunctionCalls();
             list.insert(list.end(), subList.begin(), subList.end());
         }
     }
@@ -59,11 +67,11 @@ vector<VariableCall *> Funct::findVarCalls(void)
 {
     vector<VariableCall *> list;
 
-    for (auto var : parameters)
+    for (vector<VariableDeclaration *>::iterator it = parameters.begin(); it != parameters.end(); ++it)
     {
-        if (var.second->getExpression())
+        if ((*it)->getExpression())
         {
-            vector<VariableCall *> subList = var.second->getExpression()->findVarCalls();
+            vector<VariableCall *> subList = (*it)->getExpression()->findVarCalls();
             list.insert(list.end(), subList.begin(), subList.end());
         }
     }
@@ -87,9 +95,9 @@ vector<VariableDeclaration *> Funct::findVarDeclarations(void)
 {
     vector<VariableDeclaration *> list;
 
-    for (auto var : parameters)
+    for (vector<VariableDeclaration *>::iterator it = parameters.begin(); it != parameters.end(); ++it)
     {
-        list.push_back(var.second);
+        list.push_back(*it);
     }
     if (instructions)
     {
@@ -116,21 +124,22 @@ uint Funct::setTypeAuto(void)
     if (instructions)
     {
         errors += instructions->setTypeAuto();
-    } 
-    if (returnExpr && returnType!=Type::VOID)
+    }
+    if (returnExpr && returnType != Type::VOID)
     {
         if (returnExpr->getExpression())
         {
             errors += returnExpr->getExpression()->setTypeAuto();
             errors += (TypeUtil::t1Tot2(
-                returnExpr->getExpression()->getType(),
-                returnType
-            ))? 0 : 1;
+                          returnExpr->getExpression()->getType(),
+                          returnType))
+                          ? 0
+                          : 1;
         }
     }
 
     if (errors)
-        cout << "Error in function " << name <<endl;
+        cout << "Error in function " << name << endl;
 
     return errors;
 }
