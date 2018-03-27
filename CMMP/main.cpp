@@ -12,7 +12,6 @@ using namespace std;
 using namespace antlr4;
 
 //TODO implentation des []
-//TODO -o prograpagation cst
 
 int main()
 {
@@ -65,7 +64,10 @@ int main()
 	errors += utilCMMP::setTypesAuto(p);
 
 	cout<<"Errors encoutered : "<<errors<<". Warnings : "<<warnings<<endl;
-	//On peut aussi simplifier les constantes et operations entre constantes (si on a -o).
+
+////////////////////////
+// FIN DU FRONT
+///////////////////////
 
 	
 
