@@ -17,10 +17,16 @@ int main(){
     } */
     /* 5.2 test */
     {
-        Funct f(Type::VOID, "main");
-        CFG cfg_main(&f);
+        Funct *f = new Funct(Type::VOID, "main");
+        /*
         VariableDeclaration * a = new VariableDeclaration(Type::INT64,"a",1,1);
-        f.addVariable(a);
+        VariableDeclaration * b = new VariableDeclaration(Type::INT64,"b",2,1);
+        VariableDeclaration * c = new VariableDeclaration(Type::INT64,"c",3,1);
+        f->addVariable(a);
+        f->addVariable(b);
+        f->addVariable(c);
+        */
+        CFG cfg_main(f);
         ofstream file2("IR5-2.s");
         cfg_main.gen_asm(file2);
 

@@ -37,14 +37,13 @@ void CFG::gen_asm_prologue(ostream& o){
     o << ast->getName() << ":" << endl;
     o << utilCMMP::Indent(1) << "pushq" << utilCMMP::Indent(1) << "%rbp"<<endl;
     o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rsp, %rbp"<<endl;
-    int sp_pos = nextFreeSymbolIndex+8;
+    int sp_pos = nextFreeSymbolIndex;
     if(sp_pos % 16 != 0){
         sp_pos -= sp_pos%16;
     }
     if(sp_pos < 0){
-    o << utilCMMP::Indent(1) << "subq" << utilCMMP::Indent(1) << "$"<< nextFreeSymbolIndex << ", %rsp"<<endl;
+        o << utilCMMP::Indent(1) << "subq" << utilCMMP::Indent(1) << "$"<< nextFreeSymbolIndex << ", %rsp"<<endl;
     }
-    cout << sp_pos << endl;
     
 }
 void CFG::gen_asm_epilogue(ostream& o){
