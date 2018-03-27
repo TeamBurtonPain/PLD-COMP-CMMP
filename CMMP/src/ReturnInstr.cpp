@@ -6,6 +6,7 @@ ReturnInstr::ReturnInstr(Expression *e) : expr(e)
 
 ReturnInstr::~ReturnInstr(void)
 {
+    delete (expr);
 }
 
 vector<FunctionCall *> ReturnInstr::findFunctionCalls(void)

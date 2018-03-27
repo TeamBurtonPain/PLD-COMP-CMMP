@@ -11,11 +11,14 @@
 using namespace std;
 using namespace antlr4;
 
+//TODO implentation des []
+//TODO -o prograpagation cst
+
 int main()
 {
 	Program *p;
 
-	//TODO pour l'executer vous pouvez avoir besoin de changer les / en double antislash
+	//NB pour l'executer vous pouvez avoir besoin de changer les / en double antislash
 	ANTLRFileStream input("../Ex_Test_Backend/6-While.cmmp");
 	cmmpLexer lexer(&input);
 
@@ -47,6 +50,7 @@ int main()
 
 	//analyse statique -a
 	uint errors = 0;
+	uint warnings = 0;
 	bool staticCheck = true; //option -a
 
 	//set VarCalls and FunctCalls a ref to the true var/funct
@@ -56,12 +60,11 @@ int main()
 
 	if (staticCheck)
 	{
-		errors += utilCMMP::checkUnusedVar(p);
+		warnings += utilCMMP::checkUnusedVar(p);
 	}
 	errors += utilCMMP::setTypesAuto(p);
-	
-	//now every var and funct has a type
 
+	cout<<"Errors encoutered : "<<errors<<". Warnings : "<<warnings<<endl;
 	//On peut aussi simplifier les constantes et operations entre constantes (si on a -o).
 
 	

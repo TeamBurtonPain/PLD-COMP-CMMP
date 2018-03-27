@@ -78,8 +78,10 @@ class BuildCMMP : public cmmpBaseVisitor
 		for (uint i = 0; i < ctx->instruction().size(); i++)
 		{
 			//C-OUT
+			/*
 			cout << "l" << ctx->instruction(i)->start->getLine() << "- "
 				 << ctx->instruction(i)->getText() << endl;
+				 */
 			Instruction *instr = (Instruction *)(visit(ctx->instruction(i)));
 
 			VariableDeclarations *vds = dynamic_cast<VariableDeclarations *>(instr);
@@ -406,19 +408,16 @@ class BuildCMMP : public cmmpBaseVisitor
 					val = '?'; //unkown
 				}
 			}
-			cout<<"char read"<<endl;
 			return (Expression *)(new Const<char>(Type::CHAR, val));
 		}
 		case ('"'):
 		{ //it's a string
 			string val = cst.substr(1, cst.size() - 2);
-			cout<<"string read"<<endl;
 			return (Expression *)(new Const<string>(Type::CHAR, val)); //TODO future : string = char[] ?
 		}
 		default:
 		{
 			int64_t val = stol(cst);
-			cout<<"char read"<<endl;
 			return (Expression *)(new Const<int64_t>(Type::INT32, val));
 		}
 		}
