@@ -31,13 +31,16 @@ class BuildCMMP : public cmmpBaseVisitor
 		return (Program *)visit(ctx->programme());
 	}
 
+	//visite d'une déclaration de variables globales
 	virtual antlrcpp::Any visitDeclVar(cmmpParser::DeclVarContext *ctx) override
 	{
+		//on récupère le programme par le noeu visité avant
 		Program *p = (Program *)visit(ctx->programme());
-
+		//on récupère l'objet (liste de) déclaration de variavbleS
 		VariableDeclarations *vds = (VariableDeclarations *)(visit(ctx->declarationVarListe()));
 
 		vector<VariableDeclaration *> vectorDecl = vds->getDecla();
+		//on décompose la déclaration de variableS en plusieurs déclarations de 1 variable
 		for (uint i = 0; i < vectorDecl.size(); i++)
 		{
 			vectorDecl[i]->setParent(p);
@@ -73,6 +76,7 @@ class BuildCMMP : public cmmpBaseVisitor
 	//A la visite d'un Block, on l'instancie, on note les variables d'un coté et les instructions d'un autre
 	virtual antlrcpp::Any visitBlock(cmmpParser::BlockContext *ctx) override
 	{
+		//on crée le block
 		Block *b = new Block();
 
 		for (uint i = 0; i < ctx->instruction().size(); i++)
@@ -82,20 +86,25 @@ class BuildCMMP : public cmmpBaseVisitor
 			cout << "l" << ctx->instruction(i)->start->getLine() << "- "
 				 << ctx->instruction(i)->getText() << endl;
 				 */
+			//on récupère les instructions
 			Instruction *instr = (Instruction *)(visit(ctx->instruction(i)));
-
+			//si c'est une déclaration de variables
 			VariableDeclarations *vds = dynamic_cast<VariableDeclarations *>(instr);
 			if (vds)
 			{
 				vector<VariableDeclaration *> vectorDecl = vds->getDecla();
+				//on décompose la déclaration de variableS en plusieurs déclarations de 1 variable
 				for (uint i = 0; i < vectorDecl.size(); i++)
 				{
+					//qu'on ajoute au block actuel
 					vectorDecl[i]->setParent(b);
 					b->addVariable(vectorDecl[i]);
 				}
+				//et on supprime l'objet liste de déclarations qui n'est plus utile
 				delete (vds);
 				vectorDecl.clear();
 			}
+			//sinon c'est une instruction normale, qu'on ajoute.
 			else
 			{
 				instr->setParent(b);
@@ -105,18 +114,20 @@ class BuildCMMP : public cmmpBaseVisitor
 		return b;
 	}
 
+	//Visite d'une ligne déclarant une ou plusieurs variables
 	virtual antlrcpp::Any visitDeclarationVarListe(cmmpParser::DeclarationVarListeContext *ctx) override
 	{
+		//on crée la liste qu'on va retourner
 		VariableDeclarations *list = new VariableDeclarations();
-
+		//même type pour tout le monde
 		Type t = TypeUtil::getTypeFromString(ctx->Type()->getText());
 		for (uint i = 0; i < ctx->declarationVar().size(); i++)
 		{
+			//on crée la déclaration de chacune de ces variables de la liste
 			VariableDeclaration *varDecla = (VariableDeclaration *)visit(ctx->declarationVar(i));
 			varDecla->setType(t);
 			list->addDecla(varDecla);
 		}
-
 		return list;
 	}
 
@@ -132,6 +143,7 @@ class BuildCMMP : public cmmpBaseVisitor
 		return visitChildren(ctx);
 	}
 
+	//crée la déclaration d'une variable non tableau
 	virtual antlrcpp::Any visitVarSimple(cmmpParser::VarSimpleContext *ctx) override
 	{
 		VariableDeclaration *v = new VariableDeclaration(
@@ -139,7 +151,7 @@ class BuildCMMP : public cmmpBaseVisitor
 			ctx->Var()->getText(),
 			ctx->start->getLine(),
 			ctx->start->getCharPositionInLine());
-
+		//si on trouve une initialisation avec la déclaration
 		if (ctx->expr() != NULL)
 		{
 			Expression *e = visit(ctx->expr());
@@ -161,9 +173,11 @@ class BuildCMMP : public cmmpBaseVisitor
 	//instancie et complete la fonction
 	virtual antlrcpp::Any visitDefinitionFonction(cmmpParser::DefinitionFonctionContext *ctx) override
 	{
+		//nouvelle fonction
 		Funct *f = new Funct(
 			TypeUtil::getTypeFromString(ctx->Type()->getText()),
 			ctx->Var()->getText());
+		//Si on lit des paramètres entre parenthèses
 		if (ctx->paramDefinitionList())
 		{
 			vector<VariableDeclaration *> *listParams = (vector<VariableDeclaration *> *)visit(ctx->paramDefinitionList());
@@ -173,9 +187,10 @@ class BuildCMMP : public cmmpBaseVisitor
 				(*listParams)[i]->setParent(f);
 				f->addVariable((*listParams)[i]);
 			}
+			//on supprime le vecteur (mais pas les objets pointés)
 			delete (listParams);
 		}
-
+		//les instructions de la fonction sont lues dans le block la suivant
 		Block *b = visit(ctx->block());
 		f->setBlock(b);
 		b->setParent(f);
@@ -185,12 +200,11 @@ class BuildCMMP : public cmmpBaseVisitor
 
 	//renvoie un vector* de VariableDeclaration*, s'il n'y a qu'un seul parametre et de type void, l'ignorer
 	//passe par la visite de ctx->paramDefinition
-
 	virtual antlrcpp::Any visitParamDefinitionList(cmmpParser::ParamDefinitionListContext *ctx) override
 	{
 		vector<VariableDeclaration *> *list = new vector<VariableDeclaration *>();
 
-		//if we have : function(void)
+		//dans le cas : function(void)
 		if (ctx->paramDefinition().size() == 1 && ctx->paramDefinition(0)->getText() == "void")
 			return list;
 
@@ -210,14 +224,15 @@ class BuildCMMP : public cmmpBaseVisitor
 			ctx->Var()->getText(),
 			ctx->start->getLine(),
 			ctx->start->getCharPositionInLine());
-		vd->setInit(true); //an argument is considered as initialised
+		vd->setInit(true); //considéré comme initialisé (pas d'erreur si on lit cette valeur)
 		return vd;
 	}
 
-	//TODO todo échanger avec dessous quand titi aura modifié la grammaire
+	//if(expression) instruction else instructionn
 	virtual antlrcpp::Any visitControlif(cmmpParser::ControlifContext *ctx) override
 	{
 		Condition *c;
+		//Si on ne lit qu'une instruction, on est sur un if
 		if (ctx->instruction().size() < 2)
 		{
 			Expression *e = visit(ctx->expr());
@@ -226,6 +241,7 @@ class BuildCMMP : public cmmpBaseVisitor
 			e->setParent(c);
 			i->setParent(c);
 		}
+		//Si on en lit 2, on est sur un if/else
 		else
 		{
 			Expression *e = visit(ctx->expr());
@@ -239,7 +255,7 @@ class BuildCMMP : public cmmpBaseVisitor
 
 		return (Instruction *)c;
 	}
-
+	//while(expression) instruction
 	virtual antlrcpp::Any visitControlwhile(cmmpParser::ControlwhileContext *ctx) override
 	{
 		Expression *e = visit(ctx->expr());
@@ -299,12 +315,12 @@ class BuildCMMP : public cmmpBaseVisitor
 		}
 		return list;
 	}
-
+	// ( expr )
 	virtual antlrcpp::Any visitPar(cmmpParser::ParContext *ctx) override
 	{
 		return (Expression *)visit(ctx->expr());
 	}
-
+	// expr + expr
 	virtual antlrcpp::Any visitAdd(cmmpParser::AddContext *ctx) override
 	{
 		Expression *e0 = visit(ctx->expr(0));
@@ -318,7 +334,7 @@ class BuildCMMP : public cmmpBaseVisitor
 		e1->setParent(ret);
 		return ret;
 	}
-
+	// expr - expr
 	virtual antlrcpp::Any visitSub(cmmpParser::SubContext *ctx) override
 	{
 		Expression *e0 = visit(ctx->expr(0));
@@ -332,7 +348,7 @@ class BuildCMMP : public cmmpBaseVisitor
 		e1->setParent(ret);
 		return ret;
 	}
-
+	// expr * expr
 	virtual antlrcpp::Any visitMult(cmmpParser::MultContext *ctx) override
 	{
 		Expression *e0 = visit(ctx->expr(0));
@@ -346,7 +362,7 @@ class BuildCMMP : public cmmpBaseVisitor
 		e1->setParent(ret);
 		return ret;
 	}
-
+	//expr % expr
 	virtual antlrcpp::Any visitMod(cmmpParser::ModContext *ctx) override
 	{
 		Expression *e0 = visit(ctx->expr(0));
@@ -360,7 +376,7 @@ class BuildCMMP : public cmmpBaseVisitor
 		e1->setParent(ret);
 		return ret;
 	}
-
+	//expr || expr
 	virtual antlrcpp::Any visitOr(cmmpParser::OrContext *ctx) override
 	{
 		Expression *e0 = visit(ctx->expr(0));
@@ -422,7 +438,7 @@ class BuildCMMP : public cmmpBaseVisitor
 		}
 		}
 	}
-
+	// membreGauche opAffectation expr
 	virtual antlrcpp::Any visitAffectation(cmmpParser::AffectationContext *ctx) override
 	{
 		VariableCall *vc = visit(ctx->membreGauche());
@@ -438,7 +454,7 @@ class BuildCMMP : public cmmpBaseVisitor
 		e->setParent(ret);
 		return ret;
 	}
-
+	// expr / expr
 	virtual antlrcpp::Any visitDiv(cmmpParser::DivContext *ctx) override
 	{
 		Expression *e0 = visit(ctx->expr(0));
@@ -452,7 +468,7 @@ class BuildCMMP : public cmmpBaseVisitor
 		e1->setParent(ret);
 		return ret;
 	}
-
+	// - expr
 	virtual antlrcpp::Any visitNeg(cmmpParser::NegContext *ctx) override
 	{
 		Expression *e = visit(ctx->expr());
@@ -463,7 +479,7 @@ class BuildCMMP : public cmmpBaseVisitor
 		e->setParent(ret);
 		return ret;
 	}
-
+	// ! expr
 	virtual antlrcpp::Any visitNot(cmmpParser::NotContext *ctx) override
 	{
 		Expression *e = visit(ctx->expr());
@@ -474,7 +490,7 @@ class BuildCMMP : public cmmpBaseVisitor
 		e->setParent(ret);
 		return ret;
 	}
-
+	// opAffect membreGauche
 	virtual antlrcpp::Any visitPre(cmmpParser::PreContext *ctx) override
 	{
 		VariableCall *vc = visit(ctx->membreGauche());
@@ -487,7 +503,7 @@ class BuildCMMP : public cmmpBaseVisitor
 		vc->setWrite(true);
 		return ret;
 	}
-
+	// membreGauche opAffect
 	virtual antlrcpp::Any visitPost(cmmpParser::PostContext *ctx) override
 	{
 		VariableCall *vc = visit(ctx->membreGauche());
@@ -500,7 +516,7 @@ class BuildCMMP : public cmmpBaseVisitor
 		vc->setWrite(true);
 		return ret;
 	}
-
+	// expr && expr
 	virtual antlrcpp::Any visitAnd(cmmpParser::AndContext *ctx) override
 	{
 		Expression *e0 = visit(ctx->expr(0));
@@ -519,7 +535,7 @@ class BuildCMMP : public cmmpBaseVisitor
 	{
 		return (Expression *)(FunctionCall *)visit(ctx->functionCall());
 	}
-
+	// expr opComparaison expr
 	virtual antlrcpp::Any visitComparaison(cmmpParser::ComparaisonContext *ctx) override
 	{
 		Expression *e0 = visit(ctx->expr(0));
@@ -533,7 +549,7 @@ class BuildCMMP : public cmmpBaseVisitor
 		e1->setParent(ret);
 		return ret;
 	}
-
+	//Une variable lue ailleur que dans une délaration est un appel de variable
 	virtual antlrcpp::Any visitVariable(cmmpParser::VariableContext *ctx) override
 	{
 		return (Expression *)(VariableCall *)visit(ctx->membreGauche());
@@ -545,10 +561,12 @@ class BuildCMMP : public cmmpBaseVisitor
 	{
 		return visitChildren(ctx);
 	}
-
+	// Appel de fonction
 	virtual antlrcpp::Any visitFunctionCall(cmmpParser::FunctionCallContext *ctx) override
 	{
+		//On crée l'objet Appel à la fonction
 		FunctionCall *f = new FunctionCall(Type::UNKNOWN, ctx->Var()->getText());
+		// Si on a des arguments, on les ajoute
 		if (ctx->eListe())
 		{
 			vector<Expression *> *listExprs = (vector<Expression *> *)visit(ctx->eListe());
@@ -562,7 +580,7 @@ class BuildCMMP : public cmmpBaseVisitor
 		}
 		return f;
 	}
-
+	
 	virtual antlrcpp::Any visitIncr(cmmpParser::IncrContext *ctx) override
 	{
 		return OpUnaryAffectation::INCR;
