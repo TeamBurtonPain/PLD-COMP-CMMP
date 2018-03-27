@@ -65,7 +65,9 @@ int main()
 	}
 	errors += utilCMMP::setTypesAuto(p);
 
-	//On peut aussi simplifier les constantes et operations entre constantes (si on a -o)
+	//On peut aussi simplifier les constantes et operations entre constantes (si on a -o).
+
+	
 
 	cin.get();
 	delete (p);
