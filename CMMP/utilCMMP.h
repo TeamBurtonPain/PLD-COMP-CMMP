@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <vector>
 #include "Program.h"
@@ -20,17 +22,8 @@ namespace utilCMMP
     class Indent 
     {
         public:
-            Indent(int n):n(n){}
+            Indent(int nb):n(nb){}
             int n;
     };
-
-
-    std::ostream& operator<<(std::ostream& stream, const Indent &ws)
-    {
-        for(int i = 0; i < ws.n; i++)
-        {
-            stream << "\t";
-        }
-        return stream;
-    }
 }
+std::ostream& operator<<(std::ostream& stream, const utilCMMP::Indent &ws);

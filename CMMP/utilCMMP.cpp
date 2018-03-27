@@ -167,3 +167,11 @@ uint utilCMMP::setTypesAuto(Program *p){
         cout<<"    Errors found during setting Types : "<<errors<<endl;
     return errors;
 }
+
+std::ostream & operator<<(std::ostream & stream, const utilCMMP::Indent & ws){
+    for(int i = 0; i < ws.n; i++)
+    {
+        stream << "\t";
+    }
+    return stream;
+}

@@ -62,7 +62,9 @@ int main()
 	
 	//now every var and funct has a type
 
-	//On peut aussi simplifier les constantes et operations entre constantes (si on a -o)
+	//On peut aussi simplifier les constantes et operations entre constantes (si on a -o).
+
+	
 
 	cin.get();
 	delete (p);

@@ -37,7 +37,8 @@
                 "/usr/include",
                 "${workspaceRoot}",
                 "${workspaceRoot}/CMMP",
-                "${workspaceRoot}/CMMP/src"
+                "${workspaceRoot}/CMMP/src",
+                "${workspaceRoot}/CMMP/base_antlr"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
