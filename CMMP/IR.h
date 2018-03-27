@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <initializer_list>
+#include <sstream>
 
 // Declarations from the parser -- replace with your own
 #include "Type.h"
@@ -100,7 +101,7 @@ class BasicBlock {
  */
 class CFG {
  public:
-	CFG(Funct* a):ast(a){}
+	CFG(Funct* a);
 
 	Funct* ast; /**< The AST this CFG comes from */
 	
