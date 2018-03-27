@@ -9,6 +9,11 @@ Funct::~Funct(void)
         delete (*it);
         it++;
     }
+    for (vector<ReturnInstr *>::iterator it = returnExpr.begin(); it != returnExpr.end(); ++it)
+    {
+        delete (*it);
+        it++;
+    }
     parameters.clear();
 
     if (instructions)
@@ -47,11 +52,11 @@ vector<FunctionCall *> Funct::findFunctionCalls(void)
         vector<FunctionCall *> subList = instructions->findFunctionCalls();
         list.insert(list.end(), subList.begin(), subList.end());
     }
-    if (returnExpr)
+    for (vector<ReturnInstr *>::iterator it = returnExpr.begin(); it != returnExpr.end(); ++it)
     {
-        if (returnExpr->getExpression())
+        if ((*it)->getExpression())
         {
-            vector<FunctionCall *> subList = returnExpr->getExpression()->findFunctionCalls();
+            vector<FunctionCall *> subList = (*it)->getExpression()->findFunctionCalls();
             list.insert(list.end(), subList.begin(), subList.end());
         }
     }
@@ -77,11 +82,11 @@ vector<VariableCall *> Funct::findVarCalls(void)
         list.insert(list.end(), subList.begin(), subList.end());
     }
 
-    if (returnExpr)
+    for (vector<ReturnInstr *>::iterator it = returnExpr.begin(); it != returnExpr.end(); ++it)
     {
-        if (returnExpr->getExpression())
+        if ((*it)->getExpression())
         {
-            vector<VariableCall *> subList = returnExpr->getExpression()->findVarCalls();
+            vector<VariableCall *> subList = (*it)->getExpression()->findVarCalls();
             list.insert(list.end(), subList.begin(), subList.end());
         }
     }
@@ -117,23 +122,27 @@ uint Funct::setTypeAuto(void)
 {
     uint errors = 0;
 
+    returnExpr = findReturns();
+
     if (instructions)
     {
         errors += instructions->setTypeAuto();
     }
-    if (returnExpr && returnType != Type::VOID)
+    if (returnType != Type::VOID)
     {
-        if (returnExpr->getExpression())
+        for (vector<ReturnInstr *>::iterator it = returnExpr.begin(); it != returnExpr.end(); ++it)
         {
-            errors += returnExpr->getExpression()->setTypeAuto();
-            errors += (TypeUtil::t1Tot2(
-                          returnExpr->getExpression()->getType(),
-                          returnType))
-                          ? 0
-                          : 1;
+            if ((*it)->getExpression())
+            {
+                errors += (*it)->getExpression()->setTypeAuto();
+                errors += (TypeUtil::t1Tot2(
+                              (*it)->getExpression()->getType(),
+                              returnType))
+                              ? 0
+                              : 1;
+            }
         }
     }
-
     if (errors)
         cout << "Error in function " << name << endl;
 

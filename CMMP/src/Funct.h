@@ -30,10 +30,10 @@ class Funct : public VarContainer, public Parent
 
 	void setBlock(Block *);
 	Block *getBlock(void) { return instructions; }
-
+/*
 	void setReturn(ReturnInstr *r) { returnExpr = r; }
 	ReturnInstr *getReturn(void) { return returnExpr; }
-
+*/
 	void setParent(Parent *p) { parent = p; }
 	Parent *getParent(void) { return parent; }
 
@@ -49,7 +49,8 @@ class Funct : public VarContainer, public Parent
 	hashmap<string, VariableDeclaration *> paramInMap; //redundonante :'(
 	Block *instructions = nullptr;
 	Type returnType;
-	ReturnInstr *returnExpr = nullptr;
+	vector<ReturnInstr *> returnExpr;
+	//ReturnInstr * returnExpr= nullptr;
 	string name;
 	Parent *parent = nullptr;
 };

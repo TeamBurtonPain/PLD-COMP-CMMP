@@ -12,7 +12,6 @@ using namespace std;
 using namespace antlr4;
 
 //TODO implentation des []
-//TODO plusieurs instructions de retour pour Funct
 //TODO -o prograpagation cst
 
 int main()
