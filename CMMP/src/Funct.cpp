@@ -16,17 +16,13 @@ Funct::~Funct(void)
 }
 hashmap<string, VariableDeclaration *> &Funct::getVariables(void)
 {
-    hashmap<string, VariableDeclaration *> ret;
-    for (vector<VariableDeclaration *>::iterator it = parameters.begin(); it != parameters.end(); ++it)
-    {
-        ret.insert({(*it)->getName(), *it}); 
-    }
-    return ret;
+    return paramInMap;
 }
 
 void Funct::addVariable(VariableDeclaration *v)
 {
     parameters.push_back(v);
+    paramInMap.insert({v->getName(), v});
 }
 
 void Funct::setBlock(Block *b)

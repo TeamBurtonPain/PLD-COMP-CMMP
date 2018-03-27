@@ -45,6 +45,7 @@ class Funct : public VarContainer, public Parent
 
   protected:
 	vector<VariableDeclaration *> parameters;
+	hashmap<string, VariableDeclaration *> paramInMap; //redundonante :'(
 	Block *instructions = nullptr;
 	Type returnType;
 	ReturnInstr *returnExpr = nullptr;
