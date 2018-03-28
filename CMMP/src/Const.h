@@ -59,3 +59,16 @@ string Const<char>::buildIR(CFG* cfg)
 	return var;
 }
 
+template<class T>
+string Const<T>::buildIR(CFG* cfg)
+{
+	string var = cfg->create_new_tempvar();
+	vector<string> vect = new vector<string>();
+	vect.push_back(var);
+	stringstream ss;
+	ss << value;
+	vect.push_back(ss.str());
+	cfg->add_IRInstr(ldconst, Type::UNKNOWN, vect);
+	return var;
+}
+
