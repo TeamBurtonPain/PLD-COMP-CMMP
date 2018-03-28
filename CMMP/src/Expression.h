@@ -4,6 +4,7 @@
 #include "Type.h"
 #include "Instruction.h"
 #include <vector>
+#include "IRNode.h"
 
 class FunctionCall;
 class VariableCall;
@@ -13,6 +14,7 @@ class Expression : public Instruction
 public:
 	Expression(Type t);
 	virtual ~Expression(void) = 0;
+	virtual string builIR(CFG* cfg)=0;
 	
 	Type getType(void) { return type; }
 	void setType(Type t) { type = t; }
