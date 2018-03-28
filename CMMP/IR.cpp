@@ -11,26 +11,26 @@ void IRInstr::gen_asm(ostream &o)
     string registers[] = {"", "", ""};
     switch (op)
     {
-    case IRInstr::Operation(ldconst):
+    case IRInstr::Operation::ldconst:
         break;
-    case IRInstr::Operation(add):
+    case IRInstr::Operation::add:
         break;
-    case IRInstr::Operation(sub):
+    case IRInstr::Operation::sub:
         break;
-    case IRInstr::Operation(mul):
+    case IRInstr::Operation::mul:
         break;
-    case IRInstr::Operation(rmem):
+    case IRInstr::Operation::rmem:
         break;
-    case IRInstr::Operation(wmem):
+    case IRInstr::Operation::wmem:
         break;
-    case IRInstr::Operation(call):
+    case IRInstr::Operation::call:
 
         break;
-    case IRInstr::Operation(cmp_eq):
+    case IRInstr::Operation::cmp_eq:
         break;
-    case IRInstr::Operation(cmp_lt):
+    case IRInstr::Operation::cmp_lt:
         break;
-    case IRInstr::Operation(cmp_le):
+    case IRInstr::Operation::cmp_le:
         break;
     }
 }

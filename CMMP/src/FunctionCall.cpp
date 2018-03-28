@@ -89,11 +89,7 @@ string FunctionCall::buildIR(CFG *cfg)
     {
         vect.push_back((*it)->buildIR(cfg));
     }
-    //TODO
-    //WUT ?
-    //Methode de BB hein
-    /*
-    cfg->add_IRInstr(IRInstr::Operation::call, getType(), vect);
-*/
+
+    cfg->current_bb->add_IRInstr(IRInstr::Operation::call, getType(), vect);
     return var;
 }
