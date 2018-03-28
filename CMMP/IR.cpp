@@ -3,6 +3,7 @@
 #include "utilCMMP.h"
 
 void IRInstr::gen_asm(ostream &o){
+    string registers[] = {"","",""};
     switch(op){
         case IRInstr::Operation(ldconst):
         break;

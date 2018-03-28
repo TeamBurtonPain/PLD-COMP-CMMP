@@ -8,7 +8,7 @@
 class FunctionCall;
 class ReturnInstr;
 class VariableCall;
-class Instruction : public Parent
+class Instruction : public Parent, public IRNode
 {
   public:
 	Instruction(void);
@@ -22,6 +22,8 @@ class Instruction : public Parent
 	virtual vector<ReturnInstr *> findReturns(void);
 
 	virtual uint setTypeAuto(void);
+
+	virtual string BuildIR(CFG *cfg) = 0;
 
   protected:
 	Parent *parent = NULL;

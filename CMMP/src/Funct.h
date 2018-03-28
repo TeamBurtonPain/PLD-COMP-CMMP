@@ -32,7 +32,7 @@ class Funct : public VarContainer, public Parent, public IRNode
 
 	void setBlock(Block *);
 	Block *getBlock(void) { return instructions; }
-/*
+	/*
 	void setReturn(ReturnInstr *r) { returnExpr = r; }
 	ReturnInstr *getReturn(void) { return returnExpr; }
 */
@@ -46,7 +46,7 @@ class Funct : public VarContainer, public Parent, public IRNode
 
 	virtual uint setTypeAuto(void);
 
-	string BuildIR(CFG * cfg);
+	string BuildIR(CFG *cfg);
 
   protected:
 	vector<VariableDeclaration *> parameters;

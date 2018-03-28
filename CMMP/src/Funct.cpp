@@ -148,3 +148,13 @@ uint Funct::setTypeAuto(void)
 
     return errors;
 }
+
+string Funct::BuildIR(CFG *cfg){
+    if(instructions != nullptr){
+        return instructions->BuildIR();
+    }
+    else{
+        return "";
+    }
+
+}
