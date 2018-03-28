@@ -119,3 +119,8 @@ uint Condition::setTypeAuto(void)
 
     return errors;
 }
+
+//TODO
+  string Condition::buildIR(CFG *cfg){
+      return "";
+  }

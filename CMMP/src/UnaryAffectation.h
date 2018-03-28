@@ -10,7 +10,7 @@ public:
   UnaryAffectation(Type t, VariableCall *leftValue, OpUnaryAffectation, bool isPre);
   virtual ~UnaryAffectation(void);
 
-  virtual string buildIR(CFG *cfg) { return ""; } //TODO : à modifier
+  virtual string buildIR(CFG *cfg);
 
 protected:
   OpUnaryAffectation op;

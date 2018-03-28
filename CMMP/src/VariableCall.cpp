@@ -10,3 +10,8 @@ vector<VariableCall *> VariableCall::findVarCalls(void)
     v.push_back(this);
     return v;
 }
+
+//TODO
+  string VariableCall::buildIR(CFG *cfg){
+      return "";
+  }

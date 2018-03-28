@@ -37,3 +37,8 @@ vector<VariableCall *> VariableDeclaration::findVarCalls(void)
     }
     return v;
 }
+
+//TODO
+  string VariableDeclaration::buildIR(CFG *cfg){
+      return "";
+  }

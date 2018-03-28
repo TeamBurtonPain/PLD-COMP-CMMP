@@ -22,7 +22,7 @@ class Loop : public Instruction
 
 	virtual uint setTypeAuto(void);
 
-	virtual string buildIR(CFG *cfg) {} //TODO : à modifier
+	virtual string buildIR(CFG *cfg);
 
   protected:
 	Expression *finalTest;

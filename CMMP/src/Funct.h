@@ -45,7 +45,7 @@ class Funct : public VarContainer, public Parent, public IRNode
 
 	virtual uint setTypeAuto(void);
 
-	virtual string buildIR(CFG *cfg); //TODO : à modifier
+	virtual string buildIR(CFG *cfg);
 
   protected:
 	vector<VariableDeclaration *> parameters;

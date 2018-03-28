@@ -68,29 +68,32 @@ uint FunctionCall::setTypeAuto(void)
     return errors;
 }
 
-string FunctionCall::buildIR(CFG* cfg)
+string FunctionCall::buildIR(CFG *cfg)
 {
-  vector<string> vect;
-  vect.push_back(name);
-  
-  string var("");
-  if(getType()==Type::INT32 || getType()==Type::INT64 || getType()==Type::CHAR)
-  {
-    var = cfg->create_new_tempvar(getType());
-  }
-  else
-  {
-    var = "";
-  }
-  vect.push_back(var);
+    vector<string> vect;
+    vect.push_back(name);
 
-  vector<Expression*> params = getArgs();
-  for (vector<Expression *>::iterator it = params.begin(); it != params.end(); ++it)
-  {
-      vect.push_back(it->buildIR(cfg));
-  }
+    string var("");
+    if (getType() == Type::INT32 || getType() == Type::INT64 || getType() == Type::CHAR)
+    {
+        var = cfg->create_new_tempvar(getType());
+    }
+    else
+    {
+        var = "";
+    }
+    vect.push_back(var);
 
-  cfg->add_IRInstr(IRInstr::Operation::call, getType(), vect);
-
-  return var;
+    vector<Expression *> params = getArgs();
+    for (vector<Expression *>::iterator it = params.begin(); it != params.end(); ++it)
+    {
+        vect.push_back((*it)->buildIR(cfg));
+    }
+    //TODO
+    //WUT ?
+    //Methode de BB hein
+    /*
+    cfg->add_IRInstr(IRInstr::Operation::call, getType(), vect);
+*/
+    return var;
 }

@@ -22,6 +22,7 @@ Const<T>::Const(const Type t, const T &v) : Expression(t), value(v) {}
 template <class T>
 Const<T>::~Const(void) {}
 
+template <>
 string Const<int32_t>::buildIR(CFG* cfg)
 { 
 	string var = cfg->create_new_tempvar(Type::INT32);
@@ -34,6 +35,7 @@ string Const<int32_t>::buildIR(CFG* cfg)
 	return var;
 }
 
+template <>
 string Const<int64_t>::buildIR(CFG* cfg)
 {
 	string var = cfg->create_new_tempvar(Type::INT64);
@@ -46,6 +48,7 @@ string Const<int64_t>::buildIR(CFG* cfg)
 	return var;
 }
 
+template <>
 string Const<char>::buildIR(CFG* cfg)
 {
 	string var = cfg->create_new_tempvar(Type::CHAR);

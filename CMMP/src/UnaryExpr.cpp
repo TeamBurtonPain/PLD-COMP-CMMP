@@ -26,3 +26,8 @@ uint UnaryExpr::setTypeAuto(void)
     type = expression->getType();
     return errors;
 }
+
+//TODO
+  string UnaryExpr::buildIR(CFG *cfg){
+      return "";
+  }

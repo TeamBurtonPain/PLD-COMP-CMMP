@@ -82,3 +82,9 @@ uint Loop::setTypeAuto(void)
 
     return errors;
 }
+
+
+//TODO
+  string Loop::buildIR(CFG *cfg){
+      return "";
+  }

@@ -37,3 +37,9 @@ vector<ReturnInstr *> ReturnInstr::findReturns(void)
     v.push_back(this);
     return v;
 }
+
+
+//TODO
+  string ReturnInstr::buildIR(CFG *cfg){
+      return "";
+  }

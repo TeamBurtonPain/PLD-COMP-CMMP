@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Type.h"
 #include "Expression.h"
 
 class Variable : public Expression
@@ -10,8 +11,6 @@ class Variable : public Expression
 	string getName(void) const { return name; }
 	uint getLine(void) { return line; }
 	uint getColumn(void) { return column; }
-
-	virtual string buildIR(CFG *cfg) {return "";} //TODO : à modifier
 
   protected:
 	string name;

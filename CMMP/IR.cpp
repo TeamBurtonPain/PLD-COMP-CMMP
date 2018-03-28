@@ -2,6 +2,11 @@
 
 #include "utilCMMP.h"
 
+
+///////////////////// 
+// INSTR
+/////////////////////
+
 void IRInstr::gen_asm(ostream &o)
 {
     string registers[] = {"", "", ""};
@@ -31,6 +36,14 @@ void IRInstr::gen_asm(ostream &o)
     }
 }
 
+///////////////////// 
+// BASIC BLOCK
+/////////////////////
+
+
+///////////////////// 
+// CFG
+/////////////////////
 CFG::CFG(Funct *f) : ast(f), nextFreeSymbolIndex(-8)
 {
     for (auto v : f->getVariables())

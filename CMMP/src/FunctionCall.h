@@ -27,7 +27,7 @@ public:
 
   virtual uint setTypeAuto(void);
 
-  virtual string buildIR(CFG *cfg) {return "";} //TODO : à modifier
+  virtual string buildIR(CFG *cfg); 
 
 protected:
   Funct *function = NULL;

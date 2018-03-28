@@ -30,7 +30,7 @@ public:
   virtual vector<VariableDeclaration *> findVarDeclarations(void);
   virtual vector<VariableCall *> findVarCalls(void);
 
-  virtual string buildIR(CFG *cfg) {return "";} //TODO : à modifier
+  virtual string buildIR(CFG *cfg);
 
 protected:
   Type type;

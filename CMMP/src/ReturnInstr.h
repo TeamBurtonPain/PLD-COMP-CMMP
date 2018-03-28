@@ -15,7 +15,7 @@ public:
   virtual vector<VariableCall *> findVarCalls(void);
   virtual vector<ReturnInstr *> findReturns(void);
 
-  virtual string buildIR(CFG *cfg) { return ""; } //TODO : à modifier
+  virtual string buildIR(CFG *cfg);
 
 protected:
   Expression *expr = NULL;

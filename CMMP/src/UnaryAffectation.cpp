@@ -7,3 +7,9 @@ UnaryAffectation::UnaryAffectation(Type t, VariableCall *leftValue, OpUnaryAffec
 UnaryAffectation::~UnaryAffectation(void)
 {
 }
+
+
+//TODO
+  string UnaryAffectation::buildIR(CFG *cfg){
+      return "";
+  }

@@ -8,7 +8,7 @@
 
 // Declarations from the parser -- replace with your own
 #include "Type.h"
-#include "CommonTypesGlobal.h"
+#include "CommonTypes.h"
 //#include "utilCMMP.h"
 
 class Funct;
@@ -20,7 +20,7 @@ class DefFonction;
 class IRInstr
 {
 
-  public:
+public:
 	/** The instructions themselves -- feel free to subclass instead */
 	typedef enum {
 		ldconst,
@@ -41,12 +41,12 @@ class IRInstr
 	/** Actual code generation */
 	void gen_asm(ostream &o); /**< x86 assembly code generation for this IR instruction */
 
-  private:
+private:
 	BasicBlock *bb; /**< The BB this instruction belongs to, which provides a pointer to the CFG this instruction belong to */
 	Operation op;
 	Type t;
 	vector<string> params; /**< For 3-op instrs: d, x, y; for ldconst: d, c;  For call: label, d, params;  for wmem and rmem: choose yourself */
-						   // if you subclass IRInstr, each IRInstr subclass has its parameters and the previous (very important) comment becomes useless: it would be a better design.
+												 // if you subclass IRInstr, each IRInstr subclass has its parameters and the previous (very important) comment becomes useless: it would be a better design.
 };
 
 /**  The class for a basic block */
@@ -65,19 +65,19 @@ class IRInstr
 
 class BasicBlock
 {
-  public:
+public:
 	BasicBlock(CFG *cfg, string entry_label);
 	void gen_asm(ostream &o); /**< x86 assembly code generation for this basic block (very simple) */
 
 	void add_IRInstr(IRInstr::Operation op, Type t, vector<string> params);
 
 	// No encapsulation whatsoever here. Feel free to do better.
-	BasicBlock *exit_true;	/**< pointer to the next basic block, true branch. If nullptr, return from procedure */
-	BasicBlock *exit_false;   /**< pointer to the next basic block, false branch. If null_ptr, the basic block ends with an unconditional jump */
-	string label;			  /**< label of the BB, also will be the label in the generated code */
-	CFG *cfg;				  /** < the CFG where this block belongs */
+	BasicBlock *exit_true;		/**< pointer to the next basic block, true branch. If nullptr, return from procedure */
+	BasicBlock *exit_false;		/**< pointer to the next basic block, false branch. If null_ptr, the basic block ends with an unconditional jump */
+	string label;							/**< label of the BB, also will be the label in the generated code */
+	CFG *cfg;									/** < the CFG where this block belongs */
 	vector<IRInstr *> instrs; /** < the instructions themselves. */
-  protected:
+protected:
 };
 
 /** The class for the control flow graph, also includes the symbol table */
@@ -91,7 +91,7 @@ class BasicBlock
  */
 class CFG
 {
-  public:
+public:
 	CFG(Funct *a);
 
 	Funct *ast; /**< The AST this CFG comes from */
@@ -114,11 +114,11 @@ class CFG
 	string new_BB_name();
 	BasicBlock *current_bb;
 
-  protected:
+protected:
 	hashmap<string, Type> SymbolType; /**< part of the symbol table  */
 	hashmap<string, int> SymbolIndex; /**< part of the symbol table  */
-	int nextFreeSymbolIndex;		  /**< to allocate new symbols in the symbol table */
-	int nextBBnumber;				  /**< just for naming */
+	int nextFreeSymbolIndex;					/**< to allocate new symbols in the symbol table */
+	int nextBBnumber;									/**< just for naming */
 
 	vector<BasicBlock *> bbs; /**< all the basic blocks of this CFG*/
 };

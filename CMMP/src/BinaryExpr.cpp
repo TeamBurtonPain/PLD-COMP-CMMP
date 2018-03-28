@@ -57,3 +57,8 @@ uint BinaryExpr::setTypeAuto(void)
         cout << "Error Binary Affectation" << endl;
     return errors;
 }
+
+//TODO
+  string BinaryExpr::buildIR(CFG *cfg){
+      return "";
+  }

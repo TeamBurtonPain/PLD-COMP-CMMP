@@ -18,7 +18,7 @@ class VariableCall : public Variable
 	void setRead(bool b) { read = b; }
 	void setWrite(bool b) { write = b; }
 
-	virtual string buildIR(CFG *cfg) {return "";} //TODO : à modifier
+	virtual string buildIR(CFG *cfg);
 
   protected:
 	VariableDeclaration *ref = NULL;
