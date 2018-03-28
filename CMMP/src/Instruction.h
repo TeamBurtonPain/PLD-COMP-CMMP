@@ -4,6 +4,7 @@
 #include "VarContainer.h"
 #include "Parent.h"
 #include <vector>
+#include "IRNode.h"
 
 class FunctionCall;
 class ReturnInstr;
