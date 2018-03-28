@@ -39,9 +39,15 @@ void IRInstr::gen_asm(ostream &o)
 // BASIC BLOCK
 /////////////////////
 
+BasicBlock::BasicBlock(CFG *cfg, string entry_label):cfg(cfg), label(entry_label)
+{
+    exit_true = exit_false = nullptr;
+}
+
 //TODO
 void BasicBlock::add_IRInstr(IRInstr::Operation op, Type t, vector<string> params){
-    //TODO
+    IRInstr *instr = new IRInstr(this, op, t, params);
+    instrs.push_back(instr);
 }
 
 /////////////////////
@@ -53,13 +59,13 @@ CFG::CFG(Funct *f) : ast(f), nextFreeSymbolIndex(-8)
     {
         add_to_symbol_table(v->getName(), v->getType());
     }
+    ast->buildIR(this);
 }
 
 void CFG::gen_asm(ostream &o)
 {
     gen_asm_prologue(o);
-    //TODO : le reste !
-
+    
     gen_asm_epilogue(o);
 }
 
@@ -132,4 +138,11 @@ Type CFG::get_var_type(string name)
     {
         return Type::UNKNOWN;
     }
+}
+
+string CFG::new_BB_name(){
+    if(current_bb == nullptr){
+        nextBBnumber = 0;
+    }
+    return "bb_"+ std::to_string(nextBBnumber++);
 }
