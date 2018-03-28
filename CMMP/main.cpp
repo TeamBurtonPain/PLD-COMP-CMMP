@@ -15,10 +15,12 @@ using namespace antlr4;
 
 int main()
 {
+	string filename = "test/5_2.cmmp";
+	//string filename = "../Ex_Test_Backend/6-While.cmmp";
 	Program *p;
 
 	//NB pour l'executer vous pouvez avoir besoin de changer les / en double antislash
-	ANTLRFileStream input("../Ex_Test_Backend/6-While.cmmp");
+	ANTLRFileStream input(filename);
 	cmmpLexer lexer(&input);
 
 	//convert the input into tokens
@@ -69,9 +71,11 @@ int main()
 // FIN DU FRONT
 ///////////////////////
 
-	
-
+	CFG cfg_main(p->getMainFunction());
+	ofstream filestream(filename+".s");
+	cfg_main.gen_asm(filestream);
 	cin.get();
+	filestream.close();
 	delete (p);
 
 	return 0;

@@ -1,0 +1,8 @@
+#include<inttypes.h>
+
+void main(void){
+    putchar('o');
+    putchar('k');
+    putchar(' ');
+
+}
