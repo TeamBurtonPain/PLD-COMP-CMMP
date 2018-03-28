@@ -8,6 +8,7 @@
 #include "UnaryExpr.h"
 #include "FunctionCall.h"
 #include "VarContainer.h"
+#include "CommonTypes.h"
 
 using namespace std;
 

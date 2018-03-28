@@ -96,7 +96,7 @@ public:
 
 	Funct *ast; /**< The AST this CFG comes from */
 
-	void add_bb(BasicBlock *bb) { bbs.push_back(bb); } //TODO : à corriger ?
+	void add_bb(BasicBlock *bb); //TODO : à corriger ?
 
 	// x86 code generation: could be encapsulated in a processor class in a retargetable compiler
 	void gen_asm(ostream &o);

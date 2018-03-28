@@ -6,12 +6,26 @@
 // INSTR
 /////////////////////
 
+IRInstr::IRInstr(BasicBlock *bb_, Operation op, Type t, vector<string> params_)
+:bb(bb_), op(op), t(t){
+    for(auto i : params_){
+        params.push_back(i);
+    }
+}
+
 void IRInstr::gen_asm(ostream &o)
 {
     string registers[] = {"", "", ""};
     switch (op)
     {
     case IRInstr::Operation::ldconst:
+        switch (t){
+            case Type::CHAR:
+            int val = params[1][0];
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "$" << val << 
+                 utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(params[0]) << endl;
+            break;
+        }
         break;
     case IRInstr::Operation::add:
         break;
@@ -42,6 +56,7 @@ void IRInstr::gen_asm(ostream &o)
 BasicBlock::BasicBlock(CFG *cfg, string entry_label):cfg(cfg), label(entry_label)
 {
     exit_true = exit_false = nullptr;
+
 }
 
 //TODO
@@ -65,7 +80,9 @@ CFG::CFG(Funct *f) : ast(f), nextFreeSymbolIndex(-8)
 void CFG::gen_asm(ostream &o)
 {
     gen_asm_prologue(o);
-    
+    for(auto bb : bbs){
+        bb->gen_asm(o);
+    }
     gen_asm_epilogue(o);
 }
 
@@ -114,9 +131,14 @@ void CFG::add_to_symbol_table(string name, Type t)
 { //TODO : des vérifs à faire ?
     SymbolType[name] = t;
     SymbolIndex[name] = nextFreeSymbolIndex;
-    nextFreeSymbolIndex -= 8;
+    nextFreeSymbolIndex -= 8; //TODO : meileure gestion mémoire ?
 }
-string CFG::create_new_tempvar(Type t) { return ""; } //TODO
+string CFG::create_new_tempvar(Type t){
+    string name = "var_" + std::to_string(nextFreeSymbolIndex);
+    add_to_symbol_table(name, t);
+    return name;
+}
+
 int CFG::get_var_index(string name)
 {
     if (SymbolIndex.find(name) != SymbolIndex.end())
@@ -138,6 +160,11 @@ Type CFG::get_var_type(string name)
     {
         return Type::UNKNOWN;
     }
+}
+
+void CFG::add_bb(BasicBlock * bb){
+    bbs.push_back(bb);
+    current_bb = bb;
 }
 
 string CFG::new_BB_name(){
