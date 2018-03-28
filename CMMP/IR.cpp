@@ -2,6 +2,31 @@
 
 #include "utilCMMP.h"
 
+void IRInstr::gen_asm(ostream &o){
+    switch(op){
+        case IRInstr::Operation(ldconst):
+        break;
+        case IRInstr::Operation(add):
+        break;
+        case IRInstr::Operation(sub):
+        break;
+        case IRInstr::Operation(mul):
+        break;
+        case IRInstr::Operation(rmem):
+        break;
+        case IRInstr::Operation(wmem):
+        break;
+        case IRInstr::Operation(call):
+            
+        break;
+        case IRInstr::Operation(cmp_eq):
+        break;
+        case IRInstr::Operation(cmp_lt):
+        break;
+        case IRInstr::Operation(cmp_le):
+        break;
+    }
+}
 
 CFG::CFG(Funct * f):ast(f), nextFreeSymbolIndex(-8){
     for(auto v : f->getVariables()){
