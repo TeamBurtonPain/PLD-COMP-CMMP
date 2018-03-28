@@ -14,6 +14,8 @@ public:
   virtual vector<FunctionCall *> findFunctionCalls(void);
   virtual vector<VariableCall *> findVarCalls(void);
 
+  virtual string buildIR(CFG *) { return ""; }
+
 protected:
   vector<VariableDeclaration *> declarations;
 };

@@ -2,8 +2,7 @@
 
 #include "utilCMMP.h"
 
-
-///////////////////// 
+/////////////////////
 // INSTR
 /////////////////////
 
@@ -36,12 +35,16 @@ void IRInstr::gen_asm(ostream &o)
     }
 }
 
-///////////////////// 
+/////////////////////
 // BASIC BLOCK
 /////////////////////
 
+//TODO
+void BasicBlock::add_IRInstr(IRInstr::Operation op, Type t, vector<string> params){
+    //TODO
+}
 
-///////////////////// 
+/////////////////////
 // CFG
 /////////////////////
 CFG::CFG(Funct *f) : ast(f), nextFreeSymbolIndex(-8)
@@ -107,6 +110,7 @@ void CFG::add_to_symbol_table(string name, Type t)
     SymbolIndex[name] = nextFreeSymbolIndex;
     nextFreeSymbolIndex -= 8;
 }
+string CFG::create_new_tempvar(Type t) { return ""; } //TODO
 int CFG::get_var_index(string name)
 {
     if (SymbolIndex.find(name) != SymbolIndex.end())
