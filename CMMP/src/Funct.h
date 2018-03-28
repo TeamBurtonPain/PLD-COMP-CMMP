@@ -9,11 +9,13 @@
 #include "Instruction.h"
 #include "ReturnInstr.h"
 #include "Parent.h"
+#include "IRNode.h"
+#include "IR.h"
 
 class Block;
 
 //TODO : il peut y avoir plusieurs instructions de retour !
-class Funct : public VarContainer, public Parent
+class Funct : public VarContainer, public Parent, public IRNode
 {
   public:
 	Funct(Type returnType, string name);
@@ -30,7 +32,7 @@ class Funct : public VarContainer, public Parent
 
 	void setBlock(Block *);
 	Block *getBlock(void) { return instructions; }
-/*
+	/*
 	void setReturn(ReturnInstr *r) { returnExpr = r; }
 	ReturnInstr *getReturn(void) { return returnExpr; }
 */
@@ -43,6 +45,8 @@ class Funct : public VarContainer, public Parent
 	virtual vector<ReturnInstr *> findReturns(void);
 
 	virtual uint setTypeAuto(void);
+
+	string BuildIR(CFG *cfg);
 
   protected:
 	vector<VariableDeclaration *> parameters;

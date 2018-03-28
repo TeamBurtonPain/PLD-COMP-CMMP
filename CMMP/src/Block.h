@@ -6,6 +6,7 @@
 #include <deque>
 #include "FunctionCall.h"
 #include "VariableCall.h"
+#include "IRNode.h"
 
 class VariableDeclaration;
 
@@ -28,6 +29,8 @@ public:
 
 	virtual uint setTypeAuto(void);
 	
+	virtual string BuildIR(CFG *cfg);
+
 protected:
 	hashmap<string, VariableDeclaration *> variables;
 	deque<Instruction *> instructions;
