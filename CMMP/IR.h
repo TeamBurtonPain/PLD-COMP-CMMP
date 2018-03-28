@@ -9,9 +9,9 @@
 // Declarations from the parser -- replace with your own
 #include "Type.h"
 #include "CommonTypes.h"
-#include "Funct.h"
 #include "utilCMMP.h"
 
+class Funct;
 class BasicBlock;
 class CFG;
 class DefFonction;

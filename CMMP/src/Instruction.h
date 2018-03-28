@@ -24,7 +24,7 @@ class Instruction : public Parent, public IRNode
 
 	virtual uint setTypeAuto(void);
 
-	virtual string BuildIR(CFG *cfg) = 0;
+	virtual string buildIR(CFG *cfg) = 0;
 
   protected:
 	Parent *parent = NULL;

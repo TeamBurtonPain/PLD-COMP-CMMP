@@ -119,10 +119,10 @@ uint Block::setTypeAuto(void)
     return errors;
 }
 
-string Block::BuildIR(CFG *cfg){
+string Block::buildIR(CFG *cfg){
     string s;
     for (auto i : instructions){
-        s+=(i->BuildIR(cfg));
+        s+=(i->buildIR(cfg));
     }
     return s;
 }

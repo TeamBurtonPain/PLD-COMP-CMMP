@@ -29,7 +29,7 @@ public:
 
 	virtual uint setTypeAuto(void);
 	
-	virtual string BuildIR(CFG *cfg);
+	virtual string buildIR(CFG *cfg);
 
 protected:
 	hashmap<string, VariableDeclaration *> variables;

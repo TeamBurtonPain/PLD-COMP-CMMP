@@ -22,6 +22,9 @@ public:
 
 	virtual uint setTypeAuto(void);
 
+	  virtual string buildIR(CFG *cfg) {} //TODO : à modifier
+
+
 protected:
 	Expression *finalTest;
 	Instruction *instruction;
