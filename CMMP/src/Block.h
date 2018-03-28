@@ -10,7 +10,7 @@
 
 class VariableDeclaration;
 
-class Block : public Instruction, public VarContainer, public IRNode
+class Block : public Instruction, public VarContainer
 {
 public:
 	Block(void);
