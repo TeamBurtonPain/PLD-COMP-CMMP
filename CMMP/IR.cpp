@@ -49,9 +49,9 @@ void BasicBlock::add_IRInstr(IRInstr::Operation op, Type t, vector<string> param
 /////////////////////
 CFG::CFG(Funct *f) : ast(f), nextFreeSymbolIndex(-8)
 {
-    for (auto v : f->getVariables())
+    for (auto v : f->findVarDeclarations())
     {
-        add_to_symbol_table(v.first, v.second->getType());
+        add_to_symbol_table(v->getName(), v->getType());
     }
 }
 
@@ -89,9 +89,9 @@ void CFG::gen_asm_prologue(ostream &o)
     int sp_pos = nextFreeSymbolIndex;
     if (sp_pos % 16 != 0)
     {
-        sp_pos -= sp_pos % 16;
+        sp_pos -= 16+(sp_pos % 16);
     }
-    if (sp_pos < 0)
+    if (sp_pos < 0 && nextFreeSymbolIndex != -8)
     {
         o << utilCMMP::Indent(1) << "subq" << utilCMMP::Indent(1) << "$" << nextFreeSymbolIndex << ", %rsp" << endl;
     }
