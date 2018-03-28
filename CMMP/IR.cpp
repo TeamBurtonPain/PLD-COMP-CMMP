@@ -2,105 +2,117 @@
 
 #include "utilCMMP.h"
 
-void IRInstr::gen_asm(ostream &o){
-    string registers[] = {"","",""};
-    switch(op){
-        case IRInstr::Operation(ldconst):
+void IRInstr::gen_asm(ostream &o)
+{
+    string registers[] = {"", "", ""};
+    switch (op)
+    {
+    case IRInstr::Operation(ldconst):
         break;
-        case IRInstr::Operation(add):
+    case IRInstr::Operation(add):
         break;
-        case IRInstr::Operation(sub):
+    case IRInstr::Operation(sub):
         break;
-        case IRInstr::Operation(mul):
+    case IRInstr::Operation(mul):
         break;
-        case IRInstr::Operation(rmem):
+    case IRInstr::Operation(rmem):
         break;
-        case IRInstr::Operation(wmem):
+    case IRInstr::Operation(wmem):
         break;
-        case IRInstr::Operation(call):
-            
+    case IRInstr::Operation(call):
+
         break;
-        case IRInstr::Operation(cmp_eq):
+    case IRInstr::Operation(cmp_eq):
         break;
-        case IRInstr::Operation(cmp_lt):
+    case IRInstr::Operation(cmp_lt):
         break;
-        case IRInstr::Operation(cmp_le):
+    case IRInstr::Operation(cmp_le):
         break;
     }
 }
 
-CFG::CFG(Funct * f):ast(f), nextFreeSymbolIndex(-8){
-    for(auto v : f->getVariables()){
+CFG::CFG(Funct *f) : ast(f), nextFreeSymbolIndex(-8)
+{
+    for (auto v : f->getVariables())
+    {
         add_to_symbol_table(v.first, v.second->getType());
     }
 }
 
-void CFG::gen_asm(ostream& o){
+void CFG::gen_asm(ostream &o)
+{
     gen_asm_prologue(o);
     //TODO : le reste !
 
     gen_asm_epilogue(o);
 }
 
-
-string CFG::IR_reg_to_asm(string reg){
-    if(get_var_index(reg) != 0){
+string CFG::IR_reg_to_asm(string reg)
+{
+    if (get_var_index(reg) != 0)
+    {
         stringstream ss;
         ss << get_var_index(reg) << "(%rbp)";
         return ss.str();
     }
-    else{
-        return "$(unkown)";//TODO : à voir ?
+    else
+    {
+        return "$(unkown)"; //TODO : à voir ?
     }
-
 }
-void CFG::gen_asm_prologue(ostream& o){
+void CFG::gen_asm_prologue(ostream &o)
+{
 
     o << utilCMMP::Indent(1) << ".text" << endl;
     o << utilCMMP::Indent(1) << ".globl" << utilCMMP::Indent(1) << ast->getName() << endl;
-    o << utilCMMP::Indent(1) << ".type" << utilCMMP::Indent(1) << ast ->getName() << ", @function"  << endl;
+    o << utilCMMP::Indent(1) << ".type" << utilCMMP::Indent(1) << ast->getName() << ", @function" << endl;
 
     o << ast->getName() << ":" << endl;
-    o << utilCMMP::Indent(1) << "pushq" << utilCMMP::Indent(1) << "%rbp"<<endl;
-    o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rsp, %rbp"<<endl;
+    o << utilCMMP::Indent(1) << "pushq" << utilCMMP::Indent(1) << "%rbp" << endl;
+    o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rsp, %rbp" << endl;
     int sp_pos = nextFreeSymbolIndex;
-    if(sp_pos % 16 != 0){
-        sp_pos -= sp_pos%16;
+    if (sp_pos % 16 != 0)
+    {
+        sp_pos -= sp_pos % 16;
     }
-    if(sp_pos < 0){
-        o << utilCMMP::Indent(1) << "subq" << utilCMMP::Indent(1) << "$"<< nextFreeSymbolIndex << ", %rsp"<<endl;
+    if (sp_pos < 0)
+    {
+        o << utilCMMP::Indent(1) << "subq" << utilCMMP::Indent(1) << "$" << nextFreeSymbolIndex << ", %rsp" << endl;
     }
-    
 }
-void CFG::gen_asm_epilogue(ostream& o){
+void CFG::gen_asm_epilogue(ostream &o)
+{
     o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rbp, %rsp" << endl;
     o << utilCMMP::Indent(1) << "popq" << utilCMMP::Indent(1) << "%rbp" << endl;
     o << utilCMMP::Indent(1) << "ret" << endl;
 }
 
-
-
 // symbol table methods
-void CFG::add_to_symbol_table(string name, Type t){//TODO : des vérifs à faire ?
+void CFG::add_to_symbol_table(string name, Type t)
+{ //TODO : des vérifs à faire ?
     SymbolType[name] = t;
-    SymbolIndex[name] = nextFreeSymbolIndex; 
+    SymbolIndex[name] = nextFreeSymbolIndex;
     nextFreeSymbolIndex -= 8;
 }
-int CFG::get_var_index(string name){
-    if(SymbolIndex.find(name) != SymbolIndex.end())
+int CFG::get_var_index(string name)
+{
+    if (SymbolIndex.find(name) != SymbolIndex.end())
     {
         return SymbolIndex[name];
     }
-    else{
+    else
+    {
         return 0;
     }
 }
-Type CFG::get_var_type(string name){
-    if(SymbolType.find(name) != SymbolType.end())
+Type CFG::get_var_type(string name)
+{
+    if (SymbolType.find(name) != SymbolType.end())
     {
         return SymbolType[name];
     }
-    else{
+    else
+    {
         return Type::UNKNOWN;
     }
 }
