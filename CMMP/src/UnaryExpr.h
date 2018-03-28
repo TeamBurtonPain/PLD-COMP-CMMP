@@ -4,6 +4,7 @@
 #include "Type.h"
 #include "Expression.h"
 #include "Operators.h"
+#include "IR.h"
 
 class UnaryExpr : public Expression
 {
@@ -17,6 +18,8 @@ public:
   virtual vector<VariableCall *> findVarCalls(void);
 
   virtual uint setTypeAuto(void);
+
+  virtual string buildIR(CFG *cfg) {return "";} //TODO : à modifier
 
 protected:
   Expression *expression;

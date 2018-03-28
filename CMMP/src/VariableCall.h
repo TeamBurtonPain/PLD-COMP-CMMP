@@ -5,7 +5,7 @@
 
 class VariableCall : public Variable
 {
-public:
+  public:
 	VariableCall(Type t, string n, uint l, uint c);
 	virtual ~VariableCall(void);
 
@@ -18,7 +18,9 @@ public:
 	void setRead(bool b) { read = b; }
 	void setWrite(bool b) { write = b; }
 
-protected:
+	virtual string buildIR(CFG *cfg) {return "";} //TODO : à modifier
+
+  protected:
 	VariableDeclaration *ref = NULL;
 	bool read = false;
 	bool write = false;

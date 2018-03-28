@@ -13,7 +13,7 @@ class Instruction : public Parent, public IRNode
 {
   public:
 	Instruction(void);
-	virtual ~Instruction(void) = 0;
+	virtual ~Instruction(void);
 	void setParent(Parent *);
 	Parent *getParent(void);
 
