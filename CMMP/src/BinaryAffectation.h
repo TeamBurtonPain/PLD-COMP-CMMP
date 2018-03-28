@@ -19,6 +19,8 @@ public:
   virtual vector<VariableCall *> findVarCalls(void);
 
 	virtual uint setTypeAuto(void);
+
+  virtual string buildIR(CFG *cfg){return "";}//TODO : à modifier
 	
 protected:
   OpBinaryAffectation op;

@@ -12,7 +12,7 @@ using namespace std;
 
 class Condition : public Instruction
 {
-public:
+  public:
 	Condition(Expression *condition, Instruction *ifInstruction, Instruction *elseInstruction);
 	Condition(Expression *condition, Instruction *ifInstruction);
 	virtual ~Condition(void);
@@ -27,8 +27,10 @@ public:
 	virtual vector<ReturnInstr *> findReturns(void);
 
 	virtual uint setTypeAuto(void);
-	
-protected:
+
+	virtual string buildIR(CFG *cfg) {return "";} //TODO : à modifier
+
+  protected:
 	Expression *test;
 	Instruction *instruction;
 	Instruction *elseInstruction = NULL;
