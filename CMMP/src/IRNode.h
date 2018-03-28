@@ -1,10 +1,10 @@
 #pragma once
 #include <string>
-#include "IR.h"
+class CFG;
 
 class IRNode{
     public:
         IRNode(){}
         virtual ~IRNode(){}
-        virtual string BuildIR(CFG * cfg) = 0;
+        virtual string buildIR(CFG * cfg) = 0;
 };
