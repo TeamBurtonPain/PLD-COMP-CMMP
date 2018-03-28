@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include "CommonTypes.h"
 #include "VariableDeclaration.h"
 
 class VariableDeclarations : public Instruction

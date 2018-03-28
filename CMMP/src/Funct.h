@@ -1,16 +1,15 @@
 #pragma once
 
-#include "CommonTypes.h"
 #include <deque>
-#include <iostream>
+#include "CommonTypes.h"
 #include "Block.h"
 #include "VarContainer.h"
 #include "Variable.h"
 #include "Instruction.h"
 #include "ReturnInstr.h"
+
 #include "Parent.h"
 #include "IRNode.h"
-#include "IR.h"
 
 class Block;
 
@@ -46,7 +45,7 @@ class Funct : public VarContainer, public Parent, public IRNode
 
 	virtual uint setTypeAuto(void);
 
-	string buildIR(CFG *cfg){return "";} //TODO : à modifier
+	virtual string buildIR(CFG *cfg); //TODO : à modifier
 
   protected:
 	vector<VariableDeclaration *> parameters;

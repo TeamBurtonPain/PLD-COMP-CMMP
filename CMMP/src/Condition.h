@@ -1,11 +1,11 @@
 #pragma once
 
+#include <deque>
+#include <vector>
 #include "Instruction.h"
 #include "Block.h"
 #include "Expression.h"
 #include "FunctionCall.h"
-#include <deque>
-#include <vector>
 #include "VariableCall.h"
 
 using namespace std;

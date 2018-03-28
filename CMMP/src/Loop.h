@@ -8,7 +8,7 @@ using namespace std;
 
 class Loop : public Instruction
 {
-public:
+  public:
 	Loop(Expression *finalTest, Instruction *i);
 	virtual ~Loop(void);
 
@@ -22,10 +22,9 @@ public:
 
 	virtual uint setTypeAuto(void);
 
-	  virtual string buildIR(CFG *cfg) {} //TODO : à modifier
+	virtual string buildIR(CFG *cfg) {} //TODO : à modifier
 
-
-protected:
+  protected:
 	Expression *finalTest;
 	Instruction *instruction;
 };

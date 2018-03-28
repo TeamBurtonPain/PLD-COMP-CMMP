@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Variable.h"
 #include <vector>
+#include "Variable.h"
 
 class VariableCall : public Variable
 {

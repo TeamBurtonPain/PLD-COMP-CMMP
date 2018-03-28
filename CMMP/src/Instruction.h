@@ -1,9 +1,10 @@
 #pragma once
 
+#include <vector>
 #include "CommonTypes.h"
 #include "VarContainer.h"
+
 #include "Parent.h"
-#include <vector>
 #include "IRNode.h"
 
 class FunctionCall;
@@ -11,7 +12,7 @@ class ReturnInstr;
 class VariableCall;
 class Instruction : public Parent, public IRNode
 {
-  public:
+public:
 	Instruction(void);
 	virtual ~Instruction(void);
 	void setParent(Parent *);
@@ -26,6 +27,6 @@ class Instruction : public Parent, public IRNode
 
 	virtual string buildIR(CFG *cfg) = 0;
 
-  protected:
+protected:
 	Parent *parent = NULL;
 };

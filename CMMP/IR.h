@@ -8,8 +8,8 @@
 
 // Declarations from the parser -- replace with your own
 #include "Type.h"
-#include "CommonTypes.h"
-#include "utilCMMP.h"
+#include "CommonTypesGlobal.h"
+//#include "utilCMMP.h"
 
 class Funct;
 class BasicBlock;

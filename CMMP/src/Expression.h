@@ -1,10 +1,9 @@
 #pragma once
 
+#include <vector>
 #include "CommonTypes.h"
 #include "Type.h"
 #include "Instruction.h"
-#include <vector>
-#include "IRNode.h"
 
 class FunctionCall;
 class VariableCall;

@@ -1,12 +1,11 @@
 #pragma once
 
+#include <deque>
 #include "CommonTypes.h"
 #include "Instruction.h"
 #include "VariableDeclaration.h"
-#include <deque>
 #include "FunctionCall.h"
 #include "VariableCall.h"
-#include "IRNode.h"
 
 class VariableDeclaration;
 

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Type.h"
 #include "Expression.h"
 
 class Variable : public Expression

@@ -3,7 +3,6 @@
 #include "CommonTypes.h"
 #include "Type.h"
 #include "Expression.h"
-#include "IRNode.h"
 
 template <class T>
 class Const : public Expression
@@ -24,7 +23,7 @@ template <class T>
 Const<T>::~Const(void) {}
 
 string Const<int32_t>::buildIR(CFG* cfg)
-{
+{ 
 	string var = cfg->create_new_tempvar(Type::INT32);
 	vector<string> vect;
 	vect.push_back(var);

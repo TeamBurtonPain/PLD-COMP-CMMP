@@ -1,9 +1,11 @@
 #pragma once
 
-#include "CommonTypes.h"
 #include <iostream>
+#include "CommonTypes.h"
 #include "Variable.h"
 #include "Funct.h"
+
+#include "Parent.h"
 
 class Program : public VarContainer, public Parent
 {

@@ -149,9 +149,9 @@ uint Funct::setTypeAuto(void)
     return errors;
 }
 
-string Funct::BuildIR(CFG *cfg){
+string Funct::buildIR(CFG *cfg){
     if(instructions != nullptr){
-        return instructions->BuildIR();
+        return instructions->buildIR(cfg);
     }
     else{
         return "";

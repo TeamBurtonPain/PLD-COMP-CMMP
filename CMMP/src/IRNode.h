@@ -6,5 +6,5 @@ class IRNode{
     public:
         IRNode(){}
         virtual ~IRNode(){}
-        virtual string buildIR(CFG * cfg) = 0;
+        virtual std::string buildIR(CFG * cfg) = 0;
 };
