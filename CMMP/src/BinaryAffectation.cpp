@@ -41,5 +41,8 @@ uint BinaryAffectation::setTypeAuto(void)
 
 //TODO
   string BinaryAffectation::buildIR(CFG *cfg){
-      return "";
+    string right = getExpression()->buildIR(cfg);
+    string left = leftValue->buildIR(cfg);
+    cfg->current_bb->add_IRInstr(IRInstr::Operation::wmem, leftValue->getType(), {left, right});
+    return right;
   }
