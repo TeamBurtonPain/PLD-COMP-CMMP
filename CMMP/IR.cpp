@@ -15,17 +15,14 @@ IRInstr::IRInstr(BasicBlock *bb_, Operation op, Type t, vector<string> params_)
 
 void IRInstr::gen_asm(ostream &o)
 {
-    string registers[] = {"", "", ""};
+    string registers[6] = {"%rdi", "%rsi", "%rdx", "%rcx", "%r8", "%r9"};
     switch (op)
     {
     case IRInstr::Operation::ldconst:
-        switch (t){
-            case Type::CHAR:
-            int val = params[1][0];
-            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "$" << val << 
-                 utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(params[0]) << endl;
-            break;
-        }
+        int val = params[1][0];
+        o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "$" << val << 
+                utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(params[0]) << endl;
+        
         break;
     case IRInstr::Operation::add:
         break;
@@ -38,6 +35,32 @@ void IRInstr::gen_asm(ostream &o)
     case IRInstr::Operation::wmem:
         break;
     case IRInstr::Operation::call:
+        string func_name = params[0];
+        string ret = params[1];
+        //TODO : case ret != ""
+
+        /* 
+        - (for integer parameters) the next available register of the sequence 
+        %rdi, %rsi, %rdx, %rcx, %r8 and %r9 is used.
+        - Once all registers are assigned, the arguments are passed in memory. 
+        They are pushed on the stack in reversed (right-to-left) order
+        */
+        /* 6 premiers paramètres */
+        num_param = 0;
+        nb_param = prams.size() - 2;
+        while(num_param < 6 && num_param < nb_param){
+            string curr_reg = registers[num_param];
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(params[2+i]) << utilCMMP::Indent(1) << 
+                curr_reg << endl;
+            ++num_param;
+        }
+        if(num_param == 6 && nb_param > 6){//rem : redondant mais sécurité
+            for(auto p = params.rend(); num_param < nb_param; ++num_param, ++p){
+                //TODO : Plus de 6 params ? -> push dans l'ordre inverse + pop ensuite ??
+                ++num_param;
+            }
+        }
 
         break;
     case IRInstr::Operation::cmp_eq:
@@ -99,6 +122,7 @@ string CFG::IR_reg_to_asm(string reg)
         return "$(unkown)"; //TODO : à voir ?
     }
 }
+//TODO : récupérer les paramètres de la fonction ?
 void CFG::gen_asm_prologue(ostream &o)
 {
 
