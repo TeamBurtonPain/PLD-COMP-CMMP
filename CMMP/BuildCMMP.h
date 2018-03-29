@@ -413,14 +413,13 @@ class BuildCMMP : public cmmpBaseVisitor
 				{
 					val = char(ascii_code[cst[2]]);
 				}
-				else if (cst[2] >= 0 && cst[2] <= 9)
+				else if (cst[2] >= '0' && cst[2] <= '9')
 				{
-					std::size_t *idx;
-					*idx=0;
+					std::size_t idx = 0;
 					
 					string num_s = cst.substr(2, cst.size() - 1 - 2); // 1 pour le ' final et 2 pour les '\ initiaux
 					
-					int num = std::stoi(num_s, idx, 8); //The fuck on lit de l'octal
+					int num = std::stoi(num_s, &idx, 8); //The fuck on lit de l'octal
 					val = char(num);
 				}
 				else
