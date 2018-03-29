@@ -4,6 +4,7 @@ void main(void){
     char a;
     putchar('o');
     putchar('k');
-    putchar(' ');
+    putchar('\12');
+    putchar('!');
 
 }

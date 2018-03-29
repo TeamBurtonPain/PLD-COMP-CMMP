@@ -13,5 +13,11 @@ vector<VariableCall *> VariableCall::findVarCalls(void)
 
 //TODO
   string VariableCall::buildIR(CFG *cfg){
-      return "";
+      if(read){
+          return name;
+      }
+      else{
+          //TODO : if tab ? offset ?
+          return name;
+      }
   }

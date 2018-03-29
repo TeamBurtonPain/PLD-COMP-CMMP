@@ -15,7 +15,7 @@ IRInstr::IRInstr(BasicBlock *bb_, Operation op, Type t, vector<string> params_)
 
 void IRInstr::gen_asm(ostream &o)
 {
-    string registers[6] = {"%rdi", "%rsi", "%rdx", "%rcx", "%r8", "%r9"};
+    string params_regs[6] = {"%rdi", "%rsi", "%rdx", "%rcx", "%r8", "%r9"};
     switch (op)
     {
     case IRInstr::Operation::ldconst :
@@ -34,6 +34,15 @@ void IRInstr::gen_asm(ostream &o)
     case IRInstr::Operation::rmem :
         break;
     case IRInstr::Operation::wmem :
+        {
+            string left = params[0];
+            string right = params[1];
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(right) << "," << utilCMMP::Indent(1) << "%rax" << endl;
+        
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rax," <<
+                 utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(left) << endl;
+        }
         break;
     case IRInstr::Operation::call :
         {
@@ -44,14 +53,14 @@ void IRInstr::gen_asm(ostream &o)
             /* 
             - (for integer parameters) the next available register of the sequence 
             %rdi, %rsi, %rdx, %rcx, %r8 and %r9 is used.
-            - Once all registers are assigned, the arguments are passed in memory. 
+            - Once all params_regs are assigned, the arguments are passed in memory. 
             They are pushed on the stack in reversed (right-to-left) order
             */
             /* 6 premiers paramètres */
             int num_param = 0;
             int nb_param = params.size() - 2;
             while(num_param < 6 && num_param < nb_param){
-                string curr_reg = registers[num_param];
+                string curr_reg = params_regs[num_param];
                 o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
                     bb->cfg->IR_reg_to_asm(params[2+num_param]) << "," << 
                     utilCMMP::Indent(1) << curr_reg << endl;
