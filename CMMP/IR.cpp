@@ -18,56 +18,62 @@ void IRInstr::gen_asm(ostream &o)
     string registers[6] = {"%rdi", "%rsi", "%rdx", "%rcx", "%r8", "%r9"};
     switch (op)
     {
-    case IRInstr::Operation::ldconst:
-        int val = params[1][0];
-        o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "$" << val << 
-                utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(params[0]) << endl;
-        
-        break;
-    case IRInstr::Operation::add:
-        break;
-    case IRInstr::Operation::sub:
-        break;
-    case IRInstr::Operation::mul:
-        break;
-    case IRInstr::Operation::rmem:
-        break;
-    case IRInstr::Operation::wmem:
-        break;
-    case IRInstr::Operation::call:
-        string func_name = params[0];
-        string ret = params[1];
-        //TODO : case ret != ""
-
-        /* 
-        - (for integer parameters) the next available register of the sequence 
-        %rdi, %rsi, %rdx, %rcx, %r8 and %r9 is used.
-        - Once all registers are assigned, the arguments are passed in memory. 
-        They are pushed on the stack in reversed (right-to-left) order
-        */
-        /* 6 premiers paramètres */
-        num_param = 0;
-        nb_param = prams.size() - 2;
-        while(num_param < 6 && num_param < nb_param){
-            string curr_reg = registers[num_param];
-            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
-                bb->cfg->IR_reg_to_asm(params[2+i]) << utilCMMP::Indent(1) << 
-                curr_reg << endl;
-            ++num_param;
+    case IRInstr::Operation::ldconst :
+        {
+            int val = params[1][0];
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "$" << val << 
+               "," << utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(params[0]) << endl;
         }
-        if(num_param == 6 && nb_param > 6){//rem : redondant mais sécurité
-            for(auto p = params.rend(); num_param < nb_param; ++num_param, ++p){
-                //TODO : Plus de 6 params ? -> push dans l'ordre inverse + pop ensuite ??
+        break;
+    case IRInstr::Operation::add :
+        break;
+    case IRInstr::Operation::sub :
+        break;
+    case IRInstr::Operation::mul :
+        break;
+    case IRInstr::Operation::rmem :
+        break;
+    case IRInstr::Operation::wmem :
+        break;
+    case IRInstr::Operation::call :
+        {
+            string func_name = params[0];
+            string ret = params[1];
+            //TODO : case ret != ""
+
+            /* 
+            - (for integer parameters) the next available register of the sequence 
+            %rdi, %rsi, %rdx, %rcx, %r8 and %r9 is used.
+            - Once all registers are assigned, the arguments are passed in memory. 
+            They are pushed on the stack in reversed (right-to-left) order
+            */
+            /* 6 premiers paramètres */
+            int num_param = 0;
+            int nb_param = params.size() - 2;
+            while(num_param < 6 && num_param < nb_param){
+                string curr_reg = registers[num_param];
+                o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
+                    bb->cfg->IR_reg_to_asm(params[2+num_param]) << "," << 
+                    utilCMMP::Indent(1) << curr_reg << endl;
                 ++num_param;
             }
+            if(num_param == 6 && nb_param > 6){//rem : redondant mais sécurité
+                for(auto p = params.rend(); num_param < nb_param; ++num_param, ++p){
+                    //TODO : Plus de 6 params ? -> push dans l'ordre inverse + pop ensuite ??
+                    ++num_param;
+                }
+            }
+            o << utilCMMP::Indent(1) << "call" << utilCMMP::Indent(1) << func_name << endl;
+            if(ret != ""){
+                //TODO : manage return of function ?
+            }
         }
-
         break;
-    case IRInstr::Operation::cmp_eq:
+    case IRInstr::Operation::cmp_eq :
         break;
-    case IRInstr::Operation::cmp_lt:
+    case IRInstr::Operation::cmp_lt :
         break;
-    case IRInstr::Operation::cmp_le:
+    case IRInstr::Operation::cmp_le :
         break;
     }
 }
@@ -82,6 +88,29 @@ BasicBlock::BasicBlock(CFG *cfg, string entry_label):cfg(cfg), label(entry_label
 
 }
 
+void BasicBlock::gen_asm(ostream & o){
+    
+    o << ".L" << label << ":" << endl; 
+    for(auto i : instrs){
+        i->gen_asm(o);
+    }
+
+    //TODO : jump to next block
+    if(exit_true == nullptr && exit_false == nullptr){
+        return;
+    }
+    else if(exit_false == nullptr){
+        // jump to exit_true
+    }
+    else{
+        /*  
+            if true  -> exit_true
+            if false -> exit_false
+        */
+    }
+
+}
+
 //TODO
 void BasicBlock::add_IRInstr(IRInstr::Operation op, Type t, vector<string> params){
     IRInstr *instr = new IRInstr(this, op, t, params);
@@ -91,7 +120,7 @@ void BasicBlock::add_IRInstr(IRInstr::Operation op, Type t, vector<string> param
 /////////////////////
 // CFG
 /////////////////////
-CFG::CFG(Funct *f) : ast(f), nextFreeSymbolIndex(-8)
+CFG::CFG(Funct *f) : ast(f), nextFreeSymbolIndex(-8), nextBBnumber(0)
 {
     for (auto v : f->findVarDeclarations())
     {
@@ -140,7 +169,8 @@ void CFG::gen_asm_prologue(ostream &o)
     }
     if (sp_pos < 0 && nextFreeSymbolIndex != -8)
     {
-        o << utilCMMP::Indent(1) << "subq" << utilCMMP::Indent(1) << "$" << nextFreeSymbolIndex << ", %rsp" << endl;
+        //explicitly sub and not add negative number
+        o << utilCMMP::Indent(1) << "subq" << utilCMMP::Indent(1) << "$" << -nextFreeSymbolIndex << ", %rsp" << endl;
     }
 }
 void CFG::gen_asm_epilogue(ostream &o)
