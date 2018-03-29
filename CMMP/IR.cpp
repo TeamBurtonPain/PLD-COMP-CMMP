@@ -26,10 +26,93 @@ void IRInstr::gen_asm(ostream &o)
         }
         break;
     case IRInstr::Operation::add :
+        {
+            string res = params[0];
+            string left = params[1];
+            string right = params[2];
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(left) << "," << utilCMMP::Indent(1) << "%rax" << endl;
+        
+            o << utilCMMP::Indent(1) << "addq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(right) << "," << utilCMMP::Indent(1) << "%rax" << endl;
+
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rax," <<
+                 utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(res) << endl;
+        }
         break;
     case IRInstr::Operation::sub :
+        {
+            string res = params[0];
+            string left = params[1];
+            string right = params[2];
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(left) << "," << utilCMMP::Indent(1) << "%rax" << endl;
+        
+            o << utilCMMP::Indent(1) << "subq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(right) << "," << utilCMMP::Indent(1) << "%rax" << endl;
+
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rax," <<
+                 utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(res) << endl;
+        }
         break;
     case IRInstr::Operation::mul :
+        {
+            string res = params[0];
+            string left = params[1];
+            string right = params[2];
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(left) << "," << utilCMMP::Indent(1) << "%rax" << endl;
+        
+            o << utilCMMP::Indent(1) << "imulq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(right) << "," << utilCMMP::Indent(1) << "%rax" << endl;
+
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rax," <<
+                 utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(res) << endl;
+        }
+        break;
+    case IRInstr::Operation::div :
+    /* GCC :
+        movl	-12(%rbp), %eax
+        cltd
+        idivl	-8(%rbp)
+        movl	%eax, -4(%rbp)
+    */
+        {
+            string res = params[0];
+            string left = params[1];
+            string right = params[2];
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(left) << "," << utilCMMP::Indent(1) << "%rax" << endl;
+            //Remarque utiliser cltd si mot < 4 words; ?? cf gcc
+            o << utilCMMP::Indent(1) << "cqto" << endl; //extends sign rax to rax:rdx
+            o << utilCMMP::Indent(1) << "idivq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(right) << endl;
+
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rax," <<
+                 utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(res) << endl;
+        }
+        break;
+    case IRInstr::Operation::mod :
+        /* GCC :
+        movl	-12(%rbp), %eax
+        cltd
+        idivl	-8(%rbp)
+        movl	%edx, -4(%rbp)
+    */
+        {
+            string res = params[0];
+            string left = params[1];
+            string right = params[2];
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(left) << "," << utilCMMP::Indent(1) << "%rax" << endl;
+            //Remarque utiliser cltd si mot < 4 words; ?? cf gcc
+            o << utilCMMP::Indent(1) << "cqto" << endl; //extends sign rax to rax:rdx
+            o << utilCMMP::Indent(1) << "idivq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(right) << endl;
+
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rdx," <<
+                 utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(res) << endl;
+        }
         break;
     case IRInstr::Operation::rmem :
         break;
