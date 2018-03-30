@@ -123,11 +123,15 @@ errorReturns Block::setTypeAuto(void)
 }
 
 string Block::buildIR(CFG *cfg)
-{
+{/*
     string s;
     for (auto i : instructions)
     {
         s += (i->buildIR(cfg));
+    }*/
+    for (auto i : instructions)
+    {
+        i->buildIR(cfg);
     }
-    return s;
+    return "";
 }
