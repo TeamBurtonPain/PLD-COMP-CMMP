@@ -24,19 +24,20 @@ Type TypeUtil::getTypeFromString(string s)
         return Type::UNKNOWN;
     }
 }
-string TypeUtil::toString(Type t){
-    switch(t){
-        case Type::CHAR:
-            return "char";
-        case Type::INT32:
-            return "int32";
-        case Type::INT64:
-            return "int64";
-        case Type::VOID:
-            return "void";
-        default:
-            return "Unknown";
-
+string TypeUtil::toString(Type t)
+{
+    switch (t)
+    {
+    case Type::CHAR:
+        return "char";
+    case Type::INT32:
+        return "int32";
+    case Type::INT64:
+        return "int64";
+    case Type::VOID:
+        return "void";
+    default:
+        return "Unknown";
     }
 }
 
@@ -51,7 +52,7 @@ Type TypeUtil::resultType(Type t1, Type t2)
         return Type::INT64;
     }
 
-    cout<<"Imcompa operation : "<< TypeUtil::toString(t1)<<" and "<<TypeUtil::toString(t2)<<endl;
+    cout << "Imcompa operation : " << TypeUtil::toString(t1) << " and " << TypeUtil::toString(t2) << endl;
     return Type::UNKNOWN;
 }
 
@@ -62,10 +63,12 @@ bool TypeUtil::t1Tot2(Type t1, Type t2)
         false || //replace those lines to allow other casts
         false)
     {
+        cout << "Warning : Cast " << TypeUtil::toString(t1) << " to " << TypeUtil::toString(t2) << endl;
         return true;
     }
-    else{
-        cout<<"Imcompa : "<< TypeUtil::toString(t1)<<" to "<<TypeUtil::toString(t2)<<endl;
+    else
+    {
+        cout << "Imcompa : " << TypeUtil::toString(t1) << " to " << TypeUtil::toString(t2) << endl;
         return false;
     }
 }

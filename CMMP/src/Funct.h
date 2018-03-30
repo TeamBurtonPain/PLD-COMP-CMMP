@@ -53,7 +53,6 @@ class Funct : public VarContainer, public Parent, public IRNode
 	Block *instructions = nullptr;
 	Type returnType;
 	vector<ReturnInstr *> returnExpr;
-	//ReturnInstr * returnExpr= nullptr;
 	string name;
 	Parent *parent = nullptr;
 };
