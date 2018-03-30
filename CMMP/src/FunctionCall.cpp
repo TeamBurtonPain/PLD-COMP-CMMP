@@ -47,18 +47,24 @@ vector<VariableCall *> FunctionCall::findVarCalls(void)
     return list;
 }
 
-uint FunctionCall::setTypeAuto(void)
+errorReturns FunctionCall::setTypeAuto(void)
 {
-    uint errors = 0;
+    errorReturns errors;
+    errors.errors = 0;
+    errors.warnings = 0;
 
     for (uint i = 0; i < arguments.size(); i++)
     {
-        errors += arguments[i]->setTypeAuto();
+        sumErrors(errors, arguments[i]->setTypeAuto());
         if (function)
         {
             Type t_expected = function->getVariablesInVector()[i]->getType();
-            if (!TypeUtil::t1Tot2(arguments[i]->getType(), t_expected))
-                errors++;
+
+            if (arguments[i]->getType() == t_expected)
+                if (TypeUtil::t1Tot2(arguments[i]->getType(), t_expected))
+                    errors.warnings++;
+                else
+                    errors.errors++;
         }
         else //if there is no function declaration, this might mean it's a putchar or getchar...
         {

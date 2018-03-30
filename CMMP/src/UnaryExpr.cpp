@@ -20,9 +20,9 @@ vector<VariableCall *> UnaryExpr::findVarCalls(void)
     return expression->findVarCalls();
 }
 
-uint UnaryExpr::setTypeAuto(void)
+errorReturns UnaryExpr::setTypeAuto(void)
 {
-    uint errors = expression->setTypeAuto();
+    errorReturns errors = expression->setTypeAuto();
     type = expression->getType();
     return errors;
 }

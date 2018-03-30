@@ -48,34 +48,40 @@ int main()
 
 	//get the final object returned by the visit of the tree
 	p = (Program *)visitor.visit(tree);
+	if (!p->getMainFunction())
+		return 1;
 
 	//analyse statique -a
-	uint errors = 0;
-	uint warnings = 0;
+	errorReturns errors;
+	errors.errors = 0;
+	errors.warnings = 0;
+
 	bool staticCheck = true; //option -a
 
 	//set VarCalls and FunctCalls a ref to the true var/funct
-	errors += utilCMMP::linkFunctions(p);
+	sumErrors(errors, utilCMMP::linkFunctions(p));
 
-	errors += utilCMMP::linkVariables(p, staticCheck);
+	sumErrors(errors, utilCMMP::linkVariables(p, staticCheck));
 
 	if (staticCheck)
 	{
-		warnings += utilCMMP::checkUnusedVar(p);
+		sumErrors(errors, utilCMMP::checkUnusedVar(p));
 	}
-	errors += utilCMMP::setTypesAuto(p);
+	sumErrors(errors, utilCMMP::setTypesAuto(p));
 
-	cout<<"Errors encoutered : "<<errors<<". Warnings : "<<warnings<<endl;
+	cout << "Errors encoutered : " << errors.errors << ". Warnings : " << errors.warnings << endl;
 
-////////////////////////
-// FIN DU FRONT
-///////////////////////
+	////////////////////////
+	// FIN DU FRONT
+	///////////////////////
 
 	CFG cfg_main(p->getMainFunction());
-	ofstream filestream(filename+".s");
+	ofstream filestream(filename + ".s");
 	cfg_main.gen_asm(filestream);
+
 	cin.get();
 	filestream.close();
+	
 	delete (p);
 
 	return 0;

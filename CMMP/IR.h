@@ -114,7 +114,7 @@ public:
 
 	// basic block management
 	string new_BB_name();
-	BasicBlock *current_bb;
+	BasicBlock *current_bb = nullptr;
 
 protected:
 	hashmap<string, Type> SymbolType; /**< part of the symbol table  */

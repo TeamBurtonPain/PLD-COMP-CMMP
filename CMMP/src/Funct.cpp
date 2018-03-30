@@ -118,15 +118,17 @@ vector<ReturnInstr *> Funct::findReturns(void)
 
     return list;
 }
-uint Funct::setTypeAuto(void)
+errorReturns Funct::setTypeAuto(void)
 {
-    uint errors = 0;
+    errorReturns errors;
+    errors.errors = 0;
+    errors.warnings = 0;
 
     returnExpr = findReturns();
 
     if (instructions)
     {
-        errors += instructions->setTypeAuto();
+        sumErrors(errors, instructions->setTypeAuto());
     }
     if (returnType != Type::VOID)
     {
@@ -134,29 +136,34 @@ uint Funct::setTypeAuto(void)
         {
             if ((*it)->getExpression())
             {
-                errors += (*it)->getExpression()->setTypeAuto();
-                errors += (TypeUtil::t1Tot2(
-                              (*it)->getExpression()->getType(),
-                              returnType))
-                              ? 0
-                              : 1;
+                sumErrors(errors, (*it)->getExpression()->setTypeAuto());
+
+                if ((*it)->getExpression()->getType() == returnType)
+                    if (TypeUtil::t1Tot2(
+                            (*it)->getExpression()->getType(),
+                            returnType))
+                        errors.warnings++;
+                    else
+                        errors.errors++;
             }
         }
     }
-    if (errors)
+    if (errors.errors)
         cout << "Error in function " << name << endl;
 
     return errors;
 }
 
-string Funct::buildIR(CFG *cfg){
-    if(instructions != nullptr){
+string Funct::buildIR(CFG *cfg)
+{
+    if (instructions != nullptr)
+    {
         BasicBlock *bb = new BasicBlock(cfg, cfg->new_BB_name());
         cfg->add_bb(bb);
         return instructions->buildIR(cfg);
     }
-    else{
+    else
+    {
         return "";
     }
-
 }

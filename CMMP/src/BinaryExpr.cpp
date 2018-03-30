@@ -40,68 +40,67 @@ vector<VariableCall *> BinaryExpr::findVarCalls(void)
     return list;
 }
 
-uint BinaryExpr::setTypeAuto(void)
+errorReturns BinaryExpr::setTypeAuto(void)
 {
-    uint errors = 0;
-    {
-        errors += expr1->setTypeAuto();
-    }
-    {
-        errors += expr2->setTypeAuto();
-    }
+    errorReturns errors;
+    errors.errors = 0;
+    errors.warnings = 0;
+
+    sumErrors(errors, expr1->setTypeAuto());
+    sumErrors(errors, expr2->setTypeAuto());
     type = TypeUtil::resultType(expr1->getType(), expr2->getType());
     if (type == Type::UNKNOWN)
-        errors++;
-        
-    if (errors)
-        cout << "Error Binary Affectation" << endl;
+        errors.errors++;
+
     return errors;
 }
 
 //TODO
-  string BinaryExpr::buildIR(CFG *cfg){
-      string left = getExpression1()->buildIR(cfg);
-      string right = getExpression2()->buildIR(cfg);
-      switch(op){
-            case BinaryOp::ADD:
-            {
-                string var = cfg->create_new_tempvar(getExpression1()->getType());
-                cfg->current_bb->add_IRInstr(IRInstr::Operation::add, getExpression1()->getType(),
-                    {var, left, right});
-                return var;
-            }
-            break;
-            case BinaryOp::SUB:
-            {
-                string var = cfg->create_new_tempvar(getExpression1()->getType());
-                cfg->current_bb->add_IRInstr(IRInstr::Operation::sub, getExpression1()->getType(),
-                    {var, left, right});
-                return var;
-            }
-            break;
-            case BinaryOp::MULT:
-            {
-                string var = cfg->create_new_tempvar(getExpression1()->getType());
-                cfg->current_bb->add_IRInstr(IRInstr::Operation::mul, getExpression1()->getType(),
-                    {var, left, right});
-                return var;
-            }
-            break;
-            case BinaryOp::DIV:
-            {
-                string var = cfg->create_new_tempvar(getExpression1()->getType());
-                cfg->current_bb->add_IRInstr(IRInstr::Operation::div, getExpression1()->getType(),
-                    {var, left, right});
-                return var;
-            }
-            break;
-            case BinaryOp::MOD:
-            {
-                string var = cfg->create_new_tempvar(getExpression1()->getType());
-                cfg->current_bb->add_IRInstr(IRInstr::Operation::mod, getExpression1()->getType(),
-                    {var, left, right});
-                return var;
-            }
-            break;
-      }
-  }
+string BinaryExpr::buildIR(CFG *cfg)
+{
+    string left = getExpression1()->buildIR(cfg);
+    string right = getExpression2()->buildIR(cfg);
+    switch (op)
+    {
+    case BinaryOp::ADD:
+    {
+        string var = cfg->create_new_tempvar(getExpression1()->getType());
+        cfg->current_bb->add_IRInstr(IRInstr::Operation::add, getExpression1()->getType(),
+                                     {var, left, right});
+        return var;
+    }
+    break;
+    case BinaryOp::SUB:
+    {
+        string var = cfg->create_new_tempvar(getExpression1()->getType());
+        cfg->current_bb->add_IRInstr(IRInstr::Operation::sub, getExpression1()->getType(),
+                                     {var, left, right});
+        return var;
+    }
+    break;
+    case BinaryOp::MULT:
+    {
+        string var = cfg->create_new_tempvar(getExpression1()->getType());
+        cfg->current_bb->add_IRInstr(IRInstr::Operation::mul, getExpression1()->getType(),
+                                     {var, left, right});
+        return var;
+    }
+    break;
+    case BinaryOp::DIV:
+    {
+        string var = cfg->create_new_tempvar(getExpression1()->getType());
+        cfg->current_bb->add_IRInstr(IRInstr::Operation::div, getExpression1()->getType(),
+                                     {var, left, right});
+        return var;
+    }
+    break;
+    case BinaryOp::MOD:
+    {
+        string var = cfg->create_new_tempvar(getExpression1()->getType());
+        cfg->current_bb->add_IRInstr(IRInstr::Operation::mod, getExpression1()->getType(),
+                                     {var, left, right});
+        return var;
+    }
+    break;
+    }
+}

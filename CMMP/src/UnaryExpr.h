@@ -14,7 +14,7 @@ public:
   virtual vector<FunctionCall *> findFunctionCalls(void);
   virtual vector<VariableCall *> findVarCalls(void);
 
-  virtual uint setTypeAuto(void);
+  virtual errorReturns setTypeAuto(void);
 
   virtual string buildIR(CFG *cfg);
 
