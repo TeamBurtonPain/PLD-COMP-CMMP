@@ -12,7 +12,8 @@ OBJ=$(SRC:%.cpp=%.o)
 
 SRCTEST=$(wildcard test/*.cpp)
 OBJTEST=$(filter-out main.o, $(OBJ)) $(SRCTEST:%.cpp=%.o)
-
+LIBTEST=$(LIB) "../build_google/libgtest.a" "../build_google/libgtest_main.a"
+FLAGSSTEST=$(FLAGS) -I"../build_google/include"
 
 all: $(OBJ)
 	$(CXX) -o $(BIN) $(FLAGS) $^ $(LIB)
@@ -20,7 +21,7 @@ all: $(OBJ)
 
 
 test: $(OBJTEST)
-	$(CXX) -o $(BINTEST) $(FLAGS) $^ $(LIB)
+	$(CXX) -o $(BINTEST) $(FLAGSTEST) $^ $(LIBTEST)
 
 
 .PHONY: clean softclean vclean grammar
@@ -41,7 +42,9 @@ softclean:
 vclean:
 	rm -f ./BuildCMMP.o
 	rm $(BIN)
-	
+
+cleantest:
+	rm -f ./test/*.o
 
 grammar:
 	./base_antlr/.antlr4.sh -visitor -listener -Dlanguage=Cpp base_antlr/cmmp.g4
