@@ -38,7 +38,8 @@
                 "${workspaceRoot}",
                 "${workspaceRoot}/CMMP",
                 "${workspaceRoot}/CMMP/src",
-                "${workspaceRoot}/CMMP/base_antlr"
+                "${workspaceRoot}/CMMP/base_antlr",
+                "${workspaceRoot}/build_google/include"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
@@ -57,7 +58,10 @@
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
-            }
+            },
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
         },
         {
             "name": "Win32",
