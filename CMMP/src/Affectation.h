@@ -12,7 +12,7 @@ public:
 
   virtual vector<VariableCall *> findVarCalls(void);
 
-	virtual uint setTypeAuto(void);
+	virtual errorReturns setTypeAuto(void);
 	
 protected:
   VariableCall *leftValue;

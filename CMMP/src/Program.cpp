@@ -118,23 +118,26 @@ vector<VariableDeclaration *> Program::findVarDeclarations(void)
     return list;
 }
 
-uint Program::setTypeAuto(void){
-    uint errors = 0;
-
+errorReturns Program::setTypeAuto(void)
+{
+    errorReturns errors;
+    errors.errors = 0;
+    errors.warnings = 0;
 
     for (auto var : variables)
     {
-        errors += var.second->setTypeAuto();
+
+        sumErrors(errors, var.second->setTypeAuto());
     }
 
     for (auto function : otherFunctions)
     {
-        errors += function.second->setTypeAuto();
+        sumErrors(errors, function.second->setTypeAuto());
     }
 
     if (mainFunction)
     {
-        errors += mainFunction->setTypeAuto();
+        sumErrors(errors, mainFunction->setTypeAuto());
     }
 
     return errors;

@@ -23,26 +23,32 @@ vector<VariableCall *> BinaryAffectation::findVarCalls(void)
     return v;
 }
 
-uint BinaryAffectation::setTypeAuto(void)
+errorReturns BinaryAffectation::setTypeAuto(void)
 {
-    uint errors = 0;
-    errors += expr2->setTypeAuto();
-    errors += (TypeUtil::t1Tot2(
-                  expr2->getType(),
-                  leftValue->getType()))
-                  ? 0
-                  : 1;
+    errorReturns errors;
+    errors.errors = 0;
+    errors.warnings = 0;
+
+    sumErrors(errors, expr2->setTypeAuto());
+
+    if (!(expr2->getType() == leftValue->getType()))
+        if (TypeUtil::t1Tot2(
+                expr2->getType(),
+                leftValue->getType()))
+            errors.warnings++;
+        else
+            errors.errors++;
+
     type = leftValue->getType();
 
-    if (errors)
-        cout << "Error Binary Affectation" << endl;
     return errors;
 }
 
 //TODO
-  string BinaryAffectation::buildIR(CFG *cfg){
+string BinaryAffectation::buildIR(CFG *cfg)
+{
     string right = getExpression()->buildIR(cfg);
     string left = leftValue->buildIR(cfg);
     cfg->current_bb->add_IRInstr(IRInstr::Operation::wmem, leftValue->getType(), {left, right});
     return right;
-  }
+}

@@ -1,15 +1,17 @@
 #include "utilCMMP.h"
 
-uint utilCMMP::linkFunctions(Program *p)
+errorReturns utilCMMP::linkFunctions(Program *p)
 {
-    uint errors = 0;
+    errorReturns errors;
+    errors.errors = 0;
+    errors.warnings = 0;
     cout << "Function Linking" << endl;
 
     //check presence of main func
     if (!p->getMainFunction())
     {
         cout << "No main Function found" << endl;
-        errors++;
+        errors.errors++;
     }
     cout << "    Function calls found:" << endl;
     //get every calls
@@ -34,7 +36,7 @@ uint utilCMMP::linkFunctions(Program *p)
             else
             {
                 cout << "invalid call to putchar has been found" << endl;
-                errors++;
+                errors.errors;
             }
         }
         //a call to getchar
@@ -48,7 +50,7 @@ uint utilCMMP::linkFunctions(Program *p)
             else
             {
                 cout << "invalid call to getchar has been found" << endl;
-                errors++;
+                errors.errors++;
             }
         }
         //a call to another function
@@ -69,22 +71,25 @@ uint utilCMMP::linkFunctions(Program *p)
                 else
                 {
                     cout << "No function found with the same number of arguments" << endl;
-                    errors++;
+                    errors.errors++;
                 }
             }
             else
             {
                 cout << "a call to a non-existent function has been found" << endl;
-                errors++;
+                errors.errors++;
             }
         }
     }
     return errors;
 }
 
-uint utilCMMP::linkVariables(Program *p, bool warnings)
+errorReturns utilCMMP::linkVariables(Program *p, bool warnings)
 {
-    uint errors = 0;
+    errorReturns errors;
+    errors.errors = 0;
+    errors.warnings = 0;
+
     cout << "Variables linking" << endl;
     cout << "    Variable calls found:" << endl;
     //get every calls
@@ -115,8 +120,10 @@ uint utilCMMP::linkVariables(Program *p, bool warnings)
                             it->second->setInit(true);
                         if (v->isRead())
                             it->second->setUsed(true);
-                        if (warnings && v->isRead() && !it->second->isInit())
+                        if (warnings && v->isRead() && !it->second->isInit()){
+                            errors.warnings++;
                             cout << "Warning : Read value before initialisation ! " << endl;
+                        }
                         else
                             cout << "Ok" << endl;
                         found = true;
@@ -124,6 +131,7 @@ uint utilCMMP::linkVariables(Program *p, bool warnings)
                     else
                     {
                         cout << " - called before local declaration - ";
+                        errors.errors++;
                     }
                 }
             }
@@ -132,16 +140,19 @@ uint utilCMMP::linkVariables(Program *p, bool warnings)
         if (!found)
         {
             cout << "No corresponding declaration found" << endl;
-            errors++;
+            errors.errors++;
         }
     }
 
     return errors;
 }
 
-uint utilCMMP::checkUnusedVar(Program *p)
+errorReturns utilCMMP::checkUnusedVar(Program *p)
 {
-    uint errors = 0;
+    errorReturns errors;
+    errors.errors = 0;
+    errors.warnings = 0;
+
     cout << "    Unused var check :" << endl;
 
     //get every calls
@@ -153,17 +164,17 @@ uint utilCMMP::checkUnusedVar(Program *p)
         {
             cout << "      Unused : " << v[i]->getName() << " at l"
                  << v[i]->getLine() << ", c" << v[i]->getColumn() << endl;
-            errors++;
+            errors.warnings;
         }
     }
-    if (!errors)
+    if (!errors.errors)
         cout << "      Ok" << endl;
 
     return errors;
 }
-uint utilCMMP::setTypesAuto(Program *p)
-{
-    uint errors = p->setTypeAuto();
+errorReturns utilCMMP::setTypesAuto(Program *p)
+{   
+    errorReturns errors = p->setTypeAuto();
     /*
     if(errors)
         cout<<"    Errors found during setting Types : "<<errors<<endl;

@@ -67,24 +67,26 @@ vector<VariableDeclaration *> Loop::findVarDeclarations(void)
     return list;
 }
 
-uint Loop::setTypeAuto(void)
+errorReturns Loop::setTypeAuto(void)
 {
-    uint errors = 0;
+    errorReturns errors;
+    errors.errors = 0;
+    errors.warnings = 0;
 
     if (finalTest)
     {
-        errors += finalTest->setTypeAuto();
+        sumErrors(errors, finalTest->setTypeAuto());
     }
     if (instruction)
     {
-        errors += instruction->setTypeAuto();
+        sumErrors(errors, instruction->setTypeAuto());
     }
 
     return errors;
 }
 
-
 //TODO
-  string Loop::buildIR(CFG *cfg){
-      return "";
-  }
+string Loop::buildIR(CFG *cfg)
+{
+    return "";
+}

@@ -102,27 +102,32 @@ vector<ReturnInstr *> Block::findReturns(void)
     return list;
 }
 
-uint Block::setTypeAuto(void)
+errorReturns Block::setTypeAuto(void)
 {
-    uint errors = 0;
+
+    errorReturns errors;
+    errors.errors = 0;
+    errors.warnings = 0;
 
     for (auto var : variables)
     {
-        errors += var.second->setTypeAuto();
+        sumErrors(errors, var.second->setTypeAuto());
     }
 
     for (deque<Instruction *>::iterator it = instructions.begin(); it != instructions.end(); ++it)
     {
-        errors += (*it)->setTypeAuto();
+        sumErrors(errors, (*it)->setTypeAuto());
     }
 
     return errors;
 }
 
-string Block::buildIR(CFG *cfg){
+string Block::buildIR(CFG *cfg)
+{
     string s;
-    for (auto i : instructions){
-        s+=(i->buildIR(cfg));
+    for (auto i : instructions)
+    {
+        s += (i->buildIR(cfg));
     }
     return s;
 }

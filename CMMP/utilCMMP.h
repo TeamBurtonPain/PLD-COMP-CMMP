@@ -12,22 +12,24 @@
 
 using namespace std;
 
+
+
 namespace utilCMMP
 {
     // fait le lien entre les appels de fonction et les déclarations. 
     // set le type des appels
     // renvoie le nomde d'erreurs recontrées
-    uint linkFunctions(Program *);
+    errorReturns linkFunctions(Program *);
     // fait le lien entre les appels de variables et les déclarations. 
     // set le type des appels
     // renvoie le nomde d'erreurs recontrées
-    uint linkVariables(Program *, bool warnings); // -a => warnings = true
+    errorReturns linkVariables(Program *, bool warnings); // -a => warnings = true
     // Vérifie que les variables déclarées sont utilisées (et pas que en tant que membreGauche) 
     // renvoie le nomde d'erreurs recontrées
-    uint checkUnusedVar(Program *);
+    errorReturns checkUnusedVar(Program *);
     // set le type de toutes les expressions dont les enfants ont des types connus
     // renvoie le nomde d'erreurs recontrées
-    uint setTypesAuto(Program *);
+    errorReturns setTypesAuto(Program *);
 
     class Indent 
     {

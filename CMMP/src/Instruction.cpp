@@ -26,7 +26,11 @@ vector<ReturnInstr *> Instruction::findReturns(void)
     vector<ReturnInstr *> i;
     return i;
 }
-uint Instruction::setTypeAuto(void)
+errorReturns Instruction::setTypeAuto(void)
 {
-    return 0;
+    errorReturns errors;
+    errors.errors = 0;
+    errors.warnings = 0;
+
+    return errors;
 }

@@ -101,26 +101,25 @@ vector<VariableDeclaration *> Condition::findVarDeclarations(void)
     return list;
 }
 
-uint Condition::setTypeAuto(void)
+errorReturns Condition::setTypeAuto(void)
 {
-    uint errors = 0;
+    errorReturns errors;
+    errors.errors = 0;
+    errors.warnings = 0;
 
-    {
-        errors += test->setTypeAuto();
-    }
+    sumErrors(errors, test->setTypeAuto());
+    sumErrors(errors, instruction->setTypeAuto());
 
-    {
-        errors += instruction->setTypeAuto();
-    }
     if (elseInstruction)
     {
-        errors += elseInstruction->setTypeAuto();
+        sumErrors(errors, elseInstruction->setTypeAuto());
     }
 
     return errors;
 }
 
 //TODO
-  string Condition::buildIR(CFG *cfg){
-      return "";
-  }
+string Condition::buildIR(CFG *cfg)
+{
+    return "";
+}

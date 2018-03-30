@@ -314,7 +314,7 @@ void CFG::add_bb(BasicBlock * bb){
 }
 
 string CFG::new_BB_name(){
-    if(current_bb == nullptr){
+    if(!current_bb){
         nextBBnumber = 0;
     }
     return "bb_"+ std::to_string(nextBBnumber++);

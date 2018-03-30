@@ -43,7 +43,7 @@ class Funct : public VarContainer, public Parent, public IRNode
 	virtual vector<VariableDeclaration *> findVarDeclarations(void);
 	virtual vector<ReturnInstr *> findReturns(void);
 
-	virtual uint setTypeAuto(void);
+	virtual errorReturns setTypeAuto(void);
 
 	virtual string buildIR(CFG *cfg);
 
