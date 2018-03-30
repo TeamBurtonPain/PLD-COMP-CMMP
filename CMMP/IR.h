@@ -69,6 +69,7 @@ class BasicBlock
 {
 public:
 	BasicBlock(CFG *cfg, string entry_label);
+	~BasicBlock(void);
 	void gen_asm(ostream &o); /**< x86 assembly code generation for this basic block (very simple) */
 
 	void add_IRInstr(IRInstr::Operation op, Type t, vector<string> params);
@@ -95,6 +96,7 @@ class CFG
 {
 public:
 	CFG(Funct *a);
+	~CFG(void);
 
 	Funct *ast; /**< The AST this CFG comes from */
 

@@ -180,6 +180,11 @@ BasicBlock::BasicBlock(CFG *cfg, string entry_label):cfg(cfg), label(entry_label
 
 }
 
+BasicBlock::~BasicBlock(void){
+    for(auto i : instrs)
+        delete(i); 
+}
+
 void BasicBlock::gen_asm(ostream & o){
     
     o << ".L" << label << ":" << endl; 
@@ -219,6 +224,13 @@ CFG::CFG(Funct *f) : ast(f), nextFreeSymbolIndex(-8), nextBBnumber(0)
         add_to_symbol_table(v->getName(), v->getType());
     }
     ast->buildIR(this);
+}
+CFG::~CFG(void)
+{
+    for(auto bb:bbs)
+    {
+        delete(bb);
+    }
 }
 
 void CFG::gen_asm(ostream &o)
