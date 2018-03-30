@@ -122,13 +122,9 @@ errorReturns Block::setTypeAuto(void)
     return errors;
 }
 
+//TODO variables locales au bloc
 string Block::buildIR(CFG *cfg)
-{/*
-    string s;
-    for (auto i : instructions)
-    {
-        s += (i->buildIR(cfg));
-    }*/
+{
     for (auto i : instructions)
     {
         i->buildIR(cfg);

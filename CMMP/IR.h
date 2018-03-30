@@ -22,6 +22,7 @@ class IRInstr
 
 public:
 	/** The instructions themselves -- feel free to subclass instead */
+	//TODO ajouter incr et decr ?
 	typedef enum {
 		ldconst,
 		add,

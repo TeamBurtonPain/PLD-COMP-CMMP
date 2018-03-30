@@ -28,6 +28,23 @@ errorReturns UnaryExpr::setTypeAuto(void)
 }
 
 //TODO
-  string UnaryExpr::buildIR(CFG *cfg){
-      return "";
-  }
+string UnaryExpr::buildIR(CFG *cfg)
+{
+    string left = getExpression()->buildIR(cfg);
+
+    string var = cfg->create_new_tempvar(getExpression()->getType());
+    IRInstr::Operation operatorIR;
+    switch (op)
+    {
+    case UnaryOp::NOT:
+        //TODO
+        //operatorIR = IRInstr::Operation::not;
+        break;
+    case UnaryOp::MINUS:
+        //TODO
+        //operatorIR = IRInstr::Operation::sub;
+        break;
+    }
+    cfg->current_bb->add_IRInstr(operatorIR, getExpression1()->getType(), {var, left, right});
+    return var;
+}
