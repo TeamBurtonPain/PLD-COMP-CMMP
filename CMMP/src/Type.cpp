@@ -58,6 +58,11 @@ Type TypeUtil::resultType(Type t1, Type t2)
 
 bool TypeUtil::t1Tot2(Type t1, Type t2)
 {
+    if (t1 == t2)
+    {
+        return true;
+    }
+       
     if (
         (t1 == Type::INT32 && t2 == Type::INT64) ||
         false || //replace those lines to allow other casts

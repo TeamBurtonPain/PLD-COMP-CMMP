@@ -138,7 +138,7 @@ errorReturns Funct::setTypeAuto(void)
             {
                 sumErrors(errors, (*it)->getExpression()->setTypeAuto());
 
-                if ((*it)->getExpression()->getType() == returnType)
+                if ((*it)->getExpression()->getType() != returnType)
                     if (TypeUtil::t1Tot2(
                             (*it)->getExpression()->getType(),
                             returnType))

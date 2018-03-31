@@ -5,7 +5,7 @@ def getFiles(dossier):
     filesFull = [dossier+"/"+i for i in files]
     return filesFull
 
-def genTest(filecmmp, stream):
+def genTestFront(filecmmp, stream):
 
     stream.write("\tTEST(testFront,"+filecmmp.upper().replace("/","").replace(".","")+"){\n\t\ttestFront::testReturnFront no_error;\n")
     stream.write("\t\tEXPECT_EQ(testFront::testFront(\""+filecmmp+"\"),no_error);\n")
@@ -18,5 +18,5 @@ if __name__ == "__main__":
     stream_cpp.write("//code généré par gen_test.py\n")
     stream_cpp.write("namespace{\n")
     for f in files:
-        genTest(f, stream_cpp)
+        genTestFront(f, stream_cpp)
     stream_cpp.write("}\n")
