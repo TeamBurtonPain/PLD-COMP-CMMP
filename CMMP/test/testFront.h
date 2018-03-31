@@ -14,21 +14,19 @@ namespace testFront{
     class testReturnFront{
         public:
 
-        testReturnFront(){
-            n_errors = 0;
-            n_error_linkFunctions = 0;
-            n_error_linkVariables = 0;
-            n_warning_checkUnused = 0;
-            n_error_type = 0;
-            n_warning_type = 0;
+        testReturnFront(){}
+
+        bool operator==(const testReturnFront & t)const{
+            return n_errors==t.n_errors && n_error_linkFunctions==t.n_error_linkFunctions && 
+                n_error_linkVariables==t.n_error_linkVariables && n_error_type==t.n_error_type &&
+                n_error_checkUnused == t.n_error_checkUnused;
         }
 
-        uint n_errors;
-        uint n_error_linkFunctions;
-        uint n_error_linkVariables;
-        uint n_warning_checkUnused;
-        uint n_error_type;
-        uint n_warning_type;
+        errorReturns n_errors;
+        errorReturns n_error_linkFunctions;
+        errorReturns n_error_linkVariables;
+        errorReturns n_error_checkUnused;
+        errorReturns n_error_type;
     };
 
     testReturnFront testFront(string filename);

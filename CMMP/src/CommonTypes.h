@@ -8,10 +8,15 @@ using namespace std;
 template <typename K, typename V>
 using hashmap = unordered_map<K, V>;
 
-struct errorReturns
+class errorReturns
 {
+    public:
+    errorReturns():errors(0), warnings(0){}
     uint errors;
     uint warnings;
+    bool operator==(const errorReturns & e)const{
+        return errors == e.errors && warnings == e.warnings;
+    }
 };
 void sumErrors(errorReturns &e, errorReturns e2);
 template <typename T>

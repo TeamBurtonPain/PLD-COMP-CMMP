@@ -26,6 +26,8 @@ template<class T>
 string Const<T>::buildIR(CFG* cfg)
 {
 	string var = cfg->create_new_tempvar(Type::UNKNOWN);
-	cfg->current_bb->add_IRInstr(IRInstr::Operation::ldconst, Type::UNKNOWN, {var, to_string(value)});
+	stringstream ss;
+	ss << value;
+	cfg->current_bb->add_IRInstr(IRInstr::Operation::ldconst, Type::UNKNOWN, {var, ss.str()});
 	return var;
 }

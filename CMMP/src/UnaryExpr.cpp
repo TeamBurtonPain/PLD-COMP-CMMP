@@ -45,6 +45,6 @@ string UnaryExpr::buildIR(CFG *cfg)
         //operatorIR = IRInstr::Operation::sub;
         break;
     }
-    cfg->current_bb->add_IRInstr(operatorIR, getExpression1()->getType(), {var, left, right});
+    cfg->current_bb->add_IRInstr(operatorIR, getExpression()->getType(), {var, left});
     return var;
 }
