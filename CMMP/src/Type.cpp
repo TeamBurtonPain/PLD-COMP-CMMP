@@ -51,6 +51,10 @@ Type TypeUtil::resultType(Type t1, Type t2)
     {
         return Type::INT64;
     }
+    else if((t1 == Type::INT32 && t2 == Type::CHAR) ||
+        (t1 == Type::CHAR && t2 == Type::INT32)){
+            return t1;
+        }
 
     cout << "Imcompa operation : " << TypeUtil::toString(t1) << " and " << TypeUtil::toString(t2) << endl;
     return Type::UNKNOWN;
@@ -65,7 +69,8 @@ bool TypeUtil::t1Tot2(Type t1, Type t2)
        
     if (
         (t1 == Type::INT32 && t2 == Type::INT64) ||
-        false || //replace those lines to allow other casts
+        (t1 == Type::INT32 && t2 == Type::CHAR) ||
+        (t1 == Type::CHAR && t2 == Type::INT32) ||//replace those lines to allow other casts
         false)
     {
         cout << "Warning : Cast " << TypeUtil::toString(t1) << " to " << TypeUtil::toString(t2) << endl;

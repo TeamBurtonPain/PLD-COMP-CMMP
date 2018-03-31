@@ -181,8 +181,10 @@ BasicBlock::BasicBlock(CFG *cfg, string entry_label):cfg(cfg), label(entry_label
 }
 
 BasicBlock::~BasicBlock(void){
+    
     for(auto i : instrs)
         delete(i); 
+        
 }
 
 void BasicBlock::gen_asm(ostream & o){
@@ -194,6 +196,7 @@ void BasicBlock::gen_asm(ostream & o){
 
     //TODO : jump to next block
     if(exit_true == nullptr && exit_false == nullptr){
+        //TODO jump to end
         return;
     }
     else if(exit_false == nullptr){
@@ -227,10 +230,12 @@ CFG::CFG(Funct *f) : ast(f), nextFreeSymbolIndex(-8), nextBBnumber(0)
 }
 CFG::~CFG(void)
 {
+    
     for(auto bb:bbs)
     {
         delete(bb);
     }
+    
 }
 
 void CFG::gen_asm(ostream &o)

@@ -15,7 +15,7 @@ using namespace antlr4;
 
 int main()
 {
-	string filename = "test/ValidPrograms/55_Return.c";
+	string filename = "test/5_3.c";
 	//string filename = "../Ex_Test_Backend/6-While.cmmp";
 	Program *p;
 
@@ -74,15 +74,18 @@ int main()
 	////////////////////////
 	// FIN DU FRONT
 	///////////////////////
+	if(errors.errors == 0){
+		CFG *cfg_main = new CFG(p->getMainFunction());
+		cout << p->getMainFunction()->getName() << endl;
+		//ofstream filestream(filename + ".s");
+		//cfg_main->gen_asm(filestream);
 
-	CFG cfg_main(p->getMainFunction());
-	ofstream filestream(filename + ".s");
-	cfg_main.gen_asm(filestream);
-
+		
+		//filestream.close();
+		delete (cfg_main);
+	}
 	cin.get();
-	filestream.close();
-	
 	delete (p);
-
+	
 	return 0;
 }
