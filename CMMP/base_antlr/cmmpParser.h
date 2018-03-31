@@ -378,13 +378,13 @@ public:
 
   class  InsReturnContext : public InstructionContext {
   public:
-	  InsReturnContext(InstructionContext *ctx);
+    InsReturnContext(InstructionContext *ctx);
 
-	  ExprContext *expr();
-	  virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-	  virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+    ExprContext *expr();
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
 
-	  virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
   InstructionContext* instruction();

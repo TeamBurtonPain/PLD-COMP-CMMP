@@ -103,7 +103,7 @@ opAffectation:
 	| '%='	#modaff
 	;
 
-Include: InvariantInclude Lib -> skip;
+Include: InvariantInclude WhiteSpace? Lib -> skip;
 
 InvariantInclude: '#include';
 
