@@ -12,9 +12,7 @@ template <>
 string Const<int64_t>::buildIR(CFG* cfg)
 {
 	string var = cfg->create_new_tempvar(Type::INT64);
-	stringstream ss;
-	ss << value;
-	cfg->current_bb->add_IRInstr(IRInstr::Operation::ldconst, Type::INT64, {var, ss.str()});
+	cfg->current_bb->add_IRInstr(IRInstr::Operation::ldconst, Type::INT64, {var, to_string(value)});
 	return var;
 }
 

@@ -20,7 +20,23 @@ void IRInstr::gen_asm(ostream &o)
     {
     case IRInstr::Operation::ldconst :
         {
-            int val = params[1][0];
+            long long val;
+            switch(t){
+                case Type::CHAR:{
+                    val = params[1][0];
+                    break;
+                }
+                case Type::INT32:
+                case Type::INT64:
+                {
+                    val = std::stoll(params[1]);
+                    break;
+                }
+                default:
+                {
+                    val = 42;
+                }
+            }
             o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "$" << val << 
                "," << utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(params[0]) << endl;
         }

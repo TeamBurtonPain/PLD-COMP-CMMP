@@ -12,7 +12,7 @@ main:
 	movq	$107,	-24(%rbp)
 	movq	-24(%rbp),	%rdi
 	call	putchar
-	movq	$10,	-32(%rbp)
+	movq	$48,	-32(%rbp)
 	movq	-32(%rbp),	%rdi
 	call	putchar
 	movq	$33,	-40(%rbp)
