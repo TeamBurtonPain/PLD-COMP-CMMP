@@ -164,6 +164,7 @@ string Funct::buildIR(CFG *cfg)
         return instructions->buildIR(cfg);
         */
         instructions->buildIR(cfg);
+        return "";
     }
     else
     {
