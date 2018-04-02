@@ -38,6 +38,19 @@ errorReturns utilCMMP::linkFunctions(Program *p)
                 cout << "invalid call to putchar has been found" << endl;
             }
         }
+        //putwchar for fun
+        else if (!f->getName().compare("putwchar"))
+        {
+            if (f->getArgs().size() == 1)
+            {
+                f->setType(Type::VOID);
+                cout << "call to putwchar has been found" << endl;
+            }
+            else
+            {
+                cout << "invalid call to putwchar has been found" << endl;
+            }
+        }
         //a call to getchar
         else if (!f->getName().compare("getchar"))
         {

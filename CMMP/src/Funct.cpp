@@ -163,10 +163,13 @@ errorReturns Funct::setTypeAuto(void)
 
 string Funct::buildIR(CFG *cfg)
 {
+    BasicBlock *bb = new BasicBlock(cfg, cfg->new_BB_name());
+    cfg->add_bb(bb);
+    for(VariableDeclaration *v : findVarDeclarations()){
+        v->buildIR(cfg);
+    }
     if (instructions != nullptr)
     {
-        BasicBlock *bb = new BasicBlock(cfg, cfg->new_BB_name());
-        cfg->add_bb(bb);
         /* Heu... là pareil la string sert à rien 
         return instructions->buildIR(cfg);
         */

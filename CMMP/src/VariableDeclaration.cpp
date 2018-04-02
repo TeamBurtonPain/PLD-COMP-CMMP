@@ -38,7 +38,12 @@ vector<VariableCall *> VariableDeclaration::findVarCalls(void)
     return v;
 }
 
-//TODO
-  string VariableDeclaration::buildIR(CFG *cfg __attribute__((unused))){
-      return "";
-  }
+string VariableDeclaration::buildIR(CFG *cfg)
+{
+    if(value != nullptr){
+        string var = value->buildIR(cfg);
+        cfg->current_bb->add_IRInstr(IRInstr::Operation::wmem, type, {name, var});
+        return name;//dunno if useful ?
+    }
+    return "";
+}

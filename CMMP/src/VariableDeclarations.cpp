@@ -25,3 +25,10 @@ vector<VariableCall *> VariableDeclarations::findVarCalls(void)
     vector<VariableCall *> v;
     return v;
 }
+
+string VariableDeclarations::buildIR(CFG *cfg){
+    for(VariableDeclaration *v : declarations){
+        v->buildIR(cfg);
+    }
+    return "";
+}
