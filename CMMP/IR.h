@@ -46,6 +46,8 @@ public:
 
 	/** Actual code generation */
 	void gen_asm(ostream &o); /**< x86 assembly code generation for this IR instruction */
+	Operation getOperation(){return op;}
+	vector<string> getParams(){return params;}
 
 private:
 	BasicBlock *bb; /**< The BB this instruction belongs to, which provides a pointer to the CFG this instruction belong to */

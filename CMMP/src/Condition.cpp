@@ -121,5 +121,28 @@ errorReturns Condition::setTypeAuto(void)
 //TODO
 string Condition::buildIR(CFG *cfg)
 {
+    string var_test = test->buildIR(cfg);
+
+
+    BasicBlock *if_true = new BasicBlock(cfg, cfg->new_BB_name());
+    BasicBlock *next = new BasicBlock(cfg, cfg->new_BB_name());
+
+    cfg->current_bb->exit_true = if_true;
+    cfg->current_bb->exit_false = next;
+    if_true->exit_true = next;
+    
+    cfg->add_bb(if_true);
+    instruction->buildIR(cfg);
+
+    //s'il existe une clause ELSE
+    if(elseInstruction != nullptr){
+        BasicBlock *if_false = new BasicBlock(cfg, cfg->new_BB_name());
+        cfg->current_bb->exit_false = if_false;
+        if_false->exit_true = next;
+        cfg->add_bb(if_false);
+        elseInstruction->buildIR(cfg);
+    }
+
+    cfg->add_bb(next);
     return "";
 }

@@ -88,12 +88,12 @@ string BinaryExpr::buildIR(CFG *cfg)
         operatorIR = IRInstr::Operation::cmp_le;
         break;
     case BinaryOp::SUP:
-        operatorIR = IRInstr::Operation::cmp_le;
+        operatorIR = IRInstr::Operation::cmp_lt;
         left = right;
         right = tmp;
         break;
     case BinaryOp::SUPEQ:
-        operatorIR = IRInstr::Operation::cmp_lt;
+        operatorIR = IRInstr::Operation::cmp_le;
         left = right;
         right = tmp;
         break;

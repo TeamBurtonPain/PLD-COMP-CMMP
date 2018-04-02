@@ -1,13 +1,11 @@
 #include<inttypes.h>
 #include<stdio.h>
 void main(void){
-    char a, b, c;
+    char a, c;
     a='9';
-    b=a + 1;
-    c=b+a+1;
-    putchar(a);
+
+    c=90 + (a>'8');
     putchar(c);
     putchar('\n');
-    putchar(b);
 
 }

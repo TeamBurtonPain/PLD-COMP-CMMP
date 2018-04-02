@@ -10,16 +10,20 @@ main:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	subq	$32, %rsp
-	movq	$1, -24(%rbp)
-	movq	$2, -16(%rbp)
-	movq	-24(%rbp), %rax
-	cmpq	-16(%rbp), %rax
-	setl	%al
-	movzbl	%al, %eax
-	movq	%rax, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movl	%eax, %edi
+	subq	$16, %rsp
+	movq	$1, -16(%rbp)
+	movq	$2, -8(%rbp)
+	movq	-16(%rbp), %rax
+	cmpq	-8(%rbp), %rax
+	jge	.L2
+	movl	$86, %edi
+	call	putchar
+	jmp	.L3
+.L2:
+	movl	$70, %edi
+	call	putchar
+.L3:
+	movl	$10, %edi
 	call	putchar
 	nop
 	leave

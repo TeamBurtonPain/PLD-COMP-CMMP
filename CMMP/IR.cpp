@@ -287,13 +287,31 @@ void BasicBlock::gen_asm(ostream & o){
         return;
     }
     else if(exit_false == nullptr){
-        // jump to exit_true
+        //TODO : revoir ça
+        
+        o << utilCMMP::Indent(1) << "jmp" << utilCMMP::Indent(1) << ".L" << 
+            exit_true->label << endl;
     }
     else{
-        /*  
-            if true  -> exit_true
-            if false -> exit_false
-        */
+        //we need to chose between the two
+        //we get the last result we computed, it is our value !
+        string last_res;
+        if(instrs.size() > 0){
+            IRInstr *i = instrs[instrs.size()-1];
+            if((i)->getOperation() == IRInstr::Operation::call){
+                last_res = ((i)->getParams())[1];
+            }
+            else{
+                last_res = ((i)->getParams())[0];
+            }
+        }
+        else{
+            last_res = "";
+        }
+        o << utilCMMP::Indent(1) << "cmpq" << utilCMMP::Indent(1) << "$0," <<
+            utilCMMP::Indent(1) << cfg->IR_reg_to_asm(last_res) << endl;
+        o << utilCMMP::Indent(1) << "jz" << utilCMMP::Indent(1) << ".L" << 
+            exit_false->label << endl;
     }
 
 }
