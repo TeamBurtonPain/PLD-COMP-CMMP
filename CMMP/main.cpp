@@ -16,7 +16,7 @@ using namespace antlr4;
 int main()
 {
 	
-	string filename = "test/5_6.c";
+	string filename = "test/5_7.c";
 	//string filename = "../Ex_Test_Backend/6-While.cmmp";
 	Program *p;
 

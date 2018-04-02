@@ -88,5 +88,22 @@ errorReturns Loop::setTypeAuto(void)
 //TODO
 string Loop::buildIR(CFG *cfg)
 {
+    BasicBlock *bb_test = new BasicBlock(cfg, cfg->new_BB_name());
+    BasicBlock *bb_loop = new BasicBlock(cfg, cfg->new_BB_name());
+    BasicBlock *bb_next = new BasicBlock(cfg, cfg->new_BB_name());
+    
+    cfg->current_bb->exit_true = bb_test;
+
+    bb_test->exit_false = bb_next;
+    bb_test->exit_true = bb_loop;
+    bb_loop->exit_true = bb_test;
+
+    cfg->add_bb(bb_test);
+    finalTest->buildIR(cfg);
+
+    cfg->add_bb(bb_loop);
+    instruction->buildIR(cfg);
+
+    cfg->add_bb(bb_next);
     return "";
 }
