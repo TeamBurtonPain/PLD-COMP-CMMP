@@ -55,6 +55,44 @@ string BinaryAffectation::buildIR(CFG *cfg)
 {
     string right = getExpression()->buildIR(cfg);
     string left = leftValue->buildIR(cfg);
-    cfg->current_bb->add_IRInstr(IRInstr::Operation::wmem, leftValue->getType(), {left, right});
-    return right;
+
+    if(op != OpBinaryAffectation::AFF){
+        
+        IRInstr::Operation ir_op;
+        switch(op){
+            case OpBinaryAffectation::ADDAFF:
+            {
+                ir_op = IRInstr::Operation::add;
+                break;
+            }
+            case OpBinaryAffectation::SUBAFF :
+            {
+                ir_op = IRInstr::Operation::sub;
+                break;
+            }
+            case OpBinaryAffectation::MULTAFF:
+            {
+                ir_op = IRInstr::Operation::mul;
+                break;
+            }
+            case OpBinaryAffectation::DIVAFF:
+            {
+                ir_op = IRInstr::Operation::div;
+                break;
+            }
+            case OpBinaryAffectation::MODAFF:
+            {
+                ir_op = IRInstr::Operation::mod;
+                break;
+            }
+        }
+        string var = cfg->create_new_tempvar(leftValue->getType());
+        cfg->current_bb->add_IRInstr(ir_op, leftValue->getType(), {var, left, right});
+        cfg->current_bb->add_IRInstr(IRInstr::Operation::wmem, leftValue->getType(), {left, var});
+
+    }
+    else{
+        cfg->current_bb->add_IRInstr(IRInstr::Operation::wmem, leftValue->getType(), {left, right});
+    }
+    return left;
 }
