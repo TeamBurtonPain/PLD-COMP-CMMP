@@ -178,12 +178,71 @@ void IRInstr::gen_asm(ostream &o)
         }
         break;
     case IRInstr::Operation::cmp_eq :
+    {
+            string res = params[0];
+            string left = params[1];
+            string right = params[2];
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(left) << "," << utilCMMP::Indent(1) << "%rax" << endl;
+            o << utilCMMP::Indent(1) << "cmpq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(right) << "," << utilCMMP::Indent(1) << "%rax" << endl;
+            o << utilCMMP::Indent(1) << "sete" << utilCMMP::Indent(1) << "%al" << endl;
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rax," << 
+                utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(res) << endl;
+        
+        }   
         break;
     case IRInstr::Operation::cmp_lt :
+        /* GCC : a < b
+        movq	-24(%rbp), %rax #a here at -24
+        cmpq	-16(%rbp), %rax #b here at -16
+        setl	%al
+        movzbl	%al, %eax
+        movq	%rax, -8(%rbp)
+        */
+        {
+            string res = params[0];
+            string left = params[1];
+            string right = params[2];
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(left) << "," << utilCMMP::Indent(1) << "%rax" << endl;
+            o << utilCMMP::Indent(1) << "cmpq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(right) << "," << utilCMMP::Indent(1) << "%rax" << endl;
+            o << utilCMMP::Indent(1) << "setl" << utilCMMP::Indent(1) << "%al" << endl;
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rax," << 
+                utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(res) << endl;
+        
+        }            
         break;
     case IRInstr::Operation::cmp_le :
+        {
+            string res = params[0];
+            string left = params[1];
+            string right = params[2];
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(left) << "," << utilCMMP::Indent(1) << "%rax" << endl;
+            o << utilCMMP::Indent(1) << "cmpq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(right) << "," << utilCMMP::Indent(1) << "%rax" << endl;
+            o << utilCMMP::Indent(1) << "setle" << utilCMMP::Indent(1) << "%al" << endl;
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rax," << 
+                utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(res) << endl;
+        
+        }   
         break;
-    
+    case IRInstr::Operation::no :
+        {
+            string res = params[0];
+            string arg = params[1];
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
+                "$1," << utilCMMP::Indent(1) << "%rax" << endl;
+        
+            o << utilCMMP::Indent(1) << "subq" << utilCMMP::Indent(1) << 
+                bb->cfg->IR_reg_to_asm(arg) << "," << utilCMMP::Indent(1) << "%rax" << endl;
+
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rax," <<
+                 utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(res) << endl;
+        }
+        break;
     case IRInstr::Operation::end :
         {
             o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rbp, %rsp" << endl;
@@ -289,7 +348,7 @@ string CFG::IR_reg_to_asm(string reg)
     }
     else
     {
-        return "$(unkown)"; //TODO : à voir ?
+        return reg; //TODO : à voir ?
     }
 }
 //TODO : récupérer les paramètres de la fonction ?

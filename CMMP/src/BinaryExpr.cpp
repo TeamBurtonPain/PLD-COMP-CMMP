@@ -63,6 +63,7 @@ string BinaryExpr::buildIR(CFG *cfg)
 
     string var = cfg->create_new_tempvar(getExpression1()->getType());
     IRInstr::Operation operatorIR;
+    string tmp = left;//just in case
     switch (op)
     {
     case BinaryOp::ADD:
@@ -80,7 +81,37 @@ string BinaryExpr::buildIR(CFG *cfg)
     case BinaryOp::MOD:
         operatorIR = IRInstr::Operation::mod;
         break;
+    case BinaryOp::INF:
+        operatorIR = IRInstr::Operation::cmp_lt;
+        break;
+    case BinaryOp::INFEQ:
+        operatorIR = IRInstr::Operation::cmp_le;
+        break;
+    case BinaryOp::SUP:
+        operatorIR = IRInstr::Operation::cmp_le;
+        left = right;
+        right = tmp;
+        break;
+    case BinaryOp::SUPEQ:
+        operatorIR = IRInstr::Operation::cmp_lt;
+        left = right;
+        right = tmp;
+        break;
+    case BinaryOp::EQ:
+        operatorIR = IRInstr::Operation::cmp_eq;    
+        break;
+    case BinaryOp::NEQ:
+        //c'est un EQ, mais on l'inverse ensuite
+        operatorIR = IRInstr::Operation::cmp_eq;
+        break;
     }
     cfg->current_bb->add_IRInstr(operatorIR, getExpression1()->getType(), {var, left, right});
+
+    // Si c'est un NEQ, on fait NO(EQ(left, right))
+    if(op == BinaryOp::NEQ){
+        string newvar = cfg->create_new_tempvar(getExpression1()->getType());
+        cfg->current_bb->add_IRInstr(IRInstr::Operation::no, getExpression1()->getType(), {newvar, var});
+        var = newvar;
+    }
     return var;
 }
