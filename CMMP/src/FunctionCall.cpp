@@ -61,10 +61,17 @@ errorReturns FunctionCall::setTypeAuto(void)
             Type t_expected = function->getVariablesInVector()[i]->getType();
 
             if (arguments[i]->getType() != t_expected)
+            {
                 if (TypeUtil::t1Tot2(arguments[i]->getType(), t_expected))
-                    errors.warnings++;
+                    {
+                        errors.warnings++;
+                    }
                 else
-                    errors.errors++;
+                    {
+                        errors.errors++;
+                    }
+            }
+               
         }
         else //if there is no function declaration, this might mean it's a putchar or getchar...
         {

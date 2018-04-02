@@ -35,7 +35,10 @@ public:
 		call,
 		cmp_eq,
 		cmp_lt,
-		cmp_le
+		cmp_le,
+		no,
+		neg,
+		end
 	} Operation;
 
 	/**  constructor */
@@ -69,7 +72,7 @@ private:
 class BasicBlock
 {
 public:
-	BasicBlock(CFG *cfg, string entry_label);
+	BasicBlock(CFG *const cfg, string entry_label);
 	~BasicBlock(void);
 	void gen_asm(ostream &o); /**< x86 assembly code generation for this basic block (very simple) */
 
@@ -78,8 +81,8 @@ public:
 	// No encapsulation whatsoever here. Feel free to do better.
 	BasicBlock *exit_true;		/**< pointer to the next basic block, true branch. If nullptr, return from procedure */
 	BasicBlock *exit_false;		/**< pointer to the next basic block, false branch. If null_ptr, the basic block ends with an unconditional jump */
-	string label;							/**< label of the BB, also will be the label in the generated code */
-	CFG *cfg;									/** < the CFG where this block belongs */
+	CFG *cfg;
+	string label;							/**< label of the BB, also will be the label in the generated code */									/** < the CFG where this block belongs */
 	vector<IRInstr *> instrs; /** < the instructions themselves. */
 protected:
 };
@@ -118,7 +121,7 @@ public:
 	// basic block management
 	string new_BB_name();
 	BasicBlock *current_bb = nullptr;
-
+	BasicBlock *last_bb = nullptr;
 protected:
 	hashmap<string, Type> SymbolType; /**< part of the symbol table  */
 	hashmap<string, int> SymbolIndex; /**< part of the symbol table  */

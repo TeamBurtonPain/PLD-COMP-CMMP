@@ -183,6 +183,14 @@ void IRInstr::gen_asm(ostream &o)
         break;
     case IRInstr::Operation::cmp_le :
         break;
+    
+    case IRInstr::Operation::end :
+        {
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rbp, %rsp" << endl;
+            o << utilCMMP::Indent(1) << "popq" << utilCMMP::Indent(1) << "%rbp" << endl;
+            o << utilCMMP::Indent(1) << "ret" << endl;
+            break;
+        }
     }
 }
 
@@ -209,10 +217,14 @@ void BasicBlock::gen_asm(ostream & o){
     for(auto i : instrs){
         i->gen_asm(o);
     }
-
+    if(label == cfg->last_bb->label){
+        return;
+    }
     //TODO : jump to next block
     if(exit_true == nullptr && exit_false == nullptr){
-        //TODO jump to end
+        //jumpt to last_bb
+        o << utilCMMP::Indent(1) << "jmp" << utilCMMP::Indent(1) << ".L" <<
+            cfg->last_bb->label << endl;
         return;
     }
     else if(exit_false == nullptr){
@@ -242,6 +254,8 @@ CFG::CFG(Funct *f) : ast(f), nextFreeSymbolIndex(-8), nextBBnumber(0)
     {
         add_to_symbol_table(v->getName(), v->getType());
     }
+    last_bb = new BasicBlock(this, "end"+ast->getName());
+    last_bb->add_IRInstr(IRInstr::Operation::end, Type::VOID, {""});
     ast->buildIR(this);
 }
 CFG::~CFG(void)
@@ -256,11 +270,13 @@ CFG::~CFG(void)
 
 void CFG::gen_asm(ostream &o)
 {
+    
     gen_asm_prologue(o);
     for(auto bb : bbs){
         bb->gen_asm(o);
     }
     gen_asm_epilogue(o);
+    last_bb->gen_asm(o);
 }
 
 string CFG::IR_reg_to_asm(string reg)
@@ -298,11 +314,14 @@ void CFG::gen_asm_prologue(ostream &o)
         o << utilCMMP::Indent(1) << "subq" << utilCMMP::Indent(1) << "$" << -nextFreeSymbolIndex << ", %rsp" << endl;
     }
 }
-void CFG::gen_asm_epilogue(ostream &o)
+void CFG::gen_asm_epilogue(ostream &o __attribute__((unused)))
 {
+    //Leave empty for the moment
+    /*
     o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rbp, %rsp" << endl;
     o << utilCMMP::Indent(1) << "popq" << utilCMMP::Indent(1) << "%rbp" << endl;
     o << utilCMMP::Indent(1) << "ret" << endl;
+    */
 }
 
 // symbol table methods

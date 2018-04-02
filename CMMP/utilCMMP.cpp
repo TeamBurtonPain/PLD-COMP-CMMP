@@ -36,7 +36,6 @@ errorReturns utilCMMP::linkFunctions(Program *p)
             else
             {
                 cout << "invalid call to putchar has been found" << endl;
-                errors.errors;
             }
         }
         //a call to getchar
@@ -164,7 +163,6 @@ errorReturns utilCMMP::checkUnusedVar(Program *p)
         {
             cout << "      Unused : " << v[i]->getName() << " at l"
                  << v[i]->getLine() << ", c" << v[i]->getColumn() << endl;
-            errors.warnings;
         }
     }
     if (!errors.errors)

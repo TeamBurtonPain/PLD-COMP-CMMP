@@ -39,6 +39,6 @@ vector<VariableCall *> VariableDeclaration::findVarCalls(void)
 }
 
 //TODO
-  string VariableDeclaration::buildIR(CFG *cfg){
+  string VariableDeclaration::buildIR(CFG *cfg __attribute__((unused))){
       return "";
   }

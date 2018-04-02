@@ -38,11 +38,11 @@ string UnaryExpr::buildIR(CFG *cfg)
     {
     case UnaryOp::NOT:
         //TODO
-        //operatorIR = IRInstr::Operation::not;
+        operatorIR = IRInstr::Operation::no;
         break;
     case UnaryOp::MINUS:
         //TODO
-        //operatorIR = IRInstr::Operation::sub;
+        operatorIR = IRInstr::Operation::neg;
         break;
     }
     cfg->current_bb->add_IRInstr(operatorIR, getExpression()->getType(), {var, left});

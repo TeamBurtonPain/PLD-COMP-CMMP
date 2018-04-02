@@ -68,7 +68,7 @@ class BuildCMMP : public cmmpBaseVisitor
 	}
 
 	//Arrive a la eof, il n'y a plus de contexte, on cree l'instance de Program
-	virtual antlrcpp::Any visitEof(cmmpParser::EofContext *ctx) override
+	virtual antlrcpp::Any visitEof(cmmpParser::EofContext *ctx __attribute__((unused))) override
 	{
 		return new Program();
 	}
@@ -584,72 +584,72 @@ class BuildCMMP : public cmmpBaseVisitor
 		return f;
 	}
 	
-	virtual antlrcpp::Any visitIncr(cmmpParser::IncrContext *ctx) override
+	virtual antlrcpp::Any visitIncr(cmmpParser::IncrContext *ctx __attribute__((unused))) override
 	{
 		return OpUnaryAffectation::INCR;
 	}
 
-	virtual antlrcpp::Any visitDecr(cmmpParser::DecrContext *ctx) override
+	virtual antlrcpp::Any visitDecr(cmmpParser::DecrContext *ctx __attribute__((unused))) override
 	{
 		return OpUnaryAffectation::DECR;
 	}
 
-	virtual antlrcpp::Any visitInf(cmmpParser::InfContext *ctx) override
+	virtual antlrcpp::Any visitInf(cmmpParser::InfContext *ctx __attribute__((unused))) override
 	{
 		return BinaryOp::INF;
 	}
 
-	virtual antlrcpp::Any visitSup(cmmpParser::SupContext *ctx) override
+	virtual antlrcpp::Any visitSup(cmmpParser::SupContext *ctx __attribute__((unused))) override
 	{
 		return BinaryOp::SUP;
 	}
 
-	virtual antlrcpp::Any visitInfeq(cmmpParser::InfeqContext *ctx) override
+	virtual antlrcpp::Any visitInfeq(cmmpParser::InfeqContext *ctx __attribute__((unused))) override
 	{
 		return BinaryOp::INFEQ;
 	}
 
-	virtual antlrcpp::Any visitSupeq(cmmpParser::SupeqContext *ctx) override
+	virtual antlrcpp::Any visitSupeq(cmmpParser::SupeqContext *ctx __attribute__((unused))) override
 	{
 		return BinaryOp::SUPEQ;
 	}
 
-	virtual antlrcpp::Any visitEq(cmmpParser::EqContext *ctx) override
+	virtual antlrcpp::Any visitEq(cmmpParser::EqContext *ctx __attribute__((unused))) override
 	{
 		return BinaryOp::EQ;
 	}
 
-	virtual antlrcpp::Any visitNeq(cmmpParser::NeqContext *ctx) override
+	virtual antlrcpp::Any visitNeq(cmmpParser::NeqContext *ctx __attribute__((unused))) override
 	{
 		return BinaryOp::NEQ;
 	}
 
-	virtual antlrcpp::Any visitAff(cmmpParser::AffContext *ctx) override
+	virtual antlrcpp::Any visitAff(cmmpParser::AffContext *ctx __attribute__((unused))) override
 	{
 		return OpBinaryAffectation::AFF;
 	}
 
-	virtual antlrcpp::Any visitAddaff(cmmpParser::AddaffContext *ctx) override
+	virtual antlrcpp::Any visitAddaff(cmmpParser::AddaffContext *ctx __attribute__((unused))) override
 	{
 		return OpBinaryAffectation::ADDAFF;
 	}
 
-	virtual antlrcpp::Any visitSubaff(cmmpParser::SubaffContext *ctx) override
+	virtual antlrcpp::Any visitSubaff(cmmpParser::SubaffContext *ctx __attribute__((unused))) override
 	{
 		return OpBinaryAffectation::SUBAFF;
 	}
 
-	virtual antlrcpp::Any visitMultaff(cmmpParser::MultaffContext *ctx) override
+	virtual antlrcpp::Any visitMultaff(cmmpParser::MultaffContext *ctx __attribute__((unused))) override
 	{
 		return OpBinaryAffectation::MULTAFF;
 	}
 
-	virtual antlrcpp::Any visitDivaff(cmmpParser::DivaffContext *ctx) override
+	virtual antlrcpp::Any visitDivaff(cmmpParser::DivaffContext *ctx __attribute__((unused))) override
 	{
 		return OpBinaryAffectation::DIVAFF;
 	}
 
-	virtual antlrcpp::Any visitModaff(cmmpParser::ModaffContext *ctx) override
+	virtual antlrcpp::Any visitModaff(cmmpParser::ModaffContext *ctx __attribute__((unused))) override
 	{
 		return OpBinaryAffectation::MODAFF;
 	}

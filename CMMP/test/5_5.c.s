@@ -33,6 +33,8 @@ main:
 	call	putchar
 	movq	-8(%rbp),	%rdi
 	call	putchar
+	jmp	.Lendmain
+.Lendmain:
 	movq	%rbp, %rsp
 	popq	%rbp
 	ret

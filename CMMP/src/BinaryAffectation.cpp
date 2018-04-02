@@ -32,12 +32,18 @@ errorReturns BinaryAffectation::setTypeAuto(void)
     sumErrors(errors, expr2->setTypeAuto());
 
     if (!(expr2->getType() == leftValue->getType()))
+    {
         if (TypeUtil::t1Tot2(
-                expr2->getType(),
-                leftValue->getType()))
+            expr2->getType(),
+            leftValue->getType()))
+        {
             errors.warnings++;
+        }
         else
+        {
             errors.errors++;
+        }
+    }
 
     type = leftValue->getType();
 
