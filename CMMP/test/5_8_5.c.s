@@ -4,13 +4,56 @@
 main:
 	pushq	%rbp
 	movq	%rsp, %rbp
-	subq	$16, %rsp
+	subq	$32, %rsp
 .Lmainbb_0:
-	movq	$32,	-8(%rbp)		#var_-8
+	call	getint
+	movq	%rax,	-16(%rbp)
+	movq	-16(%rbp),	%rax		#var_-16
+	movq	%rax,	-8(%rbp)		#a
+	movq	$32,	-24(%rbp)		#var_-24
+	movq	-24(%rbp),	%rdi
+	call	putint
 	movq	-8(%rbp),	%rdi
 	call	putint
 	jmp	.Lmainendmain
 .Lmainendmain:
+	movq	%rbp, %rsp
+	popq	%rbp
+	ret
+	.text
+	.globl	getint
+	.type	getint, @function
+getint:
+	pushq	%rbp
+	movq	%rsp, %rbp
+	subq	$88, %rsp
+.Lgetintbb_0:
+	movq	$1,	-48(%rbp)		#var_-48
+	movq	-48(%rbp),	%rax		#var_-48
+	movq	%rax,	-8(%rbp)		#c
+	movq	$0,	-56(%rbp)		#var_-56
+	movq	-56(%rbp),	%rax		#var_-56
+	movq	%rax,	-16(%rbp)		#res
+	movq	$10,	-64(%rbp)		#var_-64
+	movq	-64(%rbp),	%rax		#var_-64
+	movq	%rax,	-32(%rbp)		#base
+	jmp	.Lgetintbb_1
+.Lgetintbb_1:
+	movq	$1,	-72(%rbp)		#var_-72
+	movq	-8(%rbp),	%rax		#c
+	cmpq	-72(%rbp),	%rax		#var_-72
+	sete	%al
+	movzbq	%al,	%rax
+	movq	%rax,	-80(%rbp)
+	cmpq	$0,	-80(%rbp)
+	jz	.Lgetintbb_3
+.Lgetintbb_2:
+	jmp	.Lgetintbb_1
+.Lgetintbb_3:
+	movq	-16(%rbp),	%rax		#return
+	jmp	.Lgetintendgetint
+	jmp	.Lgetintendgetint
+.Lgetintendgetint:
 	movq	%rbp, %rsp
 	popq	%rbp
 	ret

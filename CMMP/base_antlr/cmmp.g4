@@ -86,12 +86,13 @@ opUnaryAffectation:
 	;
 
 opComparaison: 
-	'<' 	#inf
+	'==' 	#eq
+	| '!='	#neq
+	| '<' 	#inf
 	| '>' 	#sup
 	| '<=' 	#infeq
 	| '>=' 	#supeq
-	| '==' 	#eq
-	| '!='	#neq
+
 	;
 
 opAffectation: 
@@ -103,11 +104,7 @@ opAffectation:
 	| '%='	#modaff
 	;
 
-Include: InvariantInclude WhiteSpace? Lib -> skip;
 
-InvariantInclude: '#include';
-
-Lib: '"' .*? '"' | '<' .*? '>';
 
 Cst: PositiveInt | String | Char;
 
@@ -128,6 +125,12 @@ NewLine: ('\r' '\n'? | '\n')  -> skip;
 BlockComment: '/*' .*? '*/'   -> skip;
 
 LineComment: '//' .*? NewLine -> skip;
+
+Include: InvariantInclude .*? NewLine -> skip;
+
+InvariantInclude: '#include';
+
+
 
 EOFT: EOF;
 

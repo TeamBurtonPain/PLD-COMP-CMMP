@@ -145,6 +145,12 @@ public:
   virtual void enterDecr(cmmpParser::DecrContext * /*ctx*/) override { }
   virtual void exitDecr(cmmpParser::DecrContext * /*ctx*/) override { }
 
+  virtual void enterEq(cmmpParser::EqContext * /*ctx*/) override { }
+  virtual void exitEq(cmmpParser::EqContext * /*ctx*/) override { }
+
+  virtual void enterNeq(cmmpParser::NeqContext * /*ctx*/) override { }
+  virtual void exitNeq(cmmpParser::NeqContext * /*ctx*/) override { }
+
   virtual void enterInf(cmmpParser::InfContext * /*ctx*/) override { }
   virtual void exitInf(cmmpParser::InfContext * /*ctx*/) override { }
 
@@ -156,12 +162,6 @@ public:
 
   virtual void enterSupeq(cmmpParser::SupeqContext * /*ctx*/) override { }
   virtual void exitSupeq(cmmpParser::SupeqContext * /*ctx*/) override { }
-
-  virtual void enterEq(cmmpParser::EqContext * /*ctx*/) override { }
-  virtual void exitEq(cmmpParser::EqContext * /*ctx*/) override { }
-
-  virtual void enterNeq(cmmpParser::NeqContext * /*ctx*/) override { }
-  virtual void exitNeq(cmmpParser::NeqContext * /*ctx*/) override { }
 
   virtual void enterAff(cmmpParser::AffContext * /*ctx*/) override { }
   virtual void exitAff(cmmpParser::AffContext * /*ctx*/) override { }

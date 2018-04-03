@@ -105,6 +105,10 @@ public:
 
     virtual antlrcpp::Any visitDecr(cmmpParser::DecrContext *context) = 0;
 
+    virtual antlrcpp::Any visitEq(cmmpParser::EqContext *context) = 0;
+
+    virtual antlrcpp::Any visitNeq(cmmpParser::NeqContext *context) = 0;
+
     virtual antlrcpp::Any visitInf(cmmpParser::InfContext *context) = 0;
 
     virtual antlrcpp::Any visitSup(cmmpParser::SupContext *context) = 0;
@@ -112,10 +116,6 @@ public:
     virtual antlrcpp::Any visitInfeq(cmmpParser::InfeqContext *context) = 0;
 
     virtual antlrcpp::Any visitSupeq(cmmpParser::SupeqContext *context) = 0;
-
-    virtual antlrcpp::Any visitEq(cmmpParser::EqContext *context) = 0;
-
-    virtual antlrcpp::Any visitNeq(cmmpParser::NeqContext *context) = 0;
 
     virtual antlrcpp::Any visitAff(cmmpParser::AffContext *context) = 0;
 

@@ -143,6 +143,12 @@ public:
   virtual void enterDecr(cmmpParser::DecrContext *ctx) = 0;
   virtual void exitDecr(cmmpParser::DecrContext *ctx) = 0;
 
+  virtual void enterEq(cmmpParser::EqContext *ctx) = 0;
+  virtual void exitEq(cmmpParser::EqContext *ctx) = 0;
+
+  virtual void enterNeq(cmmpParser::NeqContext *ctx) = 0;
+  virtual void exitNeq(cmmpParser::NeqContext *ctx) = 0;
+
   virtual void enterInf(cmmpParser::InfContext *ctx) = 0;
   virtual void exitInf(cmmpParser::InfContext *ctx) = 0;
 
@@ -154,12 +160,6 @@ public:
 
   virtual void enterSupeq(cmmpParser::SupeqContext *ctx) = 0;
   virtual void exitSupeq(cmmpParser::SupeqContext *ctx) = 0;
-
-  virtual void enterEq(cmmpParser::EqContext *ctx) = 0;
-  virtual void exitEq(cmmpParser::EqContext *ctx) = 0;
-
-  virtual void enterNeq(cmmpParser::NeqContext *ctx) = 0;
-  virtual void exitNeq(cmmpParser::NeqContext *ctx) = 0;
 
   virtual void enterAff(cmmpParser::AffContext *ctx) = 0;
   virtual void exitAff(cmmpParser::AffContext *ctx) = 0;

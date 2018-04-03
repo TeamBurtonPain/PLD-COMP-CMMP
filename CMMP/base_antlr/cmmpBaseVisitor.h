@@ -187,6 +187,14 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitEq(cmmpParser::EqContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitNeq(cmmpParser::NeqContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitInf(cmmpParser::InfContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -200,14 +208,6 @@ public:
   }
 
   virtual antlrcpp::Any visitSupeq(cmmpParser::SupeqContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitEq(cmmpParser::EqContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitNeq(cmmpParser::NeqContext *ctx) override {
     return visitChildren(ctx);
   }
 
