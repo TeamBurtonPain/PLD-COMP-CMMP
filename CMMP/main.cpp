@@ -75,11 +75,12 @@ int main()
 	////////////////////////
 	// FIN DU FRONT
 	///////////////////////
+	
 	if(errors.errors == 0){
 		CFG *cfg_main = new CFG(p->getMainFunction());
-		ofstream filestream(filename + ".s");
-		cfg_main->gen_asm(filestream);
-		filestream.close();
+		//ofstream filestream(filename + ".s");
+		//cfg_main->gen_asm(filestream);
+		//filestream.close();
 		delete (cfg_main);
 	}
 	cin.get();

@@ -1,6 +1,8 @@
 #include "Block.h"
 
-Block::Block(void) {}
+Block::Block(void) : num(count++) {cout<<num<<endl;}
+
+uint Block::count = 0;
 
 Block::~Block(void)
 {
@@ -125,11 +127,10 @@ errorReturns Block::setTypeAuto(void)
 //TODO variables locales au bloc
 string Block::buildIR(CFG *cfg)
 {
-    
+
     for (auto i : instructions)
     {
         i->buildIR(cfg);
     }
     return "";
-    
 }

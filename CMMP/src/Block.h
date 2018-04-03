@@ -11,9 +11,11 @@ class VariableDeclaration;
 
 class Block : public Instruction, public VarContainer
 {
-public:
+  public:
 	Block(void);
 	virtual ~Block(void);
+
+	static uint count;
 
 	void addVariable(VariableDeclaration *);
 	void addInstruction(Instruction *);
@@ -27,10 +29,11 @@ public:
 	virtual vector<ReturnInstr *> findReturns(void);
 
 	virtual errorReturns setTypeAuto(void);
-	
+
 	virtual string buildIR(CFG *cfg);
 
-protected:
+  protected:
+	uint num;
 	hashmap<string, VariableDeclaration *> variables;
 	deque<Instruction *> instructions;
 };
