@@ -1,20 +1,4 @@
-	.text
-	.globl	main
-	.type	main, @function
-main:
-	pushq	%rbp
-	movq	%rsp, %rbp
-	subq	$16, %rsp
-.Lmainbb_0:
-	movq	$32,	-8(%rbp)		#var_-8
-	movq	-8(%rbp),	%rdi
-	call	putint
-	jmp	.Lmainendmain
-.Lmainendmain:
-	movq	%rbp, %rsp
-	popq	%rbp
-	ret
-	.text
+.text
 	.globl	putint
 	.type	putint, @function
 putint:

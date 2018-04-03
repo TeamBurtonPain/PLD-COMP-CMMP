@@ -30,8 +30,17 @@ class Program : public VarContainer, public Parent
 
 	virtual errorReturns setTypeAuto(void);
 
+	void addInclude(string s){
+		include_funct.insert(s);
+	}
+
+	set<string> getInclude(){
+		return include_funct;
+	}
+
   protected:
 	hashmap<string, VariableDeclaration *> variables;
 	Funct *mainFunction = NULL;
 	hashmap<string, Funct *> otherFunctions;
+	set<string> include_funct;
 };

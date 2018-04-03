@@ -14,7 +14,8 @@ main:
 	movq	%rbp, %rsp
 	popq	%rbp
 	ret
-	.text
+# Auto included function putint
+.text
 	.globl	putint
 	.type	putint, @function
 putint:
@@ -141,4 +142,5 @@ putint:
 .Lputintendputint:
 	movq	%rbp, %rsp
 	popq	%rbp
+	ret
 	ret

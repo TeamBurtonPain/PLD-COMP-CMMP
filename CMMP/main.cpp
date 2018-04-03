@@ -92,6 +92,19 @@ int main()
 				delete (cfg);
 			}
 		}
+
+		for(auto s : p->getInclude()){
+			ofstream filestream(filename + ".s", ios_base::app);
+			ifstream includestream(utilCMMP::include_path + s + ".s");
+			string line;
+			filestream << "# Auto included function "+s << endl;
+			while(includestream){
+				std::getline(includestream, line);
+				filestream << line << endl;;
+			}
+			filestream.close();
+			includestream.close();
+		}
 	}
 	cin.get();
 	delete (p);

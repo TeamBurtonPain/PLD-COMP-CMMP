@@ -2,6 +2,12 @@
 
 errorReturns utilCMMP::linkFunctions(Program *p)
 {
+    set<string> includes;
+    for(auto & f : directory_iterator(utilCMMP::include_path)){
+        string s = string(f.path());
+        includes.insert(s.substr(s.find("/")+1, s.find(".")-s.find("/")-1));
+    }
+
     errorReturns errors;
     errors.errors = 0;
     errors.warnings = 0;
@@ -65,33 +71,45 @@ errorReturns utilCMMP::linkFunctions(Program *p)
                 errors.errors++;
             }
         }
-        //a call to another function
-        else
+        else if(p->getFunctions().find(f->getName()) != p->getFunctions().end())
         {
 
             hashmap<string, Funct *>::const_iterator it = p->getFunctions().find(f->getName());
-
-            if (it != p->getFunctions().end())
+        
+            if (f->getArgs().size() == it->second->getVariables().size())
             {
-                if (f->getArgs().size() == it->second->getVariables().size())
-                {
 
-                    f->setType(it->second->getType());
-                    f->setReference(it->second);
-                    cout << "Ok" << endl;
-                }
-                else
-                {
-                    cout << "No function found with the same number of arguments" << endl;
-                    errors.errors++;
-                }
+                f->setType(it->second->getType());
+                f->setReference(it->second);
+                cout << "Ok" << endl;
             }
             else
+            {
+                cout <<"Call to " + it->first + " : no function found with the same number of arguments" << endl;
+                errors.errors++;
+            }
+            
+        }
+        else if(includes.find(f->getName()) != includes.end()){
+            //TODO : vérif du nb d'arguments à mettre dans le dossier include
+            InfoFunctionInclude info;
+            info.readFile(utilCMMP::include_path + f->getName() + ".info");
+            if(f->getArgs().size() == info.nb_arg){
+                f->setType(info.ret_type);
+                cout << "call to " + f->getName() + " has been found" << endl;
+                p->addInclude(f->getName());
+            }
+            else{
+                cout << "invalid call to " + f->getName() + " has been found" << endl;
+                errors.errors++;
+            }
+
+        }
+        else
             {
                 cout << "a call to a non-existent function has been found" << endl;
                 errors.errors++;
             }
-        }
     }
     return errors;
 }

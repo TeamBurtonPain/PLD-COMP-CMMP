@@ -1,6 +1,8 @@
 #pragma once
 
 #include <unordered_map>
+#include <set>
+#include <vector>
 #include <memory>
 #include <iostream>
 
