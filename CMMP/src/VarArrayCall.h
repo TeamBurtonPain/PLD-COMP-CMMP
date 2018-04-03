@@ -5,11 +5,11 @@
 class VarArrayCall : public VariableCall
 {
   public:
-    VarArrayCall(Type t, string n, uint l, uint c, uint index);
+    VarArrayCall(Type t, string n, uint l, uint c, Expression *index);
     virtual ~VarArrayCall(void);
 
-    uint getIndex(void){return index;}
+    Expression *getIndex(void){return index;}
 
   protected:
-    uint index;
+    Expression *index;
 };
