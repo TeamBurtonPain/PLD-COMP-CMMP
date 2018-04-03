@@ -15,7 +15,7 @@ class Instruction : public Parent, public IRNode
 public:
 	Instruction(void);
 	virtual ~Instruction(void);
-	void setParent(Parent *);
+	virtual void setParent(Parent *);
 	Parent *getParent(void);
 
 	virtual vector<FunctionCall *> findFunctionCalls(void) = 0;

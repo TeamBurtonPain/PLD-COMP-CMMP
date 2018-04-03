@@ -10,6 +10,7 @@ public:
   virtual ~VariableDeclaration(void);
 
   string getName(void) const { return name; }
+  string getCodeName(void) const { return code_name; }
   Type getType(void) { return type; }
   void setType(Type t) { type = t; }
   uint getLine(void) { return line; }
@@ -33,9 +34,12 @@ public:
   virtual string buildIR(CFG *cfg);
   virtual string buildIRParam(CFG *cfg, int i);
 
+  virtual void setParent(Parent *) override;
+
 protected:
   Type type;
   string name;
+  string code_name;
   uint line;
   uint column;
   Expression *value = NULL;

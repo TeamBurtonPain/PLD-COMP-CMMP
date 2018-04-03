@@ -1,6 +1,6 @@
 #include "Block.h"
 
-Block::Block(void) : num(count++) {cout<<num<<endl;}
+Block::Block(void) : num(count++) {}
 
 uint Block::count = 0;
 

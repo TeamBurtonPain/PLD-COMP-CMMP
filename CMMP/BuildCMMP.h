@@ -11,6 +11,8 @@
 #include "Program.h"
 #include "UnaryAffectation.h"
 #include "UnaryExpr.h"
+#include "VarArrayCall.h"
+#include "VarArrayDeclaration.h"
 #include "VariableCall.h"
 #include "VariableDeclarations.h"
 #include "Const.h"
@@ -136,11 +138,9 @@ class BuildCMMP : public cmmpBaseVisitor
 		return (VariableDeclaration *)visit(ctx->varSimple());
 	}
 
-	//TODO later
-	//TODO on a pas la structure de données pour les tableaux right now
 	virtual antlrcpp::Any visitTabVar(cmmpParser::TabVarContext *ctx) override
 	{
-		return visitChildren(ctx);
+		return (VariableDeclaration *)(VarArrayDeclaration *)visit(ctx->varTableau());
 	}
 
 	//crée la déclaration d'une variable non tableau
@@ -163,11 +163,18 @@ class BuildCMMP : public cmmpBaseVisitor
 		return v;
 	}
 
-	//TODO later
-	//on a pas la structure de données pour les tableaux right now
 	virtual antlrcpp::Any visitVarTableau(cmmpParser::VarTableauContext *ctx) override
 	{
-		return visitChildren(ctx);
+		VarArrayHeader *head = visit(ctx->varTab());
+		VarArrayDeclaration *array = new VarArrayDeclaration(
+			Type::UNKNOWN,
+			head->name,
+			ctx->start->getLine(),
+			ctx->start->getCharPositionInLine(),
+			head->offset);
+		delete(head);
+		//TODO l'initialisation :)
+		return array;
 	}
 
 	//instancie et complete la fonction
@@ -294,11 +301,27 @@ class BuildCMMP : public cmmpBaseVisitor
 		return ret;
 	}
 
-	//TODO later
-	//TODO la structure si c'est un tableau n'est pas encore prête...
 	virtual antlrcpp::Any visitMembreGauche(cmmpParser::MembreGaucheContext *ctx) override
 	{
-		VariableCall *v = new VariableCall(Type::UNKNOWN, ctx->Var()->getText(), ctx->start->getLine(), ctx->start->getCharPositionInLine());
+		VariableCall *v;
+
+		if (ctx->varTab())
+		{
+			VarArrayHeader * head = visit(ctx->varTab());
+			v = new VarArrayCall(Type::UNKNOWN,
+			head->name,
+			ctx->start->getLine(),
+			ctx->start->getCharPositionInLine(),
+			head->offset);
+			delete(head);
+		}
+		else
+		{
+			v = new VariableCall(Type::UNKNOWN,
+								 ctx->Var()->getText(),
+								 ctx->start->getLine(),
+								 ctx->start->getCharPositionInLine());
+		}
 		v->setRead(true);
 		return v;
 	}
@@ -391,7 +414,6 @@ class BuildCMMP : public cmmpBaseVisitor
 		return ret;
 	}
 
-	//TODO (pas prio) checker
 	virtual antlrcpp::Any visitConst(cmmpParser::ConstContext *ctx) override
 	{
 
@@ -416,9 +438,9 @@ class BuildCMMP : public cmmpBaseVisitor
 				else if (cst[2] >= '0' && cst[2] <= '9')
 				{
 					std::size_t idx = 0;
-					
+
 					string num_s = cst.substr(2, cst.size() - 1 - 2); // 1 pour le ' final et 2 pour les '\ initiaux
-					
+
 					int num = std::stoi(num_s, &idx, 8); //The fuck on lit de l'octal
 					val = char(num);
 				}
@@ -558,11 +580,11 @@ class BuildCMMP : public cmmpBaseVisitor
 		return (Expression *)(VariableCall *)visit(ctx->membreGauche());
 	}
 
-	//TODO later
-	//pas pret lel deso
 	virtual antlrcpp::Any visitVarTab(cmmpParser::VarTabContext *ctx) override
 	{
-		return visitChildren(ctx);
+		return (VarArrayHeader *)new VarArrayHeader(
+			ctx->Var()->getText(),
+			(Expression *)visit(ctx->expr()));
 	}
 	// Appel de fonction
 	virtual antlrcpp::Any visitFunctionCall(cmmpParser::FunctionCallContext *ctx) override
@@ -583,7 +605,7 @@ class BuildCMMP : public cmmpBaseVisitor
 		}
 		return f;
 	}
-	
+
 	virtual antlrcpp::Any visitIncr(cmmpParser::IncrContext *ctx __attribute__((unused))) override
 	{
 		return OpUnaryAffectation::INCR;

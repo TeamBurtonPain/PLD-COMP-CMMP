@@ -38,6 +38,21 @@ vector<VariableCall *> VariableDeclaration::findVarCalls(void)
     return v;
 }
 
+void VariableDeclaration::setParent(Parent *p)
+{
+    Instruction::setParent(p);
+
+    Block *b = dynamic_cast<Block *>(p);
+    if (b)
+    {
+        code_name = to_string(b->getNum()) + name;
+    }
+    else
+    {
+        code_name = name;
+    }
+}
+
 string VariableDeclaration::buildIR(CFG *cfg)
 {
     if(value != nullptr){

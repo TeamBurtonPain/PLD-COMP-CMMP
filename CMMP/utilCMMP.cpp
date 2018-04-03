@@ -128,6 +128,7 @@ errorReturns utilCMMP::linkVariables(Program *p, bool warnings)
                     {
                         v->setType(it->second->getType());
                         v->setReference(it->second);
+                        v->setCodeName(it->second->getCodeName());
                         if (v->isWrite())
                             it->second->setInit(true);
                         if (v->isRead())
