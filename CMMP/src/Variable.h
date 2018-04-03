@@ -10,7 +10,7 @@ class Variable : public Expression
 	virtual ~Variable(void) = 0;
 	string getName(void) const { return name; }
 	string getCodeName(void) const { return code_name; }
-	void setCodeName(string str) const { code_name = str; }
+	void setCodeName(string str) { code_name = str; }
 	uint getLine(void) { return line; }
 	uint getColumn(void) { return column; }
 

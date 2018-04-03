@@ -127,6 +127,9 @@ errorReturns Block::setTypeAuto(void)
 //TODO variables locales au bloc
 string Block::buildIR(CFG *cfg)
 {
+    for(VariableDeclaration *v : findVarDeclarations()){
+        v->buildIR(cfg);
+    }
 
     for (auto i : instructions)
     {

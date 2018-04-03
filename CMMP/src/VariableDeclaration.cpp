@@ -52,8 +52,13 @@ void VariableDeclaration::setParent(Parent *p)
         code_name = name;
     }
 }
-//TODO
-string VariableDeclaration::buildIR(CFG *cfg __attribute__((unused)))
+
+string VariableDeclaration::buildIR(CFG *cfg)
 {
+    if(value != nullptr){
+        string var = value->buildIR(cfg);
+        cfg->current_bb->add_IRInstr(IRInstr::Operation::wmem, type, {name, var});
+        return name;//dunno if useful ?
+    }
     return "";
 }
