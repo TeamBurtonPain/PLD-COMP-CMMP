@@ -1,27 +1,4 @@
-	.text
-	.globl	main
-	.type	main, @function
-main:
-	pushq	%rbp
-	movq	%rsp, %rbp
-	subq	$40, %rsp
-.Lmainbb_0:
-	call	getint
-	movq	%rax,	-16(%rbp)
-	movq	-16(%rbp),	%rax		#var_-16
-	movq	%rax,	-8(%rbp)		#a
-	movq	$1,	-24(%rbp)		#var_-24
-	movq	-8(%rbp),	%rax		#a
-	addq	-24(%rbp),	%rax		#var_-24
-	movq	%rax,	-32(%rbp)
-	movq	-32(%rbp),	%rdi
-	call	putint
-	jmp	.Lmainendmain
-.Lmainendmain:
-	movq	%rbp, %rsp
-	popq	%rbp
-	ret
-	.text
+.text
 	.globl	getint
 	.type	getint, @function
 getint:
