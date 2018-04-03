@@ -104,6 +104,8 @@ string Loop::buildIR(CFG *cfg)
     cfg->add_bb(bb_loop);
     instruction->buildIR(cfg);
 
+    cfg->current_bb->exit_true = bb_test;
+
     cfg->add_bb(bb_next);
     return "";
 }
