@@ -7,13 +7,13 @@ Funct::~Funct(void)
     for (vector<VariableDeclaration *>::iterator it = parameters.begin(); it != parameters.end(); ++it)
     {
         delete (*it);
-        it++;
     }
+    /*
     for (vector<ReturnInstr *>::iterator it = returnExpr.begin(); it != returnExpr.end(); ++it)
     {
         delete (*it);
         it++;
-    }
+    }*/
     parameters.clear();
 
     if (instructions)
@@ -165,9 +165,15 @@ string Funct::buildIR(CFG *cfg)
 {
     BasicBlock *bb = new BasicBlock(cfg, cfg->new_BB_name());
     cfg->add_bb(bb);
-    for(VariableDeclaration *v : findVarDeclarations()){
-        v->buildIR(cfg);
+    int i=0;
+    for(VariableDeclaration *v : parameters){
+        v->buildIRParam(cfg, i);
+        i++;
     }
+    if(returnType != Type::VOID && returnType != Type::UNKNOWN){
+        cfg->add_to_symbol_table("return", returnType);
+    }
+    
     if (instructions != nullptr)
     {
         /* Heu... là pareil la string sert à rien 

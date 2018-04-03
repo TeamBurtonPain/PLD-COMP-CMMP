@@ -39,7 +39,11 @@ vector<ReturnInstr *> ReturnInstr::findReturns(void)
 }
 
 
-//TODO
-  string ReturnInstr::buildIR(CFG *cfg){
-      return "";
-  }
+string ReturnInstr::buildIR(CFG *cfg)
+{
+    if(expr != nullptr){
+        string var = expr->buildIR(cfg);
+        cfg->current_bb->add_IRInstr(IRInstr::Operation::ret, cfg->ast->getType(), {var}) ;  
+    }
+    return "";
+}

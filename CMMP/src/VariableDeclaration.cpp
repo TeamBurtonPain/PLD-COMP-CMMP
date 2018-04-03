@@ -47,3 +47,12 @@ string VariableDeclaration::buildIR(CFG *cfg)
     }
     return "";
 }
+
+string VariableDeclaration::buildIRParam(CFG *cfg, int i)
+{
+    stringstream ss;
+    ss << i;
+    cfg->current_bb->add_IRInstr(IRInstr::Operation::wparam, type, {name, ss.str()});
+    return name;//dunno if useful ?
+
+}

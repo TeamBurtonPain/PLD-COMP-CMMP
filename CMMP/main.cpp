@@ -16,7 +16,7 @@ using namespace antlr4;
 int main()
 {
 	
-	string filename = "test/5_7.c";
+	string filename = "test/5_8_2.c";
 	//string filename = "../Ex_Test_Backend/6-While.cmmp";
 	Program *p;
 
@@ -78,10 +78,20 @@ int main()
 	
 	if(errors.errors == 0){
 		CFG *cfg_main = new CFG(p->getMainFunction());
-		//ofstream filestream(filename + ".s");
-		//cfg_main->gen_asm(filestream);
-		//filestream.close();
+		ofstream filestream(filename + ".s");
+		cfg_main->gen_asm(filestream);
+		filestream.close();
 		delete (cfg_main);
+
+		for(auto f : p->getFunctions()){
+			if(f.first != "main"){
+				CFG *cfg = new CFG(f.second);
+				ofstream filestream(filename + ".s", ios_base::app);
+				cfg->gen_asm(filestream);
+				filestream.close();
+				delete (cfg);
+			}
+		}
 	}
 	cin.get();
 	delete (p);

@@ -31,6 +31,7 @@ public:
   virtual vector<VariableCall *> findVarCalls(void);
 
   virtual string buildIR(CFG *cfg);
+  virtual string buildIRParam(CFG *cfg, int i);
 
 protected:
   Type type;

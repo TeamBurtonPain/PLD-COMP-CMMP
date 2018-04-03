@@ -9,9 +9,10 @@ FunctionCall::~FunctionCall(void)
         delete *it;
     }
     arguments.clear();
-
+    /*
     if (function)
         delete function;
+    */
 }
 
 void FunctionCall::addArg(Expression *argument)
