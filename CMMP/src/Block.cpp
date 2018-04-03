@@ -1,6 +1,8 @@
 #include "Block.h"
 
-Block::Block(void) {}
+Block::Block(void) : num(count++) {cout<<num<<endl;}
+
+uint Block::count = 0;
 
 Block::~Block(void)
 {
@@ -128,10 +130,10 @@ string Block::buildIR(CFG *cfg)
     for(VariableDeclaration *v : findVarDeclarations()){
         v->buildIR(cfg);
     }
+
     for (auto i : instructions)
     {
         i->buildIR(cfg);
     }
     return "";
-    
 }
