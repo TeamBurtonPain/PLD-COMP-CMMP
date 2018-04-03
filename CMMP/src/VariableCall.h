@@ -21,6 +21,7 @@ class VariableCall : public Variable
 	virtual string buildIR(CFG *cfg);
 
   protected:
+	string code_name;
 	VariableDeclaration *ref = NULL;
 	bool read = false;
 	bool write = false;

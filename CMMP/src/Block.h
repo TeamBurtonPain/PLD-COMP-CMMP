@@ -17,6 +17,8 @@ class Block : public Instruction, public VarContainer
 
 	static uint count;
 
+	uint getNum(void){return num;}
+
 	void addVariable(VariableDeclaration *);
 	void addInstruction(Instruction *);
 
