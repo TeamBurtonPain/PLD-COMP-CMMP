@@ -170,7 +170,12 @@ void IRInstr::gen_asm(ostream &o)
                 "#" << left << endl;
         }
         else{
-            //TODO trop de paramètres
+            int offset = 16 + (n-6)*8;
+            string pile_pos = to_string(offset)+"(%rbp)";
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << pile_pos + "," << 
+                utilCMMP::Indent(1) << "%rax" << endl;
+            o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << "%rax," << utilCMMP::Indent(1) <<
+                bb->cfg->IR_reg_to_asm(left) << utilCMMP::Indent(2) << "#" + left << endl;
         }
     }
     break;
@@ -199,10 +204,12 @@ void IRInstr::gen_asm(ostream &o)
         }
         if (num_param == 6 && nb_param > 6)
         { //rem : redondant mais sécurité
-            for (auto p = params.rend(); num_param < nb_param; ++num_param, ++p)
+            for (auto p = params.rbegin(); num_param < nb_param; ++num_param, ++p)
             {
-                //TODO : Plus de 6 params ? -> push dans l'ordre inverse + pop ensuite ??
-                ++num_param;
+                o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(*p) <<
+                    "," << utilCMMP::Indent(1) << "%rax" << utilCMMP::Indent(2) << "#" + *p << endl;
+                o << utilCMMP::Indent(1) << "pushq" << utilCMMP::Indent(1) << 
+                    "%rax" << utilCMMP::Indent(2) <<  endl;
             }
         }
         o << utilCMMP::Indent(1) << "call" << utilCMMP::Indent(1) << func_name << endl;
