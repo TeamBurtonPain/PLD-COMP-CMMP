@@ -33,6 +33,7 @@ public:
 		rmem,
 		wmem,
 		wparam,
+		mov,
 		call,
 		cmp_eq,
 		cmp_lt,

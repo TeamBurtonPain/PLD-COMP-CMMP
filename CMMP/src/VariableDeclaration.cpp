@@ -57,7 +57,12 @@ string VariableDeclaration::buildIR(CFG *cfg)
 {
     if(value != nullptr){
         string var = value->buildIR(cfg);
-        cfg->current_bb->add_IRInstr(IRInstr::Operation::wmem, type, {name, var});
+        //TODO ULTRA IMPORTANT
+        int offset = cfg->get_var_index(name);
+        string off = cfg->create_new_tempvar(Type::INT64);
+        cfg->current_bb->add_IRInstr(IRInstr::Operation::ldconst, Type::INT64, {off, to_string(offset)});
+        cfg->current_bb->add_IRInstr(IRInstr::Operation::add, Type::INT64, {off, "%rbp", off});
+        cfg->current_bb->add_IRInstr(IRInstr::Operation::wmem, type, {off, var});
         return name;//dunno if useful ?
     }
     return "";
