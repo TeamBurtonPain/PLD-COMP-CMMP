@@ -11,7 +11,7 @@ public:
   virtual ~VarArrayDeclaration(void);
 
   Expression *getSize(void) { return size; }
-
+  string buildIR(CFG *cfg) override;
 protected:
   Expression *size;
 };

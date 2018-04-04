@@ -4,6 +4,7 @@
 #include "Affectation.h"
 #include "Operators.h"
 #include "FunctionCall.h"
+#include "VarArrayCall.h"
 
 class VariableCall;
 

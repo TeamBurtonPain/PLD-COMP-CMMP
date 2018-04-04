@@ -90,19 +90,33 @@ string BinaryAffectation::buildIR(CFG *cfg)
         string var = cfg->create_new_tempvar(leftValue->getType());
         cfg->current_bb->add_IRInstr(ir_op, leftValue->getType(), {var, left, right});
         
-        int offset = cfg->get_var_index(leftValue->getName());//todo codename
-        string off = cfg->create_new_tempvar(Type::INT64);
-        cfg->current_bb->add_IRInstr(IRInstr::Operation::ldconst, Type::INT64, {off, to_string(offset)});
-        cfg->current_bb->add_IRInstr(IRInstr::Operation::add, Type::INT64, {off, "%rbp", off});
-        cfg->current_bb->add_IRInstr(IRInstr::Operation::wmem, type, {off, var});
+        if(dynamic_cast<VarArrayCall *>(leftValue) != nullptr){//ARRAY
+            cfg->current_bb->add_IRInstr(IRInstr::Operation::add, Type::INT64, {left, "%rbp", left});
+            cfg->current_bb->add_IRInstr(IRInstr::Operation::wmem, type, {left, var});
+        }
+        else{
+            int offset = cfg->get_var_index(leftValue->getName());//todo codename
+            string off = cfg->create_new_tempvar(Type::INT64);
+            cfg->current_bb->add_IRInstr(IRInstr::Operation::ldconst, Type::INT64, {off, to_string(offset)});
+            cfg->current_bb->add_IRInstr(IRInstr::Operation::add, Type::INT64, {off, "%rbp", off});
+            cfg->current_bb->add_IRInstr(IRInstr::Operation::wmem, type, {off, var});
+        }
 
     }
     else{
-        int offset = cfg->get_var_index(leftValue->getName());//todo codename
-        string off = cfg->create_new_tempvar(Type::INT64);
-        cfg->current_bb->add_IRInstr(IRInstr::Operation::ldconst, Type::INT64, {off, to_string(offset)});
-        cfg->current_bb->add_IRInstr(IRInstr::Operation::add, Type::INT64, {off, "%rbp", off});
-        cfg->current_bb->add_IRInstr(IRInstr::Operation::wmem, type, {off, right});
+
+        if(dynamic_cast<VarArrayCall *>(leftValue) != nullptr){//ARRAY
+            cfg->current_bb->add_IRInstr(IRInstr::Operation::add, Type::INT64, {left, "%rbp", left});
+            cfg->current_bb->add_IRInstr(IRInstr::Operation::wmem, type, {left, right});
+        }
+        else{
+            int offset = cfg->get_var_index(leftValue->getName());//todo codename
+            string off = cfg->create_new_tempvar(Type::INT64);
+            cfg->current_bb->add_IRInstr(IRInstr::Operation::ldconst, Type::INT64, {off, to_string(offset)});
+            cfg->current_bb->add_IRInstr(IRInstr::Operation::add, Type::INT64, {off, "%rbp", off});
+            cfg->current_bb->add_IRInstr(IRInstr::Operation::wmem, type, {off, right});
+        }
+        
 
     }
     return left;

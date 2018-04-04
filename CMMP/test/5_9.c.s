@@ -14,6 +14,8 @@ main:
 	movq	-24(%rbp),	%rax		#var_-24
 	movq	-16(%rbp),	%rbx		#var_-16
 	movq	%rbx,	(%rax)
+	movq	-8(%rbp),	%rdi
+	call	putint
 	movq	$1,	-32(%rbp)		#var_-32
 	movq	-8(%rbp),	%rax		#a
 	addq	-32(%rbp),	%rax		#var_-32
@@ -25,6 +27,8 @@ main:
 	movq	-48(%rbp),	%rax		#var_-48
 	movq	-40(%rbp),	%rbx		#var_-40
 	movq	%rbx,	(%rax)
+	movq	-8(%rbp),	%rdi
+	call	putint
 	movq	$1,	-56(%rbp)		#var_-56
 	movq	-8(%rbp),	%rax		#a
 	addq	-56(%rbp),	%rax		#var_-56
@@ -36,6 +40,8 @@ main:
 	movq	-72(%rbp),	%rax		#var_-72
 	movq	-64(%rbp),	%rbx		#var_-64
 	movq	%rbx,	(%rax)
+	movq	-8(%rbp),	%rdi
+	call	putint
 	movq	-8(%rbp),	%rax		#a
 	movq	%rax,	-88(%rbp)		#var_-88
 	movq	-8(%rbp),	%rax		#a

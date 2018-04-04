@@ -144,6 +144,20 @@ void IRInstr::gen_asm(ostream &o)
         }
         break;
     case IRInstr::Operation::rmem:
+    {
+        string left = params[0];
+        string right = params[1];
+        o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
+            bb->cfg->IR_reg_to_asm(left) << "," << utilCMMP::Indent(1) << 
+            "%rax" << utilCMMP::Indent(2) << "#" << left << endl;
+
+        o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
+            bb->cfg->IR_reg_to_asm(right) + "," << utilCMMP::Indent(1) << 
+            "%rbx" << utilCMMP::Indent(2) << "#" << right << endl;
+        
+        o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
+            "(%rbx)," << utilCMMP::Indent(1) << "%rax" << endl;
+    }
         break;
     case IRInstr::Operation::mov:
     {

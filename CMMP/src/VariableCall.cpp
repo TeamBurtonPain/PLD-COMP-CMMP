@@ -21,3 +21,6 @@ vector<VariableCall *> VariableCall::findVarCalls(void)
           return name;
       }
   }
+
+string VariableCall::buildIRRead(CFG *cfg){return name;}
+string VariableCall::buildIRWrite(CFG *cfg){return name;}

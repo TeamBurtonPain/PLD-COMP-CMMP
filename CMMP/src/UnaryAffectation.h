@@ -3,6 +3,7 @@
 #include "Affectation.h"
 #include "VariableCall.h"
 #include "Operators.h"
+#include "VarArrayCall.h"
 
 class UnaryAffectation : public Affectation
 {

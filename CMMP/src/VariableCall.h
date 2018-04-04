@@ -19,6 +19,8 @@ class VariableCall : public Variable
 	void setWrite(bool b) { write = b; }
 
 	virtual string buildIR(CFG *cfg);
+	virtual string buildIRRead(CFG *cfg);
+	virtual string buildIRWrite(CFG *cfg);
 
   protected:
 	string code_name;
