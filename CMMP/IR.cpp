@@ -282,6 +282,7 @@ void IRInstr::gen_asm(ostream &o)
             "%rax," << utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(res) << endl;
     }
     break;
+    /* Inutile en fait
     case IRInstr::Operation::no:
     {
         //à revoir
@@ -296,6 +297,7 @@ void IRInstr::gen_asm(ostream &o)
             "%rax," << utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(res) << endl;
     }
     break;
+    */
     case IRInstr::Operation::ret:
     {
         string ret = params[0];

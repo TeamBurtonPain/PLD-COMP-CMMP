@@ -37,7 +37,7 @@ public:
 		cmp_eq,
 		cmp_lt,
 		cmp_le,
-		no,
+		//no,
 		neg,
 		ret,
 		end
