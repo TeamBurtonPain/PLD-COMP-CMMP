@@ -127,11 +127,14 @@ string Condition::buildIR(CFG *cfg)
     BasicBlock *if_true = new BasicBlock(cfg, cfg->new_BB_name());
     BasicBlock *next = new BasicBlock(cfg, cfg->new_BB_name());
 
+    next->exit_false = cfg->current_bb->exit_false;
+    next->exit_true = cfg->current_bb->exit_true;
+
     cfg->current_bb->exit_true = if_true;
     cfg->current_bb->exit_false = next;
     if_true->exit_true = next;
     
-    
+
     
     BasicBlock *if_false;
     //s'il existe une clause ELSE

@@ -381,6 +381,7 @@ void BasicBlock::gen_asm(ostream &o)
         }
         o << utilCMMP::Indent(1) << "cmpq" << utilCMMP::Indent(1) << "$0," << utilCMMP::Indent(1) << cfg->IR_reg_to_asm(last_res) << endl;
         o << utilCMMP::Indent(1) << "jz" << utilCMMP::Indent(1) << ".L" << cfg->ast->getName() << exit_false->label << endl;
+        o << utilCMMP::Indent(1) << "jmp" << utilCMMP::Indent(1) << ".L" << cfg->ast->getName() << exit_true->label << endl;
     }
 }
 

@@ -85,6 +85,7 @@ string BinaryAffectation::buildIR(CFG *cfg)
                 ir_op = IRInstr::Operation::mod;
                 break;
             }
+            default:{}
         }
         string var = cfg->create_new_tempvar(leftValue->getType());
         cfg->current_bb->add_IRInstr(ir_op, leftValue->getType(), {var, left, right});

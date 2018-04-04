@@ -6,7 +6,7 @@ main:
 	movq	%rsp, %rbp
 	subq	$16, %rsp
 .Lmainbb_0:
-	movq	$32,	-8(%rbp)		#var_-8
+	movq	$0x325634,	-8(%rbp)		#var_-8
 	movq	-8(%rbp),	%rdi
 	call	putint
 	jmp	.Lmainendmain
@@ -77,8 +77,10 @@ putint:
 	sete	%al
 	movzbq	%al,	%rax
 	movq	%rax,	-120(%rbp)
-	movq	$1,	%rax
-	subq	-120(%rbp),	%rax		#var_-120
+	movq	$0,	%rax		#$0
+	cmpq	-120(%rbp),	%rax		#var_-120
+	sete	%al
+	movzbq	%al,	%rax
 	movq	%rax,	-128(%rbp)
 	cmpq	$0,	-128(%rbp)
 	jz	.Lputintbb_8
