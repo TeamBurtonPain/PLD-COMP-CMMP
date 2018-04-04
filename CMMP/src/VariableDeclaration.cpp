@@ -55,6 +55,7 @@ void VariableDeclaration::setParent(Parent *p)
 
 string VariableDeclaration::buildIR(CFG *cfg)
 {
+    cfg->add_to_symbol_table(name, type);
     if(value != nullptr){
         string var = value->buildIR(cfg);
         //TODO ULTRA IMPORTANT
@@ -70,6 +71,7 @@ string VariableDeclaration::buildIR(CFG *cfg)
 
 string VariableDeclaration::buildIRParam(CFG *cfg, int i)
 {
+    cfg->add_to_symbol_table(name, type);
     stringstream ss;
     ss << i;
     cfg->current_bb->add_IRInstr(IRInstr::Operation::wparam, type, {name, ss.str()});

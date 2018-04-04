@@ -433,7 +433,7 @@ CFG::CFG(Funct *f) : ast(f), nextFreeSymbolIndex(-8), nextBBnumber(0)
 {
     for (auto v : f->findVarDeclarations())
     {
-        add_to_symbol_table(v->getName(), v->getType());
+        //add_to_symbol_table(v->getName(), v->getType());
     }
     last_bb = new BasicBlock(this, "end" + ast->getName());
     last_bb->add_IRInstr(IRInstr::Operation::end, Type::VOID, {""});
