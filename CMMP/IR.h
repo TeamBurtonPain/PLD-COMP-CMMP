@@ -38,7 +38,7 @@ public:
 		cmp_lt,
 		cmp_le,
 		//no,
-		neg,
+		//neg,
 		ret,
 		end
 	} Operation;

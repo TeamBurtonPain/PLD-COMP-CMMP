@@ -110,7 +110,7 @@ string BinaryExpr::buildIR(CFG *cfg)
     // Si c'est un NEQ, on fait NO(EQ(left, right))
     if(op == BinaryOp::NEQ){
         string newvar = cfg->create_new_tempvar(getExpression1()->getType());
-        cfg->current_bb->add_IRInstr(IRInstr::Operation::no, getExpression1()->getType(), {newvar, var});
+        cfg->current_bb->add_IRInstr(IRInstr::Operation::cmp_eq, getExpression1()->getType(), {newvar, "$0", var});
         var = newvar;
     }
     return var;
