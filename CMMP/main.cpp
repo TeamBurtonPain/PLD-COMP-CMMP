@@ -13,10 +13,13 @@ using namespace antlr4;
 
 //TODO implentation des []
 
-int main()
+int main(int argc, char ** argv)
 {
-	
 	string filename = "test/5_10.c";
+	if(argc == 2){
+		filename = string(argv[1]);
+	}
+	
 	//string filename = "../Ex_Test_Backend/6-While.cmmp";
 	Program *p;
 

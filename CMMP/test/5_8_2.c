@@ -14,6 +14,6 @@ void main(void){
     int64_t a;
     int64_t n = 11;
     a = fib(n);
-    putchar(a);
+    putint(a);
     putchar('\n');
 }
