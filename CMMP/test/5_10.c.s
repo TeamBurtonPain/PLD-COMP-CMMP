@@ -4,38 +4,137 @@
 main:
 	pushq	%rbp
 	movq	%rsp, %rbp
-	subq	$72, %rsp
+	subq	$296, %rsp
 .Lmainbb_0:
-	movq	$1,	-16(%rbp)		#var_-16
-	movq	$0,	-24(%rbp)		#var_-24
-	movq	8,	%rax		#8
-	imulq	-24(%rbp),	%rax		#var_-24
-	movq	%rax,	-24(%rbp)
-	movq	-8,	%rax		#-8
-	addq	-24(%rbp),	%rax		#var_-24
-	movq	%rax,	-24(%rbp)
-	movq	%rbp,	%rax		#%rbp
-	addq	-24(%rbp),	%rax		#var_-24
-	movq	%rax,	-24(%rbp)
-	movq	-24(%rbp),	%rax		#var_-24
-	movq	-16(%rbp),	%rbx		#var_-16
-	movq	%rbx,	(%rax)
-	movq	$0,	-48(%rbp)		#var_-48
-	movq	8,	%rax		#8
+	movq	$1,	-40(%rbp)		#var_-40
+	movq	$1,	-48(%rbp)		#var_-48
+	movq	$8,	%rax		#$8
 	imulq	-48(%rbp),	%rax		#var_-48
 	movq	%rax,	-48(%rbp)
-	movq	-8,	%rax		#-8
-	addq	-48(%rbp),	%rax		#var_-48
+	movq	$-16,	%rax		#$-16
+	subq	-48(%rbp),	%rax		#var_-48
 	movq	%rax,	-48(%rbp)
 	movq	-48(%rbp),	%rax		#var_-48
 	movq	%rax,	-56(%rbp)		#var_-56
 	movq	%rbp,	%rax		#%rbp
 	addq	-56(%rbp),	%rax		#var_-56
 	movq	%rax,	-56(%rbp)
-	movq	-64(%rbp),	%rax		#var_-64
 	movq	-56(%rbp),	%rbx		#var_-56
 	movq	(%rbx),	%rax
+	movq	%rax,	-64(%rbp)		#var_-64
 	movq	-64(%rbp),	%rdi
+	call	putint
+	movq	$8,	-72(%rbp)		#var_-72
+	movq	$-8,	-80(%rbp)		#var_-80
+	movq	%rbp,	%rax		#%rbp
+	addq	-80(%rbp),	%rax		#var_-80
+	movq	%rax,	-80(%rbp)
+	movq	-80(%rbp),	%rax		#var_-80
+	movq	-72(%rbp),	%rbx		#var_-72
+	movq	%rbx,	(%rax)
+	movq	-8(%rbp),	%rdi
+	call	putint
+	movq	$1,	-88(%rbp)		#var_-88
+	movq	$1,	-96(%rbp)		#var_-96
+	movq	$8,	%rax		#$8
+	imulq	-96(%rbp),	%rax		#var_-96
+	movq	%rax,	-96(%rbp)
+	movq	$-16,	%rax		#$-16
+	subq	-96(%rbp),	%rax		#var_-96
+	movq	%rax,	-96(%rbp)
+	movq	-96(%rbp),	%rax		#var_-96
+	movq	%rax,	-104(%rbp)		#var_-104
+	movq	%rbp,	%rax		#%rbp
+	addq	-104(%rbp),	%rax		#var_-104
+	movq	%rax,	-104(%rbp)
+	movq	-104(%rbp),	%rbx		#var_-104
+	movq	(%rbx),	%rax
+	movq	%rax,	-112(%rbp)		#var_-112
+	movq	-112(%rbp),	%rdi
+	call	putint
+	movq	$1,	-120(%rbp)		#var_-120
+	movq	$2,	-128(%rbp)		#var_-128
+	movq	$2,	-136(%rbp)		#var_-136
+	movq	$8,	%rax		#$8
+	imulq	-136(%rbp),	%rax		#var_-136
+	movq	%rax,	-136(%rbp)
+	movq	$-16,	%rax		#$-16
+	subq	-136(%rbp),	%rax		#var_-136
+	movq	%rax,	-136(%rbp)
+	movq	%rbp,	%rax		#%rbp
+	addq	-136(%rbp),	%rax		#var_-136
+	movq	%rax,	-136(%rbp)
+	movq	-136(%rbp),	%rax		#var_-136
+	movq	-120(%rbp),	%rbx		#var_-120
+	movq	%rbx,	(%rax)
+	movq	$3,	-160(%rbp)		#var_-160
+	movq	$0,	-168(%rbp)		#var_-168
+	movq	$0,	-176(%rbp)		#var_-176
+	movq	$8,	%rax		#$8
+	imulq	-176(%rbp),	%rax		#var_-176
+	movq	%rax,	-176(%rbp)
+	movq	$-16,	%rax		#$-16
+	subq	-176(%rbp),	%rax		#var_-176
+	movq	%rax,	-176(%rbp)
+	movq	%rbp,	%rax		#%rbp
+	addq	-176(%rbp),	%rax		#var_-176
+	movq	%rax,	-176(%rbp)
+	movq	-176(%rbp),	%rax		#var_-176
+	movq	-160(%rbp),	%rbx		#var_-160
+	movq	%rbx,	(%rax)
+	movq	$0,	-200(%rbp)		#var_-200
+	movq	$0,	-208(%rbp)		#var_-208
+	movq	$8,	%rax		#$8
+	imulq	-208(%rbp),	%rax		#var_-208
+	movq	%rax,	-208(%rbp)
+	movq	$-16,	%rax		#$-16
+	subq	-208(%rbp),	%rax		#var_-208
+	movq	%rax,	-208(%rbp)
+	movq	-208(%rbp),	%rax		#var_-208
+	movq	%rax,	-216(%rbp)		#var_-216
+	movq	%rbp,	%rax		#%rbp
+	addq	-216(%rbp),	%rax		#var_-216
+	movq	%rax,	-216(%rbp)
+	movq	-216(%rbp),	%rbx		#var_-216
+	movq	(%rbx),	%rax
+	movq	%rax,	-224(%rbp)		#var_-224
+	movq	-224(%rbp),	%rdi
+	call	putint
+	movq	$2,	-232(%rbp)		#var_-232
+	movq	$2,	-240(%rbp)		#var_-240
+	movq	$8,	%rax		#$8
+	imulq	-240(%rbp),	%rax		#var_-240
+	movq	%rax,	-240(%rbp)
+	movq	$-16,	%rax		#$-16
+	subq	-240(%rbp),	%rax		#var_-240
+	movq	%rax,	-240(%rbp)
+	movq	-240(%rbp),	%rax		#var_-240
+	movq	%rax,	-248(%rbp)		#var_-248
+	movq	%rbp,	%rax		#%rbp
+	addq	-248(%rbp),	%rax		#var_-248
+	movq	%rax,	-248(%rbp)
+	movq	-248(%rbp),	%rbx		#var_-248
+	movq	(%rbx),	%rax
+	movq	%rax,	-256(%rbp)		#var_-256
+	movq	-256(%rbp),	%rdi
+	call	putint
+	movq	$1,	-264(%rbp)		#var_-264
+	movq	$1,	-272(%rbp)		#var_-272
+	movq	$8,	%rax		#$8
+	imulq	-272(%rbp),	%rax		#var_-272
+	movq	%rax,	-272(%rbp)
+	movq	$-16,	%rax		#$-16
+	subq	-272(%rbp),	%rax		#var_-272
+	movq	%rax,	-272(%rbp)
+	movq	-272(%rbp),	%rax		#var_-272
+	movq	%rax,	-280(%rbp)		#var_-280
+	movq	%rbp,	%rax		#%rbp
+	addq	-280(%rbp),	%rax		#var_-280
+	movq	%rax,	-280(%rbp)
+	movq	-280(%rbp),	%rbx		#var_-280
+	movq	(%rbx),	%rax
+	movq	%rax,	-288(%rbp)		#var_-288
+	movq	-288(%rbp),	%rdi
 	call	putint
 	jmp	.Lmainendmain
 .Lmainendmain:

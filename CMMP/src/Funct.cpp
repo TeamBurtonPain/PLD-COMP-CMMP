@@ -171,7 +171,7 @@ string Funct::buildIR(CFG *cfg)
         i++;
     }
     if(returnType != Type::VOID && returnType != Type::UNKNOWN){
-        cfg->add_to_symbol_table("return", returnType);
+        cfg->add_to_symbol_table("return", returnType, 1);//TODO return tab ?
     }
     
     if (instructions != nullptr)

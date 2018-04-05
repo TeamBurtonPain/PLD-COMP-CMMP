@@ -11,6 +11,7 @@ public:
 	Const(const Type t, const T &v);
 	virtual ~Const(void);
 	virtual string buildIR(CFG* cfg);
+	T getValue(){return value;}
 
 protected:
 	T value;

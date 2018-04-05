@@ -10,8 +10,8 @@ public:
 
   Expression *getIndex(void) { return index; }
   virtual string buildIR(CFG *cfg) override;
-  virtual string buildIRRead(CFG *cfg) override;
-  virtual string buildIRWrite(CFG *cfg) override;
+  virtual string buildIRRead(CFG *cfg);
+  virtual string buildIRWrite(CFG *cfg);
 
 protected:
   Expression *index;

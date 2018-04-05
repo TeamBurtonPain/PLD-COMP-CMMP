@@ -118,7 +118,7 @@ public:
 	void gen_asm_epilogue(ostream &o);
 
 	// symbol table methods
-	void add_to_symbol_table(string name, Type t);
+	void add_to_symbol_table(string name, Type t, uint size);
 	string create_new_tempvar(Type t);
 	int get_var_index(string name);
 	Type get_var_type(string name);

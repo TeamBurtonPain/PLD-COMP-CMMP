@@ -147,9 +147,6 @@ void IRInstr::gen_asm(ostream &o)
     {
         string left = params[0];
         string right = params[1];
-        o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
-            bb->cfg->IR_reg_to_asm(left) << "," << utilCMMP::Indent(1) << 
-            "%rax" << utilCMMP::Indent(2) << "#" << left << endl;
 
         o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
             bb->cfg->IR_reg_to_asm(right) + "," << utilCMMP::Indent(1) << 
@@ -157,6 +154,11 @@ void IRInstr::gen_asm(ostream &o)
         
         o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
             "(%rbx)," << utilCMMP::Indent(1) << "%rax" << endl;
+
+        o << utilCMMP::Indent(1) << "movq" << utilCMMP::Indent(1) << 
+            "%rax," << utilCMMP::Indent(1) << bb->cfg->IR_reg_to_asm(left) << 
+            utilCMMP::Indent(2) << "#" << left << endl;
+
     }
         break;
     case IRInstr::Operation::mov:
@@ -508,16 +510,16 @@ void CFG::gen_asm_epilogue(ostream &o __attribute__((unused)))
 }
 
 // symbol table methods
-void CFG::add_to_symbol_table(string name, Type t)
+void CFG::add_to_symbol_table(string name, Type t, uint size)
 { //TODO : des vérifs à faire ?
     SymbolType[name] = t;
     SymbolIndex[name] = nextFreeSymbolIndex;
-    nextFreeSymbolIndex -= 8; //TODO : meileure gestion mémoire ?
+    nextFreeSymbolIndex -= 8*size; //TODO : meileure gestion mémoire ?
 }
 string CFG::create_new_tempvar(Type t)
 {
     string name = "var_" + std::to_string(nextFreeSymbolIndex);
-    add_to_symbol_table(name, t);
+    add_to_symbol_table(name, t, 1);
     return name;
 }
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "VariableDeclaration.h"
+#include "Const.h"
 
 class VarArrayCall;
 
