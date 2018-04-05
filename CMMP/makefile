@@ -63,6 +63,7 @@ vclean:
 cleantest:
 	rm -f ./test/*.o
 	rm -f ./test/*.s
+	rm -f ./test/test
 	
 
 grammar:
