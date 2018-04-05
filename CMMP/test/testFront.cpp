@@ -2,6 +2,10 @@
 namespace testFront{
 
     testReturnFront testFront(string filename){
+
+		//TODO Override le BaseErrorListener du lexer et le remplacer par le notre
+		// voir https://stackoverflow.com/questions/44515370/how-to-override-error-reporting-in-c-target-of-antlr4
+
         Program *p;
         ANTLRFileStream input(filename);
         cmmpLexer lexer(&input);
@@ -247,5 +251,78 @@ namespace{
 	TEST(testFront,VALIDPROGRAMS35_OPERATORBITXORASSIGNC){
 		testFront::testReturnFront no_error;
 		EXPECT_EQ(testFront::testFront("ValidPrograms/35_OperatorBitXorAssign.c"),no_error);
+	}
+}
+//code généré par gen_test.py
+namespace{
+	TEST(testFront,LEXERROR02_LEXERROR_INVALIDCHARINSTREAMWITHINPROGRAMC){
+		testFront::testReturnFront no_error;
+		EXPECT_NE(testFront::testFront("LexError/02_LexError_InvalidCharInStreamWithinProgram.c"),no_error);
+	}
+	TEST(testFront,LEXERROR01_LEXERROR_INVALIDCHARINSTREAMC){
+		testFront::testReturnFront no_error;
+		EXPECT_NE(testFront::testFront("LexError/01_LexError_InvalidCharInStream.c"),no_error);
+	}
+}
+//code généré par gen_test.py
+namespace{
+	TEST(testFront,SEMANTICERROR03_WRONGNUMBERPARAMC){
+		testFront::testReturnFront no_error;
+		EXPECT_NE(testFront::testFront("SemanticError/03_WrongNumberParam.c"),no_error);
+	}
+	TEST(testFront,SEMANTICERROR02_MISSINGFUNCTDECLC){
+		testFront::testReturnFront no_error;
+		EXPECT_NE(testFront::testFront("SemanticError/02_MissingFunctDecl.c"),no_error);
+	}
+	TEST(testFront,SEMANTICERROR07_UNUSEDCS){
+		testFront::testReturnFront no_error;
+		EXPECT_NE(testFront::testFront("SemanticError/07_Unused.c.s"),no_error);
+	}
+	TEST(testFront,SEMANTICERROR01_MISSINGVARDECLARATIONC){
+		testFront::testReturnFront no_error;
+		EXPECT_NE(testFront::testFront("SemanticError/01_MissingVarDeclaration.c"),no_error);
+	}
+	TEST(testFront,SEMANTICERROR05_USEBEFOREINITC){
+		testFront::testReturnFront no_error;
+		EXPECT_NE(testFront::testFront("SemanticError/05_UseBeforeInit.c"),no_error);
+	}
+	TEST(testFront,SEMANTICERROR04_DECLAFTERUSEC){
+		testFront::testReturnFront no_error;
+		EXPECT_NE(testFront::testFront("SemanticError/04_DeclAfterUse.c"),no_error);
+	}
+	TEST(testFront,SEMANTICERROR05_USEBEFOREINITCS){
+		testFront::testReturnFront no_error;
+		EXPECT_NE(testFront::testFront("SemanticError/05_UseBeforeInit.c.s"),no_error);
+	}
+	TEST(testFront,SEMANTICERROR06_INCOMPATIBLETYPESC){
+		testFront::testReturnFront no_error;
+		EXPECT_NE(testFront::testFront("SemanticError/06_IncompatibleTypes.c"),no_error);
+	}
+	TEST(testFront,SEMANTICERROR07_UNUSEDC){
+		testFront::testReturnFront no_error;
+		EXPECT_NE(testFront::testFront("SemanticError/07_Unused.c"),no_error);
+	}
+}
+//code généré par gen_test.py
+namespace{
+	TEST(testFront,SYNTAXERROR05_SYNTAXERROR_TOOMANYCLOSINGPARC){
+		testFront::testReturnFront no_error;
+		EXPECT_NE(testFront::testFront("SyntaxError/05_SyntaxError_TooManyClosingPar.c"),no_error);
+	}
+	TEST(testFront,SYNTAXERROR01_SYNTAXERROR_TWOOPERATORSC){
+		testFront::testReturnFront no_error;
+		EXPECT_NE(testFront::testFront("SyntaxError/01_SyntaxError_TwoOperators.c"),no_error);
+	}
+	TEST(testFront,SYNTAXERROR03_SYNTAXERROR_MISSINGSEMICOLONC){
+		testFront::testReturnFront no_error;
+		EXPECT_NE(testFront::testFront("SyntaxError/03_SyntaxError_MissingSemicolon.c"),no_error);
+	}
+	TEST(testFront,SYNTAXERROR02_SYNTAXERROR_TWOOPERANDSC){
+		testFront::testReturnFront no_error;
+		EXPECT_NE(testFront::testFront("SyntaxError/02_SyntaxError_TwoOperands.c"),no_error);
+	}
+	TEST(testFront,SYNTAXERROR04_SYNTAXERROR_MISSINGPARC){
+		testFront::testReturnFront no_error;
+		EXPECT_NE(testFront::testFront("SyntaxError/04_SyntaxError_MissingPar.c"),no_error);
 	}
 }

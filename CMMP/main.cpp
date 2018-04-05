@@ -15,7 +15,7 @@ using namespace antlr4;
 
 int main(int argc, char ** argv)
 {
-	string filename = "test/5_10.c";
+	string filename = "test/SyntaxError/01_SyntaxError_TwoOperators.c";
 	if(argc == 2){
 		filename = string(argv[1]);
 	}

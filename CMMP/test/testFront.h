@@ -22,6 +22,9 @@ namespace testFront{
                 n_error_checkUnused == t.n_error_checkUnused;
         }
 
+        bool operator!=(const testReturnFront & t)const{
+            return !((*this)==t);
+        }
         errorReturns n_errors;
         errorReturns n_error_linkFunctions;
         errorReturns n_error_linkVariables;
