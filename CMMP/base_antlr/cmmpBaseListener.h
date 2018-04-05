@@ -85,20 +85,8 @@ public:
   virtual void enterPar(cmmpParser::ParContext * /*ctx*/) override { }
   virtual void exitPar(cmmpParser::ParContext * /*ctx*/) override { }
 
-  virtual void enterAdd(cmmpParser::AddContext * /*ctx*/) override { }
-  virtual void exitAdd(cmmpParser::AddContext * /*ctx*/) override { }
-
-  virtual void enterSub(cmmpParser::SubContext * /*ctx*/) override { }
-  virtual void exitSub(cmmpParser::SubContext * /*ctx*/) override { }
-
   virtual void enterPre(cmmpParser::PreContext * /*ctx*/) override { }
   virtual void exitPre(cmmpParser::PreContext * /*ctx*/) override { }
-
-  virtual void enterMult(cmmpParser::MultContext * /*ctx*/) override { }
-  virtual void exitMult(cmmpParser::MultContext * /*ctx*/) override { }
-
-  virtual void enterMod(cmmpParser::ModContext * /*ctx*/) override { }
-  virtual void exitMod(cmmpParser::ModContext * /*ctx*/) override { }
 
   virtual void enterOr(cmmpParser::OrContext * /*ctx*/) override { }
   virtual void exitOr(cmmpParser::OrContext * /*ctx*/) override { }
@@ -106,11 +94,14 @@ public:
   virtual void enterConst(cmmpParser::ConstContext * /*ctx*/) override { }
   virtual void exitConst(cmmpParser::ConstContext * /*ctx*/) override { }
 
+  virtual void enterBinmul(cmmpParser::BinmulContext * /*ctx*/) override { }
+  virtual void exitBinmul(cmmpParser::BinmulContext * /*ctx*/) override { }
+
+  virtual void enterBinadd(cmmpParser::BinaddContext * /*ctx*/) override { }
+  virtual void exitBinadd(cmmpParser::BinaddContext * /*ctx*/) override { }
+
   virtual void enterAffectation(cmmpParser::AffectationContext * /*ctx*/) override { }
   virtual void exitAffectation(cmmpParser::AffectationContext * /*ctx*/) override { }
-
-  virtual void enterDiv(cmmpParser::DivContext * /*ctx*/) override { }
-  virtual void exitDiv(cmmpParser::DivContext * /*ctx*/) override { }
 
   virtual void enterNeg(cmmpParser::NegContext * /*ctx*/) override { }
   virtual void exitNeg(cmmpParser::NegContext * /*ctx*/) override { }
@@ -138,6 +129,21 @@ public:
 
   virtual void enterFunctionCall(cmmpParser::FunctionCallContext * /*ctx*/) override { }
   virtual void exitFunctionCall(cmmpParser::FunctionCallContext * /*ctx*/) override { }
+
+  virtual void enterDiv(cmmpParser::DivContext * /*ctx*/) override { }
+  virtual void exitDiv(cmmpParser::DivContext * /*ctx*/) override { }
+
+  virtual void enterMult(cmmpParser::MultContext * /*ctx*/) override { }
+  virtual void exitMult(cmmpParser::MultContext * /*ctx*/) override { }
+
+  virtual void enterMod(cmmpParser::ModContext * /*ctx*/) override { }
+  virtual void exitMod(cmmpParser::ModContext * /*ctx*/) override { }
+
+  virtual void enterSub(cmmpParser::SubContext * /*ctx*/) override { }
+  virtual void exitSub(cmmpParser::SubContext * /*ctx*/) override { }
+
+  virtual void enterAdd(cmmpParser::AddContext * /*ctx*/) override { }
+  virtual void exitAdd(cmmpParser::AddContext * /*ctx*/) override { }
 
   virtual void enterIncr(cmmpParser::IncrContext * /*ctx*/) override { }
   virtual void exitIncr(cmmpParser::IncrContext * /*ctx*/) override { }

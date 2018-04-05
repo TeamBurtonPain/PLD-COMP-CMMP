@@ -14,6 +14,6 @@ void f(int32_t a, int32_t b, int32_t c, int32_t d, int32_t e, int32_t f, int32_t
 }
 
 void main(void){
-    f(1,2,3,4,5,6,7,8,9);
+    f(1,2,3,4,5,6,7,8,8654);
     putint(10);
 }

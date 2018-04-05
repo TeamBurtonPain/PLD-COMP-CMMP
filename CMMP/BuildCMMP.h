@@ -346,58 +346,24 @@ class BuildCMMP : public cmmpBaseVisitor
 	// expr + expr
 	virtual antlrcpp::Any visitAdd(cmmpParser::AddContext *ctx) override
 	{
-		Expression *e0 = visit(ctx->expr(0));
-		Expression *e1 = visit(ctx->expr(1));
-		Expression *ret = new BinaryExpr(
-			Type::UNKNOWN,
-			e0,
-			BinaryOp::ADD,
-			e1);
-		e0->setParent(ret);
-		e1->setParent(ret);
-		return ret;
+		return BinaryOp::ADD;
+		
 	}
 	// expr - expr
 	virtual antlrcpp::Any visitSub(cmmpParser::SubContext *ctx) override
 	{
-		Expression *e0 = visit(ctx->expr(0));
-		Expression *e1 = visit(ctx->expr(1));
-		Expression *ret = new BinaryExpr(
-			Type::UNKNOWN,
-			e0,
-			BinaryOp::SUB,
-			e1);
-		e0->setParent(ret);
-		e1->setParent(ret);
-		return ret;
+		return BinaryOp::SUB;
+		
 	}
 	// expr * expr
 	virtual antlrcpp::Any visitMult(cmmpParser::MultContext *ctx) override
 	{
-		Expression *e0 = visit(ctx->expr(0));
-		Expression *e1 = visit(ctx->expr(1));
-		Expression *ret = new BinaryExpr(
-			Type::UNKNOWN,
-			e0,
-			BinaryOp::MULT,
-			e1);
-		e0->setParent(ret);
-		e1->setParent(ret);
-		return ret;
+		return BinaryOp::MULT;
 	}
 	//expr % expr
 	virtual antlrcpp::Any visitMod(cmmpParser::ModContext *ctx) override
 	{
-		Expression *e0 = visit(ctx->expr(0));
-		Expression *e1 = visit(ctx->expr(1));
-		Expression *ret = new BinaryExpr(
-			Type::UNKNOWN,
-			e0,
-			BinaryOp::MOD,
-			e1);
-		e0->setParent(ret);
-		e1->setParent(ret);
-		return ret;
+		return BinaryOp::MOD;
 	}
 	//expr || expr
 	virtual antlrcpp::Any visitOr(cmmpParser::OrContext *ctx) override
@@ -482,16 +448,7 @@ class BuildCMMP : public cmmpBaseVisitor
 	// expr / expr
 	virtual antlrcpp::Any visitDiv(cmmpParser::DivContext *ctx) override
 	{
-		Expression *e0 = visit(ctx->expr(0));
-		Expression *e1 = visit(ctx->expr(1));
-		Expression *ret = new BinaryExpr(
-			Type::UNKNOWN,
-			e0,
-			BinaryOp::DIV,
-			e1);
-		e0->setParent(ret);
-		e1->setParent(ret);
-		return ret;
+		return BinaryOp::DIV;
 	}
 	// - expr
 	virtual antlrcpp::Any visitNeg(cmmpParser::NegContext *ctx) override
@@ -675,4 +632,33 @@ class BuildCMMP : public cmmpBaseVisitor
 	{
 		return OpBinaryAffectation::MODAFF;
 	}
+
+	virtual antlrcpp::Any visitBinmul(cmmpParser::BinmulContext *ctx) override {
+    	Expression *e0 = visit(ctx->expr(0));
+		BinaryOp op = visit(ctx->opBinMul());
+		Expression *e1 = visit(ctx->expr(1));
+		Expression *ret = new BinaryExpr(
+			Type::UNKNOWN,
+			e0,
+			op,
+			e1);
+		e0->setParent(ret);
+		e1->setParent(ret);
+		return ret;
+  }
+
+  virtual antlrcpp::Any visitBinadd(cmmpParser::BinaddContext *ctx) override {
+    	Expression *e0 = visit(ctx->expr(0));
+		BinaryOp op = visit(ctx->opBinAdd());
+		Expression *e1 = visit(ctx->expr(1));
+		Expression *ret = new BinaryExpr(
+			Type::UNKNOWN,
+			e0,
+			op,
+			e1);
+		e0->setParent(ret);
+		e1->setParent(ret);
+		return ret;
+  }
 };
+

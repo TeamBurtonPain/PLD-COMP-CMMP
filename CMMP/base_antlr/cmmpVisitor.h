@@ -65,23 +65,17 @@ public:
 
     virtual antlrcpp::Any visitPar(cmmpParser::ParContext *context) = 0;
 
-    virtual antlrcpp::Any visitAdd(cmmpParser::AddContext *context) = 0;
-
-    virtual antlrcpp::Any visitSub(cmmpParser::SubContext *context) = 0;
-
     virtual antlrcpp::Any visitPre(cmmpParser::PreContext *context) = 0;
-
-    virtual antlrcpp::Any visitMult(cmmpParser::MultContext *context) = 0;
-
-    virtual antlrcpp::Any visitMod(cmmpParser::ModContext *context) = 0;
 
     virtual antlrcpp::Any visitOr(cmmpParser::OrContext *context) = 0;
 
     virtual antlrcpp::Any visitConst(cmmpParser::ConstContext *context) = 0;
 
-    virtual antlrcpp::Any visitAffectation(cmmpParser::AffectationContext *context) = 0;
+    virtual antlrcpp::Any visitBinmul(cmmpParser::BinmulContext *context) = 0;
 
-    virtual antlrcpp::Any visitDiv(cmmpParser::DivContext *context) = 0;
+    virtual antlrcpp::Any visitBinadd(cmmpParser::BinaddContext *context) = 0;
+
+    virtual antlrcpp::Any visitAffectation(cmmpParser::AffectationContext *context) = 0;
 
     virtual antlrcpp::Any visitNeg(cmmpParser::NegContext *context) = 0;
 
@@ -100,6 +94,16 @@ public:
     virtual antlrcpp::Any visitVarTab(cmmpParser::VarTabContext *context) = 0;
 
     virtual antlrcpp::Any visitFunctionCall(cmmpParser::FunctionCallContext *context) = 0;
+
+    virtual antlrcpp::Any visitDiv(cmmpParser::DivContext *context) = 0;
+
+    virtual antlrcpp::Any visitMult(cmmpParser::MultContext *context) = 0;
+
+    virtual antlrcpp::Any visitMod(cmmpParser::ModContext *context) = 0;
+
+    virtual antlrcpp::Any visitSub(cmmpParser::SubContext *context) = 0;
+
+    virtual antlrcpp::Any visitAdd(cmmpParser::AddContext *context) = 0;
 
     virtual antlrcpp::Any visitIncr(cmmpParser::IncrContext *context) = 0;
 

@@ -53,13 +53,10 @@ expr:
 
 	| opUnaryAffectation membreGauche		#pre
 	| membreGauche opUnaryAffectation		#post	
-	
-	| expr '*'  expr						#mult
-	| expr '/'  expr						#div
-	| expr '%'  expr						#mod
-	
-	| expr '+'  expr						#add
-	| expr '-'  expr						#sub
+
+	| expr opBinMul expr					#binmul
+
+	| expr opBinAdd expr					#binadd
 	
 	| expr '&&' expr						#and
 	| expr '||' expr						#or
@@ -79,6 +76,17 @@ expr:
 varTab: Var '[' expr ']';
 
 functionCall: Var '(' ( eListe)? ')';
+
+opBinMul:
+	'/'			#div
+	| '*'	    #mult
+	| '%' 		#mod
+	;
+
+opBinAdd:
+	'-' 		#sub
+	| '+' 		#add
+	;
 
 opUnaryAffectation:
 	'++'	#incr

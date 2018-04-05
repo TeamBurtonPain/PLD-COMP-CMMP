@@ -2,7 +2,7 @@
 #include<stdio.h>
 void main(void){
     int64_t a, b;
-    a=2;
+    a=5;
     b=2;
     if(a < b){
         putchar('I');

@@ -34,24 +34,24 @@ getint:
 	movq	%rsp, %rbp
 	subq	$248, %rsp
 .Lgetintbb_0:
-	movq	$1,	-48(%rbp)		#var_-48
-	movq	$-8,	-56(%rbp)		#var_-56
+	movq	$1,	-24(%rbp)		#var_-24
+	movq	$-16,	-32(%rbp)		#var_-32
+	movq	%rbp,	%rax		#%rbp
+	addq	-32(%rbp),	%rax		#var_-32
+	movq	%rax,	-32(%rbp)
+	movq	-32(%rbp),	%rax		#var_-32
+	movq	-24(%rbp),	%rbx		#var_-24
+	movq	%rbx,	(%rax)
+	movq	$0,	-48(%rbp)		#var_-48
+	movq	$-40,	-56(%rbp)		#var_-56
 	movq	%rbp,	%rax		#%rbp
 	addq	-56(%rbp),	%rax		#var_-56
 	movq	%rax,	-56(%rbp)
 	movq	-56(%rbp),	%rax		#var_-56
 	movq	-48(%rbp),	%rbx		#var_-48
 	movq	%rbx,	(%rax)
-	movq	$0,	-64(%rbp)		#var_-64
-	movq	$-16,	-72(%rbp)		#var_-72
-	movq	%rbp,	%rax		#%rbp
-	addq	-72(%rbp),	%rax		#var_-72
-	movq	%rax,	-72(%rbp)
-	movq	-72(%rbp),	%rax		#var_-72
-	movq	-64(%rbp),	%rbx		#var_-64
-	movq	%rbx,	(%rax)
 	movq	$10,	-80(%rbp)		#var_-80
-	movq	$-32,	-88(%rbp)		#var_-88
+	movq	$-72,	-88(%rbp)		#var_-88
 	movq	%rbp,	%rax		#%rbp
 	addq	-88(%rbp),	%rax		#var_-88
 	movq	%rax,	-88(%rbp)
@@ -61,7 +61,7 @@ getint:
 	jmp	.Lgetintbb_1
 .Lgetintbb_1:
 	movq	$1,	-96(%rbp)		#var_-96
-	movq	-8(%rbp),	%rax		#c
+	movq	-16(%rbp),	%rax		#c
 	cmpq	-96(%rbp),	%rax		#var_-96
 	sete	%al
 	movzbq	%al,	%rax
@@ -72,7 +72,7 @@ getint:
 .Lgetintbb_2:
 	call	getchar
 	movq	%rax,	-112(%rbp)
-	movq	$-24,	-120(%rbp)		#var_-120
+	movq	$-64,	-120(%rbp)		#var_-120
 	movq	%rbp,	%rax		#%rbp
 	addq	-120(%rbp),	%rax		#var_-120
 	movq	%rax,	-120(%rbp)
@@ -80,7 +80,7 @@ getint:
 	movq	-112(%rbp),	%rbx		#var_-112
 	movq	%rbx,	(%rax)
 	movq	$48,	-128(%rbp)		#var_-128
-	movq	-24(%rbp),	%rax		#read
+	movq	-64(%rbp),	%rax		#read
 	cmpq	-128(%rbp),	%rax		#var_-128
 	setl	%al
 	movzbq	%al,	%rax
@@ -90,7 +90,7 @@ getint:
 	jmp	.Lgetintbb_4
 .Lgetintbb_4:
 	movq	$0,	-144(%rbp)		#var_-144
-	movq	$-8,	-152(%rbp)		#var_-152
+	movq	$-16,	-152(%rbp)		#var_-152
 	movq	%rbp,	%rax		#%rbp
 	addq	-152(%rbp),	%rax		#var_-152
 	movq	%rax,	-152(%rbp)
@@ -101,7 +101,7 @@ getint:
 .Lgetintbb_5:
 	movq	$57,	-160(%rbp)		#var_-160
 	movq	-160(%rbp),	%rax		#var_-160
-	cmpq	-24(%rbp),	%rax		#read
+	cmpq	-64(%rbp),	%rax		#read
 	setl	%al
 	movzbq	%al,	%rax
 	movq	%rax,	-168(%rbp)
@@ -110,7 +110,7 @@ getint:
 	jmp	.Lgetintbb_6
 .Lgetintbb_6:
 	movq	$0,	-176(%rbp)		#var_-176
-	movq	$-8,	-184(%rbp)		#var_-184
+	movq	$-16,	-184(%rbp)		#var_-184
 	movq	%rbp,	%rax		#%rbp
 	addq	-184(%rbp),	%rax		#var_-184
 	movq	%rax,	-184(%rbp)
@@ -120,7 +120,7 @@ getint:
 	jmp	.Lgetintbb_7
 .Lgetintbb_7:
 	movq	$1,	-192(%rbp)		#var_-192
-	movq	-8(%rbp),	%rax		#c
+	movq	-16(%rbp),	%rax		#c
 	cmpq	-192(%rbp),	%rax		#var_-192
 	sete	%al
 	movzbq	%al,	%rax
@@ -129,17 +129,17 @@ getint:
 	jz	.Lgetintbb_9
 	jmp	.Lgetintbb_8
 .Lgetintbb_8:
-	movq	-16(%rbp),	%rax		#res
-	imulq	-32(%rbp),	%rax		#base
+	movq	-40(%rbp),	%rax		#res
+	imulq	-72(%rbp),	%rax		#base
 	movq	%rax,	-208(%rbp)
 	movq	$48,	-216(%rbp)		#var_-216
-	movq	-24(%rbp),	%rax		#read
+	movq	-64(%rbp),	%rax		#read
 	subq	-216(%rbp),	%rax		#var_-216
 	movq	%rax,	-224(%rbp)
 	movq	-208(%rbp),	%rax		#var_-208
 	addq	-224(%rbp),	%rax		#var_-224
 	movq	%rax,	-232(%rbp)
-	movq	$-16,	-240(%rbp)		#var_-240
+	movq	$-40,	-240(%rbp)		#var_-240
 	movq	%rbp,	%rax		#%rbp
 	addq	-240(%rbp),	%rax		#var_-240
 	movq	%rax,	-240(%rbp)
@@ -150,7 +150,7 @@ getint:
 .Lgetintbb_9:
 	jmp	.Lgetintbb_1
 .Lgetintbb_3:
-	movq	-16(%rbp),	%rax		#return
+	movq	-40(%rbp),	%rax		#return
 	jmp	.Lgetintendgetint
 	jmp	.Lgetintendgetint
 .Lgetintendgetint:

@@ -4,84 +4,22 @@
 main:
 	pushq	%rbp
 	movq	%rsp, %rbp
-	subq	$88, %rsp
+	subq	$48, %rsp
 .Lmainbb_0:
-	movq	$1,	-8(%rbp)		#var_-8
-	movq	$2,	-16(%rbp)		#var_-16
-	movq	$3,	-24(%rbp)		#var_-24
-	movq	$4,	-32(%rbp)		#var_-32
-	movq	$5,	-40(%rbp)		#var_-40
-	movq	$6,	-48(%rbp)		#var_-48
-	movq	$7,	-56(%rbp)		#var_-56
-	movq	$8,	-64(%rbp)		#var_-64
-	movq	$8654,	-72(%rbp)		#var_-72
-	movq	-8(%rbp),	%rdi
-	movq	-16(%rbp),	%rsi
-	movq	-24(%rbp),	%rdx
-	movq	-32(%rbp),	%rcx
-	movq	-40(%rbp),	%r8
-	movq	-48(%rbp),	%r9
-	movq	-72(%rbp),	%rax		#var_-72
-	pushq	%rax		
-	movq	-64(%rbp),	%rax		#var_-64
-	pushq	%rax		
-	movq	-56(%rbp),	%rax		#var_-56
-	pushq	%rax		
-	call	f
-	movq	$10,	-80(%rbp)		#var_-80
-	movq	-80(%rbp),	%rdi
+	movq	$4,	-8(%rbp)		#var_-8
+	movq	$4,	-16(%rbp)		#var_-16
+	movq	-8(%rbp),	%rax		#var_-8
+	cqto
+	idivq	-16(%rbp)		#var_-16
+	movq	%rax,	-24(%rbp)
+	movq	$2,	-32(%rbp)		#var_-32
+	movq	-24(%rbp),	%rax		#var_-24
+	imulq	-32(%rbp),	%rax		#var_-32
+	movq	%rax,	-40(%rbp)
+	movq	-40(%rbp),	%rdi
 	call	putint
 	jmp	.Lmainendmain
 .Lmainendmain:
-	movq	%rbp, %rsp
-	popq	%rbp
-	ret
-	.text
-	.globl	f
-	.type	f, @function
-f:
-	pushq	%rbp
-	movq	%rsp, %rbp
-	subq	$80, %rsp
-.Lfbb_0:
-	movq	%rdi,	%rax		#param0
-	movq	%rax,	-8(%rbp)		#a
-	movq	%rsi,	%rax		#param1
-	movq	%rax,	-16(%rbp)		#b
-	movq	%rdx,	%rax		#param2
-	movq	%rax,	-24(%rbp)		#c
-	movq	%rcx,	%rax		#param3
-	movq	%rax,	-32(%rbp)		#d
-	movq	%r8,	%rax		#param4
-	movq	%rax,	-40(%rbp)		#e
-	movq	%r9,	%rax		#param5
-	movq	%rax,	-48(%rbp)		#f
-	movq	16(%rbp),	%rax
-	movq	%rax,	-56(%rbp)		#g
-	movq	24(%rbp),	%rax
-	movq	%rax,	-64(%rbp)		#h
-	movq	32(%rbp),	%rax
-	movq	%rax,	-72(%rbp)		#i
-	movq	-8(%rbp),	%rdi
-	call	putint
-	movq	-16(%rbp),	%rdi
-	call	putint
-	movq	-24(%rbp),	%rdi
-	call	putint
-	movq	-32(%rbp),	%rdi
-	call	putint
-	movq	-40(%rbp),	%rdi
-	call	putint
-	movq	-48(%rbp),	%rdi
-	call	putint
-	movq	-56(%rbp),	%rdi
-	call	putint
-	movq	-64(%rbp),	%rdi
-	call	putint
-	movq	-72(%rbp),	%rdi
-	call	putint
-	jmp	.Lfendf
-.Lfendf:
 	movq	%rbp, %rsp
 	popq	%rbp
 	ret
