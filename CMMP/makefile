@@ -15,14 +15,31 @@ OBJTEST=$(filter-out main.o, $(OBJ)) $(SRCTEST:%.cpp=%.o)
 LIBTEST=$(LIB) "../build_google/libgtest.a" "../build_google/libgtest_main.a" -pthread 
 FLAGSSTEST=$(FLAGS)
 
+CFRONT=$(wildcard test/*.c)
+SFRONT=$(CFRONT:%.c=%.c.s)
+
 all: $(OBJ)
 	$(CXX) -o $(BIN) $(FLAGS) $^ $(LIB)
 
 
 
-test: $(OBJTEST)
+testFront: $(OBJTEST)
 	$(CXX) -o $(BINTEST) $(FLAGSTEST) $^ $(LIBTEST)
 
+testBack: $(SFRONT)
+
+
+test/%.c.s: test/%.c
+	./exe $<
+	cp $@ test/testBack/Test$*/as.c.s
+	as test/$*.c.s -o test/$*.c.o
+	gcc test/$*.c.o
+	mv a.out test/testBack/Test$*/a.out
+	touch test/testBack/Test$*/run
+	touch test/testBack/Test$*/std.out
+	echo ./a.out > test/testBack/Test$*/run
+	
+	
 
 .PHONY: clean softclean vclean grammar
 
@@ -45,6 +62,8 @@ vclean:
 
 cleantest:
 	rm -f ./test/*.o
+	rm -f ./test/*.s
+	
 
 grammar:
 	./base_antlr/.antlr4.sh -visitor -listener -Dlanguage=Cpp base_antlr/cmmp.g4
