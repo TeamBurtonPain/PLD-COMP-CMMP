@@ -27,8 +27,9 @@ public:
     RuleDeclarationVar = 4, RuleVarSimple = 5, RuleVarTableau = 6, RuleDefinitionFonction = 7, 
     RuleParamDefinitionList = 8, RuleParamDefinition = 9, RuleStructureControl = 10, 
     RuleInstruction = 11, RuleMembreGauche = 12, RuleEListe = 13, RuleExpr = 14, 
-    RuleVarTab = 15, RuleFunctionCall = 16, RuleOpBinMul = 17, RuleOpBinAdd = 18, 
-    RuleOpUnaryAffectation = 19, RuleOpComparaison = 20, RuleOpAffectation = 21
+    RuleVarTab = 15, RuleFunctionCall = 16, RuleOpLogical = 17, RuleOpBinMul = 18, 
+    RuleOpBinAdd = 19, RuleOpUnaryAffectation = 20, RuleOpComparaison = 21, 
+    RuleOpAffectation = 22
   };
 
   cmmpParser(antlr4::TokenStream *input);
@@ -58,6 +59,7 @@ public:
   class ExprContext;
   class VarTabContext;
   class FunctionCallContext;
+  class OpLogicalContext;
   class OpBinMulContext;
   class OpBinAddContext;
   class OpUnaryAffectationContext;
@@ -458,18 +460,6 @@ public:
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
-  class  OrContext : public ExprContext {
-  public:
-    OrContext(ExprContext *ctx);
-
-    std::vector<ExprContext *> expr();
-    ExprContext* expr(size_t i);
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-
-    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
   class  ConstContext : public ExprContext {
   public:
     ConstContext(ExprContext *ctx);
@@ -520,6 +510,19 @@ public:
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
+  class  LogicalContext : public ExprContext {
+  public:
+    LogicalContext(ExprContext *ctx);
+
+    std::vector<ExprContext *> expr();
+    ExprContext* expr(size_t i);
+    OpLogicalContext *opLogical();
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
   class  NegContext : public ExprContext {
   public:
     NegContext(ExprContext *ctx);
@@ -548,18 +551,6 @@ public:
 
     MembreGaucheContext *membreGauche();
     OpUnaryAffectationContext *opUnaryAffectation();
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-
-    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
-  class  AndContext : public ExprContext {
-  public:
-    AndContext(ExprContext *ctx);
-
-    std::vector<ExprContext *> expr();
-    ExprContext* expr(size_t i);
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
 
@@ -634,6 +625,41 @@ public:
   };
 
   FunctionCallContext* functionCall();
+
+  class  OpLogicalContext : public antlr4::ParserRuleContext {
+  public:
+    OpLogicalContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+   
+    OpLogicalContext() : antlr4::ParserRuleContext() { }
+    void copyFrom(OpLogicalContext *context);
+    using antlr4::ParserRuleContext::copyFrom;
+
+    virtual size_t getRuleIndex() const override;
+
+   
+  };
+
+  class  OrContext : public OpLogicalContext {
+  public:
+    OrContext(OpLogicalContext *ctx);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  AndContext : public OpLogicalContext {
+  public:
+    AndContext(OpLogicalContext *ctx);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  OpLogicalContext* opLogical();
 
   class  OpBinMulContext : public antlr4::ParserRuleContext {
   public:

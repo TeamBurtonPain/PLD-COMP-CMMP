@@ -86,9 +86,6 @@ public:
   virtual void enterPre(cmmpParser::PreContext *ctx) = 0;
   virtual void exitPre(cmmpParser::PreContext *ctx) = 0;
 
-  virtual void enterOr(cmmpParser::OrContext *ctx) = 0;
-  virtual void exitOr(cmmpParser::OrContext *ctx) = 0;
-
   virtual void enterConst(cmmpParser::ConstContext *ctx) = 0;
   virtual void exitConst(cmmpParser::ConstContext *ctx) = 0;
 
@@ -101,6 +98,9 @@ public:
   virtual void enterAffectation(cmmpParser::AffectationContext *ctx) = 0;
   virtual void exitAffectation(cmmpParser::AffectationContext *ctx) = 0;
 
+  virtual void enterLogical(cmmpParser::LogicalContext *ctx) = 0;
+  virtual void exitLogical(cmmpParser::LogicalContext *ctx) = 0;
+
   virtual void enterNeg(cmmpParser::NegContext *ctx) = 0;
   virtual void exitNeg(cmmpParser::NegContext *ctx) = 0;
 
@@ -109,9 +109,6 @@ public:
 
   virtual void enterPost(cmmpParser::PostContext *ctx) = 0;
   virtual void exitPost(cmmpParser::PostContext *ctx) = 0;
-
-  virtual void enterAnd(cmmpParser::AndContext *ctx) = 0;
-  virtual void exitAnd(cmmpParser::AndContext *ctx) = 0;
 
   virtual void enterFunction(cmmpParser::FunctionContext *ctx) = 0;
   virtual void exitFunction(cmmpParser::FunctionContext *ctx) = 0;
@@ -127,6 +124,12 @@ public:
 
   virtual void enterFunctionCall(cmmpParser::FunctionCallContext *ctx) = 0;
   virtual void exitFunctionCall(cmmpParser::FunctionCallContext *ctx) = 0;
+
+  virtual void enterAnd(cmmpParser::AndContext *ctx) = 0;
+  virtual void exitAnd(cmmpParser::AndContext *ctx) = 0;
+
+  virtual void enterOr(cmmpParser::OrContext *ctx) = 0;
+  virtual void exitOr(cmmpParser::OrContext *ctx) = 0;
 
   virtual void enterDiv(cmmpParser::DivContext *ctx) = 0;
   virtual void exitDiv(cmmpParser::DivContext *ctx) = 0;

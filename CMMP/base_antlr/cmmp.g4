@@ -58,8 +58,7 @@ expr:
 
 	| expr opBinAdd expr					#binadd
 	
-	| expr '&&' expr						#and
-	| expr '||' expr						#or
+	| expr opLogical expr						#logical
 	
 	| expr opComparaison  expr				#comparaison
 	
@@ -76,6 +75,11 @@ expr:
 varTab: Var '[' expr ']';
 
 functionCall: Var '(' ( eListe)? ')';
+
+opLogical:
+	'&&'		#and
+	| '||'		#or
+	;
 
 opBinMul:
 	'/'			#div

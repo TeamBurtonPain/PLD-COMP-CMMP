@@ -88,9 +88,6 @@ public:
   virtual void enterPre(cmmpParser::PreContext * /*ctx*/) override { }
   virtual void exitPre(cmmpParser::PreContext * /*ctx*/) override { }
 
-  virtual void enterOr(cmmpParser::OrContext * /*ctx*/) override { }
-  virtual void exitOr(cmmpParser::OrContext * /*ctx*/) override { }
-
   virtual void enterConst(cmmpParser::ConstContext * /*ctx*/) override { }
   virtual void exitConst(cmmpParser::ConstContext * /*ctx*/) override { }
 
@@ -103,6 +100,9 @@ public:
   virtual void enterAffectation(cmmpParser::AffectationContext * /*ctx*/) override { }
   virtual void exitAffectation(cmmpParser::AffectationContext * /*ctx*/) override { }
 
+  virtual void enterLogical(cmmpParser::LogicalContext * /*ctx*/) override { }
+  virtual void exitLogical(cmmpParser::LogicalContext * /*ctx*/) override { }
+
   virtual void enterNeg(cmmpParser::NegContext * /*ctx*/) override { }
   virtual void exitNeg(cmmpParser::NegContext * /*ctx*/) override { }
 
@@ -111,9 +111,6 @@ public:
 
   virtual void enterPost(cmmpParser::PostContext * /*ctx*/) override { }
   virtual void exitPost(cmmpParser::PostContext * /*ctx*/) override { }
-
-  virtual void enterAnd(cmmpParser::AndContext * /*ctx*/) override { }
-  virtual void exitAnd(cmmpParser::AndContext * /*ctx*/) override { }
 
   virtual void enterFunction(cmmpParser::FunctionContext * /*ctx*/) override { }
   virtual void exitFunction(cmmpParser::FunctionContext * /*ctx*/) override { }
@@ -129,6 +126,12 @@ public:
 
   virtual void enterFunctionCall(cmmpParser::FunctionCallContext * /*ctx*/) override { }
   virtual void exitFunctionCall(cmmpParser::FunctionCallContext * /*ctx*/) override { }
+
+  virtual void enterAnd(cmmpParser::AndContext * /*ctx*/) override { }
+  virtual void exitAnd(cmmpParser::AndContext * /*ctx*/) override { }
+
+  virtual void enterOr(cmmpParser::OrContext * /*ctx*/) override { }
+  virtual void exitOr(cmmpParser::OrContext * /*ctx*/) override { }
 
   virtual void enterDiv(cmmpParser::DivContext * /*ctx*/) override { }
   virtual void exitDiv(cmmpParser::DivContext * /*ctx*/) override { }

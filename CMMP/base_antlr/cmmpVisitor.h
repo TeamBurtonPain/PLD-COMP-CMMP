@@ -67,8 +67,6 @@ public:
 
     virtual antlrcpp::Any visitPre(cmmpParser::PreContext *context) = 0;
 
-    virtual antlrcpp::Any visitOr(cmmpParser::OrContext *context) = 0;
-
     virtual antlrcpp::Any visitConst(cmmpParser::ConstContext *context) = 0;
 
     virtual antlrcpp::Any visitBinmul(cmmpParser::BinmulContext *context) = 0;
@@ -77,13 +75,13 @@ public:
 
     virtual antlrcpp::Any visitAffectation(cmmpParser::AffectationContext *context) = 0;
 
+    virtual antlrcpp::Any visitLogical(cmmpParser::LogicalContext *context) = 0;
+
     virtual antlrcpp::Any visitNeg(cmmpParser::NegContext *context) = 0;
 
     virtual antlrcpp::Any visitNot(cmmpParser::NotContext *context) = 0;
 
     virtual antlrcpp::Any visitPost(cmmpParser::PostContext *context) = 0;
-
-    virtual antlrcpp::Any visitAnd(cmmpParser::AndContext *context) = 0;
 
     virtual antlrcpp::Any visitFunction(cmmpParser::FunctionContext *context) = 0;
 
@@ -94,6 +92,10 @@ public:
     virtual antlrcpp::Any visitVarTab(cmmpParser::VarTabContext *context) = 0;
 
     virtual antlrcpp::Any visitFunctionCall(cmmpParser::FunctionCallContext *context) = 0;
+
+    virtual antlrcpp::Any visitAnd(cmmpParser::AndContext *context) = 0;
+
+    virtual antlrcpp::Any visitOr(cmmpParser::OrContext *context) = 0;
 
     virtual antlrcpp::Any visitDiv(cmmpParser::DivContext *context) = 0;
 

@@ -111,10 +111,6 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitOr(cmmpParser::OrContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual antlrcpp::Any visitConst(cmmpParser::ConstContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -131,6 +127,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitLogical(cmmpParser::LogicalContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitNeg(cmmpParser::NegContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -140,10 +140,6 @@ public:
   }
 
   virtual antlrcpp::Any visitPost(cmmpParser::PostContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitAnd(cmmpParser::AndContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -164,6 +160,14 @@ public:
   }
 
   virtual antlrcpp::Any visitFunctionCall(cmmpParser::FunctionCallContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitAnd(cmmpParser::AndContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitOr(cmmpParser::OrContext *ctx) override {
     return visitChildren(ctx);
   }
 
