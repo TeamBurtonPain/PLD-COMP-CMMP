@@ -9,6 +9,12 @@ Auteurs :
 - Thomas Sassano
 - Victor Morel
 
+## VCS
+
+Par la Team Buton.
+
+GitHub : https://github.com/TeamBurtonPain/PLD-COMP-CMMP
+
 ## Antlr
 
 Projet réalisé avec l'outil Antlr4 vers une cible C++
@@ -21,7 +27,6 @@ Les extensions suivantes ont particulièrement été utiles lors du développeme
 - ANTLR4 grammar syntax support de Mike Lischke
 - Doxygen Documentation Generator de Christoph Schlosser
 - Settings Sync de Shan Khan
-
 
 ## Makefile
 
@@ -60,10 +65,11 @@ Voici les cibles disponibles :
 - Les tableaux sont implémentés et permettent d'allouer une taille constante. Il n'est pas possible de mettre une taille différente d'une constante numérique actuellement. De même l'initialisation par bracket n'est pas implémentée et aucune erreur ne sera remontée à l'utilisateur. Dans ce cas, le tableau sera alloué mais non initalisé, l'exécution sera imprévisible.
 - Ajout : Afin de pouvoir afficher des nombres et en lire depuis l'entrée standart, deux fonctions putint et getint sont implémentées et compilées par le projet. En cas d'utilisation d'une de ces fonctions dans un programme, elle sera linké automatiquement si la signature de l'appel correspond. Il est possible d'ajouter autant de librairies que voulu : il suffit d'ajouter dans le dossier include_cmmp deux fichier : l'assembleur de la fonction nommé <nom_de_fonction>.s et un fichier d'en-tête nommé <nom_de_fonction>.info qui comprend les informations suivantes :
 
-    - <nombre_de_paramètres> < > [<type_paramètre_i> pour i allant de 0 à <nombre_de_paramètre> - 1] < > <type_retour>
+        <nombre_de_paramètres> < > [<type_paramètre_i> pour i allant de 0 à <nombre_de_paramètre> - 1] < > <type_retour>
 
     Des exemples sont disponibles.
 - L'espace mémoire n'est pas optimisé en fonction des types utilisés.
+
 ## Pour LINUX
 
 Pour une utilisation complète :
@@ -79,7 +85,6 @@ Pour une utilisation complète :
 - Dans .antlr lancer la commande
 
     grun cmmp programme [-tree / -gui / -tokens] <nom_de_fichier>
-
 
 Pour une utilisation rapide sans grun :
 
