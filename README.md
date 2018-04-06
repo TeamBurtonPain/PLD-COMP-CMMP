@@ -104,3 +104,5 @@ Visual Studio 2017
 bugs courants :
 
 - Utiliser les librairies de Multithreading de release et non de debug (/MD au lieu de /MDd)
+
+Le projet n'est pas à jour et nous ne fournissons aucune garantie du fonctionnement du projet sur cette plateforme.
